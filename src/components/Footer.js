@@ -23,7 +23,7 @@ const Footer = () => {
               <div className="topic">Contact us</div>
               
               <div className="phone">
-                <a href="#">
+                <a href="/">
                 <FiPhoneCall />
                 <span>
                   +007 9089 6767
@@ -31,7 +31,7 @@ const Footer = () => {
                 </a>
               </div>
               <div className="email">
-                <a href="#">
+                <a href="/">
                   <FiMail />
                   <span>
                   abc@gmail.com
@@ -43,34 +43,34 @@ const Footer = () => {
           <div className="middle box">
             <div className="topic">Our services</div>
             <div>
-              <a href="#">Web Design, Development</a>
+              <a href="/">Web Design, Development</a>
             </div>
             <div>
-              <a href="#">Web UX Design, Reasearch</a>
+              <a href="/">Web UX Design, Reasearch</a>
             </div>
             <div>
-              <a href="#">Web User Interface Design</a>
+              <a href="/">Web User Interface Design</a>
             </div>
             <div>
-              <a href="#">Theme Development, Design</a>
+              <a href="/">Theme Development, Design</a>
             </div>
             <div>
-              <a href="#">Wire raming & Prototyping</a>
+              <a href="/">Wire raming & Prototyping</a>
             </div>
           </div>
           <div className="right box">
             <div className="topic">Subscribe us</div>
-            <form action="#">
+            <form action="/">
               <input type="text" placeholder="Enter email address" />
               <input type="submit" name="" value="Send" />
               <div className="media-icons">
-                <a href="#">
+                <a href="/">
                   <AiFillFacebook />
                 </a>
-                <a href="#">
+                <a href="/">
                   <AiFillYoutube />
                 </a>
-                <a href="#">
+                <a href="/">
                   <AiFillLinkedin />
                 </a>
               </div>
@@ -79,7 +79,7 @@ const Footer = () => {
         </div>
         <div className="bottom">
           <p>
-            {/* Copyright © 2023 <a href="#">Coding ka baap</a> All rights reserved */}
+            {/* Copyright © 2023 <a href="/">Coding ka baap</a> All rights reserved */}
           </p>
         </div>
       </footer>
