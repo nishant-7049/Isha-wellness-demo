@@ -1,8 +1,43 @@
-import React from "react";
-import styled from "styled-components";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import React from 'react'
+import styled from 'styled-components'
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+
+const data = [
+  {
+    id: 0,
+    title: `Dr. Name Lastname`,
+    date: `5 Years of Experience`,
+    detail: `This College of Science`,
+    img: `/images/blog-img1.jpg`,
+    link: `/`,
+  },
+  {
+    id: 1,
+    title: `Dr. Name Lastname`,
+    date: `5 Years of Experience`,
+    detail: `This College of Science`,
+    img: `/images/blog-img1.jpg`,
+    link: `/`,
+  },
+  {
+    id: 2,
+    title: `Dr. Name Lastname`,
+    date: `5 Years of Experience`,
+    detail: `This College of Science`,
+    img: `/images/blog-img1.jpg`,
+    link: `/`,
+  },
+  {
+    id: 3,
+    title: `Dr. Name Lastname`,
+    date: `5 Years of Experience`,
+    detail: `This College of Science`,
+    img: `/images/blog-img1.jpg`,
+    link: `/`,
+  },
+]
 
 const SliderBlogs = () => {
   const settings = {
@@ -15,97 +50,56 @@ const SliderBlogs = () => {
     autoplaySpeed: 2000,
     pauseOnHover: true,
     arrows: false,
-  };
+    centerMode: true,
+  }
   return (
     <Container>
       <Slider {...settings} className='slider'>
-        <div className="blog container">
-          <div className="blog-item">
-            <div className="blog-img">
-              <img src="/images/blog-img1.jpg" alt="" />
-            </div>
-            <div className="blog-con">
-              <div className="blog-head">
-                <h3 className="blog-title">Back Pain</h3>
-                <p className="blog-date">2020 dec 14</p>
-              </div>
-              <p className="blog-para">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-                nam, aspernatur quisquam commodi ullam neque. Eos nesciunt vel
-                quam unde.
-              </p>
-              <div className="blog-button">
-                <a href="Blogs">Read more</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="blog container">
-          <div className="blog-item">
-            <div className="blog-img">
-              <img src="/images/blog-img1.jpg" alt="" />
-            </div>
-            <div className="blog-con">
-              <div className="blog-head">
-                <h3 className="blog-title">Back Pain</h3>
-                <p className="blog-date">2020 dec 14</p>
-              </div>
-              <p className="blog-para">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-                nam, aspernatur quisquam commodi ullam neque. Eos nesciunt vel
-                quam unde.
-              </p>
-              <div className="blog-button">
-                <a href="Blogs">Read more</a>
+        {data.map((data) => {
+          return (
+            <div key={data.id} className='blog container'>
+              <div className='blog-item'>
+                <div className='blog-img'>
+                  <img src={data.img} alt='' />
+                </div>
+                <div className='blog-con'>
+                  <div className='blog-head'>
+                    <h3 className='blog-title'>{data.title}</h3>
+                    <p className='blog-date'>{data.date}</p>
+                  </div>
+                  <p className='blog-para'>{data.detail}</p>
+                  <div className='blog-button'>
+                    <a href={data.link}>Read more</a>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="blog container">
-          <div className="blog-item">
-            <div className="blog-img">
-              <img src="/images/blog-img1.jpg" alt="" />
-            </div>
-            <div className="blog-con">
-              <div className="blog-head">
-                <h3 className="blog-title">Back Pain</h3>
-                <p className="blog-date">2020 dec 14</p>
-              </div>
-              <p className="blog-para">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-                nam, aspernatur quisquam commodi ullam neque. Eos nesciunt vel
-                quam unde.
-              </p>
-              <div className="blog-button">
-                <a href="Blogs">Read more</a>
-              </div>
-            </div>
-          </div>
-        </div>
+          )
+        })}
       </Slider>
     </Container>
-  );
-};
+  )
+}
 
-export default SliderBlogs;
+export default SliderBlogs
 
 const Container = styled.div`
-  width: 90%; 
+  width: 100%;
   margin: 1rem auto;
 
   .blog {
-    padding: 1rem 2rem;
-    
+    padding: 2rem 0;
   }
+
   .blog-item {
-    background-color: #F8C7DC;
+    background-color: #f8c7dc;
     border-radius: 0.5rem;
     padding: 5% 0 5% 3rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 90%;
-    box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.2 )
+    box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.2);
   }
 
   .blog-img {
@@ -163,4 +157,4 @@ const Container = styled.div`
   .slider {
     margin: 1rem auto;
   }
-`;
+`

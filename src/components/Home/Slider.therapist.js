@@ -6,6 +6,37 @@ import { MdWork } from 'react-icons/md'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
+const data = [
+  {
+    id: 0,
+    docName: `Dr. Name Lastname`,
+    experience: `5 Years of Experience`,
+    school: `This College of Science`,
+    docImg: `/images/doc1.png`,
+  },
+  {
+    id: 1,
+    docName: `Dr. Name Lastname`,
+    experience: `10 Years of Experience`,
+    school: `This College of Science`,
+    docImg: `/images/doc2.png`,
+  },
+  {
+    id: 2,
+    docName: `Dr. Name Lastname`,
+    experience: `12 Years of Experience`,
+    school: `This College of Science`,
+    docImg: `/images/doc1.png`,
+  },
+  {
+    id: 3,
+    docName: `Dr. Name Lastname`,
+    experience: `10 Years of Experience`,
+    school: `This College of Science`,
+    docImg: `/images/doc2.png`,
+  },
+]
+
 const SliderImg = () => {
   const settings = {
     dots: true,
@@ -31,79 +62,28 @@ const SliderImg = () => {
   return (
     <Container>
       <Slider className='slider' {...settings}>
-        <Items>
-          
-          <div className='the-details'>
-            <div className='the-con'>
-              <h3 className='the-name'>Dr. Name Lastname</h3>
-              <span className='the-exp'>
-                <MdWork />
-                <p className='the-para'>5 Years of Experience</p>
-              </span>
-              <span className='the-edu'>
-                <MdSchool />
-                <p className='the-para'>This College of Science</p>
-              </span>
-            </div>
-            <div className='the-image'>
-              <img src='/images/doc1.png' alt='' />
-            </div>
-          </div>
-        </Items>
-        <Items>
-          <div className='the-details'>
-            <div className='the-con'>
-              <h3 className='the-name'>Dr. Name Lastname</h3>
-              <span className='the-exp'>
-                <MdWork />
-                <p className='the-para'>5 Years of Experience</p>
-              </span>
-              <span className='the-edu'>
-                <MdSchool />
-                <p className='the-para'>This College of Science</p>
-              </span>
-            </div>
-            <div className='the-image'>
-              <img src='/images/doc2.png' alt='' />
-            </div>
-          </div>
-        </Items>
-        <Items>
-          <div className='the-details'>
-            <div className='the-con'>
-              <h3 className='the-name'>Dr. Name Lastname</h3>
-              <span className='the-exp'>
-                <MdWork />
-                <p className='the-para'>5 Years of Experience</p>
-              </span>
-              <span className='the-edu'>
-                <MdSchool />
-                <p className='the-para'>This College of Science</p>
-              </span>
-            </div>
-            <div className='the-image'>
-              <img src='/images/doc1.png' alt='' />
-            </div>
-          </div>
-        </Items>
-        <Items>
-          <div className='the-details'>
-            <div className='the-con'>
-              <h3 className='the-name'>Dr. Name Lastname</h3>
-              <span className='the-exp'>
-                <MdWork />
-                <p className='the-para'>5 Years of Experience</p>
-              </span>
-              <span className='the-edu'>
-                <MdSchool />
-                <p className='the-para'>This College of Science</p>
-              </span>
-            </div>
-            <div className='the-image'>
-              <img src='/images/doc2.png' alt='' />
-            </div>
-          </div>
-        </Items>
+        {data.map((data) => {
+          return (
+            <Items key={data.id}>
+              <div className='the-details'>
+                <div className='the-con'>
+                  <h3 className='the-name'>{data.docName}</h3>
+                  <span className='the-exp'>
+                    <MdWork />
+                    <p className='the-para'>{data.experience}</p>
+                  </span>
+                  <span className='the-edu'>
+                    <MdSchool />
+                    <p className='the-para'>{data.school}</p>
+                  </span>
+                </div>
+                <div className='the-image'>
+                  <img src={data.docImg} alt='' />
+                </div>
+              </div>
+            </Items>
+          )
+        })}
       </Slider>
     </Container>
   )
@@ -112,11 +92,11 @@ const SliderImg = () => {
 export default SliderImg
 
 const Container = styled.div`
-  margin: 5rem 10rem;
+  margin: 2rem auto;
 
   .slider {
     cursor: grab;
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
   }
 
@@ -138,7 +118,7 @@ const Container = styled.div`
   }
 `
 const Items = styled.div`
-    background-color: #f4c9db;
+  background-color: #f4c9db;
   .the-details {
     display: flex;
     width: 90%;

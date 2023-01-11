@@ -1,58 +1,50 @@
 import React from 'react'
 import styled from 'styled-components'
 
+const data = [
+  {
+    id: 0,
+    processName: `Process 1`,
+    processImg: `/images/process1.jpg`,
+    process: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo debitis ipsam corporis, officiis omnis perspiciatis?`,
+  },
+  {
+    id: 1,
+    processName: `Process 2`,
+    processImg: `/images/process2.jpg`,
+    process: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo debitis ipsam corporis, officiis omnis perspiciatis?`,
+  },
+  {
+    id: 2,
+    processName: `Process 3`,
+    processImg: `/images/process3.jpg`,
+    process: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo debitis ipsam corporis, officiis omnis perspiciatis?`,
+  },
+  {
+    id: 3,
+    processName: `Process 4`,
+    processImg: `/images/process4.jpg`,
+    process: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo debitis ipsam corporis, officiis omnis perspiciatis?`,
+  },
+]
+
 const ProcessCards = () => {
   return (
     <Container>
       <div className='process-grid'>
-        <div className='process-item'>
-          <div className='card'>
-            <img src='/images/process1.jpg' alt='' />
-            <div className='card-con'>
-              <h1 className='card-head'>Process 1</h1>
-              <p className='card-text'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Explicabo debitis ipsam corporis, officiis omnis perspiciatis?
-              </p>
+        {data.map((data) => {
+          return (
+            <div key={data.id} className='process-item'>
+              <div className='card'>
+                <img src={data.processImg} alt='' />
+                <div className='card-con'>
+                  <h1 className='card-head'>{data.processName}</h1>
+                  <p className='card-text'>{data.process}</p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div className='process-item'>
-          <div className='card'>
-            <img src='/images/process2.jpg' alt='' />
-            <div className='card-con'>
-              <h1 className='card-head'>Process 2</h1>
-              <p className='card-text'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Explicabo debitis ipsam corporis, officiis omnis perspiciatis?
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className='process-item'>
-          <div className='card'>
-            <img src='/images/process3.jpg' alt='' />
-            <div className='card-con'>
-              <h1 className='card-head'>Process 3</h1>
-              <p className='card-text'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Explicabo debitis ipsam corporis, officiis omnis perspiciatis?
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className='process-item'>
-          <div className='card'>
-            <img src='/images/process4.jpg' alt='' />
-            <div className='card-con'>
-              <h1 className='card-head'>Process 4</h1>
-              <p className='card-text'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Explicabo debitis ipsam corporis, officiis omnis perspiciatis?
-              </p>
-            </div>
-          </div>
-        </div>
+          )
+        })}
       </div>
     </Container>
   )
@@ -61,6 +53,8 @@ const ProcessCards = () => {
 export default ProcessCards
 
 const Container = styled.div`
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
   .process-grid {
     margin: 6rem auto;
     display: grid;

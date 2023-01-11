@@ -23,11 +23,8 @@ const Blogs = () => {
 export default Blogs
 
 const Container = styled.div`
-  padding: 3rem 2rem;
-
-  SliderBlogs {
-    margin: 0 auto;
-  }
+  margin: 2rem 5rem;
+  padding: 2rem 0;
 
   .blog-h {
     color: #f4b9d2;
@@ -42,6 +39,6 @@ const Container = styled.div`
   }
 
   .slides {
-    margin: 12vh auto;
+    margin: 2rem auto;
   }
 `

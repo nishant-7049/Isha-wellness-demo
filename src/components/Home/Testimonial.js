@@ -21,19 +21,21 @@ const Testimonial = () => {
 export default Testimonial
 
 const Container = styled.div`
+  margin-top: 5rem;
+  z-index: 100;
   align-items: center;
   text-align: center;
-  padding: 3rem 0;
+  padding: 2rem 0;
   background-color: #f4c9db;
 
   .contain {
-    margin: 1rem 5rem;
+    margin: 1.5rem 5rem !important;
   }
 
   h2,
   p,
   SliderTestimonial {
-    margin: 1rem auto;
+    margin: 1rem auto !important;
   }
 
   .con-para {

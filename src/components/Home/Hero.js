@@ -4,18 +4,15 @@ import styled from 'styled-components'
 const Hero = () => {
   return (
     <Container>
-      <div className='body'>
-        <div className='hero container'>
-          <div className='hero-con'>
-            <h1 className='hero-head'>Isha Wellness Center</h1>
-            <p className='hero-para'>
-              An innovative holistic treatment program
-              which focus on strengthening of all aspects of wellness in your
-              life. Primary objective of developing this system is to avail
-              wellness therapy services through wellness facilitators all over
-              the globe.
-            </p>
-          </div>
+      <div className='hero container'>
+        <div className='hero-con'>
+          <h1 className='hero-head'>Isha Wellness Center</h1>
+          <p className='hero-para'>
+            An innovative holistic treatment program which focus on
+            strengthening of all aspects of wellness in your life. Primary
+            objective of developing this system is to avail wellness therapy
+            services through wellness facilitators all over the globe.
+          </p>
         </div>
       </div>
     </Container>
@@ -25,23 +22,13 @@ const Hero = () => {
 export default Hero
 
 const Container = styled.div`
-  * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-
-  .body {
-    color: black;
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 500;
-    scroll-behavior: smooth;
-  }
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 
   .container {
     min-height: 100vh;
     padding: 3rem 0;
   }
+
   .hero {
     position: absolute;
     height: 100vh;
@@ -87,7 +74,7 @@ const Container = styled.div`
     color: #f4c9db;
   }
   .hero-para {
-    font-size: 20px;
+    font-size: 17px;
     letter-spacing: 1px;
     word-spacing: 2px;
   }

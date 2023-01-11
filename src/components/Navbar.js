@@ -40,8 +40,6 @@ const Nav = styled.div`
   padding-bottom: 0.5rem;
   text-align: center;
   align-items: center;
-
-
   top: 0;
 
   * {

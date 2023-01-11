@@ -5,18 +5,16 @@ import SliderTherapist from './Slider.therapist'
 const Therapist = () => {
   return (
     <Container>
-      <div className='body'>
-        <div className='therapists container'>
-          <h2 className='therapists-head con-head'>
-            Physiotherapists at your service
-          </h2>
-          <p className='therapists-para con-para'>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde velit
-            exercitationem ex expedita, nesciunt ullam officia obcaecati ad
-            magni ratione!
-          </p>
-          <SliderTherapist />
-        </div>
+      <div className='therapists container'>
+        <h2 className='therapists-head con-head'>
+          Physiotherapists at your service
+        </h2>
+        <p className='therapists-para con-para'>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde velit
+          exercitationem ex expedita, nesciunt ullam officia obcaecati ad magni
+          ratione!
+        </p>
+        <SliderTherapist />
       </div>
     </Container>
   )
@@ -25,24 +23,11 @@ const Therapist = () => {
 export default Therapist
 
 const Container = styled.div`
-  height: 100vh;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   background-color: #f4c9db;
 
-  * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-
-  .body {
-    color: black;
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 500;
-    scroll-behavior: smooth;
-  }
-
   .container {
-    padding: 3rem 0;
+    padding: 5rem 0;
   }
   .con-head {
     text-align: center;

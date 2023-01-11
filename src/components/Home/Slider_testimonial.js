@@ -4,9 +4,33 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
+const data = [
+  {
+    id: 0,
+    image: `/images/img (1).png`,
+    name: `Maria Kate`,
+    title: `Web Developer`,
+    review: `"Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti nesciunt sint eligendi reprehenderit reiciendis."`,
+  },
+  {
+    id: 1,
+    image: `/images/img (2).png`,
+    name: `Maria Kate`,
+    title: `Web Developer`,
+    review: `"Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti nesciunt sint eligendi reprehenderit reiciendis."`,
+  },
+  {
+    id: 2,
+    image: `/images/img (3).png`,
+    name: `Maria Kate`,
+    title: `Web Developer`,
+    review: `"Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti nesciunt sint eligendi reprehenderit reiciendis."`,
+  },
+]
+
 const Slider_testimonial = () => {
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -14,50 +38,25 @@ const Slider_testimonial = () => {
     autoplay: true,
     autoplaySpeed: 2000,
     pauseOnHover: true,
-    arrows: false,
+    arrows: true,
   }
   return (
     <Container>
       <Slider className='slider' {...settings}>
-        <Item>
-          <Image>
-            <img src='/images/img (1).png' alt='' />
-          </Image>
-          <Content>
-            <h3>Maria Kate</h3>
-            <h5>Web Developer</h5>
-            <p>
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et
-              deleniti nesciunt sint eligendi reprehenderit reiciendis."
-            </p>
-          </Content>
-        </Item>
-        <Item>
-          <Image>
-            <img src='/images/img (2).png' alt='' />
-          </Image>
-          <Content>
-            <h3>Maria Kate</h3>
-            <h5>Web Developer</h5>
-            <p>
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et
-              deleniti nesciunt sint eligendi reprehenderit reiciendis."
-            </p>
-          </Content>
-        </Item>
-        <Item>
-          <Image>
-            <img src='/images/img (3).png' alt='' />
-          </Image>
-          <Content>
-            <h3>Maria Kate</h3>
-            <h5>Web Developer</h5>
-            <p>
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et
-              deleniti nesciunt sint eligendi reprehenderit reiciendis."
-            </p>
-          </Content>
-        </Item>
+        {data.map((data) => {
+          return (
+            <Item key={data.id}>
+              <Image>
+                <img src={data.image} alt='' />
+              </Image>
+              <Content>
+                <h3>{data.name}</h3>
+                <h5>{data.title}</h5>
+                <p>{data.review}</p>
+              </Content>
+            </Item>
+          )
+        })}
       </Slider>
     </Container>
   )
@@ -66,14 +65,9 @@ const Slider_testimonial = () => {
 export default Slider_testimonial
 
 const Container = styled.div`
-  .slick-next:before,
-  .slick-prev:before {
-    color: black;
-  }
-
   .slider {
     margin: 2rem auto;
-    padding: 2rem 1rem;
+    padding: 1rem;
     cursor: grab;
     background-color: #fff;
     max-width: 35%;
@@ -81,7 +75,7 @@ const Container = styled.div`
   }
 `
 const Item = styled.div`
-  margin: 1.5rem auto 1rem auto;
+  margin: 1.5rem auto;
 `
 
 const Image = styled.div`

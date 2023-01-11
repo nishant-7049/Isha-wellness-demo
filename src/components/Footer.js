@@ -1,96 +1,93 @@
-import React from "react";
-import styled from "styled-components";
-import {FiPhoneCall} from 'react-icons/fi'
-import {FiMail} from 'react-icons/fi'
-import {AiFillFacebook} from 'react-icons/ai'
-import {AiFillYoutube} from 'react-icons/ai'
-import {AiFillLinkedin} from 'react-icons/ai'
+import React from 'react'
+import styled from 'styled-components'
+import { FiPhoneCall } from 'react-icons/fi'
+import { FiMail } from 'react-icons/fi'
+import { AiFillFacebook } from 'react-icons/ai'
+import { AiFillYoutube } from 'react-icons/ai'
+import { AiFillLinkedin } from 'react-icons/ai'
 
 const Footer = () => {
   return (
     <Foo>
       <footer>
-        <div className="content">
-          <div className="left box">
-            <div className="upper">
-              <div className="topic">About us</div>
+        <div className='content'>
+          <div className='left box'>
+            <div className='upper'>
+              <div className='topic'>About us</div>
               <p>
                 CodingLab is a channel where you can learn HTML, CSS, and also
                 JavaScript along with creative CSS Animations and Effects.
               </p>
             </div>
-            <div className="lower">
-              <div className="topic">Contact us</div>
-              
-              <div className="phone">
-                <a href="/">
-                <FiPhoneCall />
-                <span>
-                  +007 9089 6767
-                </span>
+            <div className='lower'>
+              <div className='topic'>Contact us</div>
+
+              <div className='phone'>
+                <a href='/'>
+                  <FiPhoneCall />
+                  <span>+007 9089 6767</span>
                 </a>
               </div>
-              <div className="email">
-                <a href="/">
+              <div className='email'>
+                <a href='/'>
                   <FiMail />
-                  <span>
-                  abc@gmail.com
-                  </span>
+                  <span>abc@gmail.com</span>
                 </a>
               </div>
             </div>
           </div>
-          <div className="middle box">
-            <div className="topic">Our services</div>
+          <div className='middle box'>
+            <div className='topic'>Our services</div>
             <div>
-              <a href="/">Web Design, Development</a>
+              <a href='/'>Web Design, Development</a>
             </div>
             <div>
-              <a href="/">Web UX Design, Reasearch</a>
+              <a href='/'>Web UX Design, Reasearch</a>
             </div>
             <div>
-              <a href="/">Web User Interface Design</a>
+              <a href='/'>Web User Interface Design</a>
             </div>
             <div>
-              <a href="/">Theme Development, Design</a>
+              <a href='/'>Theme Development, Design</a>
             </div>
             <div>
-              <a href="/">Wire raming & Prototyping</a>
+              <a href='/'>Wire raming & Prototyping</a>
             </div>
           </div>
-          <div className="right box">
-            <div className="topic">Subscribe us</div>
-            <form action="/">
-              <input type="text" placeholder="Enter email address" />
-              <input type="submit" name="" value="Send" />
-              <div className="media-icons">
-                <a href="/">
+          <div className='right box'>
+            <div className='topic'>Subscribe us</div>
+            <form action='/'>
+              <input type='text' placeholder='Enter email address' />
+              <input type='submit' name='' value='Send' />
+              <div className='media-icons'>
+                <a href='/'>
                   <AiFillFacebook />
                 </a>
-                <a href="/">
+                <a href='/'>
                   <AiFillYoutube />
                 </a>
-                <a href="/">
+                <a href='/'>
                   <AiFillLinkedin />
                 </a>
               </div>
             </form>
           </div>
         </div>
-        <div className="bottom">
+        <div className='bottom'>
           <p>
             {/* Copyright © 2023 <a href="/">Coding ka baap</a> All rights reserved */}
           </p>
         </div>
       </footer>
     </Foo>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
 
 const Foo = styled.div`
-
+  padding: 1rem 0;
+  margin: 2rem auto;
   color: black;
   width: 100%;
   overflow-x: hidden;
@@ -105,7 +102,6 @@ const Foo = styled.div`
     bottom: 0;
     left: 0;
     background: white;
-    
   }
   footer .content {
     max-width: 1350px;
@@ -138,17 +134,17 @@ const Foo = styled.div`
   }
   footer .content .lower {
     display: inline-block;
-
   }
   footer .content .lower a {
     color: black;
   }
-  .phone,.email {
+  .phone,
+  .email {
     width: 10rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    a{
+    a {
       margin-top: 10px;
       align-items: center;
       span {
@@ -157,34 +153,33 @@ const Foo = styled.div`
         bottom: 5px;
       }
     }
-
   }
   footer .content .middle {
     padding-left: 80px;
   }
-    footer .content .middle a {
+  footer .content .middle a {
     text-decoration: none;
     color: black;
     line-height: 32px;
   }
-  footer .content .right input[type="text"] {
+  footer .content .right input[type='text'] {
     height: 45px;
     width: 100%;
     outline: none;
     color: white;
-    background: #F8C7DC;
+    background: #f8c7dc;
     border-radius: 5px;
     padding-left: 10px;
     font-size: 17px;
     border: none;
   }
-  footer .content .right input[type="submit"] {
+  footer .content .right input[type='submit'] {
     display: block;
-    width: 26rem;
+    width: 100%;
     height: 45px;
     font-size: 18px;
     color: white;
-    background: #F8C7DC;
+    background: #f8c7dc;
     outline: none;
     border-radius: 5px;
     letter-spacing: 1px;
@@ -193,8 +188,7 @@ const Foo = styled.div`
     border: none;
     transition: all 0.3s ease-in-out;
   }
-  .content .right input[type="submit"]:hover {
-    
+  .content .right input[type='submit']:hover {
     border: 2px solid black;
     color: black;
   }
@@ -203,18 +197,17 @@ const Foo = styled.div`
     justify-content: space-evenly;
   }
   footer .content .media-icons a {
-    font-size: 3rem;
-    color: #F8C7DC;
+    font-size: 2.5rem;
+    color: #f8c7dc;
     text-align: center;
     height: 45px;
     width: 45px;
     display: inline-block;
-    text-align: center;
     line-height: 43px;
     margin: 30px 5px 0 0;
     transition: all 0.3s ease;
   }
-  footer .content .media-icons a:hover{
+  footer .content .media-icons a:hover {
     color: black;
   }
   .content .media-icons a:hover {
@@ -260,4 +253,4 @@ const Foo = styled.div`
       padding-left: 0;
     }
   }
-`;
+`
