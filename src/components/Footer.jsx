@@ -15,48 +15,46 @@ const Footer = () => {
             <div className='upper'>
               <div className='topic'>About us</div>
               <p>
-                CodingLab is a channel where you can learn HTML, CSS, and also
-                JavaScript along with creative CSS Animations and Effects.
+                ISHA Wellness Centre is founded by Dr. Hitesh Purohit and Dr.
+                Minjan Patel, social and innovative They are wellness leaders,
+                entrepreneurs. therapists and public health professionals. They
+                have developed new research based treatment guidelines and
+                training material. Thus, it expanded into a team of more than 15
+                trained wellness professionals at 5 locations. Every body is
+                different, and IWC is committed to personalized wellness that
+                everyone can fit into their lifestyle.
               </p>
             </div>
             <div className='lower'>
               <div className='topic'>Contact us</div>
 
-              <div className='phone'>
-                <a href='/'>
-                  <FiPhoneCall />
-                  <span>+007 9089 6767</span>
-                </a>
-              </div>
-              <div className='email'>
-                <a href='/'>
-                  <FiMail />
-                  <span>abc@gmail.com</span>
-                </a>
+              <div className='flex'>
+                <div className='phone'>
+                  <FiPhoneCall className='ph-icon' />
+                  <a href='tel:+910123456789'>+91 01234 56789</a>
+                </div>
+                <div className='email'>
+                  <FiMail className='eml-icon' />
+                  <a href='mailto:abc@gmail.com'>abc@gmail.com</a>
+                </div>
               </div>
             </div>
           </div>
           <div className='middle box'>
             <div className='topic'>Our services</div>
-            <div>
-              <a href='/'>Web Design, Development</a>
-            </div>
-            <div>
-              <a href='/'>Web UX Design, Reasearch</a>
-            </div>
-            <div>
-              <a href='/'>Web User Interface Design</a>
-            </div>
-            <div>
-              <a href='/'>Theme Development, Design</a>
-            </div>
-            <div>
-              <a href='/'>Wire raming & Prototyping</a>
-            </div>
+            <ul>
+              <li>Employee Wellness Program</li>
+              <li>Hormone Balance Therapy</li>
+              <li>Wellness Therapy</li>
+              <li>Pregnancy Care</li>
+              <li>Counseling</li>
+              <li>Counseling</li>
+              <li>Yoga</li>
+            </ul>
           </div>
           <div className='right box'>
             <div className='topic'>Subscribe us</div>
-            <form action='/'>
+            <form action='mailto:abc@gmail.com'>
               <input type='text' placeholder='Enter email address' />
               <input type='submit' name='' value='Send' />
               <div className='media-icons'>
@@ -94,6 +92,11 @@ const Foo = styled.div`
   bottom: 0;
   z-index: 10;
 
+  .flex {
+    display: flex;
+    margin: 0 0.5rem;
+  }
+
   footer .topic {
     color: #f4b9d2;
   }
@@ -111,24 +114,21 @@ const Foo = styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
   }
-  footer .upper p {
-    width: 50%;
+  footer {
+    width: 100%;
+    font-size: small;
   }
-  footer .content p,
+
   footer .content .box {
     width: 30%;
     transition: all 0.4s ease;
   }
   footer .content .topic {
-    font-size: 22px;
+    font-size: x-large;
     font-weight: 600;
     margin-bottom: 16px;
   }
 
-  footer .content p {
-    text-align: justify;
-    width: 70%;
-  }
   footer .content .lower .topic {
     margin: 24px 0 5px 0;
   }
@@ -140,19 +140,10 @@ const Foo = styled.div`
   }
   .phone,
   .email {
-    width: 10rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    a {
-      margin-top: 10px;
-      align-items: center;
-      span {
-        margin-left: 15px;
-        position: relative;
-        bottom: 5px;
-      }
-    }
+    justify-content: center;
+    margin: 0.5rem;
   }
   footer .content .middle {
     padding-left: 80px;
@@ -228,11 +219,17 @@ const Foo = styled.div`
   footer a:hover {
     color: #eb2f06;
   }
+
   @media (max-width: 1100px) {
     footer .content .middle {
       padding-left: 50px;
     }
+    footer .content p {
+      width: 100%;
+      font-size: large;
+    }
   }
+
   @media (max-width: 950px) {
     footer .content .box {
       width: 50%;
@@ -241,7 +238,8 @@ const Foo = styled.div`
       margin-top: 40px;
     }
   }
-  @media (max-width: 560px) {
+
+  @media (max-width: 480px) {
     footer {
       position: relative;
     }
@@ -251,6 +249,23 @@ const Foo = styled.div`
     }
     footer .content .middle {
       padding-left: 0;
+    }
+    footer .content p {
+      width: 100%;
+      font-size: small;
+    }
+    footer .content .topic {
+      font-size: x-large;
+    }
+
+    .flex {
+      font-size: small;
+      justify-content: space-evenly;
+
+      .ph-icon,
+      .eml-icon {
+        display: none;
+      }
     }
   }
 `

@@ -51,6 +51,18 @@ const SliderBlogs = () => {
     pauseOnHover: true,
     arrows: false,
     centerMode: true,
+    responsive: [
+      {
+        breakpoint: 800,
+        settings: {
+          dots: false,
+          arrows: false,
+          pauseOnHover: false,
+          autoplay: true,
+          slidesToShow: 1,
+        },
+      },
+    ],
   }
   return (
     <Container>
@@ -94,11 +106,11 @@ const Container = styled.div`
   .blog-item {
     background-color: #f8c7dc;
     border-radius: 0.5rem;
-    padding: 5% 0 5% 3rem;
+    padding: 3rem 1rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 90%;
+    width: 80%;
     box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.2);
   }
 
@@ -148,13 +160,54 @@ const Container = styled.div`
     padding: auto;
     background-color: white;
     margin-top: 20px;
+
     a {
       color: black;
       text-decoration: none;
       font-size: smaller;
     }
   }
+
   .slider {
     margin: 1rem auto;
+  }
+
+  @media (max-width: 480px) {
+    .blog {
+      padding: 1rem 0.5rem;
+    }
+
+    .blog-item {
+      padding: 1rem 0;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .blog-img {
+      width: 80%;
+      right: 0;
+
+      img {
+        width: 100%;
+        border-radius: 0.5rem;
+      }
+    }
+
+    .blog-con {
+      padding: 1rem 0;
+      width: 100%;
+      margin-left: auto;
+      align-items: center;
+      text-align: center;
+    }
+
+    .blog-title {
+      font-size: medium;
+    }
+
+    .slider {
+      margin: 0.5rem auto;
+    }
   }
 `

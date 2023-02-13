@@ -55,6 +55,8 @@ const SliderImg = () => {
           slidesToShow: 1,
           slidesToScroll: 1,
           initialSlide: 1,
+          dots: false,
+          pauseOnHover: false,
         },
       },
     ],

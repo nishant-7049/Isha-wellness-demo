@@ -5,12 +5,10 @@ import SliderBlogs from './Slider-blogs'
 const Blogs = () => {
   return (
     <Container>
-      <div>
+      <div className='blogs'>
         <h2 className='blog-h'>Blogs</h2>
         <p className='blog-text'>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur,
-          reprehenderit. Nulla modi laudantium dolores. Esse debitis excepturi a
-          rerum consequatur!
+          Read our blogs
         </p>
         <div className='slides'>
           <SliderBlogs />
@@ -23,8 +21,11 @@ const Blogs = () => {
 export default Blogs
 
 const Container = styled.div`
-  margin: 2rem 5rem;
-  padding: 2rem 0;
+  .blogs {
+    margin: 2rem 5rem;
+    padding-top: 1rem;
+    padding-bottom: 4rem;
+  }
 
   .blog-h {
     color: #f4b9d2;
@@ -40,5 +41,21 @@ const Container = styled.div`
 
   .slides {
     margin: 2rem auto;
+  }
+
+  @media (max-width: 480px) {
+    .blogs {
+      margin: 1rem 0.5rem;
+      padding: 1rem 0;
+    }
+
+    .blog-text {
+      max-width: 95%;
+      font-size: small;
+    }
+
+    .slides {
+      margin: 1rem auto;
+    }
   }
 `
