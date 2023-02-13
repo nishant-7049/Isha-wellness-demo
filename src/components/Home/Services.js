@@ -1,17 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
-import ProcessCards from './ProcessCards'
+import ServicesCards from './ServicesCards'
 
 const Process = () => {
   return (
     <Container>
       <div className='process container'>
-        <h2>Our Process</h2>
-        <p className='process-para con-para'>
+        <h2>Our Services</h2>
+        {/* <p className='process-para con-para'>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Est vitae
           fugiat tempore fugit animi? Beatae a neque porro impedit aperiam.
-        </p>
-        <ProcessCards />
+        </p> */}
+        <ServicesCards />
       </div>
     </Container>
   )
@@ -25,6 +25,7 @@ const Container = styled.div`
   .container {
     min-height: 100vh;
     padding: 3rem 0;
+    padding-bottom: 0;
   }
 
   h2 {
