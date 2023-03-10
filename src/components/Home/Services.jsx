@@ -4,15 +4,9 @@ import ServicesCards from './ServicesCards'
 
 const Process = () => {
   return (
-    <Container>
-      <div className='process container'>
-        <h2>Our Services</h2>
-        {/* <p className='process-para con-para'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est vitae
-          fugiat tempore fugit animi? Beatae a neque porro impedit aperiam.
-        </p> */}
-        <ServicesCards />
-      </div>
+    <Container className='process'>
+      <h2>Our Services</h2>
+      <ServicesCards />
     </Container>
   )
 }
@@ -21,12 +15,9 @@ export default Process
 
 const Container = styled.div`
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-
-  .container {
-    min-height: 100vh;
-    padding: 3rem 0;
-    padding-bottom: 0;
-  }
+  min-height: 100vh;
+  padding: 3rem 0;
+  padding-bottom: 0;
 
   h2 {
     text-align: center;

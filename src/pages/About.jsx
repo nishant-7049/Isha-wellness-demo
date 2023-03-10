@@ -1,16 +1,16 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
 const About = () => {
   return (
     <Container>
-      <h3 className="main-head">About Us</h3>
-      <div className="vision">
-        <div className="vision-text">
-          <div className="vision-info">
-            <h3 className="vision-head">Our Vision</h3>
+      <h3 className='main-head'>About Us</h3>
+      <div className='vision'>
+        <div className='vision-text'>
+          <div className='vision-info'>
+            <h3 className='vision-head'>Our Vision</h3>
             <p>
-              {" "}
+              {' '}
               Dr. Minjan Patel and Dr. Hitesh Purohit had a shared vision to
               develop a system that would provide accessible and effective
               treatment for patients in need of physiotherapy and occupational
@@ -24,7 +24,7 @@ const About = () => {
               were causing even more suffering in rural and tribal areas.
             </p>
             <p>
-              {" "}
+              {' '}
               With their combined expertise in their respective therapies,
               extensive knowledge of public health and research, and a
               dedication to solve this problem, they developed treatment
@@ -38,7 +38,7 @@ const About = () => {
               monitoring purposes.
             </p>
             <p>
-              {" "}
+              {' '}
               With their successful treatment model and the realization that
               expansion of services and research would require significant
               funding support, Dr. Minjan Patel and Dr. Hitesh Purohit made the
@@ -49,7 +49,7 @@ const About = () => {
               demand and paying capacity were not sufficient.
             </p>
             <p>
-              {" "}
+              {' '}
               Health Prism was established with the goal of improving access to
               effective physiotherapy and occupational therapy for all,
               regardless of location or financial background. With a combination
@@ -59,41 +59,41 @@ const About = () => {
             </p>
           </div>
         </div>
-        <div className="images">
-          <img src="images/Owner.jpg" alt="/" />
-          <img src="images/owner1.jpg" alt="/" />
+        <div className='images'>
+          <img src='images/Owner.jpg' alt='/' />
+          <img src='images/owner1.jpg' alt='/' />
         </div>
       </div>
-      <div className="achievement">
-        <h3 className="ach-head">Achievements</h3>
-        <div className="ach-cards">
-          <div className="ach-card">
+      <div className='achievement'>
+        <h3 className='ach-head'>Achievements</h3>
+        <div className='ach-cards'>
+          <div className='ach-card'>
             <h4>Trained Wellness Facilitators</h4>
             <p>20+</p>
           </div>
-          <div className="ach-card">
+          <div className='ach-card'>
             <h4>Imparted wellness Education through camps</h4>
             <p>12000+</p>
           </div>
-          <div className="ach-card">
+          <div className='ach-card'>
             <h4>Wellness consultation</h4>
             <p>15000+</p>
           </div>
-          <div className="ach-card">
+          <div className='ach-card'>
             <h4>Wellness therapy sessions</h4>
             <p>60000+</p>
           </div>
         </div>
       </div>
-      <div className="founders">
-        <h3 className="founder-head">Founders of Ishacare wellness</h3>
-        <div className="founder-info">
-          <div className="founder-text ">
-            <div className="founder-img">
-              <img src="images/owner2.jpg" alt="/" />
+      <div className='founders'>
+        <h3 className='founder-head'>Founders of Ishacare wellness</h3>
+        <div className='founder-info'>
+          <div className='founder-text '>
+            <div className='founder-img'>
+              <img src='images/owner2.jpg' alt='/' />
             </div>
             <p>
-              <h3 className="founder-name">Dr. Hitesh Purohit</h3>
+              <h3 className='founder-name'>Dr. Hitesh Purohit</h3>
               Dr. Hitesh Purohit is the Founder Director and President of AKAS
               and ISHA Wellness Centre. He holds a Bachelor's degree in Physical
               Therapy and a Post-Graduation in Public Health. Dr. Purohit is a
@@ -105,9 +105,9 @@ const About = () => {
               to the lives of people in the community.
             </p>
           </div>
-          <div className="founder-text founder-text1">
+          <div className='founder-text founder-text1'>
             <p>
-              <h3 className="founder-name">Dr. Minjan Patel</h3>
+              <h3 className='founder-name'>Dr. Minjan Patel</h3>
               Dr. Minjan Patel is the Founder Director and CEO at AKAS and Isha
               Wellness Centre. With a Bachelor's degree in Occupational Therapy
               and a post-graduation in Public Health, she has further honed her
@@ -118,17 +118,17 @@ const About = () => {
               making a positive impact on the health and well-being of
               communities.
             </p>
-            <div className="founder-img">
-              <img src="images/owner2.jpg" alt="/" />
+            <div className='founder-img'>
+              <img src='images/owner2.jpg' alt='/' />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="isha">
-        <div className="isha-con">
-          <div className="isha-info">
-            <h3 className="isha-head">About Ishawellness Center</h3>
+      <div className='isha'>
+        <div className='isha-con'>
+          <div className='isha-info'>
+            <h3 className='isha-head'>About Ishawellness Center</h3>
             <p>
               Isha Wellness Centre is a leading provider of holistic wellness
               services. The centre offers a wide range of services aimed at
@@ -176,14 +176,14 @@ const About = () => {
         </div>
       </div>
     </Container>
-  );
-};
+  )
+}
 
-export default About;
+export default About
 
 const Container = styled.div`
-  @import url("https://fonts.googleapis.com/css2?family=Poppins&family=Work+Sans&display=swap");
-  font-family: "Poppins", sans-serif;
+  @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Work+Sans&display=swap');
+  font-family: 'Poppins', sans-serif;
   .about {
     border: 1px solid rgba(0, 0, 0, 0.3);
   }
@@ -353,10 +353,10 @@ const Container = styled.div`
     .ach-cards {
       grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
     }
-    .founder-text{
+    .founder-text {
       padding: 0.3rem;
     }
-    .founder-info{
+    .founder-info {
       padding: 2rem 0;
     }
   }
@@ -365,4 +365,4 @@ const Container = styled.div`
       grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
     }
   }
-`;
+`

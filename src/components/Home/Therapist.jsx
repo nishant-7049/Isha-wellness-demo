@@ -27,6 +27,7 @@ const Container = styled.div`
 
   .container {
     padding: 5rem 0;
+    margin: auto;
   }
 
   .con-head {

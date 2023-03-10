@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import { IconContext } from "react-icons/lib";
-import { FaBabyCarriage, FaWheelchair } from "react-icons/fa";
-import { TbYoga } from "react-icons/tb";
-import { RiMentalHealthFill } from "react-icons/ri";
-import { MdPersonSearch } from "react-icons/md";
-import { IoIosPeople } from "react-icons/io";
+import React from 'react'
+import styled from 'styled-components'
+import { IconContext } from 'react-icons/lib'
+import { FaBabyCarriage, FaWheelchair } from 'react-icons/fa'
+import { TbYoga } from 'react-icons/tb'
+import { RiMentalHealthFill } from 'react-icons/ri'
+import { MdPersonSearch } from 'react-icons/md'
+import { IoIosPeople } from 'react-icons/io'
 
 const data = [
   {
@@ -44,36 +44,38 @@ const data = [
     processImg: <IoIosPeople />,
     process: `Health education and exercise sessions for company employees to empower them to prevent and deal with several occupational health problems.`,
   },
-];
+]
 
 const ProcessCards = () => {
   return (
     <Container>
-      <IconContext.Provider value={{
-        size: '4rem',
-        color: '#f4b9d2',
-    }}>
-        <div className="process-grid">
+      <IconContext.Provider
+        value={{
+          size: '4rem',
+          color: '#f4b9d2',
+        }}
+      >
+        <div className='process-grid'>
           {data.map((data) => {
             return (
-              <div key={data.id} className="process-item">
-                <div className="card">
+              <div key={data.id} className='process-item'>
+                <div className='card'>
                   {data.processImg}
-                  <div className="card-con">
-                    <h1 className="card-head">{data.processName}</h1>
-                    <p className="card-text">{data.process}</p>
+                  <div className='card-con'>
+                    <h1 className='card-head'>{data.processName}</h1>
+                    <p className='card-text'>{data.process}</p>
                   </div>
                 </div>
               </div>
-            );
+            )
           })}
         </div>
       </IconContext.Provider>
     </Container>
-  );
-};
+  )
+}
 
-export default ProcessCards;
+export default ProcessCards
 
 const Container = styled.div`
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -126,7 +128,7 @@ const Container = styled.div`
     font-size: 0.7rem;
     text-align: center;
   }
-  
+
   @media screen and (max-width: 720px) {
     .process-grid {
       grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));

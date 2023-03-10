@@ -1,44 +1,43 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState } from 'react'
+import styled from 'styled-components'
 
 const tabs = [
   {
-    id: "1",
-    location: "ratlam",
-    mobile: "+91-07383677661",
-    email: " ",
+    id: '1',
+    location: 'ratlam',
+    mobile: '+91-07383677661',
+    email: ' ',
     address:
-      "behind LaxmiNarayan Temple, Jain Colony, Mahalwada, Ratlam, Madhya Pradesh 457001",
-    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3663.8039676033886!2d75.03967301474339!3d23.322870284801738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3963fea578acaff7%3A0x847dac23ee0d0262!2sISHA%20Wellness%20Centre%20Ratlam!5e0!3m2!1sen!2sin!4v1676121397028!5m2!1sen!2sin",
+      'behind LaxmiNarayan Temple, Jain Colony, Mahalwada, Ratlam, Madhya Pradesh 457001',
+    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3663.8039676033886!2d75.03967301474339!3d23.322870284801738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3963fea578acaff7%3A0x847dac23ee0d0262!2sISHA%20Wellness%20Centre%20Ratlam!5e0!3m2!1sen!2sin!4v1676121397028!5m2!1sen!2sin',
   },
   {
-    id: "2",
-    location: "indore",
-    mobile: "+91-07383677661",
-    email: " abs@gmail.com",
-    address: "13, Narmada Nagar, Sudama Nagar, Indore, Madhya Pradesh 452009",
-    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3681.2367843716133!2d75.83363191473049!3d22.682227685126406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd9a766e4bc5%3A0x950dbd8f954cea80!2sIsha%20Wellness%20Centre%20Indore!5e0!3m2!1sen!2sin!4v1676123749873!5m2!1sen!2sin",
+    id: '2',
+    location: 'indore',
+    mobile: '+91-07383677661',
+    email: ' abs@gmail.com',
+    address: '13, Narmada Nagar, Sudama Nagar, Indore, Madhya Pradesh 452009',
+    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3681.2367843716133!2d75.83363191473049!3d22.682227685126406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd9a766e4bc5%3A0x950dbd8f954cea80!2sIsha%20Wellness%20Centre%20Indore!5e0!3m2!1sen!2sin!4v1676123749873!5m2!1sen!2sin',
   },
-];
+]
 function LocateUs() {
-  const [toggle, setToggle] = useState('1');
-
-  console.log(toggle);
+  const [toggle, setToggle] = useState('1')
 
   return (
-    <Container>
-      <div className="container" itemID="Location">
-          <h2 className="centers">Our Centers</h2>
-        <div className="locations">
+    <Container className='mx-8'>
+      <div className='container' itemID='Location'>
+        <h2 className='centers'>Our Centers</h2>
+        <div className='locations'>
           {tabs.map((data) => {
             return (
-              
               <button
                 key={data.id}
-                className={toggle === data.id ? "btn active-btn" : "btn"}
+                className={toggle === data.id ? 'btn active-btn' : 'btn'}
                 onClick={() => setToggle(data.id)}
-              >{data.location}</button>
-            );
+              >
+                {data.location}
+              </button>
+            )
           })}
         </div>
 
@@ -47,38 +46,37 @@ function LocateUs() {
             <div
               key={data.id}
               className={
-                toggle === data.id ? "content active-content" : "content"
+                toggle === data.id ? 'content active-content' : 'content'
               }
             >
-              <div className="flex-row">
-                <div className="address">
+              <div className='flex-row'>
+                <div className='address'>
                   <p>{data.address}</p>
                   <p>
-                    <a href="tel:">Mobile: {data.mobile}</a>
+                    <a href='tel:'>Mobile: {data.mobile}</a>
                   </p>
                 </div>
-                <div className="map">
+                <div className='map'>
                   <iframe
                     src={data.map}
-                    title="ratlam"
-                    width="500"
-                    height="300"
-                    style={{ border: "0" }}
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
+                    title='ratlam'
+                    width='500'
+                    height='300'
+                    style={{ border: '0' }}
+                    loading='lazy'
+                    referrerPolicy='no-referrer-when-downgrade'
                   ></iframe>
                 </div>
               </div>
             </div>
-          );
+          )
         })}
       </div>
     </Container>
-  );
+  )
 }
 
-export default LocateUs;
+export default LocateUs
 
 const Container = styled.div`
   .centers {
@@ -87,7 +85,7 @@ const Container = styled.div`
     font-size: 2rem;
   }
   .container {
-    margin: 2rem 5rem;
+    margin: 2rem auto;
     font-size: large;
 
     .content {

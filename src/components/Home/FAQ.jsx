@@ -57,7 +57,7 @@ function FAQ() {
                   className='questions'
                 />
                 <div className='plus'>+</div>
-                <label for={item.id} className='question'>
+                <label htmlFor={item.id} className='question'>
                   <p>{item.title}</p>
                 </label>
                 <div className='answers'>
