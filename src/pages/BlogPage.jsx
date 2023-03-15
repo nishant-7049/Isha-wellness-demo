@@ -1,100 +1,113 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 
 const data = [
   {
     id: 0,
-    blogImg: "/images/process.jpg",
-    senderName: "Sender1",
-    sentDate: "15 jan 2020",
-    topic: "What should be the topic of this blog ?",
+    blogImg: '/images/process.jpg',
+    senderName: 'Sender1',
+    sentDate: '15 jan 2020',
+    topic: 'What should be the topic of this blog ?',
     blogText:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus alkl;dajfd;alskjf asl;dkfja;lfdj ; alkdjf alsfj a;;  ias necessitatibus consequatur iure illum cum eos molestiae est consequuntur nisi!",
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus alkl;dajfd;alskjf asl;dkfja;lfdj ; alkdjf alsfj a;;  ias necessitatibus consequatur iure illum cum eos molestiae est consequuntur nisi!',
   },
   {
     id: 1,
-    blogImg: "/images/process1.jpg",
-    senderName: "Sender2",
-    sentDate: "15 jan 2020",
-    topic: "What should be the topic of this blog ?",
+    blogImg: '/images/process1.jpg',
+    senderName: 'Sender2',
+    sentDate: '15 jan 2020',
+    topic: 'What should be the topic of this blog ?',
     blogText:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus alias necessitatibus consequatur iure illum cum eos molestiae est consequuntur nisi!",
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus alias necessitatibus consequatur iure illum cum eos molestiae est consequuntur nisi!',
   },
   {
     id: 2,
-    blogImg: "/images/process2.jpg",
-    senderName: "Sender3",
-    sentDate: "15 jan 2020",
-    topic: "What should be the topic of this blog ?",
+    blogImg: '/images/process2.jpg',
+    senderName: 'Sender3',
+    sentDate: '15 jan 2020',
+    topic: 'What should be the topic of this blog ?',
     blogText:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus alias necessitatibus consequatur iure illum cum eos molestiae est consequuntur nisi!",
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus alias necessitatibus consequatur iure illum cum eos molestiae est consequuntur nisi!',
   },
   {
     id: 3,
-    blogImg: "/images/process3.jpg",
-    senderName: "Sender4",
-    sentDate: "15 jan 2020",
-    topic: "What should be the topic of this blog ?",
+    blogImg: '/images/process3.jpg',
+    senderName: 'Sender4',
+    sentDate: '15 jan 2020',
+    topic: 'What should be the topic of this blog ?',
     blogText:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus alias necessitatibus consequatur iure illum cum eos molestiae est consequuntur nisi!",
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus alias necessitatibus consequatur iure illum cum eos molestiae est consequuntur nisi!',
   },
   {
     id: 4,
-    blogImg: "/images/process4.jpg",
-    senderName: "Sender5",
-    sentDate: "15 jan 2020",
-    topic: "What should be the topic of this blog ?",
+    blogImg: '/images/process4.jpg',
+    senderName: 'Sender5',
+    sentDate: '15 jan 2020',
+    topic: 'What should be the topic of this blog ?',
     blogText:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus alias necessitatibus consequatur iure illum cum eos molestiae est consequuntur nisi!",
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus alias necessitatibus consequatur iure illum cum eos molestiae est consequuntur nisi!',
   },
   {
     id: 5,
-    blogImg: "/images/process2.jpg",
-    senderName: "Sender6",
-    sentDate: "15 jan 2020",
-    topic: "What should be the topic of this blog ?",
+    blogImg: '/images/process2.jpg',
+    senderName: 'Sender6',
+    sentDate: '15 jan 2020',
+    topic: 'What should be the topic of this blog ?',
     blogText:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus alias necessitatibus consequatur iure illum cum eos molestiae est consequuntur nisi!",
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus alias necessitatibus consequatur iure illum cum eos molestiae est consequuntur nisi!',
   },
   {
     id: 6,
-    blogImg: "/images/process1.jpg",
-    senderName: "Sender7",
-    sentDate: "15 jan 2020",
-    topic: "What should be the topic of this blog ?",
+    blogImg: '/images/process1.jpg',
+    senderName: 'Sender7',
+    sentDate: '15 jan 2020',
+    topic: 'What should be the topic of this blog ?',
     blogText:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus alias necessitatibus consequatur iure illum cum eos molestiae est consequuntur nisi!",
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus alias necessitatibus consequatur iure illum cum eos molestiae est consequuntur nisi!',
   },
-];
+]
 const BlogPage = () => {
+  const navigate = useNavigate()
+
   return (
     <Container>
-      <div className="blog">
+      <div className='blog'>
         <span>Out Recent Blogs</span>
         <h3>Our Blogs</h3>
       </div>
-      <div className="card-con">
+      <div className='card-con'>
         {data.map((data) => {
           return (
-            <div className="card" key={data.id}>
-              <div className="image">
-                <img src={data.blogImg} alt="" />
+            <div className='card' key={data.id}>
+              <div className='image'>
+                <img src={data.blogImg} alt='' />
               </div>
-              <div className="blog-text">
-                <span>{data.senderName} | {data.sentDate}</span>
-                <h2>{data.topic}</h2>
+              <div className='blog-text'>
+                <span>
+                  {data.senderName} | {data.sentDate}
+                </span>
+                <h2
+                  onClick={() => {
+                    navigate('/singleblog', { state: { blogId: data.id } })
+                  }}
+                >
+                  {data.topic}
+                </h2>
                 <p>{data.blogText}</p>
-                <a href="/" target="_blank">Read more.</a>
+                <a href='/' target='_blank'>
+                  Read more.
+                </a>
               </div>
             </div>
-          );
+          )
         })}
       </div>
     </Container>
-  );
-};
+  )
+}
 
-export default BlogPage;
+export default BlogPage
 
 const Container = styled.div`
   @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Work+Sans&display=swap');
@@ -199,4 +212,4 @@ const Container = styled.div`
     }
   }
   
-`;
+`
