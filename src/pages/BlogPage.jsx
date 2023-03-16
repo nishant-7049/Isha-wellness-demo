@@ -10,7 +10,7 @@ const data = [
     sentDate: '15 jan 2020',
     topic: 'What should be the topic of this blog ?',
     blogText:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus alkl;dajfd;alskjf asl;dkfja;lfdj ; alkdjf alsfj a;;  ias necessitatibus consequatur iure illum cum eos molestiae est consequuntur nisi!',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae cumque porro rem exercitationem praesentium repudiandae atque error inventore? Doloribus quas sed beatae assumenda vel?'
   },
   {
     id: 1,
@@ -72,12 +72,15 @@ const BlogPage = () => {
 
   return (
     <Container>
+      
       <div className='blog'>
         <span>Out Recent Blogs</span>
         <h3>Our Blogs</h3>
       </div>
       <div className='card-con'>
         {data.map((data) => {
+
+
           return (
             <div className='card' key={data.id}>
               <div className='image'>
@@ -87,17 +90,20 @@ const BlogPage = () => {
                 <span>
                   {data.senderName} | {data.sentDate}
                 </span>
-                <h2
+                <h2 className='cursor-pointer'
                   onClick={() => {
-                    navigate('/singleblog', { state: { blogId: data.id } })
+                    navigate(`/blogs/${data.id}`, { state: { data:data } })
                   }}
                 >
                   {data.topic}
                 </h2>
-                <p>{data.blogText}</p>
-                <a href='/' target='_blank'>
-                  Read more.
-                </a>
+                <p className='blog-para '>{data.blogText}</p>
+                <p className=' cursor-pointer  hover:transition-all hover:duration-300 hover:text-[#f480b1]'
+                onClick={() => {
+                  navigate(`/blogs/${data.id}`, { state: { data:data } })
+                }}>
+                Read more...
+                </p>
               </div>
             </div>
           )
@@ -178,15 +184,6 @@ const Container = styled.div`
           color: #f480b1;
         }
       }
-      > p {
-        color: #9b9b9b;
-        font-size: 0.9rem;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3;
-        overflow: hidden;
-        margin: 20px 0;
-      }
       > a {
         color: #0f0f0f;
         &:hover{
@@ -196,6 +193,16 @@ const Container = styled.div`
       }
     }
   }
+  .blog-para
+    {
+      color: #9b9b9b;
+      font-size: 0.9rem;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+      margin: 20px 0;
+    }
   @media screen and (max-width: 768px) {
     .card-con {
       grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
@@ -210,6 +217,5 @@ const Container = styled.div`
     .blog-text {
       padding: 1rem;
     }
-  }
-  
+  }  
 `

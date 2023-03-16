@@ -24,10 +24,10 @@ function LocateUs() {
   const [toggle, setToggle] = useState('1')
 
   return (
-    <Container className='mx-8'>
+    <Container className='mx-20 con sm:mx-10'>
       <div className='container' itemID='Location'>
         <h2 className='centers'>Our Centers</h2>
-        <div className='locations'>
+        <div className='locations '>
           {tabs.map((data) => {
             return (
               <button
@@ -79,6 +79,7 @@ function LocateUs() {
 export default LocateUs
 
 const Container = styled.div`
+  
   .centers {
     text-align: center;
     color: #f8c7dc;
@@ -188,8 +189,12 @@ const Container = styled.div`
   }
 
   @media (max-width: 480px) {
+    .container{
+      margin: 2rem auto;
+    }
     .locations {
       display: flex;
+      margin: 1rem 2rem;
 
       .btn {
         font-size: small;

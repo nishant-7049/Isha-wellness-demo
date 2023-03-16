@@ -17,7 +17,7 @@ const PrivateScreen = () => {
 
       try {
         const { data } = await axios.get(
-          'https://isha-server.onrender.com/api/private',
+          'http://localhost:5000/api/private',
           config
         )
         setPrivateData(data.data);
