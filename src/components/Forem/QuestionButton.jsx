@@ -4,12 +4,15 @@ import { AiFillCloseSquare } from 'react-icons/ai'
 import { RxAvatar } from 'react-icons/rx'
 import Modal from 'react-responsive-modal'
 import 'react-responsive-modal/styles.css'
+import { useNavigate } from 'react-router-dom'
 
 const QuestionButton = () => {
   const [isModelOpen, setIsModelOpen] = useState(false)
   const [questionState, setQuestionState] = useState('')
   const close = <AiFillCloseSquare className='text-2xl text-[#f480b1]' />
   // console.log(data)
+
+  const navigate = useNavigate()
 
   const postQuestion = async (e) => {
     e.preventDefault()
@@ -29,7 +32,9 @@ const QuestionButton = () => {
           console.log(error)
         })
       setIsModelOpen(false)
-      location.reload()
+      setTimeout(() => {
+        location.reload()
+      }, 1000)
     }
   }
   return (
