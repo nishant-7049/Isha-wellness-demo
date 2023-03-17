@@ -42,7 +42,7 @@ function App() {
           <Route exact path='/ForgotPassword' element={<ForgotPassword />} />
           <Route exact path='/about' element={<About />} />
           <Route exact path='/blogs' element={<BlogPage />} />
-          <Route exact path='/forum' element={<ForemPage />} />
+          <Route exact path='/forem' element={<ForemPage />} />
           <Route exact path='/blogs/:id' element={<SingleBlog />} />
           <Route path='/*' element={<PageNotFound />} />
         </Routes>
