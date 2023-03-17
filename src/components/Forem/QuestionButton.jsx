@@ -34,7 +34,6 @@ const QuestionButton = () => {
       setIsModelOpen(false)
       navigate('/')
       location.reload()
-      navigate('/forem')
     }
   }
   return (
