@@ -13,7 +13,7 @@ function Navbar() {
           <Link to='/'> Home</Link>
           <Link to='/about'> About</Link>
           <Link to='/blogs'> Blogs</Link>
-          <Link to='/forem'> Forem</Link>
+          <Link to='/forum'> Forem</Link>
           <Link to='/register'>
             {localStorage.getItem('authToken') ? (
               <button>Book Now</button>

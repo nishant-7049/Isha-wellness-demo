@@ -1,35 +1,57 @@
-import React, { useState } from "react";
-import { RxAvatar } from "react-icons/rx";
-import {
-  AiOutlineArrowUp,
-  AiOutlineArrowDown,
-  AiFillCloseSquare,
-} from "react-icons/ai";
-import { BiCommentDetail } from "react-icons/bi";
-import Modal from "react-responsive-modal";
+import React, { useState } from 'react'
+import { RxAvatar } from 'react-icons/rx'
+import { AiFillCloseSquare } from 'react-icons/ai'
+import { BiCommentDetail } from 'react-icons/bi'
+import Modal from 'react-responsive-modal'
+import axios from 'axios'
 
-const ForemPost = () => {
-  const [isModelOpen, setIsModelOpen] = useState(false);
-  const close = <AiFillCloseSquare className="text-2xl text-[#f480b1]" />;
+const ForemPost = ({ item }) => {
+  const [isModelOpen, setIsModelOpen] = useState(false)
+  const [answerState, setAnswerState] = useState('')
+  const close = <AiFillCloseSquare className='text-2xl text-[#f480b1]' />
+  // console.log(item)
+  const postAnswer = async (e) => {
+    e.preventDefault()
+    if (!localStorage.getItem('authToken')) {
+      window.alert('Please Login or Register to post a question !')
+    } else {
+      await axios
+        .post('https://isha-server.onrender.com/api/forum/postAnswer', {
+          user: item.user,
+          questionId: item._id,
+          answer: answerState,
+        })
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+      setIsModelOpen(false)
+      location.reload()
+    }
+  }
   return (
-    <div className=" py-3 px-5 mb-[2rem]  bg-white shadow-lg flex flex-col gap-4">
-      <div className="flex gap-4 items-center ">
-        <RxAvatar className="text-3xl text-[#f480b1]" />
-        <p className="text-xs text-[#f480b1]">UserName1</p>
-        <small className="text-xs text-[#f480b1]">Timestamp</small>
+    <div className=' py-3 px-5 mb-[2rem]  bg-white shadow-lg flex flex-col gap-4'>
+      <div className='flex gap-4 items-center '>
+        <RxAvatar className='text-3xl text-[#f480b1]' />
+        <p className='text-xs text-[#f480b1]'>{item.user}</p>
+        <small className='text-xs text-[#f480b1]'>
+          {item.timePosted.substring(0, 10)}
+        </small>
       </div>
-      <div className="flex justify-between">
-        <p>This is your question?</p>
-        <button
-          className="bg-[#f480b1] px-3 py-2 text-white font-extrabold rounded-3xl"
-          onClick={() => {
-            setIsModelOpen(true);
-          }}
-        >
-          Answer
-        </button>
+      <div className='flex justify-between'>
+        <div className='flex justify-between w-[100%] gap-4 mx-12 '>
+          <p className='w-[100%]'>{item.question}</p>
+          <BiCommentDetail
+            className='text-xl z-10 text-[#f480b1]'
+            onClick={() => {
+              setIsModelOpen(true)
+            }}
+          />
+        </div>
         <Modal
-          classNames=" h-[80vh] w-[80vw] "
+          classNames=' h-[80vh] w-[80vw] '
           open={isModelOpen}
           closeIcon={close}
           onClose={() => setIsModelOpen(false)}
@@ -37,51 +59,62 @@ const ForemPost = () => {
           closeOnOverlayClick={false}
           styles={{
             overlay: {
-              height: "auto",
+              height: 'auto',
             },
           }}
         >
-          <div className="h-[40vh] w-[40vw] flex flex-col justify-around">
-            <h6 className="text-2xl">Answer here</h6> 
-            <div>
-
-            <RxAvatar className="text-3xl text-[#f480b1]"/>
-            <input className="mt-2 bg-white w-[100%] p-2" type="text" placeholder="Type your Answer here." />
+          <form onSubmit={postAnswer}>
+            <div className='h-[500px] w-[700px] flex flex-col justify-around sm:h-[300px] sm:w-[280px] '>
+              <h6 className='text-2xl border-b border-1 border-[#6d6d6d]'>
+                Add Answer
+              </h6>
+              <div className='flex flex-col gap-6 items-center justify-center'>
+                <RxAvatar className='text-9xl text-[#f480b1] sm:text-5xl' />
+                <textarea
+                  onChange={(e) => {
+                    setAnswerState(e.target.value)
+                  }}
+                  className='mt-2 bg-white w-[100%] p-2 sm:mt-0'
+                  type='text'
+                  placeholder='Type your Answer here...'
+                  maxLength='100'
+                />
+              </div>
+              <div className='flex flex-col gap-5 items-center sm:flex-row sm:gap-3 sm:text-sm'>
+                <button className='w-[50%] bg-[#f480b1] rounded-xl  py-2 text-white'>
+                  Add Answer
+                </button>
+                <button
+                  className='w-[50%] bg-[#f480b1] rounded-xl  py-2 text-white'
+                  onClick={() => {
+                    setIsModelOpen(false)
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
-            <button className="bg-[#f480b1] rounded-xl  py-1 text-white">
-              Add Answer
-            </button>
-            <button
-              className="bg-[#f480b1] rounded-xl px-3 py-1 text-white"
-              onClick={() => {
-                setIsModelOpen(false);
-              }}
-            >
-              Cancel
-            </button>
-          </div>
+          </form>
         </Modal>
       </div>
-      <div className="flex gap-4 items-center">
-        <div className="flex gap-4 bg-gray-300 p-2 rounded-3xl">
-          <AiOutlineArrowUp className="text-xl mr-8" />
-          <AiOutlineArrowDown className="text-xl mr-8" />
-        </div>
-        <BiCommentDetail className="text-xl " />
-      </div>
-      <p className="text-xs text-gray-500">Answer 1</p>
+      <p className='text-xs text-gray-500'>Answers: {item.allAnswers.length}</p>
       <hr />
-      <hr />
-      <div className=" answer px-10 flex flex-col gap-4">
-        <div className="flex gap-4 items-center ">
-          <RxAvatar className="text-3xl text-[#f480b1]" />
-          <p className="text-xs text-[#f480b1]">UserName1</p>
-          <small className="text-xs text-[#f480b1]">Timestamp</small>
-        </div>
-        <p>This is my Answer.</p>
-      </div>
+      {item.allAnswers.map((answers) => {
+        return (
+          <div key={answers._id} className=' answer px-10 flex flex-col gap-4'>
+            <div className='flex gap-4 items-center '>
+              <RxAvatar className='text-3xl text-[#f480b1]' />
+              <p className='text-xs text-[#f480b1]'>{answers.user}</p>
+              <small className='text-xs text-[#f480b1]'>
+                {answers.timePosted.substring(0, 10)}
+              </small>
+            </div>
+            <p className='ml-12'>{answers.answer}</p>
+          </div>
+        )
+      })}
     </div>
-  );
-};
+  )
+}
 
-export default ForemPost;
+export default ForemPost

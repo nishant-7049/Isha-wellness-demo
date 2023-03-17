@@ -31,7 +31,7 @@ const RegisterScreen = () => {
 
     try {
       const { data } = await axios.post(
-        'http://localhost:5000/api/auth/register',
+        'https://isha-server.onrender.com/api/auth/register',
         {
           username,
           email,
@@ -41,6 +41,7 @@ const RegisterScreen = () => {
       )
 
       localStorage.setItem('authToken', data.token)
+      localStorage.setItem('userName', username)
 
       navigate('/')
       location.reload()
