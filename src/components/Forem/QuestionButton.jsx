@@ -32,9 +32,9 @@ const QuestionButton = () => {
           console.log(error)
         })
       setIsModelOpen(false)
-      setTimeout(() => {
-        location.reload()
-      }, 1000)
+      navigate('/')
+      location.reload()
+      navigate('/forem')
     }
   }
   return (
