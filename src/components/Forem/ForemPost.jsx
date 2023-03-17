@@ -17,7 +17,7 @@ const ForemPost = ({ item }) => {
     } else {
       await axios
         .post('https://isha-server.onrender.com/api/forum/postAnswer', {
-          user: item.user,
+          user: localStorage.getItem('userName'),
           questionId: item._id,
           answer: answerState,
         })
