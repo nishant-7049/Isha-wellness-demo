@@ -79,7 +79,6 @@ function LocateUs() {
 export default LocateUs
 
 const Container = styled.div`
-  
   .centers {
     text-align: center;
     color: #f8c7dc;
@@ -165,9 +164,6 @@ const Container = styled.div`
     }
   }
   @media screen and (max-width: 840px) {
-    .container {
-      margin: 2rem 2.5rem;
-    }
     .flex-row {
       flex-direction: column;
       padding: 0.7rem;
@@ -189,12 +185,11 @@ const Container = styled.div`
   }
 
   @media (max-width: 480px) {
-    .container{
+    .container {
       margin: 2rem auto;
     }
     .locations {
       display: flex;
-      margin: 1rem 2rem;
 
       .btn {
         font-size: small;

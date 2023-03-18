@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import './App.css'
+import BookNow from './components/BookNow'
 
 const Home = lazy(() => import('./pages/Home'))
 const PageNotFound = lazy(() => import('./components/PageNotFound'))
@@ -43,6 +44,7 @@ function App() {
           <Route exact path='/about' element={<About />} />
           <Route exact path='/blogs' element={<BlogPage />} />
           <Route exact path='/forem' element={<ForemPage />} />
+          <Route exact path='/booknow' element={<BookNow />} />
           <Route exact path='/blogs/:id' element={<SingleBlog />} />
           <Route path='/*' element={<PageNotFound />} />
         </Routes>

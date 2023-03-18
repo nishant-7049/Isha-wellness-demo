@@ -14,13 +14,15 @@ function Navbar() {
           <Link to='/about'> About</Link>
           <Link to='/blogs'> Blogs</Link>
           <Link to='/forem'> Forem</Link>
-          <Link to='/register'>
-            {localStorage.getItem('authToken') ? (
+          {localStorage.getItem('authToken') ? (
+            <Link to='/booknow'>
               <button>Book Now</button>
-            ) : (
-              <button>Sign In</button>
-            )}
-          </Link>
+            </Link>
+          ) : (
+            <Link to='/register'>
+              <button>SignIn</button>
+            </Link>
+          )}
         </Links>
         <Button>
           <button onClick={() => setToggle(!toggle)}>
