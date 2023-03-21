@@ -26,7 +26,7 @@ const LoginScreen = () => {
 
     try {
       const { data } = await axios.post(
-        'https://isha-server.onrender.com/api/auth/login',
+        'http://localhost:5000/api/auth/login',
         { email, password },
         config
       )

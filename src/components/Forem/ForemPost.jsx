@@ -8,7 +8,7 @@ import axios from 'axios'
 const ForemPost = ({ item }) => {
   const [isModelOpen, setIsModelOpen] = useState(false)
   const [answerState, setAnswerState] = useState('')
-  const close = <AiFillCloseSquare className='text-2xl text-[#f480b1]' />
+  const close = <AiFillCloseSquare className='text-2xl text-[#50acfb]' />
 
   // console.log(item)
   const postAnswer = async (e) => {
@@ -17,7 +17,7 @@ const ForemPost = ({ item }) => {
       window.alert('Please Login or Register to post a question !')
     } else {
       await axios
-        .post('https://isha-server.onrender.com/api/forum/postAnswer', {
+        .post('http://localhost:5000/api/forum/postAnswer', {
           user: localStorage.getItem('userName'),
           questionId: item._id,
           answer: answerState,
@@ -35,9 +35,9 @@ const ForemPost = ({ item }) => {
   return (
     <div className=' py-3 px-5 mb-[2rem]  bg-white shadow-lg flex flex-col gap-4'>
       <div className='flex gap-4 items-center '>
-        <RxAvatar className='text-3xl text-[#f480b1]' />
-        <p className='text-xs text-[#f480b1]'>{item.user}</p>
-        <small className='text-xs text-[#f480b1]'>
+        <RxAvatar className='text-3xl text-[#50acfb]' />
+        <p className='text-xs text-[#50acfb]'>{item.user}</p>
+        <small className='text-xs text-[#50acfb]'>
           {item.timePosted.substring(0, 10)}
         </small>
       </div>
@@ -45,7 +45,7 @@ const ForemPost = ({ item }) => {
         <div className='flex justify-between w-[100%] gap-4 mx-12 '>
           <p className='w-[100%]'>{item.question}</p>
           <BiCommentDetail
-            className='text-xl z-10 text-[#f480b1]'
+            className='text-xl z-10 text-[#50acfb]'
             onClick={() => {
               setIsModelOpen(true)
             }}
@@ -70,7 +70,7 @@ const ForemPost = ({ item }) => {
                 Add Answer
               </h6>
               <div className='flex flex-col gap-6 items-center justify-center'>
-                <RxAvatar className='text-9xl text-[#f480b1] sm:text-5xl' />
+                <RxAvatar className='text-9xl text-[#50acfb] sm:text-5xl' />
                 <textarea
                   onChange={(e) => {
                     setAnswerState(e.target.value)
@@ -82,11 +82,11 @@ const ForemPost = ({ item }) => {
                 />
               </div>
               <div className='flex flex-col gap-5 items-center sm:flex-row sm:gap-3 sm:text-sm'>
-                <button className='w-[50%] bg-[#f480b1] rounded-xl  py-2 text-white'>
+                <button className='w-[50%] bg-[#50acfb] rounded-xl  py-2 text-white'>
                   Add Answer
                 </button>
                 <button
-                  className='w-[50%] bg-[#f480b1] rounded-xl  py-2 text-white'
+                  className='w-[50%] bg-[#50acfb] rounded-xl  py-2 text-white'
                   onClick={() => {
                     setIsModelOpen(false)
                   }}
@@ -104,9 +104,9 @@ const ForemPost = ({ item }) => {
         return (
           <div key={answers._id} className=' answer px-10 flex flex-col gap-4'>
             <div className='flex gap-4 items-center '>
-              <RxAvatar className='text-3xl text-[#f480b1]' />
-              <p className='text-xs text-[#f480b1]'>{answers.user}</p>
-              <small className='text-xs text-[#f480b1]'>
+              <RxAvatar className='text-3xl text-[#50acfb]' />
+              <p className='text-xs text-[#50acfb]'>{answers.user}</p>
+              <small className='text-xs text-[#50acfb]'>
                 {answers.timePosted.substring(0, 10)}
               </small>
             </div>

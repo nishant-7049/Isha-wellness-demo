@@ -6,24 +6,23 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'
 const data = [
   {
     id: 1,
-    desc: ` An innovative holistic treatment program which focus on
-              strengthening of all aspects of wellness in your life. Primary
-              objective of developing this system is to avail wellness therapy
-              services through wellness facilitators all over the globe.`,
+    img: '/images/1.png',
+    desc: ` Where Healthy & Happy Life Begins…`,
   },
   {
     id: 2,
-    desc: ` An innovative holistic treatment program which focus on
-              strengthening of all aspects of wellness in your life. Primary
-              objective of developing this system is to avail wellness therapy
-              services through wellness facilitators all over the globe.`,
+    img: '/images/2.png',
+    desc: ` Improving lives through Holistic wellness Model - The Integrative Therapeutic Approach  `,
   },
   {
     id: 3,
-    desc: ` An innovative holistic treatment program which focus on
-              strengthening of all aspects of wellness in your life. Primary
-              objective of developing this system is to avail wellness therapy
-              services through wellness facilitators all over the globe.`,
+    img: '/images/3.png',
+    desc: ` Empowering you towards a pain-free Life`,
+  },
+  {
+    id: 4,
+    img: '/images/4.png',
+    desc: ` Transforming healthcare, One person at a time`,
   },
 ]
 
@@ -37,7 +36,7 @@ const Hero = () => {
         showArrows={false}
         showIndicators={false}
         showThumbs={false}
-        interval={2500}
+        interval={4000}
       >
         {data.map((item) => {
           return (
@@ -69,15 +68,33 @@ const Container = styled.div`
     background-position: top center;
     position: relative;
     z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .hero1 {
-    background-image: url(/images/hero-background.jpg);
+    background-image: url(/images/1.png);
   }
   .hero2 {
-    background-image: url(/images/process1.jpg);
+    background-image: url(/images/2.png);
   }
   .hero3 {
-    background-image: url(/images/process2.jpg);
+    background-image: url(/images/3.png);
+  }
+  .hero4 {
+    background-image: url(/images/4.png);
+  }
+  .hero-con {
+    color: inherit;
+    font-weight: 400;
+    margin-left: 20px;
+    z-index: 2;
+    color: white;
+    width: 42%;
+    text-align: center;
+  }
+  .hero-con:hover {
+    display: block;
   }
   .hero::after {
     content: '';
@@ -87,7 +104,7 @@ const Container = styled.div`
     height: 100%;
     width: 100vw;
     background-color: black;
-    opacity: 0.3;
+    opacity: 0.5;
     z-index: -1;
   }
   .hero img {
@@ -97,29 +114,18 @@ const Container = styled.div`
     left: 4px;
   }
 
-  .hero-con {
-    font-weight: 400;
-    margin-left: 20px;
-    z-index: 2;
-    color: white;
-    width: 42%;
-    position: absolute;
-    top: 45%;
-    right: 0;
-    margin-right: 5rem;
-    text-align: right;
-  }
   .hero-head {
     margin-bottom: 10px;
     color: #f4c9db;
+    font-size: 2rem;
   }
   .hero-para {
-    font-size: 17px;
+    font-size: 20px;
     letter-spacing: 1px;
     word-spacing: 2px;
   }
   .carousel > .control-dots .dot {
-    background: #f4c9db;
+    background: #50acfb;
   }
 
   @media (max-width: 820px) {

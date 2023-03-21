@@ -30,7 +30,6 @@ body {
   scroll-behavior: smooth;
 }
 
-
 .form-group,
 .form-group label,
 .form-group input {
@@ -54,7 +53,6 @@ body {
 .form-group input:focus {
   border-bottom: 3px solid coral;
 }
-
 
 .btn-form {
   padding: 10px 20px;

@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { motion, useAnimation } from 'framer-motion'
 import styled from 'styled-components'
+import { useInView } from 'react-intersection-observer'
 
 const data = [
   {
@@ -10,11 +12,11 @@ const data = [
     sentDate: '15 jan 2020',
     topic: 'What should be the topic of this blog ?',
     blogText:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae cumque porro rem exercitationem praesentium repudiandae atque error inventore? Doloribus quas sed beatae assumenda vel?'
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae cumque porro rem exercitationem praesentium repudiandae atque error inventore? Doloribus quas sed beatae assumenda vel?',
   },
   {
     id: 1,
-    blogImg: '/images/process1.jpg',
+    blogImg: '/images/process4.jpg',
     senderName: 'Sender2',
     sentDate: '15 jan 2020',
     topic: 'What should be the topic of this blog ?',
@@ -59,7 +61,7 @@ const data = [
   },
   {
     id: 6,
-    blogImg: '/images/process1.jpg',
+    blogImg: '/images/process.jpg',
     senderName: 'Sender7',
     sentDate: '15 jan 2020',
     topic: 'What should be the topic of this blog ?',
@@ -69,47 +71,74 @@ const data = [
 ]
 const BlogPage = () => {
   const navigate = useNavigate()
+  const { ref, inView } = useInView({ threshold: 0 })
+  const animation = useAnimation()
+
+  useEffect(() => {
+    if (inView) {
+      animation.start({
+        opacity: 1,
+        y: 0,
+        transition: { duration: 1 },
+      })
+    }
+  }, [inView])
 
   return (
-    <Container>
-      
-      <div className='blog'>
-        <span>Out Recent Blogs</span>
-        <h3>Our Blogs</h3>
-      </div>
-      <div className='card-con'>
-        {data.map((data) => {
-
-
-          return (
-            <div className='card' key={data.id}>
-              <div className='image'>
-                <img src={data.blogImg} alt='' />
-              </div>
-              <div className='blog-text'>
-                <span>
-                  {data.senderName} | {data.sentDate}
-                </span>
-                <h2 className='cursor-pointer'
-                  onClick={() => {
-                    navigate(`/blogs/${data.id}`, { state: { data:data } })
-                  }}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 100 }}
+        animate={animation}
+      >
+        <Container>
+          <div className='blog'>
+            <span>Out Recent Blogs</span>
+            <h3>Our Blogs</h3>
+          </div>
+          <div className='card-con'>
+            {data.map((data) => {
+              return (
+                <div
+                  className='card bg-[url(/images/geometricBG.jpg)] bg-cover bg-center bg-fixed'
+                  key={data.id}
                 >
-                  {data.topic}
-                </h2>
-                <p className='blog-para '>{data.blogText}</p>
-                <p className=' cursor-pointer  hover:transition-all hover:duration-300 hover:text-[#f480b1]'
-                onClick={() => {
-                  navigate(`/blogs/${data.id}`, { state: { data:data } })
-                }}>
-                Read more...
-                </p>
-              </div>
-            </div>
-          )
-        })}
-      </div>
-    </Container>
+                  <div className='image'>
+                    <img src={data.blogImg} alt='' />
+                  </div>
+                  <div className='blog-text bg-black bg-opacity-50 text-white'>
+                    <span>
+                      {data.senderName} | {data.sentDate}
+                    </span>
+                    <h2
+                      className='cursor-pointer'
+                      onClick={() => {
+                        navigate(`/blogs/${data.id}`, { state: { data: data } })
+                      }}
+                    >
+                      {data.topic}
+                    </h2>
+                    <p className='blog-para tracking-wider'>{data.blogText}</p>
+                    <p
+                      className=' cursor-pointer  hover:transition-all hover:duration-300 hover:text-[#50acfb]'
+                      onClick={() => {
+                        navigate(`/blogs/${data.id}`, { state: { data: data } })
+                      }}
+                    >
+                      Read more...
+                    </p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </Container>
+      </motion.div>
+    </motion.div>
   )
 }
 
@@ -133,7 +162,7 @@ const Container = styled.div`
     padding: 2rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     > span{
-      color: #f480b1;
+      color: #50acfb;
     }
     > h3{
       font-size: 2rem;
@@ -174,20 +203,20 @@ const Container = styled.div`
       padding: 2rem;
       > span {
         font-size: 0.8rem;
-        color: #f480b1;
+        color: #50acfb;
       }
       > h2 {
         font-size: 1.4rem;
         font-weight: 600;
-        color: #272727;
+        color: #fff;
         &:hover{
-          color: #f480b1;
+          color: #50acfb;
         }
       }
       > a {
         color: #0f0f0f;
         &:hover{
-          color: #f480b1;
+          color: #50acfb;
           transition: all ease 0.3;
         }
       }
@@ -195,7 +224,7 @@ const Container = styled.div`
   }
   .blog-para
     {
-      color: #9b9b9b;
+      color: #fff;
       font-size: 0.9rem;
       display: -webkit-box;
       -webkit-box-orient: vertical;

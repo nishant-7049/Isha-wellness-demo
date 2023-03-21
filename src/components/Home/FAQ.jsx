@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 import styled from 'styled-components'
 
 const data = [
@@ -40,12 +42,29 @@ const data = [
 ]
 
 function FAQ() {
+  const { ref, inView } = useInView({ threshold: 0.5 })
+  const animation = useAnimation()
+
+  useEffect(() => {
+    if (inView) {
+      animation.start({
+        opacity: 1,
+        y: 0,
+        transition: { duration: 1 },
+      })
+    }
+  }, [inView])
   return (
     <Faq>
-      <div className='faq'>
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 100 }}
+        animate={animation}
+        className='faq'
+      >
         <div className='content'>
           <div className='heading'>
-            <h2>FAQs</h2>
+            <h2 className='text-3xl'>FAQs</h2>
           </div>
           {data.map((item) => {
             return (
@@ -67,7 +86,7 @@ function FAQ() {
             )
           })}
         </div>
-      </div>
+      </motion.div>
     </Faq>
   )
 }
@@ -83,7 +102,7 @@ const Faq = styled.div`
   }
 
   .heading {
-    color: #f4c9db;
+    color: #50acfb;
     font-size: x-large;
     text-align: center;
     font-weight: 700;
@@ -104,7 +123,7 @@ const Faq = styled.div`
 
   .question {
     position: relative;
-    background: #f4c9db;
+    background: #50acfb;
     margin: 0;
     padding: 10px 10px 10px 50px;
     display: block;

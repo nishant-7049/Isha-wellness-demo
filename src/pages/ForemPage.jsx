@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Feed from '../components/Forem/Feed'
 import QuestionButton from '../components/Forem/QuestionButton'
+import { motion } from 'framer-motion'
 import axios from 'axios'
 
 const ForemPage = () => {
@@ -8,7 +9,7 @@ const ForemPage = () => {
 
   const getForumData = async () => {
     const { data } = await axios
-      .get('https://isha-server.onrender.com/api/forum/getforumdata')
+      .get('http://localhost:5000/api/forum/getforumdata')
       .catch((err) => {
         console.log(err.message)
       })
@@ -22,8 +23,12 @@ const ForemPage = () => {
   }, [])
 
   return (
-    <div>
-      <h3 className='text-[#f480b1] mt-[4.5rem] pt-4 bg-gray-200 text-center text-2xl'>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <h3 className='text-[#50acfb] mt-[4.5rem] pt-4 bg-gray-200 text-center text-2xl'>
         Forem
       </h3>
 
@@ -31,7 +36,7 @@ const ForemPage = () => {
         <Feed data={forumData} />
         <QuestionButton />
       </div>
-    </div>
+    </motion.div>
   )
 }
 

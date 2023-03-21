@@ -8,7 +8,7 @@ import 'react-responsive-modal/styles.css'
 const QuestionButton = () => {
   const [isModelOpen, setIsModelOpen] = useState(false)
   const [questionState, setQuestionState] = useState('')
-  const close = <AiFillCloseSquare className='text-2xl text-[#f480b1]' />
+  const close = <AiFillCloseSquare className='text-2xl text-[#50acfb]' />
   // console.log(data)
 
   const postQuestion = async (e) => {
@@ -18,7 +18,7 @@ const QuestionButton = () => {
       window.alert('Please Login or Register to post a question !')
     } else {
       await axios
-        .post('https://isha-server.onrender.com/api/forum/postQuestion', {
+        .post('http://localhost:5000/api/forum/postQuestion', {
           user: localStorage.getItem('userName'),
           question: questionState,
         })
@@ -35,7 +35,7 @@ const QuestionButton = () => {
   return (
     <>
       <button
-        className='bg-[#f480b1] flex items-center  justify-center gap-2 py-3 p-1 rounded-full text-white  h-fit w-[10rem] fixed right-8 bottom-8 sm:bottom-8'
+        className='bg-[#50acfb] flex items-center  justify-center gap-2 py-3 p-1 rounded-full text-white  h-fit w-[10rem] fixed right-8 bottom-8 sm:bottom-8'
         onClick={() => setIsModelOpen(true)}
       >
         <span className='text-xl text-extrabold'>+</span> <span>Question</span>
@@ -58,7 +58,7 @@ const QuestionButton = () => {
               Add Question
             </h5>
             <div className='flex flex-col gap-4 items-center justify-center'>
-              <RxAvatar className='text-9xl text-[#f480b1] sm:text-5xl ' />
+              <RxAvatar className='text-9xl text-[#50acfb] sm:text-5xl ' />
               <textarea
                 onChange={(e) => {
                   setQuestionState(e.target.value)
@@ -71,7 +71,7 @@ const QuestionButton = () => {
             </div>
             <div className='flex flex-col gap-5 items-center sm:flex-row sm:gap-3 sm:text-sm'>
               <button
-                className='w-[50%] bg-[#f480b1] rounded-xl  py-2 text-white'
+                className='w-[50%] bg-[#50acfb] rounded-xl  py-2 text-white'
                 onClick={() => {
                   setIsModelOpen(false)
                 }}
@@ -79,7 +79,7 @@ const QuestionButton = () => {
                 Add Question
               </button>
               <button
-                className='w-[50%] bg-[#f480b1] rounded-xl py-2 text-white'
+                className='w-[50%] bg-[#50acfb] rounded-xl py-2 text-white'
                 onClick={() => {
                   setIsModelOpen(false)
                 }}

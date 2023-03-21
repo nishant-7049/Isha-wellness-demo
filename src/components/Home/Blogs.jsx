@@ -1,19 +1,36 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 import styled from 'styled-components'
 import SliderBlogs from './Slider-blogs'
 
 const Blogs = () => {
+  const { ref, inView } = useInView({ threshold: 0.5 })
+  const animation = useAnimation()
+
+  useEffect(() => {
+    if (inView) {
+      animation.start({
+        opacity: 1,
+        y: 0,
+        transition: { duration: 1 },
+      })
+    }
+  }, [inView])
   return (
     <Container>
-      <div className='blogs'>
-        <h2 className='blog-h'>Blogs</h2>
-        <p className='blog-text'>
-          Read our blogs
-        </p>
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 100 }}
+        animate={animation}
+        className='blogs'
+      >
+        <h2 className='blog-h text-3xl'>Blogs</h2>
+        <p className='blog-text'>Read our blogs</p>
         <div className='slides'>
           <SliderBlogs />
         </div>
-      </div>
+      </motion.div>
     </Container>
   )
 }
@@ -28,7 +45,7 @@ const Container = styled.div`
   }
 
   .blog-h {
-    color: #f4b9d2;
+    color: #50acfb;
     text-align: center;
     margin: 1rem;
   }
