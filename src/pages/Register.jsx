@@ -3,6 +3,7 @@ import axios from 'axios'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 
+
 const Register = () => {
   const [email, setEmail] = useState('')
   const [password, setpassword] = useState('')
