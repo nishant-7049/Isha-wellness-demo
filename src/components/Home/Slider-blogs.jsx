@@ -7,34 +7,26 @@ import 'slick-carousel/slick/slick-theme.css'
 const data = [
   {
     id: 0,
-    title: `Dr. Name Lastname`,
-    date: `5 Years of Experience`,
-    detail: `This College of Science`,
+    title: `How therepy helps to improve depression`,
+    date: `2 days ago`,
+    by: `Dr. Laura Croft`,
     img: `/images/blog-img1.jpg`,
     link: `/`,
   },
   {
     id: 1,
-    title: `Dr. Name Lastname`,
-    date: `5 Years of Experience`,
-    detail: `This College of Science`,
-    img: `/images/blog-img1.jpg`,
+    title: `How therepy helps to improve depression`,
+    date: `4 days ago`,
+    by: `Dr. Laura Croft`,
+    img: `/images/blog-img2.jpg`,
     link: `/`,
   },
   {
     id: 2,
-    title: `Dr. Name Lastname`,
-    date: `5 Years of Experience`,
-    detail: `This College of Science`,
-    img: `/images/blog-img1.jpg`,
-    link: `/`,
-  },
-  {
-    id: 3,
-    title: `Dr. Name Lastname`,
-    date: `5 Years of Experience`,
-    detail: `This College of Science`,
-    img: `/images/blog-img1.jpg`,
+    title: `How therepy helps to improve depression`,
+    date: `10 days ago`,
+    by: `Dr. Laura Croft`,
+    img: `/images/blog-img3.jpg`,
     link: `/`,
   },
 ]
@@ -46,9 +38,9 @@ const SliderBlogs = () => {
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 2000,
-    pauseOnHover: true,
+    pauseOnHover: false,
     arrows: false,
     centerMode: true,
     responsive: [
@@ -79,7 +71,7 @@ const SliderBlogs = () => {
                     <h3 className='blog-title'>{data.title}</h3>
                     <p className='blog-date'>{data.date}</p>
                   </div>
-                  <p className='blog-para'>{data.detail}</p>
+                  <p className='blog-para'>{data.by}</p>
                   <div className='blog-button'>
                     <a href={data.link}>Read more</a>
                   </div>
@@ -104,9 +96,9 @@ const Container = styled.div`
   }
 
   .blog-item {
-    background-color: #50acfb;
+    background-color: #2d4e89;
     border-radius: 0.5rem;
-    padding: 3rem 1rem;
+    padding: 1rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -129,7 +121,7 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding: 1rem 1rem;
+    padding: 1rem 0 1rem 1rem;
     width: 70rem;
     margin-left: -3rem;
   }
@@ -141,12 +133,13 @@ const Container = styled.div`
   }
 
   .blog-title {
-    font-size: x-large;
+    font-size: large;
     color: white;
   }
 
   .blog-para {
     font-size: 15px;
+    color: white;
   }
 
   .blog-button {
@@ -155,7 +148,7 @@ const Container = styled.div`
     justify-content: center;
     height: 2rem;
     width: 6rem;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     text-align: center;
     padding: auto;
     background-color: white;
@@ -170,6 +163,12 @@ const Container = styled.div`
 
   .slider {
     margin: 1rem auto;
+    .slick-dots li button:before {
+      color: black;
+    }
+    .slick-dots li.slick-active button:before {
+      color: black;
+    }
   }
 
   @media (max-width: 480px) {

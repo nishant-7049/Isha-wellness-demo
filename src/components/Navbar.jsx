@@ -9,7 +9,7 @@ function Navbar() {
     <Contain>
       <Nav>
         <Logo src='/images/nav-logo.png' alt='img' />
-        <Links>
+        <Links className=''>
           <Link to='/'> Home</Link>
           <Link to='/about'> About</Link>
           <Link to='/service'> Service</Link>
@@ -92,8 +92,7 @@ const Contain = styled.div`
   z-index: 10;
   height: 5rem;
   width: 100%;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  background-color: #13223c;
   top: 0;
 `
 
@@ -101,7 +100,7 @@ const Nav = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 5rem;
-  padding-top: 1rem;
+  padding-top: 0.6rem;
   padding-bottom: 0.5rem;
   text-align: center;
   align-items: center;
@@ -125,9 +124,11 @@ const Links = styled.div`
   letter-spacing: 0.5px;
   a {
     text-decoration: none;
-    color: black;
+    color: white;
     margin: 0 1rem;
     transition: 0.1s ease-in-out;
+    font-weight: 800;
+    font-size: 1rem;
   }
 
   button {

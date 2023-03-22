@@ -26,7 +26,10 @@ const Blogs = () => {
         className='blogs'
       >
         <h2 className='blog-h text-3xl'>Blogs</h2>
-        <p className='blog-text'>Read our blogs</p>
+        <p className='blog-text'>
+          Discover the world through our words: insights, inspiration, and
+          perspectives
+        </p>
         <div className='slides'>
           <SliderBlogs />
         </div>
@@ -39,7 +42,7 @@ export default Blogs
 
 const Container = styled.div`
   .blogs {
-    margin: 2rem 5rem;
+    margin: 2rem 0;
     padding-top: 1rem;
     padding-bottom: 4rem;
   }

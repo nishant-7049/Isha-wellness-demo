@@ -79,65 +79,55 @@ const BlogPage = () => {
       animation.start({
         opacity: 1,
         y: 0,
-        transition: { duration: 1 },
+        transition: { type: 'spring', duration: 0.5, bounce: 0.5 },
       })
     }
   }, [inView])
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    >
-      <motion.div
-        ref={ref}
-        initial={{ opacity: 0, y: 100 }}
-        animate={animation}
-      >
-        <Container>
-          <div className='blog'>
-            <span>Out Recent Blogs</span>
-            <h3>Our Blogs</h3>
-          </div>
-          <div className='card-con'>
-            {data.map((data) => {
-              return (
-                <div
-                  className='card bg-[url(/images/geometricBG.jpg)] bg-cover bg-center bg-fixed'
-                  key={data.id}
-                >
-                  <div className='image'>
-                    <img src={data.blogImg} alt='' />
-                  </div>
-                  <div className='blog-text bg-black bg-opacity-50 text-white'>
-                    <span>
-                      {data.senderName} | {data.sentDate}
-                    </span>
-                    <h2
-                      className='cursor-pointer'
-                      onClick={() => {
-                        navigate(`/blogs/${data.id}`, { state: { data: data } })
-                      }}
-                    >
-                      {data.topic}
-                    </h2>
-                    <p className='blog-para tracking-wider'>{data.blogText}</p>
-                    <p
-                      className=' cursor-pointer  hover:transition-all hover:duration-300 hover:text-[#50acfb]'
-                      onClick={() => {
-                        navigate(`/blogs/${data.id}`, { state: { data: data } })
-                      }}
-                    >
-                      Read more...
-                    </p>
-                  </div>
+    <motion.div ref={ref} initial={{ opacity: 0, y: 100 }} animate={animation}>
+      <Container>
+        <div className='blog'>
+          <span>Out Recent Blogs</span>
+          <h3>Our Blogs</h3>
+        </div>
+        <div className='card-con'>
+          {data.map((data) => {
+            return (
+              <div
+                className='card bg-[url(/images/geometricBG.jpg)] bg-cover bg-center bg-fixed'
+                key={data.id}
+              >
+                <div className='image'>
+                  <img src={data.blogImg} alt='' />
                 </div>
-              )
-            })}
-          </div>
-        </Container>
-      </motion.div>
+                <div className='blog-text bg-black bg-opacity-50 text-white'>
+                  <span>
+                    {data.senderName} | {data.sentDate}
+                  </span>
+                  <h2
+                    className='cursor-pointer'
+                    onClick={() => {
+                      navigate(`/blogs/${data.id}`, { state: { data: data } })
+                    }}
+                  >
+                    {data.topic}
+                  </h2>
+                  <p className='blog-para tracking-wider'>{data.blogText}</p>
+                  <p
+                    className=' cursor-pointer  hover:transition-all hover:duration-300 hover:text-[#50acfb]'
+                    onClick={() => {
+                      navigate(`/blogs/${data.id}`, { state: { data: data } })
+                    }}
+                  >
+                    Read more...
+                  </p>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </Container>
     </motion.div>
   )
 }

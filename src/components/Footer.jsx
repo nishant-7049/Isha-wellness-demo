@@ -8,7 +8,7 @@ import { AiFillYoutube } from 'react-icons/ai'
 import { AiFillLinkedin } from 'react-icons/ai'
 
 const Footer = () => {
-  const { ref, inView } = useInView({ threshold: 0.5 })
+  const { ref, inView } = useInView({ threshold: 0.2 })
   const animation = useAnimation()
 
   useEffect(() => {
@@ -16,10 +16,11 @@ const Footer = () => {
       animation.start({
         opacity: 1,
         y: 0,
-        transition: { duration: 1 },
+        transition: { duration: 0.5 },
       })
     }
   }, [inView])
+  
   return (
     <motion.div
       ref={ref}

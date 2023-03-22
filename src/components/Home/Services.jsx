@@ -32,7 +32,7 @@ export default Process
 
 const Container = styled.div`
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  min-height: 100vh;
+  min-height: 140vh;
   padding: 3rem 0;
   padding-bottom: 0;
 

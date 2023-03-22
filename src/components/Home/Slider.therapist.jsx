@@ -9,31 +9,24 @@ import 'slick-carousel/slick/slick-theme.css'
 const data = [
   {
     id: 0,
-    docName: `Dr. Name Lastname`,
-    experience: `5 Years of Experience`,
-    school: `This College of Science`,
-    docImg: `/images/doc1.png`,
+    docName: `Dr. Katherine Scamander`,
+    experience: `5 Years in the field`,
+    school: `MBBS MD`,
+    docImg: `/images/img (1).png`,
   },
   {
     id: 1,
-    docName: `Dr. Name Lastname`,
-    experience: `10 Years of Experience`,
-    school: `This College of Science`,
-    docImg: `/images/doc2.png`,
+    docName: `Dr. Queenie Goldstein`,
+    experience: `10 Years in the field`,
+    school: `MBBS MD`,
+    docImg: `/images/img (2).png`,
   },
   {
     id: 2,
-    docName: `Dr. Name Lastname`,
-    experience: `12 Years of Experience`,
-    school: `This College of Science`,
-    docImg: `/images/doc1.png`,
-  },
-  {
-    id: 3,
-    docName: `Dr. Name Lastname`,
-    experience: `10 Years of Experience`,
-    school: `This College of Science`,
-    docImg: `/images/doc2.png`,
+    docName: `Dr. Gellert Grindelwald`,
+    experience: `12 Years in the field`,
+    school: `MBBS MD`,
+    docImg: `/images/img (3).png`,
   },
 ]
 
@@ -100,6 +93,12 @@ const Container = styled.div`
     cursor: grab;
     width: 80%;
     margin: 0 auto;
+    .slick-dots li button:before {
+      color: white;
+    }
+    .slick-dots li.slick-active button:before {
+      color: white;
+    }
   }
 
   @media screen and (max-width: 1024px) {
@@ -115,6 +114,9 @@ const Container = styled.div`
 
       .the-image {
         margin: 1rem;
+        img {
+          padding: 0;
+        }
       }
     }
   }
@@ -136,13 +138,14 @@ const Items = styled.div`
   }
   .the-name {
     margin-bottom: 1.2rem;
-    color: #1c75bc;
+    color: #50acfb;
   }
   .the-image {
     width: 40%;
   }
   .the-image img {
     width: 100%;
+    padding: 1rem;
   }
   .the-exp,
   .the-edu {

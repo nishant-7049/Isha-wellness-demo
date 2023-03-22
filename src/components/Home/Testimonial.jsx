@@ -25,8 +25,8 @@ const Testimonial = () => {
         animate={animation}
         className='contain'
       >
-        <h2 className='text-3xl'>Testimonials</h2>
-        <p className='con-para text-white'>
+        <h2 className='text-3xl my-4 mx-auto capitalize text-white'>Testimonials</h2>
+        <p className='con-para text-white my-4 mx-auto'>
           Here are some of the good things people have talked about.
         </p>
         <SliderTestimonial />
@@ -38,7 +38,6 @@ const Testimonial = () => {
 export default Testimonial
 
 const Container = styled.div`
-  // background-color: #50acfb;
 
   .contain {
     margin: 1.5rem 5rem !important;
@@ -49,8 +48,7 @@ const Container = styled.div`
     padding: 2rem 0;
   }
 
-  h2,
-  p,
+  
   SliderTestimonial {
     margin: 1rem auto !important;
   }
@@ -59,10 +57,7 @@ const Container = styled.div`
     max-width: 70%;
   }
 
-  h2 {
-    text-transform: capitalize;
-    color: #fff;
-  }
+  
 
   @media (max-width: 480px) {
     .contain {

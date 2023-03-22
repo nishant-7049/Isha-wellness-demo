@@ -1,47 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import CountUp from "react-countup";
+import ScrollTrigger from "react-scroll-trigger";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 
 const Achievement = () => {
-  const counters = document.querySelectorAll(".count");
-  const speed = 200;
-  counters.forEach((counter) => {
-    const updateCount = () => {
-      const target = parseInt(counter.getAttribute("data-target"));
-      const count = parseInt(counter.innerText);
-      const increment = Math.trunc(target / speed);
+  const [CounterOn, setCounterOn] =  useState(false)
+  const { ref: refrence, inView } = useInView({ threshold: 0.5 });
+  const animation = useAnimation();
 
-      if (count < target) {
-        counter.innerText = count + increment;
-        setTimeout(updateCount, 10);
-      } else {
-        counter.innerText = target;
-      }
-    };
-    updateCount();
-  });
+  
+
+  useEffect(() => {
+    if (inView) {
+      animation.start({
+        opacity: 1,
+        y: 0,
+        transition: { duration: 1 },
+      });
+    }
+  }, [inView]);
+
   return (
     <Container>
-      <h3 className="ach-head">Achievements</h3>
-      <div className="ach-cards">
-        <div className="ach-card">
-          <h4>Trained Wellness Facilitators</h4>
-          <p data-target="20" className="count">
-            20+
-          </p>
+      <ScrollTrigger onEnter={()=> setCounterOn(true)} onExit={()=> setCounterOn(false)}>
+      <motion.div
+        ref={refrence}
+        initial={{ opacity: 0, y: 100 }}
+        animate={animation}
+      >
+        <h3 className="w-fit text-2xl my-1 mx-auto pb-4 font-bold text-[#50acfb]">
+          Achievements
+        </h3>
+        <div className="ach-cards">
+          <div className="ach-card">
+            <h4>Trained Wellness Facilitators</h4>
+            <p id="counter" >
+              {CounterOn && <CountUp start={0} end={20} duration={8} delay={0}/>}+
+              </p>
+          </div>
+          <div className="ach-card">
+            <h4>Imparted wellness Education through camps</h4>
+            <p id="counter1">
+            {CounterOn && <CountUp start={0} end={12000} duration={5} delay={0}/>}+
+            </p>
+          </div>
+          <div className="ach-card">
+            <h4>Wellness consultation</h4>
+            <p id="counter2">
+            {CounterOn && <CountUp start={0} end={15000} duration={5} delay={0}/>}+
+            </p>
+          </div>
+          <div className="ach-card">
+            <h4>Wellness therapy sessions</h4>
+            <p id="counter3">
+            {CounterOn && <CountUp start={0} end={60000} duration={5} delay={0}/>}+
+            </p>
+          </div>
         </div>
-        <div className="ach-card">
-          <h4>Imparted wellness Education through camps</h4>
-          <p>12000+</p>
-        </div>
-        <div className="ach-card">
-          <h4>Wellness consultation</h4>
-          <p>15000+</p>
-        </div>
-        <div className="ach-card">
-          <h4>Wellness therapy sessions</h4>
-          <p>60000+</p>
-        </div>
-      </div>
+      </motion.div>
+      </ScrollTrigger>
     </Container>
   );
 };
@@ -49,38 +68,29 @@ const Achievement = () => {
 export default Achievement;
 
 const Container = styled.div`
-  .ach-head {
-    text-align: center;
-    font-weight: 700;
-    margin: 1rem 0;
-    color: #50acfb;
-    font-size: 1.5rem;
-  }
-
+  margin: 1rem 0;
+  
   .ach-cards {
     width: 90%;
     margin: 2rem auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
 
-    grid-gap: 1rem;
-  }
-  .ach-head {
-    font-size: 2.5rem;
+    grid-gap: 1.5rem;
   }
   .ach-card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     gap: 0.5rem;
-    align-items: center;
+    padding: 1.5rem 0;
     text-align: center;
-    background-color: #50acfb;
+    background-color: #2d4e89;
     height: 10rem;
-    border-radius: 0.8rem;
+    border-radius: 0.5rem;
     > h4 {
       font-weight: 700;
-      color: #414141;
+      color: #fff;
     }
     > p {
       font-size: 2rem;
@@ -99,4 +109,4 @@ const Container = styled.div`
       grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
     }
   }
-`
+`;

@@ -29,9 +29,7 @@ const Therapist = () => {
             Physiotherapists at your service
           </h2>
           <p className='therapists-para con-para text-white'>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde velit
-            exercitationem ex expedita, nesciunt ullam officia obcaecati ad
-            magni ratione!
+            Revitalize Your Body with Our Expert Physiotherapists
           </p>
           <SliderTherapist />
         </div>

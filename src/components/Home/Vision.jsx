@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Link} from "react-router-dom";
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
@@ -23,7 +24,7 @@ function Vision() {
       animate={animation}
       className='vision my-8 mx-20 sm:m-4'
     >
-      <div className='heading text-center text-lg text-white p-8 sm:text-sm sm:p-0'>
+      <div className='heading text-center text-lg text-white px-8 pt-8 sm:text-sm sm:p-0'>
         <h2 className='text-2xl my-1 mx-0 pb-4 font-bold text-[#50acfb]'>
           Our Vision & Mission
         </h2>
@@ -33,6 +34,7 @@ function Vision() {
           Primary objective of developing this system is to avail wellness
           therapy services through wellness facilitators all over the globe.
         </p>
+        <Link to='/about' className='text-[#50acfb] text-sm'>Read More...</Link>
       </div>
     </motion.div>
   )
