@@ -1,49 +1,49 @@
-import React from "react";
-import styled from "styled-components";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import React from 'react'
+import styled from 'styled-components'
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 const data = [
   {
     id: 0,
-    img: "/images/img (1).png",
-    name: "Member 1",
-    post: "Dev 1",
-    edu: "Blsfj",
+    img: '/images/service/img (1).png',
+    name: 'Member 1',
+    post: 'Dev 1',
+    edu: 'From boston university',
   },
   {
     id: 1,
-    img: "/images/img (2).png",
-    name: "Member 2",
-    post: "Dev 2",
-    edu: ";lajsdf",
+    img: '/images/service/img (2).png',
+    name: 'Member 2',
+    post: 'Dev 2',
+    edu: 'From boston university',
   },
   {
     id: 2,
-    img: "/images/img (3).png",
-    name: "Member 3",
-    post: "Dev 3",
-    edu: "lds;afjk",
+    img: '/images/service/img (3).png',
+    name: 'Member 3',
+    post: 'Dev 3',
+    edu: 'From boston university',
   },
   {
     id: 3,
-    img: "/images/img (1).png",
-    name: "Member 4",
-    post: "Dev 4",
-    edu: "erwwer",
+    img: '/images/service/img (1).png',
+    name: 'Member 4',
+    post: 'Dev 4',
+    edu: 'From boston university',
   },
   {
     id: 4,
-    img: "/images/img (2).png",
-    name: "Member 5",
-    post: "Dev 5",
-    edu: "lsdfjlsf",
+    img: '/images/service/img (2).png',
+    name: 'Member 5',
+    post: 'Dev 5',
+    edu: 'From boston university',
   },
-];
+]
 const TechTeam = () => {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 1000,
     slidesToShow: 4,
@@ -59,46 +59,48 @@ const TechTeam = () => {
           dots: false,
           arrows: false,
           pauseOnHover: false,
+          slidesToShow: 1,
+
         },
       },
     ],
-  };
+  }
   return (
-    <Container className="bg-gray-100 p-4 px-8 pb-16">
-      <h2 className="text-center text-4xl mb-8 mt-[2rem]">
-        Technical <span className=" text-red-700">Team</span>
+    <Container className='bg-gray-100 p-4 px-8 pb-16'>
+      <h2 className='text-center text-4xl mb-8 mt-[2rem] border-b-[3px] w-[80%] mx-auto pb-4 border-black'>
+        Technical <span className=' text-red-700'>Team</span>
       </h2>
       <Slider {...settings}>
         {data.map((data) => {
           return (
-            <div key="data.id" className="px-4 ">
+            <div key='data.id' className='px-4 '>
               <div
                 key={data.id}
-                className="card swiper-slide border-[1px] border-blue-600 "
+                className='card swiper-slide border-[1px] border-blue-600 '
               >
-                <div className="image-content">
-                  <span className="overlay"></span>
+                <div className='image-content'>
+                  <span className='overlay'></span>
 
-                  <div className="card-image">
-                    <img src={data.img} alt="/" className="card-img" />
+                  <div className='card-image'>
+                    <img src={data.img} alt='/' className='card-img' />
                   </div>
                 </div>
 
-                <div className="card-content">
-                  <h2 className="name">{data.name}</h2>
-                  <p className="description">{data.post}</p>
-                  <p className="description">{data.edu}</p>
+                <div className='card-content'>
+                  <h2 className='name'>{data.name}</h2>
+                  <p className='description'>{data.post}</p>
+                  <p className='description'>{data.edu}</p>
                 </div>
               </div>
             </div>
-          );
+          )
         })}
       </Slider>
     </Container>
-  );
-};
+  )
+}
 
-export default TechTeam;
+export default TechTeam
 const Container = styled.div`
   .card {
     border-radius: 10px;
@@ -127,7 +129,7 @@ const Container = styled.div`
   }
   .overlay::before,
   .overlay::after {
-    content: "";
+    content: '';
     position: absolute;
     right: 0;
     bottom: -40px;
@@ -164,4 +166,4 @@ const Container = styled.div`
     color: #707070;
     text-align: center;
   }
-`;
+`

@@ -1,6 +1,4 @@
-import React, { useEffect } from 'react'
-import { motion, useAnimation } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
+import React from 'react'
 import { FiPhoneCall } from 'react-icons/fi'
 import { FiMail } from 'react-icons/fi'
 import { AiFillFacebook } from 'react-icons/ai'
@@ -8,26 +6,8 @@ import { AiFillYoutube } from 'react-icons/ai'
 import { AiFillLinkedin } from 'react-icons/ai'
 
 const Footer = () => {
-  const { ref, inView } = useInView({ threshold: 0.2 })
-  const animation = useAnimation()
-
-  useEffect(() => {
-    if (inView) {
-      animation.start({
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.5 },
-      })
-    }
-  }, [inView])
-  
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 100 }}
-      animate={animation}
-      className='flex justify-center px-[5rem] py-[2rem] pb-16 text-black bg-[#50acfb] sm:flex-col sm:px-2 sm:py-[1rem] sm:pb-8'
-    >
+    <div className='flex justify-center px-[5rem] py-[2rem] pb-16 text-black bg-[#50acfb] sm:flex-col sm:px-2 sm:py-[1rem] sm:pb-8'>
       <div className='w-1/2 text-justify sm:w-full'>
         <p className='text-3xl font-extrabold my-4 sm:text-lg'>About Us</p>
         <p className='text-sm font-bold sm:text-[12px]'>
@@ -91,7 +71,7 @@ const Footer = () => {
           </p>
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }
 

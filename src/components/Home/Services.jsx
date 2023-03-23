@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
-import styled from 'styled-components'
-import ServicesCards from './ServicesCards'
-import { motion, useAnimation } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
+import React, { useEffect } from "react";
+import styled from "styled-components";
+import ServicesCards from "./ServicesCards";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const Process = () => {
-  const { ref, inView } = useInView({ threshold: 0.5 })
+  const { ref, inView } = useInView({ threshold: 0.3 })
   const animation = useAnimation()
 
   useEffect(() => {
@@ -28,11 +28,10 @@ const Process = () => {
   )
 }
 
-export default Process
+export default Process;
 
 const Container = styled.div`
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  min-height: 140vh;
   padding: 3rem 0;
   padding-bottom: 0;
 
@@ -49,4 +48,4 @@ const Container = styled.div`
     text-align: center;
     margin-bottom: 2rem;
   }
-`
+`;

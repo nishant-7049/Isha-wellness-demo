@@ -91,7 +91,7 @@ const Container = styled.div`
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 
   .process-grid {
-    margin: 6rem auto;
+    margin: 3rem auto;
     display: grid;
     width: 80%;
     grid-gap: 3rem;

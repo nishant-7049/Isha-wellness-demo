@@ -10,7 +10,7 @@ const data = [
     title: `How therepy helps to improve depression`,
     date: `2 days ago`,
     by: `Dr. Laura Croft`,
-    img: `/images/blog-img1.jpg`,
+    img: `/images/blog/blog-img1.jpg`,
     link: `/`,
   },
   {
@@ -18,7 +18,7 @@ const data = [
     title: `How therepy helps to improve depression`,
     date: `4 days ago`,
     by: `Dr. Laura Croft`,
-    img: `/images/blog-img2.jpg`,
+    img: `/images/blog/blog-img2.jpg`,
     link: `/`,
   },
   {
@@ -26,7 +26,7 @@ const data = [
     title: `How therepy helps to improve depression`,
     date: `10 days ago`,
     by: `Dr. Laura Croft`,
-    img: `/images/blog-img3.jpg`,
+    img: `/images/blog/blog-img3.jpg`,
     link: `/`,
   },
 ]

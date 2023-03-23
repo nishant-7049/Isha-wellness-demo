@@ -12,21 +12,21 @@ const data = [
     docName: `Dr. Katherine Scamander`,
     experience: `5 Years in the field`,
     school: `MBBS MD`,
-    docImg: `/images/img (1).png`,
+    docImg: `/images/service/img (1).png`,
   },
   {
     id: 1,
     docName: `Dr. Queenie Goldstein`,
     experience: `10 Years in the field`,
     school: `MBBS MD`,
-    docImg: `/images/img (2).png`,
+    docImg: `/images/service/img (2).png`,
   },
   {
     id: 2,
     docName: `Dr. Gellert Grindelwald`,
     experience: `12 Years in the field`,
     school: `MBBS MD`,
-    docImg: `/images/img (3).png`,
+    docImg: `/images/service/img (3).png`,
   },
 ]
 

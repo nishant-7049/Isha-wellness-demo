@@ -17,7 +17,7 @@ const ForemPost = ({ item }) => {
       window.alert('Please Login or Register to post a question !')
     } else {
       await axios
-        .post('https://isha-server.onrender.com/api/forum/postAnswer', {
+        .post('http://localhost:5000/api/forum/postAnswer', {
           user: localStorage.getItem('userName'),
           questionId: item._id,
           answer: answerState,

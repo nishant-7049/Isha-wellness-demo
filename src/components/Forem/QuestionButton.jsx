@@ -18,7 +18,7 @@ const QuestionButton = () => {
       window.alert('Please Login or Register to post a question !')
     } else {
       await axios
-        .post('https://isha-server.onrender.com/api/forum/postQuestion', {
+        .post('http://localhost:5000/api/forum/postQuestion', {
           user: localStorage.getItem('userName'),
           question: questionState,
         })

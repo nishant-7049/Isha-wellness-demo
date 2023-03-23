@@ -31,7 +31,7 @@ const RegisterScreen = () => {
 
     try {
       const { data } = await axios.post(
-        'https://isha-server.onrender.com/api/auth/register',
+        'http://localhost:5000/api/auth/register',
         {
           username,
           email,

@@ -1,16 +1,41 @@
-import React, { useEffect, useState } from "react";
-import CountUp from "react-countup";
-import ScrollTrigger from "react-scroll-trigger";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import styled from "styled-components";
+import React, { useEffect, useState } from 'react'
+import CountUp from 'react-countup'
+import ScrollTrigger from 'react-scroll-trigger'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+import styled from 'styled-components'
+
+const data = [
+  {
+    id: 0,
+    title: 'Trained Wellness Facilitators',
+    end: 20,
+    duration: 8,
+  },
+  {
+    id: 1,
+    title: 'Imparted wellness Education through camps',
+    end: 12000,
+    duration: 5,
+  },
+  {
+    id: 2,
+    title: 'Wellness consultation',
+    end: 15000,
+    duration: 5,
+  },
+  {
+    id: 3,
+    title: 'Wellness therapy sessions',
+    end: 60000,
+    duration: 5,
+  },
+]
 
 const Achievement = () => {
-  const [CounterOn, setCounterOn] =  useState(false)
-  const { ref: refrence, inView } = useInView({ threshold: 0.5 });
-  const animation = useAnimation();
-
-  
+  const [CounterOn, setCounterOn] = useState(false)
+  const { ref: refrence, inView } = useInView({ threshold: 0.5 })
+  const animation = useAnimation()
 
   useEffect(() => {
     if (inView) {
@@ -18,60 +43,56 @@ const Achievement = () => {
         opacity: 1,
         y: 0,
         transition: { duration: 1 },
-      });
+      })
     }
-  }, [inView]);
+  }, [inView])
 
   return (
     <Container>
-      <ScrollTrigger onEnter={()=> setCounterOn(true)} onExit={()=> setCounterOn(false)}>
-      <motion.div
-        ref={refrence}
-        initial={{ opacity: 0, y: 100 }}
-        animate={animation}
+      <ScrollTrigger
+        onEnter={() => setCounterOn(true)}
+        onExit={() => setCounterOn(false)}
       >
-        <h3 className="w-fit text-2xl my-1 mx-auto pb-4 font-bold text-[#50acfb]">
-          Achievements
-        </h3>
-        <div className="ach-cards">
-          <div className="ach-card">
-            <h4>Trained Wellness Facilitators</h4>
-            <p id="counter" >
-              {CounterOn && <CountUp start={0} end={20} duration={8} delay={0}/>}+
-              </p>
+        <motion.div
+          ref={refrence}
+          initial={{ opacity: 0, y: 100 }}
+          animate={animation}
+        >
+          <h3 className='founder w-fit text-2xl my-1 mx-auto pb-4 font-bold text-[#50acfb]'>
+            Achive<span>ments</span>
+          </h3>
+          <div className='ach-cards'>
+            {data.map((card) => {
+              return (
+                <div key={card.id} className='ach-card'>
+                  <h4>{card.title}</h4>
+                  <p>
+                    {CounterOn && (
+                      <CountUp
+                        start={0}
+                        end={card.end}
+                        duration={card.duration}
+                        delay={0}
+                      />
+                    )}
+                    +
+                  </p>
+                </div>
+              )
+            })}
           </div>
-          <div className="ach-card">
-            <h4>Imparted wellness Education through camps</h4>
-            <p id="counter1">
-            {CounterOn && <CountUp start={0} end={12000} duration={5} delay={0}/>}+
-            </p>
-          </div>
-          <div className="ach-card">
-            <h4>Wellness consultation</h4>
-            <p id="counter2">
-            {CounterOn && <CountUp start={0} end={15000} duration={5} delay={0}/>}+
-            </p>
-          </div>
-          <div className="ach-card">
-            <h4>Wellness therapy sessions</h4>
-            <p id="counter3">
-            {CounterOn && <CountUp start={0} end={60000} duration={5} delay={0}/>}+
-            </p>
-          </div>
-        </div>
-      </motion.div>
+        </motion.div>
       </ScrollTrigger>
     </Container>
-  );
-};
+  )
+}
 
-export default Achievement;
+export default Achievement
 
 const Container = styled.div`
   margin: 1rem 0;
-  
+
   .ach-cards {
-    width: 90%;
     margin: 2rem auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
@@ -109,4 +130,4 @@ const Container = styled.div`
       grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
     }
   }
-`;
+`

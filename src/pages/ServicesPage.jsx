@@ -6,37 +6,37 @@ const data = [
   {
     id: 0,
     topic: `Physical Therapy`,
-    img: `/images/img (1).png`,
+    img: `/images/service/img (1).png`,
     para: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas inventore vitae facilis perferendis sapiente voluptate nihil ea laboriosam odio error, hic autem maxime rerum animi, vel saepe! Odit, non! Praesentium possimus eum maiores, dignissimos porro, numquam quae explicabo sint sunt et dolorum, laborum ducimus adipisci animi blanditiis quod ex tenetur?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas inventore vitae facilis perferendis sapiente voluptate nihil ea laboriosam odio error, hic autem maxime rerum animi, vel saepe! Odit, non! Praesentium possimus eum maiores, dignissimos porro, numquam quae explicabo sint sunt et dolorum, laborum ducimus adipisci animi blanditiis quod ex tenetur?',
   },
   {
     id: 1,
     topic: 'Yoga',
-    img: '/images/img (2).png',
+    img: '/images/service/img (2).png',
     para: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas inventore vitae facilis perferendis sapiente voluptate nihil ea laboriosam odio error, hic autem maxime rerum animi, vel saepe! Odit, non! Praesentium possimus eum maiores, dignissimos porro, numquam quae explicabo sint sunt et dolorum, laborum ducimus adipisci animi blanditiis quod ex tenetur?\\',
   },
   {
     id: 2,
     topic: 'Women Wellness care',
-    img: '/images/img (1).png',
+    img: '/images/service/img (3).png',
     para: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas inventore vitae facilis perferendis sapiente voluptate nihil ea laboriosam odio error, hic autem maxime rerum animi, vel saepe! Odit, non! Praesentium possimus eum maiores, dignissimos porro, numquam quae explicabo sint sunt et dolorum, laborum ducimus adipisci animi blanditiis quod ex tenetur?\\',
   },
   {
     id: 3,
     topic: 'Employee Wellness Program',
-    img: '/images/img (2).png',
+    img: '/images/service/img (1).png',
     para: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas inventore vitae facilis perferendis sapiente voluptate nihil ea laboriosam odio error, hic autem maxime rerum animi, vel saepe! Odit, non! Praesentium possimus eum maiores, dignissimos porro, numquam quae explicabo sint sunt et dolorum, laborum ducimus adipisci animi blanditiis quod ex tenetur?\\',
   },
   {
     id: 4,
     topic: 'Social Responsibility',
-    img: '/images/img (1).png',
+    img: '/images/service/img (2).png',
     para: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas inventore vitae facilis perferendis sapiente voluptate nihil ea laboriosam odio error, hic autem maxime rerum animi, vel saepe! Odit, non! Praesentium possimus eum maiores, dignissimos porro, numquam quae explicabo sint sunt et dolorum, laborum ducimus adipisci animi blanditiis quod ex tenetur?\\',
   },
   {
     id: 5,
     topic: 'Community Wellness Program',
-    img: '/images/img (2).png',
+    img: '/images/service/img (3).png',
     para: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas inventore vitae facilis perferendis sapiente voluptate nihil ea laboriosam odio error, hic autem maxime rerum animi, vel saepe! Odit, non! Praesentium possimus eum maiores, dignissimos porro, numquam quae explicabo sint sunt et dolorum, laborum ducimus adipisci animi blanditiis quod ex tenetur?\\',
   },
 ]
@@ -57,8 +57,8 @@ function ServicesPage() {
 
   return (
     <motion.div ref={ref} initial={{ opacity: 0, y: 200 }} animate={animation}>
-      <div className='bg-[url(/images/ser-bac.jpg)] bg-cover bg-center bg-fixed py-8'>
-        <div className='  pt-20 mx-20 '>
+      <div className='bg-[url(/images/bg/ser-bac.jpg)] bg-cover bg-center bg-fixed py-8'>
+        <div className='  pt-20 mx-20  sm:mx-1 sm:pt-12 '>
           <h3 className='text-white text-5xl text-center my-8'>Our Services</h3>
           {data.map((data) => {
             return (
@@ -66,16 +66,15 @@ function ServicesPage() {
                 className='border-[1px] border-[white]] border-solid-50 m-4 '
                 key={data.id}
               >
-                <div className='flex  gap-5 items-center bg-black bg-opacity-50 px-20 py-8'>
-                  <h2 className='text-[3rem] font-bold text-[#84adea] text-center'>
+                <div className='flex  gap-5 justify-between items-center bg-black bg-opacity-50 px-20 py-8 sm:flex-col-reverse '>
+                  <h2 className='text-[3rem] font-bold text-[#84adea] text-center sm:text-2xl'>
                     {data.topic}
                   </h2>
-                  <div className='flex flex-1 flex-col '></div>
                   <div className='flex-0  object-contain '>
                     <img src={data.img} alt='' />
                   </div>
                 </div>
-                <p className='p-8 bg-[white]'>{data.para}</p>
+                <p className='p-8 bg-[white] sm:px-4'>{data.para}</p>
               </div>
             )
           })}
