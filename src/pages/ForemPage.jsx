@@ -21,7 +21,7 @@ const ForemPage = () => {
 
   const getForumData = async () => {
     const { data } = await axios
-      .get('http://localhost:5000/api/forum/getforumdata')
+      .get('https://isha-server.onrender.com/api/forum/getforumdata')
       .catch((err) => {
         console.log(err.message)
       })
