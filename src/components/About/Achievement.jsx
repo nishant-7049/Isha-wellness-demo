@@ -1,41 +1,41 @@
-import React, { useEffect, useState } from 'react'
-import CountUp from 'react-countup'
-import ScrollTrigger from 'react-scroll-trigger'
-import { motion, useAnimation } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
-import styled from 'styled-components'
+import React, { useEffect, useState } from "react";
+import CountUp from "react-countup";
+import ScrollTrigger from "react-scroll-trigger";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import styled from "styled-components";
 
 const data = [
   {
     id: 0,
-    title: 'Trained Wellness Facilitators',
+    title: "Trained Wellness Facilitators",
     end: 20,
-    duration: 8,
+    duration: 5,
   },
   {
     id: 1,
-    title: 'Imparted wellness Education through camps',
+    title: "Imparted wellness Education through camps",
     end: 12000,
-    duration: 5,
+    duration: 3,
   },
   {
     id: 2,
-    title: 'Wellness consultation',
+    title: "Wellness consultation",
     end: 15000,
-    duration: 5,
+    duration: 3,
   },
   {
     id: 3,
-    title: 'Wellness therapy sessions',
+    title: "Wellness therapy sessions",
     end: 60000,
-    duration: 5,
+    duration: 3,
   },
-]
+];
 
 const Achievement = () => {
-  const [CounterOn, setCounterOn] = useState(false)
-  const { ref: refrence, inView } = useInView({ threshold: 0.5 })
-  const animation = useAnimation()
+  const [CounterOn, setCounterOn] = useState(false);
+  const { ref: refrence, inView } = useInView({ threshold: 0.5 });
+  const animation = useAnimation();
 
   useEffect(() => {
     if (inView) {
@@ -43,9 +43,9 @@ const Achievement = () => {
         opacity: 1,
         y: 0,
         transition: { duration: 1 },
-      })
+      });
     }
-  }, [inView])
+  }, [inView]);
 
   return (
     <Container>
@@ -58,13 +58,13 @@ const Achievement = () => {
           initial={{ opacity: 0, y: 100 }}
           animate={animation}
         >
-          <h3 className='founder w-fit text-2xl my-1 mx-auto pb-4 font-bold text-[#50acfb]'>
+          <h3 className="founder w-fit text-2xl my-1 mx-auto pb-4 font-bold text-[#50acfb]">
             Achive<span>ments</span>
           </h3>
-          <div className='ach-cards'>
+          <div className="ach-cards">
             {data.map((card) => {
               return (
-                <div key={card.id} className='ach-card'>
+                <div key={card.id} className="ach-card">
                   <h4>{card.title}</h4>
                   <p>
                     {CounterOn && (
@@ -78,16 +78,16 @@ const Achievement = () => {
                     +
                   </p>
                 </div>
-              )
+              );
             })}
           </div>
         </motion.div>
       </ScrollTrigger>
     </Container>
-  )
-}
+  );
+};
 
-export default Achievement
+export default Achievement;
 
 const Container = styled.div`
   margin: 1rem 0;
@@ -130,4 +130,4 @@ const Container = styled.div`
       grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
     }
   }
-`
+`;

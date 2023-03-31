@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion, useAnimation } from 'framer-motion'
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import { useInView } from 'react-intersection-observer'
 
 const data = [
   {
@@ -71,21 +70,16 @@ const data = [
 ]
 const BlogPage = () => {
   const navigate = useNavigate()
-  const { ref, inView } = useInView({ threshold: 0 })
-  const animation = useAnimation()
 
-  useEffect(() => {
-    if (inView) {
-      animation.start({
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 100 }}
+      animate={{
         opacity: 1,
         y: 0,
         transition: { type: 'spring', duration: 0.5, bounce: 0.5 },
-      })
-    }
-  }, [inView])
-
-  return (
-    <motion.div ref={ref} initial={{ opacity: 0, y: 100 }} animate={animation}>
+      }}
+    >
       <Container>
         <div className='blog'>
           <span>Out Recent Blogs</span>

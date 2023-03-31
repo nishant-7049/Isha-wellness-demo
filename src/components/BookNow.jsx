@@ -2,12 +2,18 @@ import React, { useEffect } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 
 const BookNow = () => {
   const { ref, inView } = useInView()
   const animation = useAnimation()
+  const navigate = useNavigate()
 
   useEffect(() => {
+    if (!localStorage.getItem('authToken')) {
+      navigate('/login')
+    }
+
     if (inView) {
       animation.start({
         opacity: 1,

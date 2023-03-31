@@ -4,29 +4,48 @@ import { AiFillCloseSquare } from 'react-icons/ai'
 import { RxAvatar } from 'react-icons/rx'
 import Modal from 'react-responsive-modal'
 import 'react-responsive-modal/styles.css'
+import { useNavigate } from 'react-router-dom'
 
 const QuestionButton = () => {
   const [isModelOpen, setIsModelOpen] = useState(false)
   const [questionState, setQuestionState] = useState('')
   const close = <AiFillCloseSquare className='text-2xl text-[#50acfb]' />
+  const navigate = useNavigate()
   // console.log(data)
 
   const postQuestion = async (e) => {
     e.preventDefault()
 
-    if (!localStorage.getItem('authToken')) {
+    if (
+      !localStorage.getItem('authToken') ||
+      !localStorage.getItem('userName')
+    ) {
       window.alert('Please Login or Register to post a question !')
     } else {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+        },
+      }
+
       await axios
-        .post('https://isha-server.onrender.com/api/forum/postQuestion', {
-          user: localStorage.getItem('userName'),
-          question: questionState,
-        })
+        .post(
+          'https://isha-server.onrender.com/api/forum/postQuestion',
+          {
+            user: localStorage.getItem('userName'),
+            question: questionState,
+          },
+          config
+        )
         .then((res) => {
           console.log(res)
         })
         .catch((error) => {
           console.log(error)
+          window.alert('Your session has been expired, Please login !')
+          navigate('/login')
+          localStorage.clear()
         })
       setIsModelOpen(false)
       location.reload()

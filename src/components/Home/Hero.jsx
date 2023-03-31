@@ -1,30 +1,30 @@
-import React from 'react'
-import styled from 'styled-components'
-import { Carousel } from 'react-responsive-carousel'
-import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import React from "react";
+import styled from "styled-components";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const data = [
   {
     id: 1,
-    img: '/images/1.png',
+    img: "/images/1.png",
     desc: ` Where Healthy & Happy Life Begins…`,
   },
   {
     id: 2,
-    img: '/images/2.png',
+    img: "/images/2.png",
     desc: ` Improving lives through Holistic wellness Model - The Integrative Therapeutic Approach  `,
   },
   {
     id: 3,
-    img: '/images/3.png',
+    img: "/images/3.png",
     desc: ` Empowering you towards a pain-free Life`,
   },
   {
     id: 4,
-    img: '/images/4.png',
+    img: "/images/4.png",
     desc: ` Transforming healthcare, One person at a time`,
   },
-]
+];
 
 const Hero = () => {
   return (
@@ -33,29 +33,29 @@ const Hero = () => {
         autoPlay
         infiniteLoop
         showStatus={false}
-        showArrows={false}
+        showArrows={true}
         showIndicators={false}
         showThumbs={false}
-        interval={4000}
+        interval={3000}
       >
         {data.map((item) => {
           return (
             <div key={item.id} className={`hero container hero${item.id}`}>
-              <div className='hero-con'>
-                <h1 className='hero-head text-2xl font-extrabold'>
-                  Isha Wellness Center
+              <div className="hero-con">
+                <h1 className="hero-head text-2xl font-extrabold">
+                  ISHA Wellness Centre
                 </h1>
-                <p className='hero-para'>{item.desc}</p>
+                <p className="hero-para">{item.desc}</p>
               </div>
             </div>
-          )
+          );
         })}
       </Carousel>
     </Container>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;
 
 const Container = styled.div`
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -97,7 +97,7 @@ const Container = styled.div`
     display: block;
   }
   .hero::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -173,4 +173,4 @@ const Container = styled.div`
       font-size: 0.7rem;
     }
   }
-`
+`;

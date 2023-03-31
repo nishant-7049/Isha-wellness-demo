@@ -1,33 +1,33 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 function Navbar() {
-  const [toggle, setToggle] = useState(true)
+  const [toggle, setToggle] = useState(true);
 
   return (
     <Contain>
       <Nav>
-        <Logo src='/images/nav-logo.png' alt='img' />
-        <Links className=''>
-          <Link to='/'> Home</Link>
-          <Link to='/about'> About</Link>
-          <Link to='/service'> Service</Link>
-          <Link to='/blogs'> Blogs</Link>
-          <Link to='/forem'> Forem</Link>
-          {localStorage.getItem('authToken') ? (
-            <Link to='/booknow'>
+        <Logo src="/images/nav-logo1.png" alt="img" />
+        <Links className="">
+          <Link to="/"> Home</Link>
+          <Link to="/about"> About</Link>
+          <Link to="/service"> Services</Link>
+          <Link to="/blogs"> Blogs</Link>
+          <Link to="/forum"> Forum</Link>
+          {localStorage.getItem("authToken") ? (
+            <Link to="/booknow">
               <button>Book Now</button>
             </Link>
           ) : (
-            <Link to='/register'>
-              <button>SignIn</button>
+            <Link to="/register">
+              <button>SignUp</button>
             </Link>
           )}
         </Links>
         <Button>
           <button onClick={() => setToggle(!toggle)}>
-            <p className=''>{toggle ? '=' : 'x'}</p>
+            <p className="">{toggle ? "=" : "x"}</p>
           </button>
         </Button>
       </Nav>
@@ -36,56 +36,77 @@ function Navbar() {
           <LinksSmall>
             <Link
               onClick={() => {
-                setToggle(!toggle)
+                setToggle(!toggle);
               }}
-              to='/'
+              to="/"
             >
-              {' '}
+              {" "}
               Home
             </Link>
             <Link
               onClick={() => {
-                setToggle(!toggle)
+                setToggle(!toggle);
               }}
-              to='/blogs'
+              to="/blogs"
             >
-              {' '}
+              {" "}
               Blogs
             </Link>
             <Link
               onClick={() => {
-                setToggle(!toggle)
+                setToggle(!toggle);
               }}
-              to='/about'
+              to="/about"
             >
-              {' '}
+              {" "}
               About
             </Link>
             <Link
               onClick={() => {
-                setToggle(!toggle)
+                setToggle(!toggle);
               }}
-              to='/service'
+              to="/service"
             >
-              {' '}
-              Service
+              {" "}
+              Services
             </Link>
             <Link
               onClick={() => {
-                setToggle(!toggle)
+                setToggle(!toggle);
               }}
-              to='/register'
+              to="/forum"
             >
-              <button>Book Now</button>
+              {" "}
+              Forum
             </Link>
+
+            {localStorage.getItem("authToken") ? (
+              <Link
+                onClick={() => {
+                  setToggle(!toggle);
+                }}
+                to="/booknow"
+              >
+                <button>Book Now</button>
+              </Link>
+            ) : (
+              <Link
+                onClick={() => {
+                  setToggle(!toggle);
+                }}
+                to="/register"
+              >
+                <button>SignUp</button>
+              </Link>
+            )}
           </LinksSmall>
         </NavSmall>
       )}
     </Contain>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
 
 const Contain = styled.div`
   position: fixed;
@@ -94,7 +115,7 @@ const Contain = styled.div`
   width: 100%;
   background-color: #13223c;
   top: 0;
-`
+`;
 
 const Nav = styled.div`
   display: flex;
@@ -114,11 +135,11 @@ const Nav = styled.div`
   @media (max-width: 480px) {
     margin: 0 1rem;
   }
-`
+`;
 const Logo = styled.img`
   max-width: 70px;
   border-radius: 50%;
-`
+`;
 const Links = styled.div`
   font-size: 18px;
   letter-spacing: 0.5px;
@@ -150,26 +171,27 @@ const Links = styled.div`
   @media (max-width: 480px) {
     display: none;
   }
-`
+`;
 
 const Button = styled.div`
   button {
     width: 50px;
     height: 50px;
+    color: white;
     font-size: x-large;
     border-radius: 50%;
-    border: none;
+    border: 1px solid white;
     font-weight: 800;
   }
 
   @media (min-width: 480px) {
     display: none;
   }
-`
+`;
 const NavSmall = styled.div`
   background: white;
   height: 100vh;
-`
+`;
 
 const LinksSmall = styled.div`
   font-size: large;
@@ -201,4 +223,4 @@ const LinksSmall = styled.div`
     color: black;
     border: 1px solid black;
   }
-`
+`;
