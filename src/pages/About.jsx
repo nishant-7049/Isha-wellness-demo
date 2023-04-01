@@ -91,7 +91,7 @@ const About = () => {
         <div className="papa ">
           {about.map((about) => {
             return (
-              <p className="tracking-wide leading-relaxed text-justify">
+              <p className=" tracking-wide leading-relaxed text-justify">
                 {about}
               </p>
             );
@@ -127,9 +127,11 @@ const About = () => {
                 </div>
                 <div className="kon">
                   <h5>{founder.name}</h5>
-                  {founder.about.map((about) => {
-                    return <p>{about}</p>;
-                  })}
+                  <div className="h-[10rem] pr-2 overflow-y-auto ">
+                    {founder.about.map((about) => {
+                      return <p>{about}</p>;
+                    })}
+                  </div>
                 </div>
               </div>
             </section>

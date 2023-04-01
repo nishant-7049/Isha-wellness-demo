@@ -53,39 +53,39 @@ const Slider_testimonial = () => {
     <Slider className="slider w-[90%] mx-auto my-4" {...settings}>
       {data.map((data) => {
         return (
-          <div key={data.id} className="">
-            <div className=" flex  w-[90%] bg-white px-12 py-4 mx-auto rounded-md sm:flex-col sm:px-4 sm:py-2">
-              <div className="h-full w-20 rounded-full sm:mx-auto ">
+          <div key={data.id} className=''>
+            <div className=' flex  w-[90%] bg-white px-12 py-4 mx-auto rounded-md sm:flex-col sm:px-4 sm:py-2'>
+              <div className='h-full w-20 rounded-full sm:mx-auto '>
                 <img
                   src={data.image}
-                  alt="/"
-                  className=" h-12  object-cover rounded-full sm:mx-auto"
+                  alt='/'
+                  className=' h-12  object-cover rounded-full sm:mx-auto'
                 />
               </div>
-              <div className=" flex flex-col flex-1 gap-2 text-left h-[10rem] sm:h-[15rem] sm:gap-1">
+              <div className=' flex flex-col flex-1 gap-2 text-left h-[10rem] sm:h-[15rem] sm:gap-1'>
                 <div>
-                  <h2 className=" font-extrabold text-[#50acfb] sm:text-center">
+                  <h2 className=' font-extrabold text-[#50acfb] sm:text-center'>
                     {data.name}
                   </h2>
-                  <div className="flex gap-3 items-center sm:flex-col sm:gap-1 ">
+                  <div className='flex gap-3 items-center sm:flex-col sm:gap-1 '>
                     <span>⭐⭐⭐⭐⭐</span>
-                    <span className=" text-xs">{data.time}</span>
+                    <span className=' text-xs'>{data.time}</span>
                   </div>
                 </div>
-                <p className="overflow-y-auto text-sm sm:overflow-y-auto sm:h-20 ">
+                <p className='overflow-y-auto text-sm sm:overflow-y-auto sm:h-20 '>
                   {data.review}
                 </p>
                 <a
-                  href="https://www.google.com/search?q=ishawellness+centre&oq=ishawellness+centre&aqs=chrome..69i57j0i13i512j46i13i175i199i512j0i22i30j0i390j69i60l3.4024j0j7&sourceid=chrome&ie=UTF-8#"
-                  target="_blank"
-                  className="text-[#50acfb] text-sm "
+                  href='https://www.google.com/maps/place/ISHA+Wellness+Centre+Ratlam/@18.7207366,67.5205801,5z/data=!4m12!1m2!2m1!1sisha+wellness+centre!3m8!1s0x3963fea578acaff7:0x847dac23ee0d0262!8m2!3d23.3201068!4d75.0335898!9m1!1b1!15sChRpc2hhIHdlbGxuZXNzIGNlbnRyZZIBFHBoeXNpb3RoZXJhcHlfY2VudGVy4AEA!16s%2Fg%2F11gg6c4lzc'
+                  target='_blank'
+                  className='text-[#50acfb] text-sm '
                 >
-                  Read more...{" "}
+                  Read more...
                 </a>
               </div>
             </div>
           </div>
-        );
+        )
       })}
     </Slider>
   );

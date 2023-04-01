@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
-import { motion, useAnimation } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
-import styled from 'styled-components'
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import styled from "styled-components";
 
 const data = [
   {
@@ -39,11 +40,11 @@ const data = [
     title: `I have tried different therapies, it work for some time but pain comes back once I stop the treatment. Will Wellness therapy sustain?`,
     description: `Any therapy would sustain if, therapy focuses on root cause not just symptoms, mostly patient prefers to be on therapy till symptoms disappear. One should give time to heal from within. Patient should understand the causing factors which increase his problem and try to minimize them, along with regular exercises suggested after the completion of the treatment. We need to understand that if pain is gone it doesn't mean problem is gone. We should identify problem, minimize the risky behavior, give time to our body to get balance everyday and increase our healthy practices. By this way you can sustain your recovery and minimize the rate of re-occurrence.`,
   },
-]
+];
 
 function FAQ() {
-  const { ref, inView } = useInView({ threshold: 0.5 })
-  const animation = useAnimation()
+  const { ref, inView } = useInView({ threshold: 0.5 });
+  const animation = useAnimation();
 
   useEffect(() => {
     if (inView) {
@@ -51,51 +52,57 @@ function FAQ() {
         opacity: 1,
         y: 0,
         transition: { duration: 1 },
-      })
+      });
     }
-  }, [inView])
+  }, [inView]);
   return (
     <Faq>
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 100 }}
         animate={animation}
-        className='faq'
+        className="faq"
       >
-        <div className='content'>
-          <div className='heading'>
-            <h2 className='text-3xl'>FAQs</h2>
+        <div className="content">
+          <div className="heading">
+            <h2 className="text-3xl">FAQs</h2>
           </div>
           {data.map((item) => {
             return (
               <div key={item.id}>
                 <input
-                  type='checkbox'
+                  type="checkbox"
                   id={item.id}
-                  name='q'
-                  className='questions'
+                  name="q"
+                  className="questions"
                 />
-                <div className='plus'>+</div>
-                <label htmlFor={item.id} className='question'>
+                <div className="plus">+</div>
+                <label htmlFor={item.id} className="question">
                   <p>{item.title}</p>
                 </label>
-                <div className='answers'>
+                <div className="answers">
                   <p>{item.description}</p>
                 </div>
               </div>
-            )
+            );
           })}
+        </div>
+        <div className="p-[10px] flex justify-center gap-1">
+          <h2 className="">In case of any query</h2>
+          <Link to="/forum" className="text-[#50acfb]">
+            Ask Question
+          </Link>
         </div>
       </motion.div>
     </Faq>
-  )
+  );
 }
 
-export default FAQ
+export default FAQ;
 
 const Faq = styled.div`
   .faq {
-    font-family: 'Open Sans';
+    font-family: "Open Sans";
     font-size: 1rem;
     margin: 1.5rem 5rem;
     margin-bottom: 5rem;
@@ -198,4 +205,4 @@ const Faq = styled.div`
       margin-top: 2rem;
     }
   }
-`
+`;
