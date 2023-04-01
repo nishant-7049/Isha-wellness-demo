@@ -1,5 +1,5 @@
 import React from "react";
-import ForumBox from "./forumBox";
+import ForumBox from "./ForumBox";
 import ForumPost from "./forumPost";
 
 const Feed = ({ data, setLoading }) => {
