@@ -6,7 +6,7 @@ import Modal from 'react-responsive-modal'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-const forumPost = ({ item, setLoading }) => {
+const ForumPost = ({ item, setLoading }) => {
   const [isModelOpen, setIsModelOpen] = useState(false)
   const [answerState, setAnswerState] = useState('')
   const close = <AiFillCloseSquare className='text-2xl text-[#50acfb]' />
@@ -137,4 +137,4 @@ const forumPost = ({ item, setLoading }) => {
   );
 };
 
-export default forumPost
+export default ForumPost
