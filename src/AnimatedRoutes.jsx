@@ -14,7 +14,7 @@ const Register = lazy(() => import("./auth/RegisterScreen"));
 const Login = lazy(() => import("./auth/LoginScreen"));
 const ResetPassword = lazy(() => import("./auth/ResetPasswordScreen"));
 const ForgotPassword = lazy(() => import("./auth/ForgotPasswordScreen"));
-const ForumPage = lazy(() => import("./pages/forumPage"));
+const ForumPage = lazy(() => import("./pages/ForumPage"));
 
 const AnimatedRoutes = () => {
   const location = useLocation();
