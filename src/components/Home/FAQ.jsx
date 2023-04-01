@@ -87,7 +87,7 @@ function FAQ() {
             );
           })}
         </div>
-        <div className="p-[10px] flex justify-center gap-1">
+        <div className="p-[10px] flex justify-center gap-1 ">
           <h2 className="">In case of any query</h2>
           <Link to="/forum" className="text-[#50acfb]">
             Ask Question

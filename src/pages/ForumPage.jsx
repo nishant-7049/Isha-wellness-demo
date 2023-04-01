@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Feed from '../components/Forum/Feed'
-import QuestionButton from '../components/Forum/QuestionButton'
+import QuestionButton from '../components/forum/QuestionButton'
 import { motion } from 'framer-motion'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'

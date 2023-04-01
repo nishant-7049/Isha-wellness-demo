@@ -1,8 +1,8 @@
-import React from 'react'
-import styled from 'styled-components'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
+import React from "react";
+import styled from "styled-components";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const data = [
   {
@@ -29,7 +29,7 @@ const data = [
     img: `/images/blog/blog-img3.jpg`,
     link: `/`,
   },
-]
+];
 
 const SliderBlogs = () => {
   const settings = {
@@ -55,37 +55,37 @@ const SliderBlogs = () => {
         },
       },
     ],
-  }
+  };
   return (
     <Container>
-      <Slider {...settings} className='slider'>
+      <Slider {...settings} className="slider sm:p-4">
         {data.map((data) => {
           return (
-            <div key={data.id} className='blog container'>
-              <div className='blog-item'>
-                <div className='blog-img'>
-                  <img src={data.img} alt='' />
+            <div key={data.id} className="blog container">
+              <div className="blog-item">
+                <div className="blog-img">
+                  <img src={data.img} alt="" />
                 </div>
-                <div className='blog-con'>
-                  <div className='blog-head'>
-                    <h3 className='blog-title'>{data.title}</h3>
-                    <p className='blog-date'>{data.date}</p>
+                <div className="blog-con">
+                  <div className="blog-head">
+                    <h3 className="blog-title">{data.title}</h3>
+                    <p className="blog-date">{data.date}</p>
                   </div>
-                  <p className='blog-para'>{data.by}</p>
-                  <div className='blog-button'>
+                  <p className="blog-para">{data.by}</p>
+                  <div className="blog-button">
                     <a href={data.link}>Read more</a>
                   </div>
                 </div>
               </div>
             </div>
-          )
+          );
         })}
       </Slider>
     </Container>
-  )
-}
+  );
+};
 
-export default SliderBlogs
+export default SliderBlogs;
 
 const Container = styled.div`
   width: 100%;
@@ -209,4 +209,4 @@ const Container = styled.div`
       margin: 0.5rem auto;
     }
   }
-`
+`;
