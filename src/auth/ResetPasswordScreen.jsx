@@ -30,12 +30,12 @@ const ResetPasswordScreen = ({ history, match }) => {
 
     try {
       const { data } = await axios.put(
-        `http://localhost:5000/api/auth/passwordreset/${match.params.resetToken}`,
+        `https://isha-server.onrender.com/api/auth/passwordreset/${match.params.resetToken}`,
         {
           password,
         },
         config
-      )
+      );
 
       console.log(data);
       setSuccess(data.data);
@@ -48,48 +48,48 @@ const ResetPasswordScreen = ({ history, match }) => {
   };
 
   return (
-    <div className='resetpassword-screen'>
+    <div className="resetpassword-screen">
       <form
         onSubmit={resetPasswordHandler}
-        className='resetpassword-screen__form'
+        className="resetpassword-screen__form"
       >
-        <h3 className='resetpassword-screen__title'>Forgot Password</h3>
-        {error && <span className='error-message'>{error} </span>}
+        <h3 className="resetpassword-screen__title">Forgot Password</h3>
+        {error && <span className="error-message">{error} </span>}
         {success && (
-          <span className='success-message'>
-            {success} <Link to='/login'>Login</Link>
+          <span className="success-message">
+            {success} <Link to="/login">Login</Link>
           </span>
         )}
-        <div className='form-group'>
-          <label htmlFor='password'>New Password:</label>
+        <div className="form-group">
+          <label htmlFor="password">New Password:</label>
           <input
-            type='password'
+            type="password"
             required
-            id='password'
-            placeholder='Enter new password'
-            autoComplete='true'
+            id="password"
+            placeholder="Enter new password"
+            autoComplete="true"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div className='form-group'>
-          <label htmlFor='confirmpassword'>Confirm New Password:</label>
+        <div className="form-group">
+          <label htmlFor="confirmpassword">Confirm New Password:</label>
           <input
-            type='password'
+            type="password"
             required
-            id='confirmpassword'
-            placeholder='Confirm new password'
-            autoComplete='true'
+            id="confirmpassword"
+            placeholder="Confirm new password"
+            autoComplete="true"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </div>
-        <button type='submit' className='btn-form btn-form-primary'>
+        <button type="submit" className="btn-form btn-form-primary">
           Reset Password
         </button>
       </form>
     </div>
-  )
+  );
 };
 
 export default ResetPasswordScreen;

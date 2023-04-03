@@ -1,38 +1,38 @@
-import React, { useState } from 'react'
-import { RxAvatar } from 'react-icons/rx'
-import { AiFillCloseSquare } from 'react-icons/ai'
-import { BiCommentDetail } from 'react-icons/bi'
-import Modal from 'react-responsive-modal'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from "react";
+import { RxAvatar } from "react-icons/rx";
+import { AiFillCloseSquare } from "react-icons/ai";
+import { BiCommentDetail } from "react-icons/bi";
+import Modal from "react-responsive-modal";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ForumPost = ({ item, setLoading }) => {
-  const [isModelOpen, setIsModelOpen] = useState(false)
-  const [answerState, setAnswerState] = useState('')
-  const close = <AiFillCloseSquare className='text-2xl text-[#50acfb]' />
-  const navigate = useNavigate()
+  const [isModelOpen, setIsModelOpen] = useState(false);
+  const [answerState, setAnswerState] = useState("");
+  const close = <AiFillCloseSquare className="text-2xl text-[#50acfb]" />;
+  const navigate = useNavigate();
 
   // console.log(item)
   const postAnswer = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (
-      !localStorage.getItem('authToken') ||
-      !localStorage.getItem('userName')
+      !localStorage.getItem("authToken") ||
+      !localStorage.getItem("userName")
     ) {
-      window.alert('Please Login or Register to post a question !')
+      window.alert("Please Login or Register to post a question !");
     } else {
       const config = {
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
         },
-      }
+      };
 
       await axios
         .post(
-          'http://localhost:5000/api/forum/postAnswer',
+          "https://isha-server.onrender.com/api/forum/postAnswer",
           {
-            user: localStorage.getItem('userName'),
+            user: localStorage.getItem("userName"),
             questionId: item._id,
             answer: answerState,
           },
@@ -42,13 +42,13 @@ const ForumPost = ({ item, setLoading }) => {
           console.log(res);
         })
         .catch((error) => {
-          console.log(error)
-          window.alert('Your session has been expired, Please login !')
-          navigate('/login')
-          localStorage.clear()
-        })
-      setIsModelOpen(false)
-      setLoading(true)
+          console.log(error);
+          window.alert("Your session has been expired, Please login !");
+          navigate("/login");
+          localStorage.clear();
+        });
+      setIsModelOpen(false);
+      setLoading(true);
     }
   };
   return (
@@ -137,4 +137,4 @@ const ForumPost = ({ item, setLoading }) => {
   );
 };
 
-export default ForumPost
+export default ForumPost;
