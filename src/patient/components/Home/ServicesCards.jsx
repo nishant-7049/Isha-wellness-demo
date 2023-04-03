@@ -125,7 +125,7 @@ const Container = styled.div`
     box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
   }
   .process-item-last {
-    grid-column: 1/ -1;
+    grid-column: 2/ 3;
   }
 
   // .process-item:hover {
