@@ -2,8 +2,8 @@ import { lazy, Suspense } from 'react'
 import AnimatedRoutes from './AnimatedRoutes'
 import './App.css'
 
-const Navbar = lazy(() => import('./components/Navbar'))
-const Footer = lazy(() => import('./components/Footer'))
+const Navbar = lazy(() => import('./patient/components/Navbar'))
+const Footer = lazy(() => import('./patient/components/Footer'))
 
 // pages to be defined: home, blogs, services, about
 

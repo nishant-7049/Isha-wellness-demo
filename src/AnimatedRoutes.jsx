@@ -1,20 +1,19 @@
 import React, { lazy } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import BookNow from "./components/BookNow";
+import BookNow from "./patient/components/BookNow";
 import { AnimatePresence } from "framer-motion";
 
-const Home = lazy(() => import("./pages/Home"));
-const PageNotFound = lazy(() => import("./pages/PageNotFound"));
-const Admin = lazy(() => import("./pages/AdminPanel"));
-const BlogPage = lazy(() => import("./pages/BlogPage"));
-const About = lazy(() => import("./pages/About"));
-const Services = lazy(() => import("./pages/ServicesPage"));
-const SingleBlog = lazy(() => import("./pages/SingleBlog"));
+const Home = lazy(() => import("./patient/pages/Home"));
+const PageNotFound = lazy(() => import("./patient/pages/PageNotFound"));
+const BlogPage = lazy(() => import("./patient/pages/BlogPage"));
+const About = lazy(() => import("./patient/pages/About"));
+const Services = lazy(() => import("./patient/pages/ServicesPage"));
+const SingleBlog = lazy(() => import("./patient/pages/SingleBlog"));
 const Register = lazy(() => import("./auth/RegisterScreen"));
 const Login = lazy(() => import("./auth/LoginScreen"));
 const ResetPassword = lazy(() => import("./auth/ResetPasswordScreen"));
 const ForgotPassword = lazy(() => import("./auth/ForgotPasswordScreen"));
-const ForumPage = lazy(() => import("./pages/ForumPage"));
+const ForumPage = lazy(() => import("./patient/pages/ForumPage"));
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -23,7 +22,6 @@ const AnimatedRoutes = () => {
     <AnimatePresence>
       <Routes location={location} key={location.pathname}>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/adminPanel" element={<Admin />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/login" element={<Login />} />
         <Route
