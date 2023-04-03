@@ -60,7 +60,7 @@ const SliderImg = () => {
           return (
             <Items key={data.id}>
               <div className="the-details">
-                <div className="the-con flex flex-col justify-between flex-1">
+                <div className="the-con flex-1">
                   <h3 className="the-name text-center text-xl">
                     {data.docName}
                   </h3>
@@ -99,10 +99,10 @@ const Container = styled.div`
     }
   }
   .the-con {
-    height: 80%;
+    min-height: 13rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 1rem;
   }
 
   @media screen and (max-width: 1024px) {
@@ -141,7 +141,6 @@ const Items = styled.div`
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   }
   .the-name {
-    margin-bottom: 1.2rem;
     color: #50acfb;
   }
   .the-image {
@@ -151,11 +150,12 @@ const Items = styled.div`
     width: 100%;
     padding: 1rem;
   }
-  .the-exp,
-  .the-edu {
+  .the-exp {
+    height: 8rem;
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     padding: 0.5rem;
     -ms-flex-align: start;
   }
