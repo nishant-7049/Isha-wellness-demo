@@ -49,6 +49,7 @@ const Slider_testimonial = () => {
       {
         breakpoint: 800,
         settings: {
+          slidesToShow: 1,
           dots: false,
           arrows: false,
           pauseOnHover: false,

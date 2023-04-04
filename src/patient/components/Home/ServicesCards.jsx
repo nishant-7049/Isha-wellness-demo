@@ -168,5 +168,8 @@ const Container = styled.div`
     .process-grid {
       grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
     }
+    .process-item-last {
+      grid-column: 1/ 2;
+    }
   }
 `;
