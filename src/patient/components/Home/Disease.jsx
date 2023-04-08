@@ -47,7 +47,7 @@ const Diseases = [
   {
     id: 0,
     img: <FaDisease />,
-    name: "baba ji ki butty",
+    name: "disease dummy",
   },
   {
     id: 0,
