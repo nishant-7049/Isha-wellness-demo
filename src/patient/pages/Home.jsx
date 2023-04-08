@@ -3,7 +3,6 @@ import Blogs from "../components/Home/Blogs";
 import FAQ from "../components/Home/FAQ";
 import Hero from "../components/Home/Hero";
 import Services from "../components/Home/Services";
-import Testimonial from "../components/Home/Testimonial";
 import Therapist from "../components/Home/Therapist";
 import Vision from "../components/Home/Vision";
 import Achievement from "../components/About/Achievement";
@@ -13,6 +12,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Notification from "../components/Home/Notification";
 import WA_Notify from "../components/Home/WA_Notify";
 import Quote from "../components/Home/Quote";
+import Disease from "../components/Home/Disease";
 
 const Home = () => {
   const [notification, setNotification] = useState(true);
@@ -40,24 +40,28 @@ const Home = () => {
         <Hero />
         <Quote />
         <Vision />
-        <div className="bg-[url(/images/bg/geometricBG.jpg)] bg-cover bg-center bg-fixed pb-4 h-fit ">
+        <div className="bg-[url(/images/bg/geometricBG.jpg)] bg-cover bg-center bg-fixed pb-4 h-fit sm:h-fit">
           <Services />
         </div>
         <div className="mx-20 my-12 sm:mx-10">
+          <h3 className="founder w-fit text-3xl my-1 mx-auto pb-4 font-bold text-[#00286b]">
+            Achievements
+          </h3>
           <Achievement />
+        </div>
+        <div className="bg-[url(/images/bg/geometricBG.jpg)] bg-cover bg-center bg-fixed h-fit sm:h-fit">
+          <Disease />
         </div>
         <LocateUs />
         <div className="bg-[url(/images/bg/geometricBG.jpg)] bg-cover bg-center bg-fixed">
           <Therapist />
         </div>
         <Blogs />
-        <div className="bg-[url(/images/bg/geometricBG.jpg)] bg-cover bg-center bg-fixed">
-          <Testimonial />
-        </div>
-        <FAQ />
+
         <div className="bg-[url(/images/bg/geometricBG.jpg)] bg-cover bg-center bg-fixed">
           <Video />
         </div>
+        <FAQ />
       </div>
     </motion.div>
   );

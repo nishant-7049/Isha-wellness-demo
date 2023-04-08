@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react'
-import { motion, useAnimation } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
-import styled from 'styled-components'
-import SliderBlogs from './Slider-blogs'
+import React, { useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import styled from "styled-components";
+import SliderBlogs from "./Slider-blogs";
 
 const Blogs = () => {
-  const { ref, inView } = useInView({ threshold: 0.5 })
-  const animation = useAnimation()
+  const { ref, inView } = useInView({ threshold: 0.5 });
+  const animation = useAnimation();
 
   useEffect(() => {
     if (inView) {
@@ -14,31 +14,31 @@ const Blogs = () => {
         opacity: 1,
         y: 0,
         transition: { duration: 1 },
-      })
+      });
     }
-  }, [inView])
+  }, [inView]);
   return (
     <Container>
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 100 }}
         animate={animation}
-        className='blogs'
+        className="blogs"
       >
-        <h2 className='blog-h text-3xl'>Blogs</h2>
-        <p className='blog-text'>
+        <h2 className="blog-h text-3xl font-bold">Blogs</h2>
+        <p className="blog-text">
           Discover the world through our words: insights, inspiration, and
           perspectives
         </p>
-        <div className='slides'>
+        <div className="slides">
           <SliderBlogs />
         </div>
       </motion.div>
     </Container>
-  )
-}
+  );
+};
 
-export default Blogs
+export default Blogs;
 
 const Container = styled.div`
   .blogs {
@@ -48,7 +48,7 @@ const Container = styled.div`
   }
 
   .blog-h {
-    color: #50acfb;
+    color: #00286b;
     text-align: center;
     margin: 1rem;
   }
@@ -78,4 +78,4 @@ const Container = styled.div`
       margin: 1rem auto;
     }
   }
-`
+`;

@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Loading = () => {
   return (
     <div className="text-center items-center flex justify-center h-[50vh]">
-      <div className="animate-spin h-[5rem] w-[5rem] bg-white rounded-full border-[0.5rem] border-[#50acfb] border-t-[white]"></div>
+      <div className="animate-spin h-[5rem] w-[5rem] bg-white rounded-full border-[0.5rem] border-[#00286b] border-t-[white]"></div>
     </div>
   );
 };
@@ -20,7 +20,7 @@ const ForumPage = () => {
 
   const getForumData = async () => {
     const { data } = await axios
-      .get("https://isha-server.onrender.com/api/forum/getforumdata")
+      .get("http://isha-server.onrender.com/api/forum/getforumdata")
       .catch((err) => {
         console.log(err.message);
       });
@@ -48,7 +48,7 @@ const ForumPage = () => {
         transition: { type: "spring", duration: 0.5, bounce: 0.5 },
       }}
     >
-      <h3 className="text-[#50acfb] mt-[4.5rem] pt-4 bg-gray-200 text-center text-2xl">
+      <h3 className="text-[#00286b] mt-[4.5rem] pt-4 bg-gray-200 text-center text-2xl">
         Forum
       </h3>
 

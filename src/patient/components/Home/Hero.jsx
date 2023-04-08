@@ -58,8 +58,6 @@ const Hero = () => {
 export default Hero;
 
 const Container = styled.div`
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-
   .hero {
     height: 100vh;
     min-width: 100vw;
@@ -124,7 +122,7 @@ const Container = styled.div`
     word-spacing: 2px;
   }
   .carousel > .control-dots .dot {
-    background: #50acfb;
+    background: #00286b;
   }
 
   @media (max-width: 820px) {

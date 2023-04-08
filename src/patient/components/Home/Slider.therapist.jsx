@@ -61,12 +61,12 @@ const SliderImg = () => {
             <Items key={data.id}>
               <div className="the-details">
                 <div className="the-con flex-1">
-                  <h3 className="the-name text-center text-xl">
+                  <h3 className="the-name text-center text-xl font-semibold">
                     {data.docName}
                   </h3>
                   <div className="the-exp ">
                     {data.info.map((data) => {
-                      return <p>{data}</p>;
+                      return <p className=" text-sm">{data}</p>;
                     })}
                   </div>
                 </div>
@@ -126,7 +126,7 @@ const Container = styled.div`
   }
 `;
 const Items = styled.div`
-  // background-color: #50acfb;
+  // background-color: #00286b;
   .the-details {
     display: flex;
     width: 90%;
@@ -141,7 +141,7 @@ const Items = styled.div`
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   }
   .the-name {
-    color: #50acfb;
+    color: #00286b;
   }
   .the-image {
     width: 40%;

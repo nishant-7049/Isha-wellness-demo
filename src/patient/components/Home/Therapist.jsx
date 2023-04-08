@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react'
-import styled from 'styled-components'
-import SliderTherapist from './Slider.therapist'
-import { motion, useAnimation } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
+import React, { useEffect } from "react";
+import styled from "styled-components";
+import SliderTherapist from "./Slider.therapist";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const Therapist = () => {
-  const { ref, inView } = useInView({ threshold: 0.5 })
-  const animation = useAnimation()
+  const { ref, inView } = useInView({ threshold: 0.5 });
+  const animation = useAnimation();
 
   useEffect(() => {
     if (inView) {
@@ -14,9 +14,9 @@ const Therapist = () => {
         opacity: 1,
         y: 0,
         transition: { duration: 1 },
-      })
+      });
     }
-  }, [inView])
+  }, [inView]);
   return (
     <Container>
       <motion.div
@@ -24,24 +24,24 @@ const Therapist = () => {
         initial={{ opacity: 0, y: 100 }}
         animate={animation}
       >
-        <div className='therapists container'>
-          <h2 className='therapists-head con-head text-3xl'>
+        <div className="therapists container">
+          <h2 className="therapists-head con-head text-3xl font-bold">
             Physiotherapists at your service
           </h2>
-          <p className='therapists-para con-para text-white'>
+          <p className="therapists-para con-para text-white">
             Revitalize Your Body with Our Expert Physiotherapists
           </p>
           <SliderTherapist />
         </div>
       </motion.div>
     </Container>
-  )
-}
+  );
+};
 
-export default Therapist
+export default Therapist;
 
 const Container = styled.div`
-  // background-color: #50acfb;
+  // background-color: #00286b;
 
   .container {
     padding: 5rem 0;
@@ -82,4 +82,4 @@ const Container = styled.div`
       margin-bottom: 1rem;
     }
   }
-`
+`;

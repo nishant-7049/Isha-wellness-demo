@@ -30,7 +30,7 @@ const ResetPasswordScreen = ({ history, match }) => {
 
     try {
       const { data } = await axios.put(
-        `https://isha-server.onrender.com/api/auth/passwordreset/${match.params.resetToken}`,
+        `http://isha-server.onrender.com/api/auth/passwordreset/${match.params.resetToken}`,
         {
           password,
         },

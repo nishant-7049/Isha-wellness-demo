@@ -11,7 +11,7 @@ const data = [
     sentDate: "15 jan 2020",
     topic: "What should be the topic of this blog ?",
     blogText:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae cumque porro rem exercitationem praesentium repudiandae atque error inventore? Doloribus quas sed beatae assumenda vel?",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae cumque porro rem exercitationem praesentium repudiandae atque error inventore? Doloribus quas sed beatae assumenda vel?Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae cumque porro rem exercitationem praesentium repudiandae atque error inventore? Doloribus quas sed beatae assumenda vel?Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae cumque porro rem exercitationem praesentium repudiandae atque error inventore? Doloribus quas sed beatae assumenda vel?Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae cumque porro rem exercitationem praesentium repudiandae atque error inventore? Doloribus quas sed beatae assumenda vel?Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae cumque porro rem exercitationem praesentium repudiandae atque error inventore? Doloribus quas sed beatae assumenda vel?Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae cumque porro rem exercitationem praesentium repudiandae atque error inventore? Doloribus quas sed beatae assumenda vel?Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae cumque porro rem exercitationem praesentium repudiandae atque error inventore? Doloribus quas sed beatae assumenda vel?Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae cumque porro rem exercitationem praesentium repudiandae atque error inventore? Doloribus quas sed beatae assumenda vel?Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae cumque porro rem exercitationem praesentium repudiandae atque error inventore? Doloribus quas sed beatae assumenda vel?Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae cumque porro rem exercitationem praesentium repudiandae atque error inventore? Doloribus quas sed beatae assumenda vel?Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae cumque porro rem exercitationem praesentium repudiandae atque error inventore? Doloribus quas sed beatae assumenda vel?Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae cumque porro rem exercitationem praesentium repudiandae atque error inventore? Doloribus quas sed beatae assumenda vel?",
   },
   {
     id: 1,
@@ -116,7 +116,7 @@ const BlogPage = () => {
                   </h2>
                   <p className="blog-para tracking-wider">{data.blogText}</p>
                   <p
-                    className=" cursor-pointer  hover:transition-all hover:duration-300 hover:text-[#50acfb]"
+                    className=" cursor-pointer  hover:transition-all hover:duration-300 hover:text-[#00286b]"
                     onClick={() => {
                       navigate(`/blogs/${data.id}`, { state: { data: data } });
                     }}
@@ -153,7 +153,7 @@ const Container = styled.div`
     padding: 2rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     > span{
-      color: #50acfb;
+      color: #00286b;
     }
     > h3{
       font-size: 2rem;
@@ -200,13 +200,13 @@ const Container = styled.div`
         font-weight: 600;
         color: #fff;
         &:hover{
-          color: #50acfb;
+          color: #00286b;
         }
       }
       > a {
         color: #0f0f0f;
         &:hover{
-          color: #50acfb;
+          color: #00286b;
           transition: all ease 0.3;
         }
       }

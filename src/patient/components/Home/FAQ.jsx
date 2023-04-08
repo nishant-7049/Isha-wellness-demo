@@ -65,7 +65,7 @@ function FAQ() {
       >
         <div className="content">
           <div className="heading">
-            <h2 className="text-3xl">FAQs</h2>
+            <h2 className="text-3xl font-bold">FAQs</h2>
           </div>
           {data.map((item) => {
             return (
@@ -74,11 +74,11 @@ function FAQ() {
                   type="checkbox"
                   id={item.id}
                   name="q"
-                  className="questions"
+                  className="questions text-white"
                 />
-                <div className="plus">+</div>
+                <div className="plus text-white">+</div>
                 <label htmlFor={item.id} className="question">
-                  <p>{item.title}</p>
+                  <p className=" text-white">{item.title}</p>
                 </label>
                 <div className="answers">
                   <p>{item.description}</p>
@@ -89,7 +89,7 @@ function FAQ() {
         </div>
         <div className="p-[10px] flex justify-center gap-1 ">
           <h2 className="">In case of any query</h2>
-          <Link to="/forum" className="text-[#50acfb]">
+          <Link to="/forum" className="text-[#00286b] font-bold">
             Ask Question
           </Link>
         </div>
@@ -109,7 +109,7 @@ const Faq = styled.div`
   }
 
   .heading {
-    color: #50acfb;
+    color: #00286b;
     font-size: x-large;
     text-align: center;
     font-weight: 700;
@@ -130,7 +130,7 @@ const Faq = styled.div`
 
   .question {
     position: relative;
-    background: #50acfb;
+    background: #00286b;
     margin: 0;
     padding: 10px 10px 10px 50px;
     display: block;

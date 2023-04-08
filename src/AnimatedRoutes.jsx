@@ -14,6 +14,7 @@ const Login = lazy(() => import("./auth/LoginScreen"));
 const ResetPassword = lazy(() => import("./auth/ResetPasswordScreen"));
 const ForgotPassword = lazy(() => import("./auth/ForgotPasswordScreen"));
 const ForumPage = lazy(() => import("./patient/pages/ForumPage"));
+const SingleService = lazy(() => import("./patient/pages/SingleService"));
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -36,6 +37,7 @@ const AnimatedRoutes = () => {
         <Route exact path="/forum" element={<ForumPage />} />
         <Route exact path="/booknow" element={<BookNow />} />
         <Route exact path="/blogs/:id" element={<SingleBlog />} />
+        <Route exact path="/service/:id" element={<SingleService />} />
         <Route path="/*" element={<PageNotFound />} />
       </Routes>
     </AnimatePresence>

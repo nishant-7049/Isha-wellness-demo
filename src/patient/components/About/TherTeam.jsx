@@ -45,12 +45,21 @@ const TherTeam = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 1000,
+    autoplaySpeed: 2000,
     pauseOnHover: false,
     arrows: false,
     responsive: [
       {
-        breakpoint: 800,
+        breakpoint: 1020,
+        settings: {
+          dots: false,
+          arrows: false,
+          pauseOnHover: false,
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 720,
         settings: {
           dots: false,
           arrows: false,
@@ -61,9 +70,9 @@ const TherTeam = () => {
     ],
   };
   return (
-    <Container className="bg-gray-100 p-8 px-15 pb-16 mt-20">
-      <h2 className="text-center text-4xl mb-6 mt-[2rem] border-b-[3px] w-[80%] mx-auto pb-4 border-black">
-        Our Wellness <span className=" text-red-700">Team</span>
+    <Container className="bg-gray-100 p-8 px-15 pb-4 mt-8">
+      <h2 className="text-center text-3xl font-extrabold text-[#00286b]  mb-6  border-b-[3px] w-[80%] mx-auto pb-4 border-[#00286b]">
+        Our Wellness Team
       </h2>
       <Slider {...settings}>
         {data.map((data) => {

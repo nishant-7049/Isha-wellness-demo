@@ -3,15 +3,16 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { IconContext } from "react-icons/lib";
 import { FaHandHoldingUsd, FaHotel } from "react-icons/fa";
-import { RiPsychotherapyLine, RiCommunityLine } from "react-icons/ri";
+import { RiCommunityLine } from "react-icons/ri";
 import { MdPregnantWoman, MdSportsGymnastics } from "react-icons/md";
 import { IoMdGlobe } from "react-icons/io";
+import { TbPhysotherapist } from "react-icons/tb";
 
 const data = [
   {
     id: 0,
     processName: `Physical Therapy`,
-    processImg: <RiPsychotherapyLine />,
+    processImg: <TbPhysotherapist />,
     process: `Pain management, Paralysis care, Paediatric care, pre-post operative therapy`,
   },
   {
@@ -58,21 +59,21 @@ const ProcessCards = () => {
       <IconContext.Provider
         value={{
           size: "4rem",
-          color: "#50acfb",
+          color: "#00286b",
         }}
       >
-        <div className="process-grid">
+        <div className="process-grid ">
           {data.map((data) => {
             return (
               <div key={data.id} className="process-item">
                 <Link to="/service">
-                  <div className="card bg-white text-[#50acfb] hover:scale-105 ">
-                    <div>{data.processImg}</div>
-                    <div className="card-con">
-                      <h1 className="card-head text-[#50acfb]">
+                  <div className="card bg-white text-[#00286b] hover:scale-105 ">
+                    <div className="  animate-bounce">{data.processImg}</div>
+                    <div className="card-con ">
+                      <h1 className="card-head text-[#00286b] animate-bounce">
                         {data.processName}
                       </h1>
-                      <p className="card-text text-black tracking-wider">
+                      <p className="card-text text-black tracking-wider text-xs">
                         {data.process}
                       </p>
                     </div>
@@ -83,13 +84,15 @@ const ProcessCards = () => {
           })}
           <div className="process-item process-item-last ">
             <Link to="/service">
-              <div className="card bg-white text-[#50acfb] hover:scale-105">
-                <div>
+              <div className="card bg-white text-[#00286b] hover:scale-105">
+                <div className="animate-bounce">
                   <FaHotel />
                 </div>
                 <div className="card-con">
-                  <h1 className="card-head text-[#50acfb]">Wellness Resort</h1>
-                  <p className="card-text text-black tracking-wider">
+                  <h1 className="card-head text-[#00286b] animate-bounce">
+                    Wellness Resort
+                  </h1>
+                  <p className="card-text text-black tracking-wider text-xs">
                     (Coming Soon)
                   </p>
                 </div>
@@ -147,7 +150,7 @@ const Container = styled.div`
   }
 
   .card-head {
-    // color: #50acfb;
+    // color: #00286b;
     font-size: 1.4rem;
     font-weight: 600;
     text-align: center;
@@ -155,13 +158,15 @@ const Container = styled.div`
   }
 
   .card-text {
-    font-size: 0.7rem;
     text-align: center;
   }
 
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: 1020px) {
     .process-grid {
       grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+    }
+    .process-item-last {
+      grid-column: -1/ 1;
     }
   }
   @media screen and (max-width: 480px) {

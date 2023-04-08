@@ -51,10 +51,24 @@ const BookNow = () => {
                   <div className="flex flex-col">
                     <label htmlFor="payment date"> Problem</label>
                     <select name="payment date" id="problem">
-                      <option value="Problem1"> Problem1</option>
-                      <option value="Problem2"> Problem2</option>
-                      <option value="Problem3"> Problem3</option>
-                      <option value="Problem4"> Problem4</option>
+                      <option value="Choose"> Choose</option>
+                      <option value="Pain"> Pain</option>
+                      <option value="Paranthesia"> Paranthesia</option>
+                      <option value="Stiffness"> Stiffness</option>
+                      <option value="Headache"> Headache</option>
+                      <option value="Migraine"> Migraine</option>
+                      <option value="Vertigo"> Vertigo</option>
+                      <option value="Motion Sickness"> Motion Sickness</option>
+                      <option value="Multiple Sclerosis">
+                        {" "}
+                        Multiple Sclerosis
+                      </option>
+                      <option value="paralysis"> paralysis</option>
+                      <option value="Lifestyle and Hormonal imbalances">
+                        {" "}
+                        Lifestyle and Hormonal imbalances
+                      </option>
+                      <option value="Other"> Other</option>
                     </select>
                   </div>
 

@@ -21,7 +21,7 @@ const Process = () => {
   return (
     <motion.div ref={ref} initial={{ opacity: 0, y: 100 }} animate={animation}>
       <Container className="process">
-        <h2 className="text-3xl text-white">Our Services</h2>
+        <h2 className="text-3xl font-bold text-white">Our Services</h2>
         <ServicesCards />
       </Container>
     </motion.div>
@@ -38,7 +38,7 @@ const Container = styled.div`
   h2 {
     text-align: center;
     margin-bottom: 1rem;
-    // color: #50acfb;
+    // color: #00286b;
     text-transform: capitalize;
   }
 

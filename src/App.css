@@ -1,5 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Work+Sans&display=swap");
-
-* {
-  font-family: "Poppins", sans-serif;
+.line-clamp-4 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
 }

@@ -151,6 +151,11 @@ const Nav = styled.div`
 
   @media (max-width: 480px) {
     margin: 0 1rem;
+    display: grid;
+    grid-template-columns: 60% 50px;
+    > *:first-child {
+      justify-self: right;
+    }
   }
 `;
 const Logo = styled.img`
@@ -164,7 +169,7 @@ const Links = styled.div`
     color: white;
     margin: 0 1rem;
     transition: 0.1s ease-in-out;
-    font-weight: 800;
+    font-weight: 500;
     font-size: 1rem;
   }
 
@@ -213,8 +218,8 @@ const LinksSmall = styled.div`
   font-size: large;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   text-align: center;
+  align-items: center;
   letter-spacing: 0.5px;
 
   a {
