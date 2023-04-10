@@ -155,7 +155,7 @@ const Items = styled.div`
   }
   @media (max-width: 480px) {
     .the-exp {
-      height: 13rem;
+      height: 15rem;
     }
   }
 `;
