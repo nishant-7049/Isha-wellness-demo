@@ -8,23 +8,14 @@ const data = [
   {
     id: 0,
     docName: `Dr. Minjan Patel`,
-    info: [
-      `Occupational Therapist`,
-      `Public Health Professional, Health Researcher`,
-      `World Bank Consultant`,
-      `WHO cunsultant`,
-      `Rural Development expert`,
-    ],
+    info: `She is an accomplished Occupational Therapist, Public Health Professional, and Health Researcher with extensive experience working as a consultant for the World Bank and the World Health Organization. She is also specialize in lifestyle coaching, spiritual practices, yoga, Community health and rural development, making her a versatile expert with a diverse range of skills.
+    `,
     docImg: `/images/service/img (1).png`,
   },
   {
     id: 1,
     docName: `Dr. Hitesh Purohit`,
-    info: [
-      `Physical Therapist`,
-      `Public Health Professional`,
-      `Health Researcher`,
-    ],
+    info: `He is an exceptional Physical Therapist, Public Health Professional, and Health Researcher with a talent for innovation and transformation. As an expert in tech-based health solutions, He has a unique ability to bring cutting-edge ideas to life, making them a visionary leader in the field`,
     docImg: `/images/service/img (3).png`,
   },
 ];
@@ -65,9 +56,7 @@ const SliderImg = () => {
                     {data.docName}
                   </h3>
                   <div className="the-exp ">
-                    {data.info.map((data) => {
-                      return <p className=" text-sm">{data}</p>;
-                    })}
+                    <p className=" text-sm">{data.info}</p>
                   </div>
                 </div>
                 <div className="the-image">
@@ -99,8 +88,9 @@ const Container = styled.div`
     }
   }
   .the-con {
-    min-height: 13rem;
+    min-height: 12rem;
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
     gap: 1rem;
   }
@@ -151,7 +141,7 @@ const Items = styled.div`
     padding: 1rem;
   }
   .the-exp {
-    height: 8rem;
+    height: 12rem;
     width: 100%;
     display: flex;
     flex-direction: column;

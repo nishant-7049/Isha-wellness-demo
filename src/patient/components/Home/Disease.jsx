@@ -7,62 +7,52 @@ const Diseases = [
   {
     id: 0,
     img: <FaDisease />,
-    name: "Detoxification",
+    name: "Pain",
   },
   {
     id: 1,
     img: <FaDisease />,
-    name: "Diabetes",
+    name: "Parasthesia",
   },
   {
     id: 2,
     img: <FaDisease />,
-    name: "Neurological Disorders",
+    name: "Stiffness",
   },
   {
-    id: 0,
+    id: 3,
     img: <FaDisease />,
-    name: "liver diseases",
+    name: "Headache",
   },
   {
-    id: 0,
+    id: 4,
     img: <FaDisease />,
-    name: "obesit",
+    name: "Migraine",
   },
   {
-    id: 0,
+    id: 5,
     img: <FaDisease />,
-    name: "heart diseases",
+    name: "Vertigo",
   },
   {
-    id: 0,
+    id: 6,
     img: <FaDisease />,
-    name: "hormol disorder",
+    name: "Motion sickness",
   },
   {
-    id: 0,
+    id: 7,
     img: <FaDisease />,
-    name: "Rheumatoid Arthritis",
+    name: "Multiple sclerosis",
   },
   {
-    id: 0,
+    id: 8,
     img: <FaDisease />,
-    name: "disease dummy",
+    name: "Paralysis",
   },
   {
-    id: 0,
+    id: 9,
     img: <FaDisease />,
-    name: "Stress managament",
-  },
-  {
-    id: 0,
-    img: <FaDisease />,
-    name: "Respiratory Diseases",
-  },
-  {
-    id: 0,
-    img: <FaDisease />,
-    name: "Cancer Care & Management",
+    name: "Lifestyle & hormonal imbalances",
   },
 ];
 function Disease() {
@@ -88,8 +78,10 @@ function Disease() {
       <div className="heading text-center">
         <h1 className="text-3xl  text-[white] font-bold">Diseases Treated</h1>
         <p className="text-xl p-10 text-white sm:text-sm">
-          At Nimba we have adopted holistic approach to treating various
-          ailments by detoxifying body to promote health and wellbeing
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
+          sit at voluptates beatae consequuntur commodi id unde omnis optio
+          libero deleniti eligendi, magnam error corrupti reprehenderit
+          exercitationem tempora? Voluptatum, corporis?
         </p>
       </div>
       <div className="disease flex gap-8 flex-wrap justify-center px-12 ">

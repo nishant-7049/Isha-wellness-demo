@@ -26,10 +26,11 @@ const Therapist = () => {
       >
         <div className="therapists container">
           <h2 className="therapists-head con-head text-3xl font-bold">
-            Physiotherapists at your service
+            Pioneer of ISHA Wellness Centre
           </h2>
           <p className="therapists-para con-para text-white">
-            Revitalize Your Body with Our Expert Physiotherapists
+            Our expert founders bring research-supported therapy with a public
+            health vision, all for your wellness!
           </p>
           <SliderTherapist />
         </div>
