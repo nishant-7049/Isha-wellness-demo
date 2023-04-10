@@ -1,248 +1,303 @@
-import React, { useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from 'react'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
+
+const data = {
+  part: [
+    'Head',
+    'Neck',
+    'collar',
+    'shoulder',
+    'Chest',
+    'Upper Back',
+    'Arm',
+    'Elbow',
+    'Forearm',
+    'Wrist',
+    'Hand',
+    'Thumb',
+    'Index finger',
+    'Middle finger',
+    'Ring finger',
+    'Little finger',
+    'Stomach',
+    'Abdomen',
+    'Lower back',
+    'Hip',
+    'Anal region',
+    'Thigh',
+    'Knee',
+    'leg',
+    'Ankle',
+    'Foot',
+    'Heel',
+  ],
+  problem: [
+    'Choose',
+    'Pain',
+    'Paranthesia',
+    'Stiffness',
+    'Headache',
+    'Migraine',
+    'Vertigo',
+    'Motion Sickness',
+    'paralysis',
+    'Other',
+  ],
+  occupation: [
+    'goverment job',
+    'private job',
+    'daily wage',
+    'farmer labour',
+    'farmer(owrner)',
+    'student',
+    'other',
+  ],
+  HowYouGotToKnow: [
+    'choose',
+    'news paper',
+    'google',
+    'facilater',
+    'pempplates',
+    'social media',
+    'patients',
+    'doctor',
+    'relatives or friends',
+  ],
+  batch: ['8:30-10:30', '10:30-12:30', '2:00-4:00', '4:00-6:00', '6:00-8:00'],
+}
 
 const BookNow = () => {
-  const { ref, inView } = useInView();
-  const animation = useAnimation();
-  const navigate = useNavigate();
+  const { ref, inView } = useInView()
+  const animation = useAnimation()
+  const navigate = useNavigate()
 
   useEffect(() => {
-    if (!localStorage.getItem("authToken")) {
-      navigate("/login");
+    if (!localStorage.getItem('authToken')) {
+      navigate('/login')
     }
 
     if (inView) {
       animation.start({
         opacity: 1,
         x: 0,
-        transition: { type: "spring", duration: 0.5, bounce: 0.5 },
-      });
+        transition: { type: 'spring', duration: 0.5, bounce: 0.5 },
+      })
     }
-  }, [inView]);
+  }, [inView])
 
   return (
     <motion.div ref={ref} initial={{ opacity: 0, x: -200 }} animate={animation}>
       <Container>
-        <div className="form ">
-          <form action="nishant">
-            <div className=" pandu ">
-              <h1 className="form-head ">Book Appointment </h1>
-              <div className="first">
-                <div className="left section">
-                  <div className="flex flex-col">
-                    <label htmlFor="">Name</label>
-                    <input type="text" name="myname" />
+        <div className='form '>
+          <form action='nishant'>
+            <div className=' pandu '>
+              <h1 className='form-head '>Book Appointment </h1>
+              <div className='first'>
+                <div className='left section'>
+                  <div className='flex flex-col'>
+                    <label htmlFor=''>Name</label>
+                    <input type='text' name='myname' />
                   </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="">Mobile No.</label>
-                    <input type="mobile no" name="my mobile no" />
+                  <div className='flex flex-col'>
+                    <label htmlFor=''>Mobile No.</label>
+                    <input type='mobile no' name='my mobile no' />
                   </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="">Whatsapp No.</label>
-                    <input type="mobile no" name="my alternate no" />
+                  <div className='flex flex-col'>
+                    <label htmlFor=''>Whatsapp No.</label>
+                    <input type='mobile no' name='my alternate no' />
                   </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="">Age</label>
-                    <input type="number" name="my age" />
+                  <div className='flex flex-col'>
+                    <label htmlFor=''>Age</label>
+                    <input type='number' name='my age' />
                   </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="payment date"> Problem</label>
-                    <select name="payment date" id="problem">
-                      <option value="Choose"> Choose</option>
-                      <option value="Pain"> Pain</option>
-                      <option value="Paranthesia"> Paranthesia</option>
-                      <option value="Stiffness"> Stiffness</option>
-                      <option value="Headache"> Headache</option>
-                      <option value="Migraine"> Migraine</option>
-                      <option value="Vertigo"> Vertigo</option>
-                      <option value="Motion Sickness"> Motion Sickness</option>
-                      <option value="Multiple Sclerosis">
-                        {" "}
-                        Multiple Sclerosis
-                      </option>
-                      <option value="paralysis"> paralysis</option>
-                      <option value="Lifestyle and Hormonal imbalances">
-                        {" "}
-                        Lifestyle and Hormonal imbalances
-                      </option>
-                      <option value="Other"> Other</option>
+                  <div className='flex flex-col'>
+                    <label htmlFor='payment date'> Problem</label>
+                    <select name='payment date' id='problem'>
+                      {data.problem.map((item) => {
+                        return (
+                          <option key={item} value={item}>
+                            {item}
+                          </option>
+                        )
+                      })}
                     </select>
                   </div>
 
-                  <div className="flex flex-col">
-                    <label htmlFor="payment date"> payment date</label>
-                    <select name="payment date" id="payment">
-                      <option value="dai"> daily</option>
-                      <option value="mem">membership</option>
+                  <div className='flex flex-col'>
+                    <label htmlFor='payment date'> payment date</label>
+                    <select name='payment date' id='payment'>
+                      <option value='dai'> daily</option>
+                      <option value='mem'>membership</option>
                     </select>
                   </div>
 
-                  <button className="button button1"> save details </button>
+                  <button className='button button1'> save details </button>
                 </div>
 
-                <div className="center section">
-                  <div className="flex flex-col">
-                    <label htmlFor="payment date"> gender</label>
-                    <select name="payment date" id="gender">
-                      <option value="male"> male</option>
-                      <option value="female"> female</option>
-                      <option value="other"> other</option>
+                <div className='center section'>
+                  <div className='flex flex-col'>
+                    <label htmlFor='payment date'> gender</label>
+                    <select name='payment date' id='gender'>
+                      <option value='male'> male</option>
+                      <option value='female'> female</option>
+                      <option value='other'> other</option>
                     </select>
                   </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="martial status"> martial status</label>
-                    <select name="martial status" id="status">
-                      <option value="married"> married</option>
-                      <option value="unmarried"> unmarried</option>
-                      <option value="divorced"> divorced</option>
-                      <option value="widow"> widow</option>
+                  <div className='flex flex-col'>
+                    <label htmlFor='martial status'> martial status</label>
+                    <select name='martial status' id='status'>
+                      <option value='married'> married</option>
+                      <option value='unmarried'> unmarried</option>
+                      <option value='divorced'> divorced</option>
+                      <option value='widow'> widow</option>
                     </select>
                   </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="">Address</label>
+                  <div className='flex flex-col'>
+                    <label htmlFor=''>Address</label>
                     <textarea
-                      className="bg-[#eee]"
-                      type="address"
-                      name="my address"
+                      className='bg-[#eee]'
+                      type='address'
+                      name='my address'
                     />
                   </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="ocupation"> ocupation</label>
-                    <select name="ocupation" id="ocupation">
-                      <option value="govermentjob"> goverment job</option>
-                      <option value="private"> private job</option>
-                      <option value="daily wage"> daily wage</option>
-                      <option value="farmer labour"> farmer labour</option>
-                      <option value="farmer owrner"> farmer(owrner)</option>
-                      <option value="student"> student</option>
-                      <option value="other"> other</option>
+                  <div className='flex flex-col'>
+                    <label htmlFor='ocupation'> ocupation</label>
+                    <select name='ocupation' id='ocupation'>
+                      {data.occupation.map((item) => {
+                        return (
+                          <option key={item} value={item}>
+                            {item}
+                          </option>
+                        )
+                      })}
                     </select>
                   </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="payment date"> Part</label>
-                    <select name="payment date" id="problem">
-                      <option value="Part1"> Part1</option>
-                      <option value="Part2"> Part2</option>
-                      <option value="Part3"> Part3</option>
-                      <option value="Part4"> Part4</option>
+                  <div className='flex flex-col'>
+                    <label htmlFor='payment date'> Part</label>
+                    <select name='payment date' id='problem'>
+                      {data.part.map((item) => {
+                        return (
+                          <option key={item} value={item}>
+                            {item}
+                          </option>
+                        )
+                      })}
                     </select>
                   </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="education"> education</label>
-                    <select name="education" id="education">
-                      <option value="no education"> no education</option>
-                      <option value="primary education">
-                        {" "}
+                  <div className='flex flex-col'>
+                    <label htmlFor='education'> education</label>
+                    <select name='education' id='education'>
+                      <option value='no education'> no education</option>
+                      <option value='primary education'>
+                        {' '}
                         primary eduction
                       </option>
-                      <option value="medium education">
-                        {" "}
+                      <option value='medium education'>
+                        {' '}
                         medium education
                       </option>
-                      <option value="graduation"> graduation</option>
-                      <option value="graduation or pg">
-                        {" "}
+                      <option value='graduation'> graduation</option>
+                      <option value='graduation or pg'>
+                        {' '}
                         graduation or pg
                       </option>
                     </select>
                   </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="package"> packages</label>
-                    <select name="package" id="package">
-                      <option value="package">package 1</option>
-                      <option value="package"> package 2 </option>
-                      <option value="package"> package 3 </option>
+                  <div className='flex flex-col'>
+                    <label htmlFor='package'> packages</label>
+                    <select name='package' id='package'>
+                      <option value='package'>package 1</option>
+                      <option value='package'> package 2 </option>
+                      <option value='package'> package 3 </option>
                     </select>
                   </div>
                 </div>
-                <div className="right section">
+                <div className='right section'>
                   <h1>Type of work</h1>
-                  <div className="right-con my-[2px]">
-                    <label htmlFor="">eligibale</label>
-                    <input type="checkbox" name="my eligibale" />
+                  <div className='right-con my-[2px]'>
+                    <label htmlFor=''>eligibale</label>
+                    <input type='checkbox' name='my eligibale' />
                   </div>
 
-                  <div className="right-con my-[2px]">
-                    <label htmlFor="">Sitting</label>
-                    <input type="checkbox" name="my sitting" />
+                  <div className='right-con my-[2px]'>
+                    <label htmlFor=''>Sitting</label>
+                    <input type='checkbox' name='my sitting' />
                   </div>
 
-                  <div className="right-con my-[2px]">
-                    <label htmlFor="">Sleeping</label>
-                    <input type="checkbox" name="my sleeping" />
+                  <div className='right-con my-[2px]'>
+                    <label htmlFor=''>Sleeping</label>
+                    <input type='checkbox' name='my sleeping' />
                   </div>
 
-                  <div className="right-con my-[2px]">
-                    <label htmlFor="">Standing Position</label>
-                    <input type="checkbox" name="my standing position" />
+                  <div className='right-con my-[2px]'>
+                    <label htmlFor=''>Standing Position</label>
+                    <input type='checkbox' name='my standing position' />
                   </div>
-                  <div className="right-con my-[2px]"></div>
+                  <div className='right-con my-[2px]'></div>
 
-                  <div className="right-con my-[2px]">
-                    <label htmlFor="">Walking</label>
-                    <input type="checkbox" name="my walking" />
-                  </div>
-
-                  <div className="right-con my-[2px]">
-                    <label htmlFor="">Weight Lifting</label>
-                    <input type="checkbox" name="my put weight" />
+                  <div className='right-con my-[2px]'>
+                    <label htmlFor=''>Walking</label>
+                    <input type='checkbox' name='my walking' />
                   </div>
 
-                  <div className="right-con my-[2px]">
-                    <label htmlFor="">Travelling</label>
-                    <input type="checkbox" name="my travelling" />
+                  <div className='right-con my-[2px]'>
+                    <label htmlFor=''>Weight Lifting</label>
+                    <input type='checkbox' name='my put weight' />
+                  </div>
+
+                  <div className='right-con my-[2px]'>
+                    <label htmlFor=''>Travelling</label>
+                    <input type='checkbox' name='my travelling' />
                   </div>
                   <br />
-                  <label htmlFor="">Please specify if not above</label>
-                  <input type="address" name="my address" />
+                  <label htmlFor=''>Please specify if not above</label>
+                  <input type='address' name='my address' />
                   <br />
-                  <div className="flex flex-col">
-                    <label className="info">
+                  <div className='flex flex-col'>
+                    <label className='info'>
                       How you get to known about IWC
                     </label>
-                    <select name="choose now" id="choose">
-                      <option value="choose"> choose </option>
-                      <option value="news paper"> news paper</option>
-                      <option value="google"> google</option>
-                      <option value="facilater"> facilater</option>
-                      <option value="pempplates"> pempplates</option>
-                      <option value="social media"> social media</option>
-                      <option value="patient"> patients</option>
-                      <option value="doctor">doctor</option>
-                      <option value="relative or friends">
-                        relatives or friends
-                      </option>
+                    <select name='choose now' id='choose'>
+                      {data.HowYouGotToKnow.map((item) => {
+                        return (
+                          <option key={item} value={item}>
+                            {item}
+                          </option>
+                        )
+                      })}
                     </select>
                   </div>
                   <br />
-                  <div className="flex flex-col">
-                    <label htmlFor="batch"> batch</label>
-                    <select name="batch" id="batch">
-                      <option value="time"> 8:30-10:30</option>
-                      <option value="time"> 10:30-12:30 </option>
-                      <option value="time"> 2:00-4:00</option>
-                      <option value="time"> 4:00-6:00</option>
-                      <option value="time"> 6:00-8:00</option>
+                  <div className='flex flex-col'>
+                    <label htmlFor='batch'> batch</label>
+                    <select name='batch' id='batch'>
+                      {data.batch.map((item) => {
+                        return (
+                          <option key={item} value={item}>
+                            {item}
+                          </option>
+                        )
+                      })}
                     </select>
                   </div>
                   <br />
-                  <label htmlFor="payment"> payment</label>
-                  <input type="payment" name="payment" />
+                  <label htmlFor='payment'> payment</label>
+                  <input type='payment' name='payment' />
                 </div>
-                <button className="button button2"> save details </button>
+                <button className='button button2'> save details </button>
               </div>
             </div>
           </form>
         </div>
       </Container>
     </motion.div>
-  );
-};
+  )
+}
 
-export default BookNow;
+export default BookNow
 
 const Container = styled.div`
   margin-top: 6rem;
@@ -342,4 +397,4 @@ const Container = styled.div`
       margin-bottom: 1rem;
     }
   }
-`;
+`
