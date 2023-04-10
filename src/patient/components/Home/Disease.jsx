@@ -47,11 +47,7 @@ const Diseases = [
   {
     id: 8,
     img: <FaDisease />,
-<<<<<<< HEAD
     name: "Paralysis",
-=======
-    name: "disease dummy",
->>>>>>> 33bcd18bded726b0d7dddb2c44098b1b064d87d7
   },
   {
     id: 9,
