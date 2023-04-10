@@ -163,4 +163,9 @@ const Items = styled.div`
   .the-para {
     margin-left: 0.5rem;
   }
+  @media (max-width: 480px) {
+    .the-exp {
+      height: 13rem;
+    }
+  }
 `;
