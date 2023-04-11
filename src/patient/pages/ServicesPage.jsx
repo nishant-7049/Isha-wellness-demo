@@ -213,17 +213,20 @@ function ServicesPage() {
       <div className="bg-[url(/images/bg/AboutBg.jpg)] bg-blend-overlay bg-black/20 bg-opacity-0  bg-cover bg-center w-[100%] h-[50vh]"></div>
       <div className="mt-8 mx-auto text-center w-4/5 opacity-80">
         <p className="text-3xl font-bold text-[#00286b]">
-          In a healthy body <br /> resides a happy soul.
+          "Small steps towards wellness,
+          <br /> big strides towards happiness."
         </p>
         <p className="my-4">
-          The wholesome wellness of our bodies is the stepping stone to an
-          empowering spiritual, physical and mental well-being instantly.
+          With content: At ISHA Wellness Centre, we believe that achieving
+          holistic wellness is the key to unlocking one's full potential in
+          every aspect of life. Our services provide a safe and nurturing
+          environment for individuals to embark on a journey towards optimal
+          physical, mental, and spiritual well-being.
         </p>
         <p className="my-4">
-          A safe haven to indulge into the holistic betterment of every
-          individual, Nimba's Wellness Programmes enable one to lead a
-          rejuvenating, stimulating and healthy life through a blend of an
-          effective blend of western and natural treatment
+          Our Integrative therapeutic approach combines the best of Western and
+          natural treatments to promote rejuvenation, stimulation, and overall
+          health!
         </p>
       </div>
       {data.map((item) => {
