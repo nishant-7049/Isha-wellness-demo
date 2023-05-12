@@ -2,47 +2,42 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { IconContext } from "react-icons/lib";
-import { FaHandHoldingUsd, FaHotel } from "react-icons/fa";
-import { RiCommunityLine } from "react-icons/ri";
-import { MdPregnantWoman, MdSportsGymnastics } from "react-icons/md";
-import { IoMdGlobe } from "react-icons/io";
-import { TbPhysotherapist } from "react-icons/tb";
 
 const data = [
   {
     id: 0,
     processName: `Physical Therapy`,
-    processImg: <TbPhysotherapist />,
+    processImg: "images/service/1.svg",
     process: `Pain management, Paralysis care, Paediatric care, pre-post operative therapy`,
   },
   {
     id: 1,
     processName: `Yoga`,
-    processImg: <MdSportsGymnastics />,
+    processImg: "images/service/2.svg",
     process: `Discover our innovative yoga program, designed for all levels from beginners to advanced practitioners to enhance overall wellness and prevent common health disorders`,
   },
   {
     id: 2,
     processName: `Women Wellness care`,
-    processImg: <MdPregnantWoman />,
+    processImg: "images/service/3.svg",
     process: `Pregnancy care and education, Hormone balance therapy, Weight management, Menopause management and education, reproductive health education`,
   },
   {
     id: 3,
     processName: `Community Wellness Program`,
-    processImg: <RiCommunityLine />,
+    processImg: "images/service/4.svg",
     process: `Making evidence-based therapy services accessible to all, because we believe in a healthier, happier, and more equitable society for all.`,
   },
   {
     id: 4,
     processName: `Employee Wellness Program`,
-    processImg: <FaHandHoldingUsd />,
+    processImg: "images/service/5.svg",
     process: `Health education and exercise sessions for company employees to empower them to prevent and deal with several occupational health problems.`,
   },
   {
     id: 5,
     processName: `Social Responsibility`,
-    processImg: <IoMdGlobe />,
+    processImg: "images/service/6.svg",
     process: `(Coming Soon)`,
   },
   // {
@@ -68,7 +63,13 @@ const ProcessCards = () => {
               <div key={data.id} className="process-item">
                 <Link to="/service">
                   <div className="card bg-white text-[#00286b] hover:scale-105 ">
-                    <div className="  sm:animate-bounce">{data.processImg}</div>
+                    <div className="  sm:animate-bounce w-24">
+                      <img
+                        className="object-contain"
+                        src={data.processImg}
+                        alt=""
+                      />
+                    </div>
                     <div className="card-con ">
                       <h1 className="card-head text-[#00286b] sm:animate-bounce">
                         {data.processName}
@@ -85,8 +86,12 @@ const ProcessCards = () => {
           <div className="process-item process-item-last ">
             <Link to="/service">
               <div className="card bg-white text-[#00286b] hover:scale-105">
-                <div className="sm:animate-bounce">
-                  <FaHotel />
+                <div className="sm:animate-bounce w-24">
+                  <img
+                    classname="object-contain"
+                    src="images/service/7.svg"
+                    alt=""
+                  />
                 </div>
                 <div className="card-con">
                   <h1 className="card-head text-[#00286b] sm:animate-bounce">

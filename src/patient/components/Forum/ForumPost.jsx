@@ -30,7 +30,7 @@ const ForumPost = ({ item, setLoading }) => {
 
       await axios
         .post(
-          "https://isha-server.onrender.com/api/forum/postAnswer",
+          "http://localhost:5000/api/forum/postAnswer",
           {
             user: localStorage.getItem("userName"),
             questionId: item._id,

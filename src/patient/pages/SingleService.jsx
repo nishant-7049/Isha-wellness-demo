@@ -7,9 +7,9 @@ const data = [
   {
     id: 0,
     topic: `Physical Therapy`,
-    img: `/images/service/face.png`,
+    img: `/images/service/img/2.svg`,
     p1: [],
-    logo: <TbPhysotherapist />,
+    logo: "/images/service/1.svg",
     list: [
       ` Pain Management: We take an integrative approach to pain management, which involves identifying the underlying cause and offering holistic treatment options for various conditions. Our services are effective in restoring optimal strength and function for joint pain in areas such as the Neck, Shoulder, Elbow, Hand, Back, hip, knee, ankle, and more. Additionally, we have a proven track record in successfully treating conditions such as spondylolisthesis, sciatica, headaches, Dizziness, Vertigo, Migraine, Motion sickness, Tingling, and Numbness in limbs.`,
       ` Neurological Rehabilitation: Our specialized care is dedicated to neurological rehabilitation for conditions such as stroke, Parkinson's disease, and multiple sclerosis, with the goal of enhancing mobility, balance, and coordination. Our team possesses a high level of expertise in optimizing functionality for patients requiring paralysis care.`,
@@ -24,12 +24,12 @@ const data = [
   {
     id: 1,
     topic: "Yoga",
-    img: "/images/service/face1.png",
+    img: `/images/service/img/4.svg`,
     p1: [
       `Welcome to our innovative yoga program, created to cater to individuals of all levels, from beginners to advanced practitioners. Our program is designed to improve your overall wellness and help prevent common health disorders. Our yoga sessions are tailored to meet your specific needs and goals, with a focus on enhancing strength, flexibility, balance, and relaxation.`,
       `Our experienced instructors bring a wealth of knowledge and expertise, making each session unique and enjoyable. Our yoga program is a great way to reduce stress, improve mental health, and enhance physical well-being.`,
     ],
-    logo: <TbPhysotherapist />,
+    logo: "/images/service/2.svg",
     list: [],
 
     p2: [
@@ -39,12 +39,12 @@ const data = [
   {
     id: 2,
     topic: "Lifestyle Wellness Program",
-    img: "/images/service/face.png",
+    img: `/images/service/img/6.svg`,
     p1: [
       `Our Lifestyle Wellness Program is a comprehensive, personalized approach to achieving optimal health and wellness. We offer a range of services to help you achieve your goals, including:
     `,
     ],
-    logo: <TbPhysotherapist />,
+    logo: "/images/service/3.svg",
     list: [
       ` Get fit, get active: Personalized fitness coaching and support to help you reach your fitness goals and stay active.`,
       ` Lifestyle management: Strategies to help you manage stress, improve sleep, and create a healthy work-life balance.`,
@@ -60,12 +60,12 @@ const data = [
   {
     id: 3,
     topic: "Women Wellness Care",
-    img: "/images/service/face1.png",
+    img: `/images/service/img/8.svg`,
     p1: [
       `Our society relies heavily on the contributions of women and we hold great respect for them for the care, respect, and love they provide in various forms. We are deeply appreciative of their services and offer a wide range of services to promote their health and happiness. The Women Wellness Wing provides numerous services, which include but are not limited to:
     `,
     ],
-    logo: <TbPhysotherapist />,
+    logo: "/images/service/4.svg",
     list: [
       ` Pregnancy care and education`,
       ` Hormone balance therapy`,
@@ -91,7 +91,7 @@ const data = [
   {
     id: 4,
     topic: "Employee Wellness Program",
-    img: "/images/service/face.png",
+    img: `/images/service/img/10.svg`,
     p1: [
       `We offer a comprehensive employee wellness program that includes health education and exercise sessions to empower your staff to prevent and address a range of occupational health problems. Our program is designed to promote physical and mental well-being, increase productivity, and reduce absenteeism.
     `,
@@ -100,14 +100,14 @@ const data = [
       `Our employee wellness program has been shown to reduce the incidence of workplace injuries and illnesses, and increase job satisfaction and employee retention. Investing in the health and wellness of your employees can also have a positive impact on your company's bottom line, with lower healthcare costs and increased productivity.
       `,
     ],
-    logo: <TbPhysotherapist />,
+    logo: "/images/service/5.svg",
     list: [],
     p2: `Empower your employees to take charge of their health and well-being with our comprehensive employee wellness program. Contact us today to learn more about how we can help your company thrive.`,
   },
   {
     id: 5,
     topic: "Community Wellness Program",
-    img: "/images/service/face1.png",
+    img: `/images/service/img/12.svg`,
     p1: [
       `We take our social responsibility seriously, and that's why we've developed a community wellness program aimed at making evidence-based therapy services accessible to all. Our program provides training and enabling support to eligible active members of the community, empowering them to execute therapy services for their fellow community members. Our goal is to promote a healthier, happier, and more equitable society for all.
     `,
@@ -116,7 +116,7 @@ const data = [
       `Participating in our community wellness program not only helps those in need, but it also benefits the community as a whole. By promoting health and well-being, we can foster a stronger and more resilient community. Additionally, our program can be an opportunity for personal growth and fulfillment, as facilitators are able to make a real difference in the lives of others.
       `,
     ],
-    logo: <TbPhysotherapist />,
+    logo: "/images/service/6.svg",
     list: [],
 
     p2: `Join us in our mission to make evidence-based therapy services accessible to all by adopting a village or town and supporting our community wellness program. Contact us today to learn more about how you can get involved.`,
@@ -124,7 +124,7 @@ const data = [
   {
     id: 6,
     topic: "Wellness Resort (Coming Soon)",
-    img: "/images/service/face.png",
+    img: `/images/service/img/14.svg`,
     p1: [
       `We are excited to announce that our new wellness resort project is coming soon! 
     `,
@@ -134,7 +134,7 @@ const data = [
       `In addition to our wellness facilities, our resort will feature luxurious accommodations designed to promote rest and relaxation. We will have a variety of rooms and suites to choose from, each thoughtfully designed to create a sense of calm and tranquility.
       `,
     ],
-    logo: <TbPhysotherapist />,
+    logo: "/images/service/7.svg",
     list: [],
     p2: `At our wellness resort, we believe that health and wellness are not a luxury, but a necessity. Our team of experts is dedicated to helping you achieve your wellness goals, and we can't wait to welcome you to our new space. Stay tuned for updates on our opening date and booking information.`,
   },
@@ -158,18 +158,18 @@ const SingleService = () => {
         .map((item) => {
           return (
             <div className="">
-              <div className="bg-[url(/images/bg/AboutBg.jpg)] bg-blend-overlay bg-black/20 bg-opacity-0  bg-cover bg-center w-[100%] h-[50vh]"></div>
+              <div className="bg-[url(/images/service/ServiceHero.svg)] bg-[#00286b]  bg-center bg-fit bg-contain bg-no-repeat w-[100%] h-[50vh]" />
               <div key={item.id} className="text-center">
-                <div className="w-fit mt-8  mx-auto text-[4rem] text-[#00286b]">
-                  {item.logo}
+                <div className="w-24 mt-8  mx-auto text-[4rem] text-[#00286b]">
+                  <img src={item.logo} alt="" />
                 </div>
                 <h2 className="text-3xl text-[#00286b] font-extrabold border-b-4 border-[#00268b]">
                   {item.topic}
                 </h2>
               </div>
               <div className="mx-20 sm:mx-8">
-                <div className="float-right ml-8 mb-8 mt-8 sm:mt-8 ">
-                  <img src={item.img} alt="" />
+                <div className="float-right ml-8 mb-8 mt-8 sm:mt-8 w-1/2">
+                  <img className="object-contain" src={item.img} alt="" />
                 </div>
                 <div className="leading-6 tracking-widest py-20 sm:pt-12">
                   {item.p1.map((para) => {

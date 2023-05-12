@@ -41,6 +41,9 @@ function Navbar() {
               <button>SignUp</button>
             </Link>
           )}
+          <Link to="/register">
+            <button>Staff Only</button>
+          </Link>
         </Links>
         <Button>
           <button onClick={() => setToggle(!toggle)}>

@@ -180,7 +180,7 @@ function LocateUs() {
                     Home-based services available @ Ahmedabad, Jaora(Ratlam)
                   </p>
                 </div>
-                <div className="bg-[url(/images/bg/geometricBG.jpg)] bg-cover bg-center bg-fixed rounded-md">
+                <div className="bg-[url(/images/HealedBG.jpg)] bg-cover bg-center bg-fixed rounded-md">
                   <Testimonial data={data.testi} />
                 </div>
               </div>

@@ -40,7 +40,7 @@ const Home = () => {
         <Hero />
         <Quote />
         <Vision />
-        <div className="bg-[url(/images/bg/geometricBG.jpg)] bg-cover bg-center bg-fixed pb-4 h-fit sm:h-fit">
+        <div className="bg-[url(/images/bg/OurServiceBG.jpg)] bg-cover bg-center bg-blend-overlay bg-black/20 bg-fixed pb-4 h-fit sm:h-fit">
           <Services />
         </div>
         <div className="mx-20 my-12 sm:mx-10">
@@ -49,16 +49,16 @@ const Home = () => {
           </h3>
           <Achievement />
         </div>
-        <div className="bg-[url(/images/bg/geometricBG.jpg)] bg-cover bg-center bg-fixed h-fit sm:h-fit">
+        <div className="bg-[url(/images/DiseaseBG.jpg)] bg-cover bg-center bg-fixed h-fit sm:h-fit">
           <Disease />
         </div>
         <LocateUs />
-        <div className="bg-[url(/images/bg/geometricBG.jpg)] bg-cover bg-center bg-fixed">
+        <div className="bg-[url(/images/DiseaseBG.jpg)] bg-cover bg-center bg-fixed">
           <Therapist />
         </div>
         <Blogs />
 
-        <div className="bg-[url(/images/bg/geometricBG.jpg)] bg-cover bg-center bg-fixed">
+        <div className="bg-[url(/images/HealedBG.jpg)] bg-cover bg-center bg-fixed">
           <Video />
         </div>
         <FAQ />

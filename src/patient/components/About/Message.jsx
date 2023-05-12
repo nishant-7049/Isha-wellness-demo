@@ -8,7 +8,7 @@ const Message = () => {
         {" "}
         Message from Founders
       </h2>
-      <div className=" mb-4 h-40 w-full bg-[url(/images/bg/AboutBg.jpg)] bg-blend-overlay bg-black/20 bg-center flex items-center ">
+      <div className=" mb-4 h-40 w-full bg-[#00296b] bg-blend-overlay bg-black/20 bg-center flex items-center ">
         <img className="h-32 m-auto" src="/images/nav-logo1.png" alt="" />
       </div>
       <div>
