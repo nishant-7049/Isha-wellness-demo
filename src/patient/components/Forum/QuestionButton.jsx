@@ -31,7 +31,7 @@ const QuestionButton = ({ setLoading }) => {
 
       await axios
         .post(
-          "http://localhost:5000/api/forum/postQuestion",
+          "http://isha-server.onrender.com/api/forum/postQuestion",
           {
             user: localStorage.getItem("userName"),
             question: questionState,
