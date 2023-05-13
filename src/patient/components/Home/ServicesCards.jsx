@@ -36,9 +36,9 @@ const data = [
   },
   {
     id: 5,
-    processName: `Social Responsibility`,
+    processName: `Lifestyle Wellness Program`,
     processImg: "images/service/6.svg",
-    process: `(Coming Soon)`,
+    process: `Get fit Get active, Lifestyle management, Balanced Digestion, Healthy ageing, Technology detoxification, Relational wellbeing, Depression & anxiety relief and Hormone Balance therapy`,
   },
   // {
   //   id: 6,
