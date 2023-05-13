@@ -18,7 +18,7 @@ const ForgotPasswordScreen = () => {
 
     try {
       const { data } = await axios.post(
-        "http://isha-server.onrender.com/api/auth/forgotpassword",
+        "https://isha-server.onrender.com/api/auth/forgotpassword",
         { email },
         config
       );
