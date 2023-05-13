@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 
-const Problem = ({ img, Problem, Dieseases }) => {
+const Problem = ({ img, Problem, Diseases }) => {
   const [show, setShow] = useState(false);
   return (
     <div
@@ -15,7 +15,7 @@ const Problem = ({ img, Problem, Dieseases }) => {
         <p>{show === true ? <AiOutlineUp /> : <AiOutlineDown />}</p>
       </div>
       <ul className="list-disc pt-4 pl-4">
-        {show ? Dieseases.map((d) => <li>{d}</li>) : ""}
+        {show ? Diseases.map((d) => <li>{d}</li>) : ""}
       </ul>
     </div>
   );

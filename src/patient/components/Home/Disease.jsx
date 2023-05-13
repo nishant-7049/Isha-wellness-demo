@@ -9,7 +9,7 @@ const Diseases = [
     id: 0,
     img: <FaDisease />,
     Problem: "Pain",
-    Dieseases: [
+    Diseases: [
       "Muscular pain",
       "Joint Pain",
       "Joint Stiffness",
@@ -21,7 +21,7 @@ const Diseases = [
     id: 1,
     img: <FaDisease />,
     Problem: "Neurological Disorders",
-    Dieseases: [
+    Diseases: [
       "Headache",
       "Migraine",
       "Vertigo",
@@ -40,7 +40,7 @@ const Diseases = [
     id: 2,
     img: <FaDisease />,
     Problem: "Stroke/Paralysis",
-    Dieseases: [
+    Diseases: [
       "Obesity",
       "Diabetes",
       "Blood pressure",
@@ -51,13 +51,13 @@ const Diseases = [
     id: 3,
     img: <FaDisease />,
     Problem: "Lifestyle Disorders",
-    Dieseases: ["Lifestyle Disorders"],
+    Diseases: ["Lifestyle Disorders"],
   },
   {
     id: 4,
     img: <FaDisease />,
     Problem: "Hormonal Disorders",
-    Dieseases: [
+    Diseases: [
       "PCOD",
       "Hyperthyroidism",
       "Hypothyroidism",
@@ -70,13 +70,13 @@ const Diseases = [
     id: 5,
     img: <FaDisease />,
     Problem: "Digestive Problems",
-    Dieseases: ["Gas", "Acidity", "Constipation", "Indigestion"],
+    Diseases: ["Gas", "Acidity", "Constipation", "Indigestion"],
   },
   {
     id: 6,
     img: <FaDisease />,
     Problem: "Respiratory Disorders",
-    Dieseases: [
+    Diseases: [
       "Asthma",
       "Post infection recovery",
       "Chronic Bronchitis",
@@ -87,13 +87,13 @@ const Diseases = [
     id: 7,
     img: <FaDisease />,
     Problem: "Stress Managment",
-    Dieseases: ["Stress Managment"],
+    Diseases: ["Stress Managment"],
   },
   {
     id: 8,
     img: <FaDisease />,
     Problem: "Pre-Post Surgery Rehabilitation",
-    Dieseases: ["Pre-Post Surgery Rehabilitation"],
+    Diseases: ["Pre-Post Surgery Rehabilitation"],
   },
 ];
 function Disease() {
@@ -117,13 +117,9 @@ function Disease() {
       className="container py-12 mb-20"
     >
       <div className="heading text-center">
-        <h1 className="text-3xl  text-[white] font-bold">Diseases Treated</h1>
-        <p className="text-xl p-10 text-white sm:text-sm">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
-          sit at voluptates beatae consequuntur commodi id unde omnis optio
-          libero deleniti eligendi, magnam error corrupti reprehenderit
-          exercitationem tempora? Voluptatum, corporis?
-        </p>
+        <h1 className="text-3xl  text-[white] font-bold mb-8">
+          Diseases Treated
+        </h1>
       </div>
       <div className="disease flex gap-8 flex-wrap justify-center px-12 ">
         {Diseases.map((data) => {
