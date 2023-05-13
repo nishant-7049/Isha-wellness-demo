@@ -27,7 +27,7 @@ const SliderImg = () => {
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 3000,
     pauseOnHover: true,
     arrows: false,
@@ -38,7 +38,7 @@ const SliderImg = () => {
           slidesToShow: 1,
           slidesToScroll: 1,
           initialSlide: 1,
-          dots: false,
+          dots: true,
           pauseOnHover: false,
         },
       },
@@ -105,6 +105,7 @@ const Container = styled.div`
     .the-details {
       flex-direction: column-reverse;
       justify-content: center;
+      height: fit-content;
 
       .the-image {
         margin: 1rem;
@@ -141,7 +142,7 @@ const Items = styled.div`
     padding: 1rem;
   }
   .the-exp {
-    height: 12rem;
+    height: 14.5rem;
     width: 100%;
     display: flex;
     flex-direction: column;

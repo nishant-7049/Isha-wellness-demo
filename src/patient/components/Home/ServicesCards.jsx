@@ -63,7 +63,7 @@ const ProcessCards = () => {
               <div key={data.id} className="process-item">
                 <Link to="/service">
                   <div className="card bg-white text-[#00286b] hover:scale-105 ">
-                    <div className="  sm:animate-bounce w-24">
+                    <div className="  sm:animate-bounce-1 w-24">
                       <img
                         className="object-contain"
                         src={data.processImg}
@@ -71,7 +71,7 @@ const ProcessCards = () => {
                       />
                     </div>
                     <div className="card-con ">
-                      <h1 className="card-head text-[#00286b] sm:animate-bounce">
+                      <h1 className="card-head text-[#00286b] sm:animate-bounce-1">
                         {data.processName}
                       </h1>
                       <p className="card-text text-black tracking-wider text-xs">
@@ -86,7 +86,7 @@ const ProcessCards = () => {
           <div className="process-item process-item-last ">
             <Link to="/service">
               <div className="card bg-white text-[#00286b] hover:scale-105">
-                <div className="sm:animate-bounce w-24">
+                <div className="sm:animate-bounce-1 w-24">
                   <img
                     classname="object-contain"
                     src="images/service/7.svg"
@@ -94,7 +94,7 @@ const ProcessCards = () => {
                   />
                 </div>
                 <div className="card-con">
-                  <h1 className="card-head text-[#00286b] sm:animate-bounce">
+                  <h1 className="card-head text-[#00286b] sm:animate-bounce-1">
                     Wellness Resort
                   </h1>
                   <p className="card-text text-black tracking-wider text-xs">
