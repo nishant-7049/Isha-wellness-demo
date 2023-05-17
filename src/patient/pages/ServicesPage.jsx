@@ -152,7 +152,7 @@ const EvenComponent = ({ item }) => {
               return innerItem;
             })}
           </p>
-          <ul className="list-disc pl-8 line-clamp-4">
+          <ul className="list-disc pl-8 line-clamp-4 tracking-wide leading-7 w-[80%]">
             {item.list.map((list) => {
               return <li key={list}>{list}</li>;
             })}
@@ -181,7 +181,7 @@ const OddComponent = ({ item }) => {
               return innerItem;
             })}
           </p>
-          <ul className="list-disc pl-8 line-clamp-4">
+          <ul className="list-disc pl-8 tracking-wide leading-7 w-[80%] line-clamp-4">
             {item.list.map((list) => {
               return <li key={list}>{list}</li>;
             })}
@@ -209,7 +209,7 @@ function ServicesPage() {
         transition: { type: "spring", duration: 0.5, bounce: 0.5 },
       }}
     >
-      <div className="bg-[url(/images/service/ServiceHero.svg)]  bg-[#00286b]  bg-center bg-fit bg-contain bg-no-repeat w-[100%] h-[50vh]"></div>
+      <div className="bg-[url(/images/bg/OurServiceBG.jpg)]  bg-center bg-cover  bg-no-repeat w-[100%] h-[50vh]"></div>
       <div className="mt-8 mx-auto text-center w-4/5 opacity-80">
         <p className="text-3xl font-bold text-[#00286b]">
           "Small steps towards wellness,

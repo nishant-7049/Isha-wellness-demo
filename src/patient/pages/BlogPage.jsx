@@ -73,7 +73,7 @@ const BlogPage = () => {
 
   useEffect(() => {
     if (!localStorage.getItem("authToken")) {
-      navigate("/");
+      navigate("/register");
       window.alert("Please login to access!");
     }
   }, [navigate]);

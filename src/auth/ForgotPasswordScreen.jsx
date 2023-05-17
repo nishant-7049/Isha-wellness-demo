@@ -18,7 +18,7 @@ const ForgotPasswordScreen = () => {
 
     try {
       const { data } = await axios.post(
-        "https://isha-server.onrender.com/api/auth/forgotpassword",
+        `${import.meta.env.VITE_API_URL}api/auth/forgotpassword`,
         { email },
         config
       );

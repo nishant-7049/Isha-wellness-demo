@@ -6,35 +6,52 @@ import "slick-carousel/slick/slick-theme.css";
 const data = [
   {
     id: 0,
-    img: "/images/service/img (1).png",
-    name: "salman khan ",
-    post: "Film Star ",
+    img: "/images/About/ther/Adil Hussain.png",
+    name: "Adil Hussain",
+    post: "Therapist ",
     edu: "Prinction University",
-    other: "bhai jaan",
   },
   {
     id: 1,
-    img: "/images/service/img (2).png",
-    name: "shahrukh khan ",
-    post: " Film Star",
-    edu: "11 pass",
-    other: "king khan",
+    img: "/images/About/ther/Ashwin Mandloi.png",
+    name: "Ashwin Mandloi",
+    post: "Therapist ",
+    edu: "Prinction University",
   },
   {
     id: 2,
-    img: "/images/service/img (1).png",
-    name: "amir khan",
-    post: "Film Star",
+    img: "/images/About/ther/Ayush Purohit.png",
+    name: "Ayush Purohit",
+    post: "Therapist ",
     edu: "Prinction University",
-    other: "MR.perfect",
   },
   {
     id: 3,
-    img: "/images/service/img (2).png",
-    name: "akshay kumar",
-    post: "Film Star",
+    img: "/images/About/ther/Farzana Bee.png",
+    name: "Farzana Bee",
+    post: "Therapist ",
     edu: "Prinction University",
-    other: "khiladi",
+  },
+  {
+    id: 4,
+    img: "/images/About/ther/Pooja Gautam.png",
+    name: "Pooja Gautam",
+    post: "Therapist ",
+    edu: "Prinction University",
+  },
+  {
+    id: 5,
+    img: "/images/About/ther/Shubham Purohit.png",
+    name: "Shubham Purohit",
+    post: "Therapist ",
+    edu: "Prinction University",
+  },
+  {
+    id: 6,
+    img: "/images/About/ther/Somya Purohit.png",
+    name: "Somya Purohit",
+    post: "Therapist ",
+    edu: "Prinction University",
   },
 ];
 const TherTeam = () => {
@@ -79,8 +96,8 @@ const TherTeam = () => {
           return (
             <div key={data.id} className="px-4 my-4">
               <div className="card-container ">
-                <div className="card-image w-full">
-                  <img src={data.img} alt="/" className="w-full object-cover" />
+                <div className="card-image ">
+                  <img src={data.img} alt="/" />
                 </div>
                 <div className="card-body">
                   <div className="flex justify-between items-center w-full">
@@ -92,7 +109,6 @@ const TherTeam = () => {
                   <div className="border-b-[2px] opacity-50 w-[80%] mx-auto pb-4 border-black"></div>
                   <div className="mt-4 ml-2 h-fit">
                     <p>{data.edu}</p>
-                    <p>{data.other}</p>
                   </div>
                 </div>
               </div>
@@ -114,8 +130,8 @@ const Container = styled.div`
   }
 
   .card-image img {
+    margin: 0 auto;
     height: 220px;
-    width: 100%;
     border-radius: 8px 8px 0 0;
     background-size: cover;
   }

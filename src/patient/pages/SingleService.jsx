@@ -1,13 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { useLocation } from "react-router-dom";
-import { TbPhysotherapist } from "react-icons/tb";
+import { useLocation, Link } from "react-router-dom";
+import { AiOutlineLeft } from "react-icons/ai";
 
 const data = [
   {
     id: 0,
     topic: `Physical Therapy`,
-    img: `/images/service/img/2.svg`,
+    img: `/images/service/img/2.jpg`,
     p1: [],
     logo: "/images/service/1.svg",
     list: [
@@ -24,7 +24,7 @@ const data = [
   {
     id: 1,
     topic: "Yoga",
-    img: `/images/service/img/4.svg`,
+    img: `/images/service/img/4.jpg`,
     p1: [
       `Welcome to our innovative yoga program, created to cater to individuals of all levels, from beginners to advanced practitioners. Our program is designed to improve your overall wellness and help prevent common health disorders. Our yoga sessions are tailored to meet your specific needs and goals, with a focus on enhancing strength, flexibility, balance, and relaxation.`,
       `Our experienced instructors bring a wealth of knowledge and expertise, making each session unique and enjoyable. Our yoga program is a great way to reduce stress, improve mental health, and enhance physical well-being.`,
@@ -39,7 +39,7 @@ const data = [
   {
     id: 2,
     topic: "Lifestyle Wellness Program",
-    img: `/images/service/img/6.svg`,
+    img: `/images/service/img/6.jpg`,
     p1: [
       `Our Lifestyle Wellness Program is a comprehensive, personalized approach to achieving optimal health and wellness. We offer a range of services to help you achieve your goals, including:
     `,
@@ -60,7 +60,7 @@ const data = [
   {
     id: 3,
     topic: "Women Wellness Care",
-    img: `/images/service/img/8.svg`,
+    img: `/images/service/img/8.jpg`,
     p1: [
       `Our society relies heavily on the contributions of women and we hold great respect for them for the care, respect, and love they provide in various forms. We are deeply appreciative of their services and offer a wide range of services to promote their health and happiness. The Women Wellness Wing provides numerous services, which include but are not limited to:
     `,
@@ -91,7 +91,7 @@ const data = [
   {
     id: 4,
     topic: "Employee Wellness Program",
-    img: `/images/service/img/10.svg`,
+    img: `/images/service/img/10.jpg`,
     p1: [
       `We offer a comprehensive employee wellness program that includes health education and exercise sessions to empower your staff to prevent and address a range of occupational health problems. Our program is designed to promote physical and mental well-being, increase productivity, and reduce absenteeism.
     `,
@@ -107,7 +107,7 @@ const data = [
   {
     id: 5,
     topic: "Community Wellness Program",
-    img: `/images/service/img/12.svg`,
+    img: `/images/service/img/12.jpg`,
     p1: [
       `We take our social responsibility seriously, and that's why we've developed a community wellness program aimed at making evidence-based therapy services accessible to all. Our program provides training and enabling support to eligible active members of the community, empowering them to execute therapy services for their fellow community members. Our goal is to promote a healthier, happier, and more equitable society for all.
     `,
@@ -124,7 +124,7 @@ const data = [
   {
     id: 6,
     topic: "Wellness Resort (Coming Soon)",
-    img: `/images/service/img/14.svg`,
+    img: `/images/service/img/14.jpg`,
     p1: [
       `We are excited to announce that our new wellness resort project is coming soon! 
     `,
@@ -158,7 +158,7 @@ const SingleService = () => {
         .map((item) => {
           return (
             <div className="">
-              <div className="bg-[url(/images/service/ServiceHero.svg)] bg-[#00286b]  bg-center bg-fit bg-contain bg-no-repeat w-[100%] h-[50vh]" />
+              <div className="bg-[url(/images/bg/OurServiceBG.jpg)]  bg-center bg-cover  bg-no-repeat w-[100%] h-[50vh]" />
               <div key={item.id} className="text-center">
                 <div className="w-24 mt-8  mx-auto text-[4rem] text-[#00286b]">
                   <img src={item.logo} alt="" />
@@ -171,7 +171,7 @@ const SingleService = () => {
                 <div className="float-right ml-8 mb-8 mt-8 sm:mt-8 w-1/2">
                   <img className="object-contain" src={item.img} alt="" />
                 </div>
-                <div className="leading-6 tracking-widest py-20 sm:pt-12">
+                <div className="leading-6 tracking-widest pt-20 sm:pt-12">
                   {item.p1.map((para) => {
                     return <p className="pb-8">{para}</p>;
                   })}
@@ -186,6 +186,12 @@ const SingleService = () => {
             </div>
           );
         })}
+      <Link to="/service">
+        <div className="flex bg-[#00286b] rounded-full w-fit gap-4 text-white items-center p-4 justify-between mb-8 mx-20">
+          <AiOutlineLeft />
+          <p>Back to Services</p>
+        </div>
+      </Link>
     </motion.div>
   );
 };

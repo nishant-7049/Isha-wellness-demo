@@ -16,7 +16,7 @@ const Footer = () => {
           Society (AKAS) and Healthprizm Pvt. Ltd. (HPL), they bring a wealth of
           knowledge and expertise to the table.
         </p>
-        <p>
+        <p className="text-sm font-bold sm:text-[12px]">
           Together, these two visionaries have a shared goal of bringing
           evidence-based, patient-centered therapy services to everyone. With
           their combined knowledge, experience, and commitment to community

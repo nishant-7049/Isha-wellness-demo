@@ -26,7 +26,7 @@ const LoginScreen = () => {
 
     try {
       const { data } = await axios.post(
-        "https://isha-server.onrender.com/api/auth/login",
+        `${import.meta.env.VITE_API_URL}api/auth/login`,
         { email, password },
         config
       );

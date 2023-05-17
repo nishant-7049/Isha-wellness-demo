@@ -34,8 +34,8 @@ const AboutFounders = () => {
         Dr. Hitesh Purohit
       </h2>
       <div className="flex justify-between px-8 py-8 items-center gap-12 bg-[#00286b] text-white sm:flex-col">
-        <div className="w-[120rem] shadow-[5px_5px_10px_5px_white] sm:w-fit sm:h-fit  ">
-          <img className="w-fit" src="./images/About/Hitesh.jpg" alt="" />
+        <div className="w-[100rem] rounded-full shadow-[5px_5px_10px_5px_white] sm:w-fit sm:h-fit  ">
+          <img className="w-fit" src="./images/About/Dr.Hitesh.png" alt="" />
         </div>
         <div className=" overflow-y-auto h-[15rem] ">
           <p className="mb-8">
@@ -91,8 +91,8 @@ const AboutFounders = () => {
         Dr. Minjan Patel
       </h2>
       <div className="flex flex-row-reverse justify-between px-8 py-8 items-center gap-12 bg-[#00286b] text-white sm:flex-col">
-        <div className="w-[120rem] shadow-[5px_5px_10px_5px_white] sm:w-fit sm:h-fit  ">
-          <img className="w-fit" src="./images/About/Minjan.jpg" alt="" />
+        <div className="w-[100rem] rounded-full shadow-[5px_5px_10px_5px_white] sm:w-fit sm:h-fit  ">
+          <img className="w-fit" src="./images/About/Dr.Minjan.png" alt="" />
         </div>
         <div className=" overflow-y-auto h-[15rem] ">
           <p className="mb-8">

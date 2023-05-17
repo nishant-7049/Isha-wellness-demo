@@ -6,7 +6,6 @@ import Achievement from "../components/About/Achievement";
 import AboutFounders from "../components/About/AboutFounders";
 import OurStory from "../components/About/OurStory";
 import Message from "../components/About/Message";
-import TechTeam from "../components/About/TechTeam";
 import TherTeam from "../components/About/TherTeam";
 
 const About = () => {
@@ -28,7 +27,6 @@ const About = () => {
         <OurStory />
         <Message />
         <TherTeam />
-        <TechTeam />
       </div>
     </div>
   );

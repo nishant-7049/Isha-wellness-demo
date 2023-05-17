@@ -28,7 +28,7 @@ const Therapist = () => {
           <h2 className="therapists-head con-head text-3xl font-bold">
             Pioneer of ISHA Wellness Centre
           </h2>
-          <p className="therapists-para con-para text-white">
+          <p className="therapists-para con-para text-white tracking-wide leading-7">
             Our expert founders bring research-supported therapy with a public
             health vision, all for your wellness!
           </p>

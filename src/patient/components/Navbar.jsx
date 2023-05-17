@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Navbar() {
+  const location = useLocation();
   const [toggle, setToggle] = useState(true);
 
   function logout() {
@@ -21,11 +22,38 @@ function Navbar() {
           />
         </Link>
         <Links className="">
-          <Link to="/"> Home</Link>
-          <Link to="/about"> About</Link>
-          <Link to="/service"> Services</Link>
-          <Link to="/blogs"> Blogs</Link>
-          <Link to="/forum"> Forum</Link>
+          <Link to="/" className={location.pathname == "/" ? "active" : ""}>
+            {" "}
+            Home
+          </Link>
+          <Link
+            to="/about"
+            className={location.pathname == "/about" ? "active" : ""}
+          >
+            {" "}
+            About
+          </Link>
+          <Link
+            to="/service"
+            className={location.pathname == "/service" ? "active" : ""}
+          >
+            {" "}
+            Services
+          </Link>
+          <Link
+            to="/blogs"
+            className={location.pathname == "/blogs" ? "active" : ""}
+          >
+            {" "}
+            Blogs
+          </Link>
+          <Link
+            to="/forum"
+            className={location.pathname == "/forum" ? "active" : ""}
+          >
+            {" "}
+            Forum
+          </Link>
           {localStorage.getItem("authToken") ? (
             <span>
               <a className="cursor-pointer" onClick={logout}>
@@ -37,13 +65,13 @@ function Navbar() {
               </Link>
             </span>
           ) : (
-            <Link to="/register">
+            <Link
+              to="/register"
+              className={location.pathname == "/register" ? "active" : ""}
+            >
               <button>SignUp</button>
             </Link>
           )}
-          <Link to="/register">
-            <button>Staff Only</button>
-          </Link>
         </Links>
         <Button>
           <button onClick={() => setToggle(!toggle)}>
@@ -59,6 +87,7 @@ function Navbar() {
                 setToggle(!toggle);
               }}
               to="/"
+              className={location.pathname == "/" ? "active" : ""}
             >
               {" "}
               Home
@@ -68,6 +97,7 @@ function Navbar() {
                 setToggle(!toggle);
               }}
               to="/blogs"
+              className={location.pathname == "/blogs" ? "active" : ""}
             >
               {" "}
               Blogs
@@ -77,6 +107,7 @@ function Navbar() {
                 setToggle(!toggle);
               }}
               to="/about"
+              className={location.pathname == "/about" ? "active" : ""}
             >
               {" "}
               About
@@ -86,6 +117,7 @@ function Navbar() {
                 setToggle(!toggle);
               }}
               to="/service"
+              className={location.pathname == "/service" ? "active" : ""}
             >
               {" "}
               Services
@@ -95,6 +127,7 @@ function Navbar() {
                 setToggle(!toggle);
               }}
               to="/forum"
+              className={location.pathname == "/forum" ? "active" : ""}
             >
               {" "}
               Forum
@@ -106,6 +139,7 @@ function Navbar() {
                   setToggle(!toggle);
                 }}
                 to="/booknow"
+                className={location.pathname == "/booknow" ? "active" : ""}
               >
                 <button>Book Now</button>
               </Link>
@@ -115,6 +149,7 @@ function Navbar() {
                   setToggle(!toggle);
                 }}
                 to="/register"
+                className={location.pathname == "/register" ? "active" : ""}
               >
                 <button>SignUp</button>
               </Link>
@@ -143,13 +178,18 @@ const Nav = styled.div`
   margin: 0 5rem;
   padding-top: 0.6rem;
   padding-bottom: 0.5rem;
-  text-align: center;
+  text-align: left;
   align-items: center;
   top: 0;
 
   * {
     text-align: center;
     align-items: center;
+  }
+
+  .active {
+    border-bottom: 2px solid white;
+    transition: 0.4 ease-in-out;
   }
 
   @media (max-width: 480px) {
@@ -172,7 +212,7 @@ const Links = styled.div`
     color: white;
     margin: 0 1rem;
     transition: 0.1s ease-in-out;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 1rem;
   }
 

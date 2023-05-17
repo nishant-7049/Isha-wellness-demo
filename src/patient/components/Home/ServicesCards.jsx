@@ -37,7 +37,7 @@ const data = [
   {
     id: 5,
     processName: `Lifestyle Wellness Program`,
-    processImg: "images/service/6.svg",
+    processImg: "images/service/6.jpg",
     process: `Get fit Get active, Lifestyle management, Balanced Digestion, Healthy ageing, Technology detoxification, Relational wellbeing, Depression & anxiety relief and Hormone Balance therapy`,
   },
   // {
@@ -74,7 +74,7 @@ const ProcessCards = () => {
                       <h1 className="card-head text-[#00286b] sm:animate-bounce-1">
                         {data.processName}
                       </h1>
-                      <p className="card-text text-black tracking-wider text-xs">
+                      <p className="card-text text-black tracking-wider  leading-5 text-xs">
                         {data.process}
                       </p>
                     </div>
@@ -89,7 +89,7 @@ const ProcessCards = () => {
                 <div className="sm:animate-bounce-1 w-24">
                   <img
                     classname="object-contain"
-                    src="images/service/7.svg"
+                    src="images/service/6.svg"
                     alt=""
                   />
                 </div>

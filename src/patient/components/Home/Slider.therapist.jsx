@@ -10,13 +10,13 @@ const data = [
     docName: `Dr. Minjan Patel`,
     info: `She is an accomplished Occupational Therapist, Public Health Professional, and Health Researcher with extensive experience working as a consultant for the World Bank and the World Health Organization. She is also specialize in lifestyle coaching, spiritual practices, yoga, Community health and rural development, making her a versatile expert with a diverse range of skills.
     `,
-    docImg: `/images/service/img (1).png`,
+    docImg: `/images/service/Dr.Minjan.png`,
   },
   {
     id: 1,
     docName: `Dr. Hitesh Purohit`,
     info: `He is an exceptional Physical Therapist, Public Health Professional, and Health Researcher with a talent for innovation and transformation. As an expert in tech-based health solutions, He has a unique ability to bring cutting-edge ideas to life, making them a visionary leader in the field`,
-    docImg: `/images/service/img (3).png`,
+    docImg: `/images/service/Dr.Hitesh.png`,
   },
 ];
 
@@ -56,7 +56,9 @@ const SliderImg = () => {
                     {data.docName}
                   </h3>
                   <div className="the-exp ">
-                    <p className=" text-sm">{data.info}</p>
+                    <p className=" text-sm tracking-wide leading-5">
+                      {data.info}
+                    </p>
                   </div>
                 </div>
                 <div className="the-image">

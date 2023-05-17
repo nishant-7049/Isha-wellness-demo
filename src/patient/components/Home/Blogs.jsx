@@ -26,7 +26,7 @@ const Blogs = () => {
         className="blogs"
       >
         <h2 className="blog-h text-3xl font-bold">Blogs</h2>
-        <p className="blog-text">
+        <p className="blog-text tracking-wide leading-7">
           Discover the world through our words: insights, inspiration, and
           perspectives
         </p>
