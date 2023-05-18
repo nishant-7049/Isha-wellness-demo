@@ -30,7 +30,7 @@ const ForumPost = ({ item, setLoading }) => {
 
       await axios
         .post(
-          "http://localhost:5000/api/forum/postAnswer",
+          `${import.meta.env.VITE_API_URL}api/forum/postAnswer`,
           {
             user: localStorage.getItem("userName"),
             questionId: item._id,
