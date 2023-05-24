@@ -31,7 +31,7 @@ const QuestionButton = ({ setLoading }) => {
 
       await axios
         .post(
-          `${import.meta.env.VITE_API_URL}api/forum/postQuestion`,
+          "http://localhost:5000/api/forum/postQuestion",
           {
             user: localStorage.getItem("userName"),
             question: questionState,

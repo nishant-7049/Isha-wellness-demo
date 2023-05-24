@@ -124,6 +124,11 @@ const Container = styled.div`
     }
   }
 
+  @media screen and (max-width: 1024px) {
+    .ach-cards {
+      grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+    }
+  }
   @media screen and (max-width: 680px) {
     .ach-cards {
       grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));

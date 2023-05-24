@@ -24,13 +24,13 @@ const AboutVision = () => {
           <h2 className="mb-5 pb-2 text-3xl text-[#00286b] font-bold border-b-[4px]  border-[#00286b] tracking-wide">
             Our Vision
           </h2>
-          <p className="tracking-widest	leading-6">{vision}</p>
+          <p className="tracking-wide	leading-6">{vision}</p>
         </div>
         <div>
           <h2 className="mb-5 pb-2 text-3xl text-[#00286b] font-bold border-b-[4px]  border-[#00286b] tracking-wide">
             Our Mission
           </h2>
-          <p className="tracking-widest	leading-6">{mission}</p>
+          <p className="tracking-wide	leading-6">{mission}</p>
         </div>
       </div>
     </div>

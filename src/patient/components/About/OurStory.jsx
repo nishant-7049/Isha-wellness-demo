@@ -11,7 +11,7 @@ const OurStory = () => {
         <div className="m-8 w-[40%] float-right shadow-[5px_5px_10px_5px_white] sm:w-fit">
           <img src="./images/About/OurStory.jpg" alt="" />
         </div>
-        <div className="pt-8 pl-8 sm:px-4">
+        <div className="pt-8 px-8 sm:px-4">
           <p className="mb-8">
             <H>
               Our story began with a simple yet profound dream: to make therapy

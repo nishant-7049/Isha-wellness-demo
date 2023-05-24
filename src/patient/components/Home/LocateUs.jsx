@@ -67,6 +67,38 @@ const tabs = [
         `,
         goo: "https://www.google.com/maps/place/ISHA+Wellness+Centre+Ratlam/@18.7207366,67.5205801,5z/data=!4m12!1m2!2m1!1sisha+wellness+centre!3m8!1s0x3963fea578acaff7:0x847dac23ee0d0262!8m2!3d23.3201068!4d75.0335898!9m1!1b1!15sChRpc2hhIHdlbGxuZXNzIGNlbnRyZZIBFHBoeXNpb3RoZXJhcHlfY2VudGVy4AEA!16s%2Fg%2F11gg6c4lzc",
       },
+      {
+        id: 4,
+        img: "https://lh3.googleusercontent.com/a/AAcHTteHDbRM8ucxkU9FGUgh_6wS2jPCX6eBQpfqerGS=w75-h75-p-rp-mo-br100",
+        name: "Narendra Solanki",
+        des: `In Dashrath Sevashram teal of Isha Wellness centre camp to give therapy of joint pain,backpain, frozen shoulder,enable to sit properly etc;
+        As experinced by parijan therapy style and system of Isha Wellness is proper and unique.   Since its totally different with routine physiotherapy.   Our parijan got benefitted with Isha Wellness therapy, behaviour of team found amicable and calm.
+        
+        I suggest this to experience Isha Wellness therapy for old acute pain and other problem.   Once again thank to ISHA WELLNESS team and Director.
+        `,
+        goo: "https://www.google.com/maps/place/ISHA+Wellness+Centre+Ratlam/@18.7207366,67.5205801,5z/data=!4m12!1m2!2m1!1sisha+wellness+centre!3m8!1s0x3963fea578acaff7:0x847dac23ee0d0262!8m2!3d23.3201068!4d75.0335898!9m1!1b1!15sChRpc2hhIHdlbGxuZXNzIGNlbnRyZZIBFHBoeXNpb3RoZXJhcHlfY2VudGVy4AEA!16s%2Fg%2F11gg6c4lzc",
+      },
+      {
+        id: 5,
+        img: "https://lh3.googleusercontent.com/a-/AD_cMMSppTgMPx1AAlpXUClJsspvE25D4C6UFd40BaQHPQ=w75-h75-p-rp-mo-br100",
+        name: "VEDANSH",
+        des: `Hello,
+        Myself Vedansh Pendrawala, 26, businessman, is immensely happy in writing this review for Isha Wellness Centre, Indore.
+        A few days back, I was diagnosed with grade 1 fatty liver. Due to which I suffered severe abdominal pain for a stretch of a month until I visited Isha Wellness Centre.
+        It only took them 1 therapy session to wash away that prolonged pain.
+        Also I continued the therapy for almost a month.
+        There was a mix of therapies, yoga, aerobics & stretching in each session. With this physical exercise part, they also guide us through the diet, sleep cycle & other lifestyle aspects during our tenure.
+        They also guided me for some corrections in my professional & personal lifestyle like my driving position, office chair position, sleeping position & a whole lot changes in my diet which resulted in reduction of some types of pains & other problems faced in daily routine.
+        Everybody @Isha is dedicated to get away the unhealthy part in you & they put loads of effort to get you through it.
+        The founders, Mr. & Mrs. Rajpurohit knows every detail of the body. From the functionalities of it to the minute complexities of it. These guys are true genius.
+        Isha Wellness Centre is a true example of what a wellness centre should be. They are doing the work of God!
+        I hope to see more upcoming centres like this in all over the world.
+        Kudos to these guys!
+        
+        Regards,
+        `,
+        goo: "https://www.google.com/maps/place/ISHA+Wellness+Centre+Ratlam/@18.7207366,67.5205801,5z/data=!4m12!1m2!2m1!1sisha+wellness+centre!3m8!1s0x3963fea578acaff7:0x847dac23ee0d0262!8m2!3d23.3201068!4d75.0335898!9m1!1b1!15sChRpc2hhIHdlbGxuZXNzIGNlbnRyZZIBFHBoeXNpb3RoZXJhcHlfY2VudGVy4AEA!16s%2Fg%2F11gg6c4lzc",
+      },
     ],
   },
   {
@@ -80,20 +112,31 @@ const tabs = [
     testi: [
       {
         id: 0,
-        img: "https://lh3.googleusercontent.com/a-/ACB-R5RzGd87bEc5LRVXKhxPXySgChKI0hkWoqDpM0uu5A=w75-h75-p-rp-mo-br100",
-        name: "Vipul Sharma",
-        des: `Great place with experienced people,
-        identify issues and prescribe the best physical therapy treatment for my need and abilities. Great explanation of treatment and help with pinpointing problem areas as well as exercises to overcome issues.
-        
-        Thank you ISHA Wellness Centre!`,
+        img: "https://lh3.googleusercontent.com/a/AGNmyxYMZInWMvgU2oAaDksTx7d8lH-Vt4m672Nuaxff=w45-h45-p-c0x00000000-rp-mo-br100",
+        name: "Kavita Chawla",
+        des: `I am KAVITA CHAWLA
+        I lived in Ahmedabad
+        I have back pain & foot pain for that I visited many doctors in Ratlam as well as in Ahmedabad but I don't get relief from the pain I had different types of medicines spray & ointment but it was a temporary relief I had the pain continue.
+        Then I visited Ratlam to my Moms house she was having Physiotherapy at Isha wellness center fr back pain & knee pain she get so much relief from the Physiotherapy. she suggested me to join the Isha Wellness center for Physiotherapy.
+        Then I started having Physiotherapy at my home for 15 days & 15 days I visited to Isha wellness center i get so much relief from the pain after having Physiotherapy.
+        I don't use to take any type of pain killer .
+        Both the visit at my home & at center were very good experience the tutors were very good in nature , experienced & more than that very supportive they help & guide to do all the exercise. Tutors do exercise first then they watch we our doing correct or not they guide us to do proper exercise & correct exercise.
+        The atmosphere of center feels like Family & Home..
+        "I Personally want To THANKS ISHA WELLNESS CENTER for the Physiotherapy by which I get so much relief"..
+        " THANKYOU"..`,
         goo: "https://www.google.com/maps/place/ISHA+Wellness+Centre+Ratlam/@18.7207366,67.5205801,5z/data=!4m12!1m2!2m1!1sisha+wellness+centre!3m8!1s0x3963fea578acaff7:0x847dac23ee0d0262!8m2!3d23.3201068!4d75.0335898!9m1!1b1!15sChRpc2hhIHdlbGxuZXNzIGNlbnRyZZIBFHBoeXNpb3RoZXJhcHlfY2VudGVy4AEA!16s%2Fg%2F11gg6c4lzc",
       },
       {
         id: 1,
-        img: "https://lh3.googleusercontent.com/a/AGNmyxa5FEG9J3KUc7w2fua2KQ3_L_hzb28ISYjCXL_3=w75-h75-p-rp-mo-br100",
-        name: "Ragini Jaiswal",
-        des: `"There is a clam and happy atmosphere and true expertise." Thank you all for your excellent care. I personally appreciate your professionalism, concern and friendliness. The therapist are honest towards there work they have command in tackling their patients. Almost my husband recovered from his paralysis from here only. I thank you all once again for your help and support.
-        `,
+        img: "https://lh3.googleusercontent.com/a/AGNmyxbLt6xvbAWAhUBpPaw1ZBBaGIb0HRG41ph1P_WL=w45-h45-p-c0x00000000-rp-mo-br100",
+        name: "Pankaj Sharma",
+        des: `Would definitely recommend if you are facing any musculoskeletal imbalance , pain related issue.
+
+        Sir,Mam and whole staff here is HIGHLY skilled and you will get well customized treatment which is mix of modern physiotherapy exercises , yoga ,aerobics etc etc based one your issue.
+        
+        Special mention to ora around here which is highly unmatchable and can't be described but it will take no time for you to feel you came to right place.
+        
+        PS: Isha wellness center is truly a gift to the people of Ratlam by the vision seen by sir Nd mam.`,
         goo: "https://www.google.com/maps/place/ISHA+Wellness+Centre+Ratlam/@18.7207366,67.5205801,5z/data=!4m12!1m2!2m1!1sisha+wellness+centre!3m8!1s0x3963fea578acaff7:0x847dac23ee0d0262!8m2!3d23.3201068!4d75.0335898!9m1!1b1!15sChRpc2hhIHdlbGxuZXNzIGNlbnRyZZIBFHBoeXNpb3RoZXJhcHlfY2VudGVy4AEA!16s%2Fg%2F11gg6c4lzc",
       },
       {
@@ -109,6 +152,30 @@ const tabs = [
         name: "Mohammed Shakil",
         des: `Best therapy centre with very nice atmosphere and careable staff.They cure my back pain in very less time.
         `,
+        goo: "https://www.google.com/maps/place/ISHA+Wellness+Centre+Ratlam/@18.7207366,67.5205801,5z/data=!4m12!1m2!2m1!1sisha+wellness+centre!3m8!1s0x3963fea578acaff7:0x847dac23ee0d0262!8m2!3d23.3201068!4d75.0335898!9m1!1b1!15sChRpc2hhIHdlbGxuZXNzIGNlbnRyZZIBFHBoeXNpb3RoZXJhcHlfY2VudGVy4AEA!16s%2Fg%2F11gg6c4lzc",
+      },
+      {
+        id: 4,
+        img: "https://lh3.googleusercontent.com/a-/ACB-R5QQq_fy4sr7Cq_asZsaNocbTCIl7mfu1YXNbemdpA=w45-h45-p-c0x00000000-rp-mo-ba3-br100",
+        name: "AMIT ARYAMA",
+        des: `"Health is Wealth", well known phrase but realized at Isha Wellness Centre. A place beyond general perception of Health Care they provide development of your complete being in the light of Yoga, Physiotherapy as well as on the level of consciousnesses. Once the work started on level of consciousness wellness of being will come automatically that is the key factor this centre develops in person the only thing is one should be open enough to accept and follow the guidance. Feel privileged being connected to such a True Wellness Centre.`,
+        goo: "https://www.google.com/maps/place/ISHA+Wellness+Centre+Ratlam/@18.7207366,67.5205801,5z/data=!4m12!1m2!2m1!1sisha+wellness+centre!3m8!1s0x3963fea578acaff7:0x847dac23ee0d0262!8m2!3d23.3201068!4d75.0335898!9m1!1b1!15sChRpc2hhIHdlbGxuZXNzIGNlbnRyZZIBFHBoeXNpb3RoZXJhcHlfY2VudGVy4AEA!16s%2Fg%2F11gg6c4lzc",
+      },
+      {
+        id: 5,
+        img: "https://lh3.googleusercontent.com/a-/ACB-R5QozbZurUdWgV-Nldy8zkHTBZ6dZEd7u2YHm2Tzag=w45-h45-p-c0x00000000-rp-mo-br100",
+        name: "Tushar Purohit",
+        des: `"I had a muscle injury while working out in the left trapeze region , though after massage and nerve relaxation related medication the pain got subdided an was reoccurring again and again .
+        After discussing it with mummy I came to know about ISHA WELLNESS CENTER ,with doubts in my mind and anxiety I went there and discussed my problem with DR MINJAN & DR HITESH ,out of suprise I was just amaze by their approach toward my injury and healing process
+        Firstly they asked me the reason of my injury ,after knowing the reason they analysed the wrong doings in my workout and explained me about the balance between stamina strength and suppleness.
+        
+        Secondly the councelled me about the need to know the requirement of the body and pushing myself for what can be considered as benificial toward the health of body and mind
+        
+        Thirdly the prospectus which any of the physio would do ie to make u do a specific set of exercise and give a type of diet or routine to be followed
+        But ....belive me without the first to step it may be possible that the u will recover from Pai but in order for a complete hollistic healing from the injury the first two steps are nessecary which are forte of this place
+        I will suggest any patient having any sort of injury to atleast go and meet the team for once
+        I assure u won't regret
+        From my side it is a complete 5 star rating for centre😇`,
         goo: "https://www.google.com/maps/place/ISHA+Wellness+Centre+Ratlam/@18.7207366,67.5205801,5z/data=!4m12!1m2!2m1!1sisha+wellness+centre!3m8!1s0x3963fea578acaff7:0x847dac23ee0d0262!8m2!3d23.3201068!4d75.0335898!9m1!1b1!15sChRpc2hhIHdlbGxuZXNzIGNlbnRyZZIBFHBoeXNpb3RoZXJhcHlfY2VudGVy4AEA!16s%2Fg%2F11gg6c4lzc",
       },
     ],

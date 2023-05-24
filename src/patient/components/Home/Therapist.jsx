@@ -24,7 +24,7 @@ const Therapist = () => {
         initial={{ opacity: 0, y: 100 }}
         animate={animation}
       >
-        <div className="therapists container">
+        <div className="therapists container text-justify ">
           <h2 className="therapists-head con-head text-3xl font-bold">
             Pioneer of ISHA Wellness Centre
           </h2>

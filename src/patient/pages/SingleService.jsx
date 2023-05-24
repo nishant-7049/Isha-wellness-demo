@@ -157,7 +157,7 @@ const SingleService = () => {
         })
         .map((item) => {
           return (
-            <div className="">
+            <div className="text-justify ">
               <div className="bg-[url(/images/bg/OurServiceBG.jpg)]  bg-center bg-cover  bg-no-repeat w-[100%] h-[50vh]" />
               <div key={item.id} className="text-center">
                 <div className="w-24 mt-8  mx-auto text-[4rem] text-[#00286b]">
@@ -171,7 +171,7 @@ const SingleService = () => {
                 <div className="float-right ml-8 mb-8 mt-8 sm:mt-8 w-1/2">
                   <img className="object-contain" src={item.img} alt="" />
                 </div>
-                <div className="leading-6 tracking-widest pt-20 sm:pt-12">
+                <div className="leading-6 tracking-wide pt-20 sm:pt-12">
                   {item.p1.map((para) => {
                     return <p className="pb-8">{para}</p>;
                   })}

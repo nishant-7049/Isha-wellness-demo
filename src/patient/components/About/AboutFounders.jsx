@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const AboutFounders = () => {
   return (
-    <div className="mt-20 tracking-widest leading-6 text-center">
+    <div className="mt-20 tracking-wide leading-6 text-center">
       <h2 className="text-3xl text-center text-[#00286b] border-b-4 border-[#00286b] mb-4 font-extrabold">
         About Founders
       </h2>
@@ -34,10 +34,10 @@ const AboutFounders = () => {
         Dr. Hitesh Purohit
       </h2>
       <div className="flex justify-between px-8 py-8 items-center gap-12 bg-[#00286b] text-white sm:flex-col">
-        <div className="w-[100rem] rounded-full shadow-[5px_5px_10px_5px_white] sm:w-fit sm:h-fit  ">
+        <div className="  rounded-full shadow-[5px_5px_10px_5px_white] sm:w-fit sm:h-fit  ">
           <img className="w-fit" src="./images/About/Dr.Hitesh.png" alt="" />
         </div>
-        <div className=" overflow-y-auto h-[15rem] ">
+        <div className=" overflow-y-auto h-[18rem] text-justify w-[200%] px-2 sm:w-fit">
           <p className="mb-8">
             Meet <H>Dr. Hitesh Purohit,</H> our Founder Director and President -{" "}
             <H> a visionary leader and passionate healthcare entrepreneur</H>{" "}
@@ -91,10 +91,10 @@ const AboutFounders = () => {
         Dr. Minjan Patel
       </h2>
       <div className="flex flex-row-reverse justify-between px-8 py-8 items-center gap-12 bg-[#00286b] text-white sm:flex-col">
-        <div className="w-[100rem] rounded-full shadow-[5px_5px_10px_5px_white] sm:w-fit sm:h-fit  ">
+        <div className="rounded-full shadow-[5px_5px_10px_5px_white] sm:w-fit sm:h-fit  ">
           <img className="w-fit" src="./images/About/Dr.Minjan.png" alt="" />
         </div>
-        <div className=" overflow-y-auto h-[15rem] ">
+        <div className="overflow-y-auto h-[18rem] text-justify w-[200%] px-2 sm:w-fit">
           <p className="mb-8">
             <H>Dr. Minjan Patel,</H> our Founder Director and CEO,{" "}
             <H>

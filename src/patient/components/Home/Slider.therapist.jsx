@@ -33,7 +33,7 @@ const SliderImg = () => {
     arrows: false,
     responsive: [
       {
-        breakpoint: 800,
+        breakpoint: 1024,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -52,7 +52,7 @@ const SliderImg = () => {
             <Items key={data.id}>
               <div className="the-details">
                 <div className="the-con flex-1">
-                  <h3 className="the-name text-center text-xl font-semibold">
+                  <h3 className="the-name text-center text-xl font-semibold my-2">
                     {data.docName}
                   </h3>
                   <div className="the-exp ">
@@ -80,7 +80,7 @@ const Container = styled.div`
 
   .slider {
     cursor: grab;
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     .slick-dots li button:before {
       color: white;
@@ -122,6 +122,7 @@ const Items = styled.div`
   // background-color: #00286b;
   .the-details {
     display: flex;
+    min-height: 25rem;
     width: 90%;
     margin: 1rem auto;
     justify-content: space-evenly;
@@ -137,14 +138,14 @@ const Items = styled.div`
     color: #00286b;
   }
   .the-image {
-    width: 40%;
+    width: 50%;
   }
   .the-image img {
     width: 100%;
     padding: 1rem;
   }
   .the-exp {
-    height: 14.5rem;
+    min-height: 14.5rem;
     width: 100%;
     display: flex;
     flex-direction: column;

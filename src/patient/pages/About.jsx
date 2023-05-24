@@ -10,7 +10,7 @@ import TherTeam from "../components/About/TherTeam";
 
 const About = () => {
   return (
-    <div className="">
+    <div className="text-justify tracking-wide">
       <div className="">
         <AboutHero />
       </div>

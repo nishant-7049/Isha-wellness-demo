@@ -42,10 +42,10 @@ const Hero = () => {
           return (
             <div key={item.id} className={`hero container hero${item.id}`}>
               <div className="hero-con">
-                <h1 className="hero-head text-3xl font-extrabold">
+                <h1 className="hero-head text-4xl font-extrabold">
                   ISHA Wellness Centre
                 </h1>
-                <p className="hero-para">{item.desc}</p>
+                <p className="hero-para ">{item.desc}</p>
               </div>
             </div>
           );
@@ -117,7 +117,7 @@ const Container = styled.div`
     color: #fff;
   }
   .hero-para {
-    font-size: 15px;
+    font-size: 17px;
     letter-spacing: 1px;
     word-spacing: 2px;
   }
