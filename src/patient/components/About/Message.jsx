@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Message = () => {
   return (
-    <div className="mt-20 tracking-widest leading-6">
+    <div className="mt-20 tracking-wide leading-6">
       <h2 className=" mb-4 text-3xl text-center border-b-4 border-[#00296b] font-extrabold">
         {" "}
         Message from Founders

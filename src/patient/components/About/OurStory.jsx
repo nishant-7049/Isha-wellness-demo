@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 const OurStory = () => {
   return (
-    <div className="mt-20 tracking-widest leading-6 bg-[url(/images/bg/blog-bg.jpg)] bg-cover bg-right-bottom bg-blend-overlay bg-black/50">
+    <div className="mt-20 tracking-wide leading-6 bg-[url(/images/bg/blog-bg.jpg)] bg-cover bg-right-bottom bg-blend-overlay bg-black/50">
       <h2 className="text-3xl pt-4 pl-8 text-white font-extrabold border-b-4 border-white ">
         {" "}
         Our Story

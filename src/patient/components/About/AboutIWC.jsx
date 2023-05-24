@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const AboutIWC = () => {
   return (
-    <div className="mt-20 tracking-widest	leading-6">
+    <div className="mt-20 tracking-wide	leading-6">
       <h2 className="mb-4 text-3xl text-[#00286b] font-extrabold border-b-4 border-[#00286b]">
         About ISHA Wellness Centre
       </h2>
