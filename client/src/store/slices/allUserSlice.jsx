@@ -2,19 +2,23 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getAllUsers = createAsyncThunk("getAllUsers", async () => {
-  const { data } = await axios.get("/api/admin/users");
+  const { data } = await axios.get(
+    "https://ishacare.onrender.com/api/admin/users"
+  );
   return data;
 });
 
 export const deleteUser = createAsyncThunk("deleteUser", async (id) => {
-  const { data } = await axios.delete(`/api/admin/user/delete/${id}`);
+  const { data } = await axios.delete(
+    `https://ishacare.onrender.com/api/admin/user/delete/${id}`
+  );
   return data;
 });
 
 export const editUser = createAsyncThunk("editUser", async (options) => {
   const config = { headers: { "Content-Type": "multipart/form-data" } };
   const { data } = await axios.put(
-    `/api/admin/user/update/${options.id}`,
+    `https://ishacare.onrender.com/api/admin/user/update/${options.id}`,
     options.data,
     config
   );
@@ -22,7 +26,9 @@ export const editUser = createAsyncThunk("editUser", async (options) => {
 });
 
 export const getUser = createAsyncThunk("getUser", async (id) => {
-  const { data } = await axios.get(`/api/admin/user/${id}`);
+  const { data } = await axios.get(
+    `https://ishacare.onrender.com/api/admin/user/${id}`
+  );
   return data;
 });
 
