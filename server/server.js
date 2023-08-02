@@ -26,7 +26,7 @@ cloudinary.config({
 
 const app = express();
 
-app.use(cors(cors_set));
+app.use("*", cors(cors_set));
 app.use(cookieParser());
 
 app.use(express.json());
