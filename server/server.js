@@ -23,7 +23,7 @@ const app = express();
 app.use(
   "*",
   cors({
-    origin: true,
+    origin: "https://apnicompany.tech",
     creadentials: true,
   })
 );
