@@ -9,7 +9,9 @@ export const editQuote = createAsyncThunk("EditQuote", async (quote) => {
 });
 
 export const getQuote = createAsyncThunk("GetQuote", async () => {
-  const { data } = await axios.get("/api/quote/get");
+  const { data } = await axios.get(
+    "https://ishacare.onrender.com/api/quote/get"
+  );
   return data;
 });
 
