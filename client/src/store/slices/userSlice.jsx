@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const login = createAsyncThunk("login", async (object) => {
-  const data = await axios.post("https://ishacare.onrender.com/api/login", {
+  const data = await axios.post("/api/login", {
     email: object.loginEmail,
     password: object.loginPassword,
   });
@@ -11,21 +11,17 @@ export const login = createAsyncThunk("login", async (object) => {
 
 export const register = createAsyncThunk("register", async (formData) => {
   const config = { headers: { "Content-Type": "multipart/form-data" } };
-  const { data } = await axios.post(
-    "https://ishacare.onrender.com/api/register",
-    formData,
-    config
-  );
+  const { data } = await axios.post("/api/register", formData, config);
   return data;
 });
 
 export const loadUser = createAsyncThunk("loaduser", async () => {
-  const { data } = await axios.get("https://ishacare.onrender.com/api/me");
+  const { data } = await axios.get("/api/me");
   return data;
 });
 
 export const logOut = createAsyncThunk("logout", async () => {
-  await axios.get("https://ishacare.onrender.com/api/logout");
+  await axios.get("/api/logout");
 });
 
 const userSlice = createSlice({
