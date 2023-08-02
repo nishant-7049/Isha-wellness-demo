@@ -10,7 +10,7 @@ export default defineConfig({
       "/api": {
         target: "https://ishacare.onrender.com",
         changeOrigin: true,
-        secure: false,
+        secure: true,
       },
     },
   },

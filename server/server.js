@@ -6,6 +6,7 @@ const cloudinary = require("cloudinary");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const fileupload = require("express-fileupload");
+const cors = require("cors");
 
 // Connnect DB
 connectDB();
@@ -37,7 +38,7 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT;
 
-// app.use(cors())
+app.use(cors());
 
 const server = app.listen(PORT, () => {
   console.log(`Server Started at port: ${PORT}`);
