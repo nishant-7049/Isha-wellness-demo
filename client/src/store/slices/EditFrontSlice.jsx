@@ -128,7 +128,7 @@ export const getBlogDetail = createAsyncThunk("getBlogDetail", async (id) => {
 export const editBlog = createAsyncThunk("editBlog", async (options) => {
   const config = { headers: { "Content-Type": "multipart/form-data" } };
   const { data } = await axios.put(
-    `https://ishacare.onrender.com/api/blog/${options.id}`,
+    `ishacare.onrender.com/api/blog/${options.id}`,
     options.formdata,
     config
   );
