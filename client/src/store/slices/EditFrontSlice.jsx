@@ -2,10 +2,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const editQuote = createAsyncThunk("EditQuote", async (quote) => {
-  const { data } = await axios.put(
-    "https://ishacare.onrender.com/api/quote/update",
-    { quote: quote }
-  );
+  const { data } = await axios.put("ishacare.onrender.com/api/quote/update", {
+    quote: quote,
+  });
   return data;
 });
 
