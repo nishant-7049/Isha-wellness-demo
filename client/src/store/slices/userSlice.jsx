@@ -1,20 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const login = createAsyncThunk(
-  "login",
-  async (object, { rejectWithValue }) => {
-    try {
-      const data = await axios.post("https://ishacare.onrender.com/api/login", {
-        email: object.loginEmail,
-        password: object.loginPassword,
-      });
-      return data.data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+export const login = createAsyncThunk("login", async (object) => {
+  const data = await axios.post("https://ishacare.onrender.com/api/login", {
+    email: object.loginEmail,
+    password: object.loginPassword,
+  });
+  return data.data;
+});
 
 export const register = createAsyncThunk("register", async (formData) => {
   const config = { headers: { "Content-Type": "multipart/form-data" } };
