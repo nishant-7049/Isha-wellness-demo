@@ -290,7 +290,6 @@ const EditFrontend = () => {
       minWidth: 150,
       flex: 0.3,
       renderCell: (cellValues) => {
-        console.log(cellValues);
         return (
           <div className="w-[150px] h-[150px]">
             <img src={cellValues.row.image} alt="" />
