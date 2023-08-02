@@ -5,7 +5,7 @@ export const login = createAsyncThunk(
   "login",
   async (object, { rejectWithValue }) => {
     try {
-      const data = await axios.post("/api/login", {
+      const data = await axios.post("https://ishacare.onrender.com/api/login", {
         email: object.loginEmail,
         password: object.loginPassword,
       });
