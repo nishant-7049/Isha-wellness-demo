@@ -8,6 +8,18 @@ const bodyParser = require("body-parser");
 const fileupload = require("express-fileupload");
 const cors = require("cors");
 
+// Connnect DB
+connectDB();
+
+//configuring cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+const app = express();
+
 const allowedOrigins = ["https://apnicompany.tech"];
 app.use(
   cors({
@@ -21,17 +33,6 @@ app.use(
   })
 );
 
-// Connnect DB
-connectDB();
-
-//configuring cloudinary
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
-
-const app = express();
 app.use(cookieParser());
 
 app.use(express.json());
