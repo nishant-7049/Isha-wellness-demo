@@ -8,12 +8,6 @@ const bodyParser = require("body-parser");
 const fileupload = require("express-fileupload");
 const cors = require("cors");
 
-var cors_set = {
-  origin: "https://apnicompany.tech",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true, // allow session cookie from browser to pass through
-};
-
 // Connnect DB
 connectDB();
 
@@ -26,7 +20,13 @@ cloudinary.config({
 
 const app = express();
 
-app.use(cors(cors_set));
+app.use(
+  "*",
+  cors({
+    origin: true,
+    creadential: true,
+  })
+);
 app.use(cookieParser());
 
 app.use(express.json());

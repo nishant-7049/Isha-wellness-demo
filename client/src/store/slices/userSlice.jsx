@@ -2,15 +2,26 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const login = createAsyncThunk("login", async (object) => {
-  const data = await axios.post("https://ishacare.onrender.com/api/login", {
-    email: object.loginEmail,
-    password: object.loginPassword,
-  });
+  const config = {
+    headers: { "Content-Type": "application/json" },
+    withCredentials: true,
+  };
+  const data = await axios.post(
+    "https://ishacare.onrender.com/api/login",
+    {
+      email: object.loginEmail,
+      password: object.loginPassword,
+    },
+    config
+  );
   return data.data;
 });
 
 export const register = createAsyncThunk("register", async (formData) => {
-  const config = { headers: { "Content-Type": "multipart/form-data" } };
+  const config = {
+    headers: { "Content-Type": "multipart/form-data" },
+    withCredentials: true,
+  };
   const { data } = await axios.post(
     "https://ishacare.onrender.com/api/register",
     formData,
@@ -20,12 +31,22 @@ export const register = createAsyncThunk("register", async (formData) => {
 });
 
 export const loadUser = createAsyncThunk("loaduser", async () => {
-  const { data } = await axios.get("https://ishacare.onrender.com/api/me");
+  const config = {
+    withCredentials: true,
+  };
+  const { data } = await axios.get(
+    "https://ishacare.onrender.com/api/me",
+    {},
+    config
+  );
   return data;
 });
 
 export const logOut = createAsyncThunk("logout", async () => {
-  await axios.get("https://ishacare.onrender.com/api/logout");
+  const config = {
+    withCredentials: true,
+  };
+  await axios.get("https://ishacare.onrender.com/api/logout", {}, config);
 });
 
 const userSlice = createSlice({
