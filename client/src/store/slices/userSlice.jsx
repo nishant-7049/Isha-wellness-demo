@@ -5,7 +5,7 @@ export const login = createAsyncThunk(
   "login",
   async (object, { rejectWithValue }) => {
     try {
-      const data = await axios.post("/api/login", {
+      const data = await axios.post("https://ishacare.onrender.com/api/login", {
         email: object.loginEmail,
         password: object.loginPassword,
       });
@@ -18,17 +18,21 @@ export const login = createAsyncThunk(
 
 export const register = createAsyncThunk("register", async (formData) => {
   const config = { headers: { "Content-Type": "multipart/form-data" } };
-  const { data } = await axios.post("/api/register", formData, config);
+  const { data } = await axios.post(
+    "https://ishacare.onrender.com/api/register",
+    formData,
+    config
+  );
   return data;
 });
 
 export const loadUser = createAsyncThunk("loaduser", async () => {
-  const { data } = await axios.get("/api/me");
+  const { data } = await axios.get("https://ishacare.onrender.com/api/me");
   return data;
 });
 
 export const logOut = createAsyncThunk("logout", async () => {
-  await axios.get("/api/logout");
+  await axios.get("https://ishacare.onrender.com/api/logout");
 });
 
 const userSlice = createSlice({
