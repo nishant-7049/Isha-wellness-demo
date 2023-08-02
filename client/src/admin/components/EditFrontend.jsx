@@ -221,7 +221,6 @@ const EditFrontend = () => {
           </Link>
           <button
             onClick={() => {
-              console.log(cellValues.id);
               dispatch(deleteFaq(cellValues.id));
             }}
           >
