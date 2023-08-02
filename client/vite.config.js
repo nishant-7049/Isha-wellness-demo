@@ -8,9 +8,9 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://ishacare.onrender.com",
         changeOrigin: true,
         ws: true,
+        target: "https://ishacare.onrender.com",
       },
     },
   },
