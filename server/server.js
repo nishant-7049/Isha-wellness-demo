@@ -8,6 +8,12 @@ const bodyParser = require("body-parser");
 const fileupload = require("express-fileupload");
 const cors = require("cors");
 
+var cors_set = {
+  origin: "https://apnicompany.tech",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true, // allow session cookie from browser to pass through
+};
+
 // Connnect DB
 connectDB();
 
