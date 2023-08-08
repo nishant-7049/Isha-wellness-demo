@@ -4,7 +4,7 @@ const catchAsyncFunc = require("./catchAsyncFunc");
 const User = require("../models/user");
 
 exports.isAuthenticatedUser = catchAsyncFunc(async (req, res, next) => {
-  const { token } = req.cookies;
+  const token = req.params.token;
 
   console.log(token);
   if (!token) {
