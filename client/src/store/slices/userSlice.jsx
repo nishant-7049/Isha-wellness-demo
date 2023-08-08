@@ -36,7 +36,6 @@ export const loadUser = createAsyncThunk("loaduser", async () => {
   };
   const { data } = await axios.get(
     "https://ishacare.onrender.com/api/me",
-    {},
     config
   );
   return data;
