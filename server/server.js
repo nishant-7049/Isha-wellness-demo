@@ -34,7 +34,7 @@ app.use((req, res, next) => {
   res.status(301).redirect(`https://${hostedDomain}${req.url}`);
 });
 
-app.use("*", cors(cors_set));
+// app.use("*", cors(cors_set));
 app.use(cookieParser());
 
 app.use(express.json());
