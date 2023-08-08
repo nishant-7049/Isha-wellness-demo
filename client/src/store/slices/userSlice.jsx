@@ -79,6 +79,7 @@ const userSlice = createSlice({
         httpOnly: true,
         secure: true,
         sameSite: "none",
+        path: "/",
       });
     });
     builder.addCase(login.rejected, (state, action) => {
