@@ -75,7 +75,7 @@ const userSlice = createSlice({
       Cookie.set("token", action.payload.token, {
         expires: 5,
         secure: true,
-        sameSite: "strict",
+        sameSite: "none",
         path: "/",
       });
     });
