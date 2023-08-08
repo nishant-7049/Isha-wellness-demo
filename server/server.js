@@ -19,7 +19,7 @@ cloudinary.config({
 });
 
 const app = express();
-const allowedOrigins = ["https://apnicompany.tech"];
+const allowedOrigins = ["https://apnicompany.tech/login"];
 
 app.use(
   cors({
