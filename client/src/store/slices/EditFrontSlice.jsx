@@ -5,7 +5,7 @@ import Cookie from "js-cookie";
 export const editQuote = createAsyncThunk("EditQuote", async (quote) => {
   const config = { headers: { "Content-Type": "application/json" } };
   const { data } = await axios.put(
-    "https://ishacare.onrender.com/api/quote/update",
+    "https://apnicompany.tech//api/quote/update",
     {
       quote: quote,
       token: Cookie.get("token"),
