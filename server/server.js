@@ -8,12 +8,6 @@ const bodyParser = require("body-parser");
 const fileupload = require("express-fileupload");
 const cors = require("cors");
 
-var cors_set = {
-  origin: "https://apnicompany.tech",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true, // allow session cookie from browser to pass through
-};
-
 // Connnect DB
 connectDB();
 
@@ -25,16 +19,20 @@ cloudinary.config({
 });
 
 const app = express();
+const allowedOrigins = ["https://apnicompany.tech"];
 
-app.use("*", cors(cors_set));
-
-const hostedDomain = "apnicompany.tech";
-app.use((req, res, next) => {
-  if (req.hostname === hostedDomain) {
-    return next();
-  }
-  res.status(301).redirect(`https://${hostedDomain}${req.url}`);
-});
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true, // Allow cookies to be sent in CORS requests
+  })
+);
 
 app.use(cookieParser());
 
