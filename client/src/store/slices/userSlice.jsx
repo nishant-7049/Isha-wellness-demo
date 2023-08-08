@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import Cookie from "js-cookie";
 
 export const login = createAsyncThunk("login", async (object) => {
   const config = {
@@ -32,6 +33,12 @@ export const loadUser = createAsyncThunk("loaduser", async () => {
   const { data } = await axios.get("https://ishacare.onrender.com/api/me", {
     withCredentials: true,
   });
+  Cookie.set("token", data.token, {
+    expires: 5,
+    secure: true,
+    sameSite: "strict",
+    path: "/",
+  });
   return data;
 });
 
@@ -39,6 +46,7 @@ export const logOut = createAsyncThunk("logout", async () => {
   await axios.get("https://ishacare.onrender.com/api/logout", {
     withCredentials: true,
   });
+  Cookie.remove("token");
 });
 
 const userSlice = createSlice({
