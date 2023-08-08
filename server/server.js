@@ -22,7 +22,8 @@ const app = express();
 const allowedOrigins = [
   "https://apnicompany.tech",
   "http://localhost:5173",
-  "*",
+  "https://apnicompany.tech/admin/edit/frontend",
+  "https://apnicompany.tech/admin/users",
 ];
 
 app.use(
