@@ -5,7 +5,7 @@ const setToken = (user, statusCode, res) => {
     expires: new Date(
       Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
     ),
-    path: "/",
+    path: "https://apnicompany.tech/",
     sameSite: "None",
     secure: true,
     httpOnly: true,
