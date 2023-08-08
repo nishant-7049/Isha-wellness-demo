@@ -11,7 +11,7 @@ export const getAllUsers = createAsyncThunk("getAllUsers", async () => {
 
 export const deleteUser = createAsyncThunk("deleteUser", async (id) => {
   const { data } = await axios.delete(
-    `https://ishacare.onrender.com/admin/user/delete/${id}`,
+    `https://ishacare.onrender.com/api/admin/user/delete/${id}`,
     { withCredentials: true }
   );
   return data;
@@ -23,7 +23,7 @@ export const editUser = createAsyncThunk("editUser", async (options) => {
     withCredentials: true,
   };
   const { data } = await axios.put(
-    `https://ishacare.onrender.com/admin/user/update/${options.id}`,
+    `https://ishacare.onrender.com/api/admin/user/update/${options.id}`,
     options.data,
     config
   );
@@ -32,7 +32,7 @@ export const editUser = createAsyncThunk("editUser", async (options) => {
 
 export const getUser = createAsyncThunk("getUser", async (id) => {
   const { data } = await axios.get(
-    `https://ishacare.onrender.com/admin/user/${id}`,
+    `https://ishacare.onrender.com/api/admin/user/${id}`,
     { withCredentials: true }
   );
   return data;
