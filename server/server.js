@@ -19,7 +19,11 @@ cloudinary.config({
 });
 
 const app = express();
-const allowedOrigins = ["https://apnicompany.tech", "http://localhost:5173"];
+const allowedOrigins = [
+  "https://apnicompany.tech",
+  "http://localhost:5173",
+  "*",
+];
 
 app.use(
   cors({
