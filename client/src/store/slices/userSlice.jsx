@@ -44,9 +44,7 @@ export const loadUser = createAsyncThunk("loaduser", async () => {
 });
 
 export const logOut = createAsyncThunk("logout", async () => {
-  await axios.get("https://ishacare.onrender.com/api/logout", {
-    withCredentials: true,
-  });
+  await axios.get("https://ishacare.onrender.com/api/logout");
   Cookie.remove("token");
 });
 
