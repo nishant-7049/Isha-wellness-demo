@@ -33,12 +33,6 @@ export const loadUser = createAsyncThunk("loaduser", async () => {
   const { data } = await axios.get("https://ishacare.onrender.com/api/me", {
     withCredentials: true,
   });
-  Cookie.set("token", data.token, {
-    expires: 5,
-    secure: true,
-    sameSite: "strict",
-    path: "/",
-  });
   return data;
 });
 
@@ -73,6 +67,12 @@ const userSlice = createSlice({
       state.isAuthenticated = true;
       state.user = action.payload.user;
       state.token = action.payload.token;
+      Cookie.set("token", action.payload.token, {
+        expires: 5,
+        secure: true,
+        sameSite: "strict",
+        path: "/",
+      });
     });
     builder.addCase(login.rejected, (state, action) => {
       state.loading = false;
