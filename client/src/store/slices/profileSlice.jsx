@@ -5,7 +5,11 @@ export const updateProfile = createAsyncThunk(
   "updateProfile",
   async (formData) => {
     const config = { headers: { "Content-Type": "multipart/formdata" } };
-    const { data } = await axios.put("/api/update", formData, config);
+    const { data } = await axios.put(
+      "https://ishacare.onrender.com/api/update",
+      formData,
+      config
+    );
     return data;
   }
 );
@@ -14,7 +18,11 @@ export const updatePassword = createAsyncThunk(
   "updatePassword",
   async (passwords) => {
     const config = { headers: { "Content-Type": "application/json" } };
-    const { data } = await axios.put("/api/password/update", passwords, config);
+    const { data } = await axios.put(
+      "https://ishacare.onrender.com/api/password/update",
+      passwords,
+      config
+    );
     return data;
   }
 );
@@ -23,7 +31,10 @@ export const forgotPassword = createAsyncThunk(
   "forgotPassword",
   async (email) => {
     const e = { email };
-    const { data } = await axios.post("/api/password/forgot", e);
+    const { data } = await axios.post(
+      "https://ishacare.onrender.com/api/password/forgot",
+      e
+    );
     return data;
   }
 );
@@ -37,7 +48,7 @@ export const resetPassword = createAsyncThunk(
       confirmPassword: options.confirmPassword,
     };
     const { data } = await axios.put(
-      `/api/password/reset/${options.token}`,
+      `https://ishacare.onrender.com/api/password/reset/${options.token}`,
       passwords,
       config
     );

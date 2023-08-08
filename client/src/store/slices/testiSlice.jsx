@@ -3,31 +3,31 @@ import axios from "axios";
 
 export const createTesti = createAsyncThunk("createTesti", async (fd) => {
   const config = { headers: { "Content-Type": "multipart/form-data" } };
-  const { data } = await axios.post("/api/testi/create", fd, config);
+  const { data } = await axios.post("https://ishacare.onrender.com/api/testi/create", fd, config);
   return data;
 });
 
 export const getTesti = createAsyncThunk("getTestimonial", async (options) => {
   const { data } = await axios.get(
-    `/api/testi/${options.cluster}/${options.itemsPerPage}?page=${options.page}`
+    `https://ishacare.onrender.com/api/testi/${options.cluster}/${options.itemsPerPage}?page=${options.page}`
   );
   return data;
 });
 
 export const deleteTesti = createAsyncThunk("deleteTestimonial", async (id) => {
-  const { data } = await axios.delete(`/api/testi/${id}`);
+  const { data } = await axios.delete(`https://ishacare.onrender.com/api/testi/${id}`);
   return data;
 });
 
 export const getSingleTesti = createAsyncThunk("getTestiDetail", async (id) => {
-  const { data } = await axios.get(`/api/testi/${id}`);
+  const { data } = await axios.get(`https://ishacare.onrender.com/api/testi/${id}`);
   return data;
 });
 
 export const editTesti = createAsyncThunk("editTesti", async (options) => {
   const config = { headers: { "Content-Type": "multipart/form-data" } };
   const { data } = await axios.put(
-    `/api/testi/${options.id}`,
+    `https://ishacare.onrender.com/api/testi/${options.id}`,
     options.formdata,
     config
   );
