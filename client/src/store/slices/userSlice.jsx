@@ -7,7 +7,7 @@ export const login = createAsyncThunk("login", async (object) => {
     headers: { "Content-Type": "application/json" },
   };
   const data = await axios.post(
-    "https://localhost:6000/api/login",
+    "https://ishacare.onrender.com/api/login",
     {
       email: object.loginEmail,
       password: object.loginPassword,

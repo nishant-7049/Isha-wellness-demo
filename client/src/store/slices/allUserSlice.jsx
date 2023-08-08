@@ -2,7 +2,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getAllUsers = createAsyncThunk("getAllUsers", async () => {
-  const { data } = await axios.get("https://ishacare.onrender.com/admin/users");
+  const { data } = await axios.get(
+    "https://ishacare.onrender.com/api/admin/users"
+  );
   return data;
 });
 
@@ -62,7 +64,7 @@ const allUserSlice = createSlice({
       state.loading = false;
       state.users = action.payload.users;
     });
-    builder.addCase(getAllUsers.rejected, (state) => {
+    builder.addCase(getAllUsers.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message;
     });
