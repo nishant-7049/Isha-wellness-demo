@@ -19,10 +19,17 @@ cloudinary.config({
 });
 
 const app = express();
+const allowedOrigins = ["https://apnicompany.tech", "localhost:5173"];
 
 app.use(
   cors({
-    origin: "https://apnicompany.tech",
+    origin: (origin, callback) => {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true, // Allow cookies to be sent in CORS requests
   })
 );
