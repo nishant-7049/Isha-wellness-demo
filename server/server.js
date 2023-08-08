@@ -26,6 +26,8 @@ cloudinary.config({
 
 const app = express();
 
+app.use("*", cors(cors_set));
+
 const hostedDomain = "apnicompany.tech";
 app.use((req, res, next) => {
   if (req.hostname === hostedDomain) {
@@ -34,7 +36,6 @@ app.use((req, res, next) => {
   res.status(301).redirect(`https://${hostedDomain}${req.url}`);
 });
 
-// app.use("*", cors(cors_set));
 app.use(cookieParser());
 
 app.use(express.json());
