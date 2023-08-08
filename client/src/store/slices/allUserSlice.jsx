@@ -3,20 +3,25 @@ import axios from "axios";
 
 export const getAllUsers = createAsyncThunk("getAllUsers", async () => {
   const { data } = await axios.get(
-    "https://ishacare.onrender.com/api/admin/users"
+    "https://ishacare.onrender.com/api/admin/users",
+    { withCredentials: true }
   );
   return data;
 });
 
 export const deleteUser = createAsyncThunk("deleteUser", async (id) => {
   const { data } = await axios.delete(
-    `https://ishacare.onrender.com/admin/user/delete/${id}`
+    `https://ishacare.onrender.com/admin/user/delete/${id}`,
+    { withCredentials: true }
   );
   return data;
 });
 
 export const editUser = createAsyncThunk("editUser", async (options) => {
-  const config = { headers: { "Content-Type": "multipart/form-data" } };
+  const config = {
+    headers: { "Content-Type": "multipart/form-data" },
+    withCredentials: true,
+  };
   const { data } = await axios.put(
     `https://ishacare.onrender.com/admin/user/update/${options.id}`,
     options.data,
@@ -27,7 +32,8 @@ export const editUser = createAsyncThunk("editUser", async (options) => {
 
 export const getUser = createAsyncThunk("getUser", async (id) => {
   const { data } = await axios.get(
-    `https://ishacare.onrender.com/admin/user/${id}`
+    `https://ishacare.onrender.com/admin/user/${id}`,
+    { withCredentials: true }
   );
   return data;
 });

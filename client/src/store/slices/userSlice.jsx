@@ -5,6 +5,7 @@ import Cookie from "js-cookie";
 export const login = createAsyncThunk("login", async (object) => {
   const config = {
     headers: { "Content-Type": "application/json" },
+    withCredentials: true,
   };
   const data = await axios.post(
     "https://ishacare.onrender.com/api/login",
@@ -21,6 +22,7 @@ export const login = createAsyncThunk("login", async (object) => {
 export const register = createAsyncThunk("register", async (formData) => {
   const config = {
     headers: { "Content-Type": "multipart/form-data" },
+    withCredentials: true,
   };
   const { data } = await axios.post(
     "https://ishacare.onrender.com/api/register",
