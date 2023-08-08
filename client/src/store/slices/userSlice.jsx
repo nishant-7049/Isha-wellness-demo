@@ -30,6 +30,7 @@ export const register = createAsyncThunk("register", async (formData) => {
 });
 
 export const loadUser = createAsyncThunk("loaduser", async () => {
+  console.log(Cookie.get("token"));
   const { data } = await axios.get(
     `https://ishacare.onrender.com/api/me/:${Cookie.get("token")}`,
     {
