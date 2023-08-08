@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import Cookie from "js-cookie";
 
 export const editQuote = createAsyncThunk("EditQuote", async (quote) => {
   const config = {
@@ -11,7 +10,6 @@ export const editQuote = createAsyncThunk("EditQuote", async (quote) => {
     "https://apnicompany.tech//api/quote/update",
     {
       quote: quote,
-      token: Cookie.get("token"),
     },
     config
   );
