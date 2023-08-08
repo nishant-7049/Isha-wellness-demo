@@ -11,6 +11,7 @@ export const login = createAsyncThunk("login", async (object) => {
     {
       email: object.loginEmail,
       password: object.loginPassword,
+      token: Cookie.get("token"),
     },
     config
   );
