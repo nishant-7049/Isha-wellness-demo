@@ -26,7 +26,7 @@ cloudinary.config({
 
 const app = express();
 
-const hostedDomain = "https://apnicompany.tech";
+const hostedDomain = "apnicompany.tech";
 app.use((req, res, next) => {
   if (req.hostname === hostedDomain) {
     return next();
