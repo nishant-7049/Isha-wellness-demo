@@ -74,9 +74,9 @@ const userSlice = createSlice({
       state.token = action.payload.token;
       Cookie.set("token", action.payload.token, {
         expires: 5,
+        httpOnly: true,
         secure: true,
         sameSite: "none",
-        path: "/",
       });
     });
     builder.addCase(login.rejected, (state, action) => {
