@@ -31,21 +31,16 @@ export const register = createAsyncThunk("register", async (formData) => {
 });
 
 export const loadUser = createAsyncThunk("loaduser", async () => {
-  const config = {
+  const { data } = await axios.get("https://ishacare.onrender.com/api/me", {
     withCredentials: true,
-  };
-  const { data } = await axios.get(
-    "https://ishacare.onrender.com/api/me",
-    config
-  );
+  });
   return data;
 });
 
 export const logOut = createAsyncThunk("logout", async () => {
-  const config = {
+  await axios.get("https://ishacare.onrender.com/api/logout", {
     withCredentials: true,
-  };
-  await axios.get("https://ishacare.onrender.com/api/logout", {}, config);
+  });
 });
 
 const userSlice = createSlice({
