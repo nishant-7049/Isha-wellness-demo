@@ -9,7 +9,7 @@ export const editQuote = createAsyncThunk("EditQuote", async (quote) => {
   const { data } = await axios.put(
     "https://apnicompany.tech//api/quote/update",
     {
-      quote: quote,
+      quote,
     },
     config
   );
@@ -103,7 +103,8 @@ export const deleteFaq = createAsyncThunk("deleteFaq", async (id) => {
 
 export const getFaqDetail = createAsyncThunk("getFaqDetail", async (id) => {
   const { data } = await axios.get(
-    `https://ishacare.onrender.com/api/faq/${id}`
+    `https://ishacare.onrender.com/api/faq/${id}`,
+    { withCredentials: true }
   );
   return data;
 });
