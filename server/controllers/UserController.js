@@ -77,9 +77,7 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
   await user.save({ validateBeforeSave: false });
 
   // for production
-  const resetPasswordUrl = `${req.protocol}://${req.get(
-    "host"
-  )}/password/reset/${resetToken}`;
+  const resetPasswordUrl = `https://apnicompany.tech/password/reset/${resetToken}`;
 
   //for development
   // const resetPasswordUrl = `http://localhost:5173/password/reset/${resetToken}`;
