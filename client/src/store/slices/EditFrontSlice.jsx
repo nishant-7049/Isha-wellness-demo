@@ -32,7 +32,8 @@ export const getAllVideos = createAsyncThunk("GetVideos", async (options) => {
 
 export const createVideo = createAsyncThunk("createVideo", async (options) => {
   const config = {
-    headers: { "Content-Type": "application/json", withCredentials: true },
+    headers: { "Content-Type": "application/json" },
+    withCredentials: true,
   };
   const { data } = await axios.post(
     "https://ishacare.onrender.com/api/video/new",
