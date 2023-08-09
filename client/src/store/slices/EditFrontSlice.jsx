@@ -7,7 +7,7 @@ export const editQuote = createAsyncThunk("EditQuote", async (quote) => {
     withCredentials: true,
   };
   const { data } = await axios.put(
-    "https://ishacare.onrender.com//api/quote/update",
+    "https://ishacare.onrender.com/api/quote/update",
     {
       quote,
     },
