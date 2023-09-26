@@ -95,7 +95,7 @@ const LoginSignUp = () => {
                   onClick={switchTab}
                   className={
                     tab == "login"
-                      ? "bg-[#F45050] text-white px-[1.5vmax] py-[1vmax] w-1/2"
+                      ? "bg-[#00286b] text-white px-[1.5vmax] py-[1vmax] w-1/2"
                       : " px-[1.5vmax] py-[1vmax] w-1/2"
                   }
                 >
@@ -105,7 +105,7 @@ const LoginSignUp = () => {
                   onClick={switchTab}
                   className={
                     tab == "signup"
-                      ? "bg-[#F45050] text-white px-[1.5vmax] py-[1vmax] w-1/2"
+                      ? "bg-[#00286b] text-white px-[1.5vmax] py-[1vmax] w-1/2"
                       : " px-[1.5vmax] py-[1vmax] w-1/2"
                   }
                 >
@@ -154,7 +154,7 @@ const LoginSignUp = () => {
                   <input
                     type="submit"
                     value="Login"
-                    className="py-[1vmax] bg-[#F45050]  text-white cursor-pointer"
+                    className="py-[1vmax] bg-[#00286b]  text-white cursor-pointer"
                   />
                 </form>
               ) : (
@@ -220,7 +220,7 @@ const LoginSignUp = () => {
                     type="submit"
                     value="Register"
                     // disabled={loading ? true : false}
-                    className=" py-[1vmax] bg-[#F45050]  text-white cursor-pointer"
+                    className=" py-[1vmax] bg-[#00286b]  text-white cursor-pointer"
                   />
                 </form>
               )}

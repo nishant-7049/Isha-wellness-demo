@@ -8,7 +8,7 @@ const Profile = () => {
 
   return (
     <>
-      {loading || !user ? (
+      {loading ? (
         <Loader />
       ) : (
         <>

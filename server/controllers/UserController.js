@@ -5,6 +5,7 @@ const setToken = require("../utils/JWTToken");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
 const cloudinary = require("cloudinary");
+const ErrorHandler = require("../utils/ErrorHandler");
 
 exports.registerUser = catchAsyncError(async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -54,8 +55,6 @@ exports.logoutUser = catchAsyncError(async (req, res, next) => {
   await res.cookie("token", null, {
     expires: new Date(Date.now()),
     httpOnly: true,
-    secure: true,
-    sameSite: "none",
   });
 
   res.status(200).json({
@@ -77,17 +76,19 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
   await user.save({ validateBeforeSave: false });
 
   // for production
-  const resetPasswordUrl = `https://apnicompany.tech/password/reset/${resetToken}`;
+  // const resetPasswordUrl = `${req.protocol}://${req.get(
+  //   "host"
+  // )}/api/password/reset/${resetToken}`;
 
   //for development
-  // const resetPasswordUrl = `http://localhost:5173/password/reset/${resetToken}`;
+  const resetPasswordUrl = `http://localhost:5173/password/reset/${resetToken}`;
 
-  const message = `If you want to reset your password of Ishacare than click on link below \n\n ${resetPasswordUrl} \n\n If you haven't requested for reset password link than kindly ignore the email.`;
+  const message = `If you want to reset your password of GetSome than click on link below \n\n ${resetPasswordUrl} \n\n If you haven't requested for reset password link than kindly ignore the email.`;
 
   try {
     await sendEmail({
       email: user.email,
-      subject: "ISHACARE Wellness Centre Reset Password Link",
+      subject: "GetSome Reset Password Link",
       message,
     });
 
@@ -220,6 +221,7 @@ exports.updateUserRole = catchAsyncError(async (req, res, next) => {
     name: req.body.name,
     email: req.body.email,
     role: req.body.role,
+    cluster: req.body.cluster,
   };
 
   const user = await User.findByIdAndUpdate(req.params.id, userDetails);
@@ -252,5 +254,42 @@ exports.deleteUser = catchAsyncError(async (req, res, next) => {
   res.status(200).json({
     success: true,
     message: "user has been deleted",
+  });
+});
+
+exports.setIncharge = catchAsyncError(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  if (!user) {
+    return next(new ErrorHandler("User with given id not found.", 404));
+  }
+  user.isIncharge = req.body.isIncharge;
+  await user.save();
+  res.status(200).json({
+    success: true,
+    message: "Role has been assigned.",
+  });
+});
+
+exports.getTherWithClus = catchAsyncError(async (req, res, next) => {
+  const therapists = await User.find({
+    role: "therapist",
+    cluster: req.params.city,
+  });
+
+  res.status(200).json({
+    success: true,
+    therapists,
+  });
+});
+
+exports.getFacWithClus = catchAsyncError(async (req, res, next) => {
+  const facilitators = await User.find({
+    role: "facilitator",
+    cluster: req.params.city,
+  });
+
+  res.status(200).json({
+    success: true,
+    facilitators,
   });
 });

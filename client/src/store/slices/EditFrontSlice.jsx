@@ -2,16 +2,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const editQuote = createAsyncThunk("EditQuote", async (quote) => {
-  const config = {
-    headers: { "Content-Type": "application/json" },
-    withCredentials: true,
-  };
   const { data } = await axios.put(
     "https://ishacare.onrender.com/api/quote/update",
-    {
-      quote,
-    },
-    config
+    { quote: quote }
   );
   return data;
 });
@@ -31,10 +24,7 @@ export const getAllVideos = createAsyncThunk("GetVideos", async (options) => {
 });
 
 export const createVideo = createAsyncThunk("createVideo", async (options) => {
-  const config = {
-    headers: { "Content-Type": "application/json" },
-    withCredentials: true,
-  };
+  const config = { headers: { "Content-Type": "application/json" } };
   const { data } = await axios.post(
     "https://ishacare.onrender.com/api/video/new",
     options,
@@ -45,17 +35,13 @@ export const createVideo = createAsyncThunk("createVideo", async (options) => {
 
 export const deleteVideo = createAsyncThunk("deleteVideo", async (id) => {
   const { data } = await axios.delete(
-    `https://ishacare.onrender.com/api/video/${id}`,
-    { withCredentials: true }
+    `https://ishacare.onrender.com/api/video/${id}`
   );
   return data;
 });
 
 export const editVideo = createAsyncThunk("editVideo", async (option) => {
-  const config = {
-    headers: { "Content-Type": "application/json" },
-    withCredentials: true,
-  };
+  const config = { headers: { "Content-Type": "application/json" } };
   const { data } = await axios.put(
     `https://ishacare.onrender.com/api/video/${option.id}`,
     { title: option.title, link: option.link },
@@ -66,17 +52,13 @@ export const editVideo = createAsyncThunk("editVideo", async (option) => {
 
 export const getVideoDetail = createAsyncThunk("getVideoDetail", async (id) => {
   const { data } = await axios.get(
-    `https://ishacare.onrender.com/api/video/detail/${id}`,
-    { withCredentials: true }
+    `https://ishacare.onrender.com/api/video/detail/${id}`
   );
   return data;
 });
 
 export const createFaq = createAsyncThunk("createFaq", async (options) => {
-  const config = {
-    headers: { "Content-Type": "application/json" },
-    withCredentials: true,
-  };
+  const config = { headers: { "Content-Type": "application/json" } };
   const { data } = await axios.post(
     "https://ishacare.onrender.com/api/faq/new",
     {
@@ -95,24 +77,19 @@ export const getFaq = createAsyncThunk("getAllFaqs", async () => {
 
 export const deleteFaq = createAsyncThunk("deleteFaq", async (id) => {
   const { data } = await axios.delete(
-    `https://ishacare.onrender.com/api/faq/${id}`,
-    { withCredentials: true }
+    `https://ishacare.onrender.com/api/faq/${id}`
   );
   return data;
 });
 
 export const getFaqDetail = createAsyncThunk("getFaqDetail", async (id) => {
   const { data } = await axios.get(
-    `https://ishacare.onrender.com/api/faq/${id}`,
-    { withCredentials: true }
+    `https://ishacare.onrender.com/api/faq/${id}`
   );
   return data;
 });
 export const editFaq = createAsyncThunk("editFaq", async (options) => {
-  const config = {
-    headers: { "Content-Type": "application/json" },
-    withCredentials: true,
-  };
+  const config = { headers: { "Content-Type": "application/json" } };
   const { data } = await axios.put(
     `https://ishacare.onrender.com/api/faq/${options.id}`,
     {
@@ -125,10 +102,7 @@ export const editFaq = createAsyncThunk("editFaq", async (options) => {
 });
 
 export const createBlog = createAsyncThunk("createBlog", async (formdata) => {
-  const config = {
-    headers: { "Content-Type": "multipart/form-data" },
-    withCredentials: true,
-  };
+  const config = { headers: { "Content-Type": "multipart/form-data" } };
   const { data } = await axios.post(
     "https://ishacare.onrender.com/api/blog/new",
     formdata,
@@ -146,17 +120,13 @@ export const getAllBlogs = createAsyncThunk("getAllBlogs", async (options) => {
 
 export const getBlogDetail = createAsyncThunk("getBlogDetail", async (id) => {
   const { data } = await axios.get(
-    `https://ishacare.onrender.com/api/blog/details/${id}`,
-    { withCredentials: true }
+    `https://ishacare.onrender.com/api/blog/details/${id}`
   );
   return data;
 });
 
 export const editBlog = createAsyncThunk("editBlog", async (options) => {
-  const config = {
-    headers: { "Content-Type": "multipart/form-data" },
-    withCredentials: true,
-  };
+  const config = { headers: { "Content-Type": "multipart/form-data" } };
   const { data } = await axios.put(
     `https://ishacare.onrender.com/api/blog/${options.id}`,
     options.formdata,
@@ -167,8 +137,7 @@ export const editBlog = createAsyncThunk("editBlog", async (options) => {
 
 export const deleteBlog = createAsyncThunk("deleteBlog", async (id) => {
   const { data } = await axios.delete(
-    `https://ishacare.onrender.com/api/blog/${id}`,
-    { withCredentials: true }
+    `https://ishacare.onrender.com/api/blog/${id}`
   );
   return data;
 });

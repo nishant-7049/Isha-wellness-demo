@@ -1,29 +1,23 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import Cookie from "js-cookie";
 
-export const login = createAsyncThunk("login", async (object) => {
-  const config = {
-    headers: { "Content-Type": "application/json" },
-    withCredentials: true,
-  };
-  const data = await axios.post(
-    "https://ishacare.onrender.com/api/login",
-    {
-      email: object.loginEmail,
-      password: object.loginPassword,
-      token: Cookie.get("token"),
-    },
-    config
-  );
-  return data.data;
-});
+export const login = createAsyncThunk(
+  "login",
+  async (object, { rejectWithValue }) => {
+    try {
+      const data = await axios.post("https://ishacare.onrender.com/api/login", {
+        email: object.loginEmail,
+        password: object.loginPassword,
+      });
+      return data.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 export const register = createAsyncThunk("register", async (formData) => {
-  const config = {
-    headers: { "Content-Type": "multipart/form-data" },
-    withCredentials: true,
-  };
+  const config = { headers: { "Content-Type": "multipart/form-data" } };
   const { data } = await axios.post(
     "https://ishacare.onrender.com/api/register",
     formData,
@@ -33,21 +27,12 @@ export const register = createAsyncThunk("register", async (formData) => {
 });
 
 export const loadUser = createAsyncThunk("loaduser", async () => {
-  console.log(Cookie.get("token"));
-  const { data } = await axios.get(
-    `https://ishacare.onrender.com/api/me/${Cookie.get("token")}`,
-    {
-      withCredentials: true,
-    }
-  );
+  const { data } = await axios.get("https://ishacare.onrender.com/api/me");
   return data;
 });
 
 export const logOut = createAsyncThunk("logout", async () => {
-  await axios.get("https://ishacare.onrender.com/api/logout", {
-    withCredentials: true,
-  });
-  Cookie.remove("token");
+  await axios.get("https://ishacare.onrender.com/api/logout");
 });
 
 const userSlice = createSlice({
@@ -74,13 +59,6 @@ const userSlice = createSlice({
       state.isAuthenticated = true;
       state.user = action.payload.user;
       state.token = action.payload.token;
-      Cookie.set("token", action.payload.token, {
-        expires: 5,
-        httpOnly: true,
-        secure: true,
-        sameSite: "none",
-        path: "/",
-      });
     });
     builder.addCase(login.rejected, (state, action) => {
       state.loading = false;

@@ -17,6 +17,7 @@ const EditUser = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState();
+  const [cluster, setCluster] = useState();
 
   const { id } = useParams();
 
@@ -29,6 +30,7 @@ const EditUser = () => {
     formdata.set("name", name);
     formdata.set("email", email);
     formdata.set("role", role);
+    formdata.set("cluster", cluster);
 
     const options = {
       id,
@@ -49,6 +51,7 @@ const EditUser = () => {
       setName(user.name);
       setEmail(user.email);
       setRole(user.role);
+      setCluster(user.cluster);
     }
   }, [dispatch, isUpdated, user]);
 
@@ -102,6 +105,18 @@ const EditUser = () => {
                 <option value="admin">admin</option>
                 <option value="facilitator">facilitator</option>
                 <option value="therapist">therapist</option>
+              </select>
+
+              <select
+                className="bg-white"
+                onChange={(e) => {
+                  setCluster(e.target.value);
+                }}
+              >
+                <option value={cluster}>{cluster}</option>
+                <option value="Indore">Indore</option>
+                <option value="Ratlam">Ratlam</option>
+                <option value="Ahmedabad">Ahmedabad</option>
               </select>
 
               <input

@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const fileupload = require("express-fileupload");
 const cors = require("cors");
+const Razorpay = require("razorpay");
 
 // Connnect DB
 connectDB();
@@ -16,6 +17,11 @@ cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+exports.instance = new Razorpay({
+  key_id: process.env.RAZOR_API_KEY_ID,
+  key_secret: process.env.RAZOR_API_KEY_SECRET,
 });
 
 const app = express();
@@ -53,6 +59,11 @@ app.use("/api/testi", require("./routes/testimonialRoute"));
 app.use("/api/video", require("./routes/videoRoute"));
 app.use("/api/faq", require("./routes/faqRoute"));
 app.use("/api/blog", require("./routes/blogRoute"));
+app.use("/api/exercise", require("./routes/exerciseRoute"));
+app.use("/api/payment", require("./routes/paymentRoutes"));
+app.use("/api/package", require("./routes/packageRoute"));
+app.use("/api/booking", require("./routes/bookingRoute"));
+app.use("/api/treatment", require("./routes/treatmentRoute"));
 
 //Error Handlers (Should be the last pice of middleware)
 app.use(errorHandler);

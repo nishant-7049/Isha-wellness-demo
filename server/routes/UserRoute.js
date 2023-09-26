@@ -13,15 +13,23 @@ const {
   getSingleUser,
   updateUserRole,
   deleteUser,
+  setIncharge,
+  getTherWithClus,
+  getFacWithClus,
 } = require("../controllers/UserController");
-const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
+const {
+  isAuthenticatedUser,
+  authorizeRoles,
+  isIncharge,
+  isNotUser,
+} = require("../middleware/auth");
 
 router.route("/register").post(registerUser);
 router.route("/login").post(loginUser);
 router.route("/password/forgot").post(forgotPassword);
 router.route("/password/reset/:token").put(resetPassword);
 router.route("/logout").get(logoutUser);
-router.route("/me/:token").get(isAuthenticatedUser, getUserDetails);
+router.route("/me").get(isAuthenticatedUser, getUserDetails);
 router.route("/password/update").put(isAuthenticatedUser, updatePassword);
 router.route("/update").put(isAuthenticatedUser, updateUserDetails);
 router
@@ -29,12 +37,21 @@ router
   .get(isAuthenticatedUser, authorizeRoles("admin"), getAllUsers);
 router
   .route("/admin/user/:id")
-  .get(isAuthenticatedUser, authorizeRoles("admin"), getSingleUser);
+  .get(isAuthenticatedUser, isNotUser(), getSingleUser);
 router
   .route("/admin/user/update/:id")
   .put(isAuthenticatedUser, authorizeRoles("admin"), updateUserRole);
 router
   .route("/admin/user/delete/:id")
   .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteUser);
+router
+  .route("/admin/user/setIncharge/:id")
+  .put(isAuthenticatedUser, authorizeRoles("admin"), setIncharge);
 
+router
+  .route("/therapists/:city")
+  .get(isAuthenticatedUser, isIncharge(), getTherWithClus);
+router
+  .route("/facilitators/:city")
+  .get(isAuthenticatedUser, isIncharge(), getFacWithClus);
 module.exports = router;

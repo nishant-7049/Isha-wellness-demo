@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { MdDashboard } from "react-icons/md";
 import { FaPager, FaUsers } from "react-icons/fa";
+import { GiBodyBalance } from "react-icons/gi";
+import { GoPackage } from "react-icons/go";
+import { BsFillCartFill } from "react-icons/bs";
 
 const Sidebar = () => {
   return (
@@ -32,6 +35,27 @@ const Sidebar = () => {
       >
         <FaUsers className="text-xl" />
         <h2 className="text-lg font-bold">Users</h2>
+      </Link>
+      <Link
+        to="/admin/exercises"
+        className="flex gap-2 text-[#00286b] hover:translate-x-4 ease-in-out items-center"
+      >
+        <GiBodyBalance className="text-xl" />
+        <h2 className="text-lg font-bold">Exercises</h2>
+      </Link>
+      <Link
+        to="/admin/packages"
+        className="flex gap-2 text-[#00286b] hover:translate-x-4 ease-in-out items-center"
+      >
+        <GoPackage className="text-xl" />
+        <h2 className="text-lg font-bold">Packages</h2>
+      </Link>
+      <Link
+        to="/admin/orders"
+        className="flex gap-2 text-[#00286b] hover:translate-x-4 ease-in-out items-center"
+      >
+        <BsFillCartFill className="text-xl" />
+        <h2 className="text-lg font-bold">Orders</h2>
       </Link>
     </div>
   );

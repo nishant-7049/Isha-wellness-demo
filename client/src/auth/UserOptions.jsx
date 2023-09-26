@@ -4,7 +4,7 @@ import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 import { MdDashboard, MdExitToApp } from "react-icons/md";
 import { FaUserAlt } from "react-icons/fa";
-import { AiFillLayout } from "react-icons/ai";
+import { TbPackages, TbPackage } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logOut } from "../store/slices/userSlice";
@@ -26,6 +26,22 @@ const UserOptions = () => {
     navigate("/admin/dashboard");
   };
 
+  const inchargeOrders = () => {
+    navigate("/incharge/orders");
+  };
+
+  const therapistOrders = () => {
+    navigate("/therapist/orders");
+  };
+
+  const facilitatorOrders = () => {
+    navigate("/facilitator/orders");
+  };
+
+  const userOrders = () => {
+    navigate("/user/orders");
+  };
+
   const { message } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const logoutUser = () => {
@@ -33,6 +49,11 @@ const UserOptions = () => {
   };
 
   const options = [
+    {
+      icon: <TbPackages className="text-xl" />,
+      name: "My Orders",
+      func: userOrders,
+    },
     {
       icon: <FaUserAlt className="text-xl" />,
       name: "Profile",
@@ -50,6 +71,27 @@ const UserOptions = () => {
       icon: <MdDashboard className="text-xl" />,
       name: "DashBoard",
       func: dashboard,
+    });
+  }
+  if (user && user.isIncharge == true) {
+    options.unshift({
+      icon: <TbPackages className="text-xl" />,
+      name: "Cluster Orders",
+      func: inchargeOrders,
+    });
+  }
+  if (user && user.role == "therapist") {
+    options.unshift({
+      icon: <TbPackage className="text-xl" />,
+      name: "Therapist Orders",
+      func: therapistOrders,
+    });
+  }
+  if (user && user.role == "facilitator") {
+    options.unshift({
+      icon: <TbPackage className="text-xl" />,
+      name: "Facilitator Orders",
+      func: facilitatorOrders,
     });
   }
 
@@ -72,7 +114,7 @@ const UserOptions = () => {
             icon={
               <img
                 className="rounded-full w-fit "
-                src={user && user.avatar ? user.avatar.url : "/user.png"}
+                src={user.avatar ? user.avatar.url : "/user.png"}
                 alt="profile"
               />
             }

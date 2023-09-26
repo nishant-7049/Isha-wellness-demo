@@ -1,7 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getAllPackages } from "../../store/slices/packageSlice";
+import PackageCard from "../../admin/components/PackageCard";
+import { updateBookingDetails } from "../../store/slices/bookingSlice";
 
 const data = {
   part: [
@@ -55,7 +59,6 @@ const data = {
     "other",
   ],
   HowYouGotToKnow: [
-    "choose",
     "news paper",
     "google",
     "facilater",
@@ -65,12 +68,68 @@ const data = {
     "doctor",
     "relatives or friends",
   ],
+  work: ["Sitted", "Lie", "Stand", "Walking", "Travelling", "Weight Lifting"],
   batch: ["8:30-10:30", "10:30-12:30", "2:00-4:00", "4:00-6:00", "6:00-8:00"],
 };
 
 const BookNow = () => {
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const { packages: pacs } = useSelector((state) => state.package);
   const { ref, inView } = useInView();
   const animation = useAnimation();
+
+  const presentDate = new Date();
+
+  const [name, setName] = useState("");
+  const [mobile, setMobile] = useState();
+  const [whatsapp, setWhatsapp] = useState();
+  const [work, setWork] = useState();
+  const [tempWork, setTempWork] = useState();
+  const [age, setAge] = useState();
+  const [problem, setProblem] = useState("");
+  const [gender, setGender] = useState("");
+  const [martial, setmartial] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [occupation, setOccupation] = useState("");
+  const [part, setPart] = useState("");
+  const [education, setEducation] = useState("");
+  const [packages, setPackage] = useState("");
+  const [know, setKnow] = useState("");
+  const [date, setDate] = useState(
+    `${presentDate.getFullYear()}-${presentDate.getMonth()}-${presentDate.getDate()}`
+  );
+  const [batch, setBatch] = useState("");
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const data = {
+      name,
+      mobile,
+      whatsapp,
+      work: tempWork && work === "none" ? tempWork : work,
+      age,
+      problem,
+      gender,
+      martial,
+      address,
+      city,
+      occupation,
+      part,
+      education,
+      packages,
+      know,
+      date,
+      batch,
+    };
+    localStorage.setItem("bookingDetails", JSON.stringify(data));
+    dispatch(updateBookingDetails());
+    navigate("/confirmBooking");
+  };
+
+  const { bookingDetails } = useSelector((state) => state.booking);
 
   useEffect(() => {
     if (inView) {
@@ -81,314 +140,400 @@ const BookNow = () => {
       });
     }
   }, [inView]);
+  useEffect(() => {
+    dispatch(getAllPackages());
+    if (bookingDetails) {
+      setName(bookingDetails.name);
+      setMobile(bookingDetails.mobile);
+      setWhatsapp(bookingDetails.whatsapp);
+      setAge(bookingDetails.age);
+      setAddress(bookingDetails.address);
+      setCity(bookingDetails.city);
+      setProblem(bookingDetails.problem);
+      setGender(bookingDetails.gender);
+      setmartial(bookingDetails.martial);
+      setOccupation(bookingDetails.occupation);
+      setPart(bookingDetails.part);
+      setEducation(bookingDetails.education);
+      setPackage(bookingDetails.packages);
+      setWork(bookingDetails.work);
+      setKnow(bookingDetails.know);
+      setBatch(bookingDetails.batch);
+    }
+  }, [dispatch]);
 
   return (
-    <motion.div ref={ref} initial={{ opacity: 0, x: -200 }} animate={animation}>
-      <Container>
-        <div className="form ">
-          <form action="nishant">
-            <div className=" pandu ">
-              <h1 className="form-head ">Book Appointment </h1>
-              <div className="first">
-                <div className="left section">
-                  <div className="flex flex-col">
-                    <label htmlFor="">Name</label>
-                    <input type="text" name="myname" />
-                  </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="">Mobile No.</label>
-                    <input type="mobile no" name="my mobile no" />
-                  </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="">Whatsapp No.</label>
-                    <input type="mobile no" name="my alternate no" />
-                  </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="">Age</label>
-                    <input type="number" name="my age" />
-                  </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="payment date"> Problem</label>
-                    <select name="payment date" id="problem">
-                      {data.problem.map((item) => {
-                        return (
-                          <option key={item} value={item}>
-                            {item}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, x: -200 }}
+      animate={animation}
+      className="bg-[#F0F0F0] pt-[6vmax] pb-[4vmax]"
+    >
+      <div className="shadow-lg p-[4vmax] w-[90%] mx-auto bg-white  border-2 pt-[2vmax]">
+        <h1 className="text-3xl border-b-[#00286b] border-b-4 w-1/3 mx-auto mb-[4vmax]  text-center  pb-4  font-bold text-[#00286b]">
+          Book Appointment
+        </h1>
+        <form
+          className="h-[80vh] flex flex-col justify-between flex-wrap gap-4"
+          onSubmit={submitHandler}
+        >
+          <div className="flex flex-col">
+            <label className="text-[#00286b] capitalize font-semibold">
+              Name
+            </label>
+            <input
+              className="bg-white px-[1vmax] py-[0.7vmax] border-2"
+              required
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+              placeholder="Enter Patient Name."
+              type="text"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-[#00286b] capitalize font-semibold">
+              Mobile No.
+            </label>
+            <input
+              className="appearance-none bg-white px-[1vmax] py-[0.7vmax] border-2 "
+              type="tel"
+              required
+              min={10}
+              max={10}
+              value={mobile}
+              onChange={(e) => setMobile(e.target.value)}
+              placeholder="Enter Your Mobile No."
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-[#00286b] capitalize font-semibold">
+              Whatsapp No.
+            </label>
+            <input
+              className="appearance-none bg-white px-[1vmax] py-[0.7vmax] border-2 "
+              type="number"
+              required
+              value={whatsapp}
+              onChange={(e) => {
+                setWhatsapp(e.target.value);
+              }}
+              placeholder="Enter Your Whatsapp No."
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-[#00286b] capitalize font-semibold">
+              Age
+            </label>
+            <input
+              className="bg-white px-[1vmax] py-[0.7vmax] border-2"
+              type="number"
+              required
+              value={age}
+              onChange={(e) => {
+                setAge(e.target.value);
+              }}
+              placeholder="Enter Age of Patient."
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-[#00286b] capitalize font-semibold">
+              {" "}
+              Problem
+            </label>
+            <select
+              required
+              className="bg-white border-2 px-[1vmax] py-[0.7vmax]"
+              value={problem}
+              onChange={(e) => {
+                setProblem(e.target.value);
+              }}
+            >
+              {data.problem.map((item) => {
+                return (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
 
-                  <div className="flex flex-col">
-                    <label htmlFor="payment date"> payment date</label>
-                    <select name="payment date" id="payment">
-                      <option value="dai"> daily</option>
-                      <option value="mem">membership</option>
-                    </select>
-                  </div>
-
-                  <button className="button button1"> save details </button>
-                </div>
-
-                <div className="center section">
-                  <div className="flex flex-col">
-                    <label htmlFor="payment date"> gender</label>
-                    <select name="payment date" id="gender">
-                      <option value="male"> male</option>
-                      <option value="female"> female</option>
-                      <option value="other"> other</option>
-                    </select>
-                  </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="martial status"> martial status</label>
-                    <select name="martial status" id="status">
-                      <option value="married"> married</option>
-                      <option value="unmarried"> unmarried</option>
-                      <option value="divorced"> divorced</option>
-                      <option value="widow"> widow</option>
-                    </select>
-                  </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="">Address</label>
-                    <textarea
-                      className="bg-[#eee]"
-                      type="address"
-                      name="my address"
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="ocupation"> ocupation</label>
-                    <select name="ocupation" id="ocupation">
-                      {data.occupation.map((item) => {
-                        return (
-                          <option key={item} value={item}>
-                            {item}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="payment date"> Part</label>
-                    <select name="payment date" id="problem">
-                      {data.part.map((item) => {
-                        return (
-                          <option key={item} value={item}>
-                            {item}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="education"> education</label>
-                    <select name="education" id="education">
-                      <option value="no education"> no education</option>
-                      <option value="primary education">
-                        {" "}
-                        primary eduction
-                      </option>
-                      <option value="medium education">
-                        {" "}
-                        medium education
-                      </option>
-                      <option value="graduation"> graduation</option>
-                      <option value="graduation or pg">
-                        {" "}
-                        graduation or pg
-                      </option>
-                    </select>
-                  </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="package"> packages</label>
-                    <select name="package" id="package">
-                      <option value="package">package 1</option>
-                      <option value="package"> package 2 </option>
-                      <option value="package"> package 3 </option>
-                    </select>
-                  </div>
-                </div>
-                <div className="right section">
-                  <h1>Type of work</h1>
-                  <div className="right-con my-[2px]">
-                    <label htmlFor="">eligibale</label>
-                    <input type="checkbox" name="my eligibale" />
-                  </div>
-
-                  <div className="right-con my-[2px]">
-                    <label htmlFor="">Sitting</label>
-                    <input type="checkbox" name="my sitting" />
-                  </div>
-
-                  <div className="right-con my-[2px]">
-                    <label htmlFor="">Sleeping</label>
-                    <input type="checkbox" name="my sleeping" />
-                  </div>
-
-                  <div className="right-con my-[2px]">
-                    <label htmlFor="">Standing Position</label>
-                    <input type="checkbox" name="my standing position" />
-                  </div>
-                  <div className="right-con my-[2px]"></div>
-
-                  <div className="right-con my-[2px]">
-                    <label htmlFor="">Walking</label>
-                    <input type="checkbox" name="my walking" />
-                  </div>
-
-                  <div className="right-con my-[2px]">
-                    <label htmlFor="">Weight Lifting</label>
-                    <input type="checkbox" name="my put weight" />
-                  </div>
-
-                  <div className="right-con my-[2px]">
-                    <label htmlFor="">Travelling</label>
-                    <input type="checkbox" name="my travelling" />
-                  </div>
-                  <br />
-                  <label htmlFor="">Please specify if not above</label>
-                  <input type="address" name="my address" />
-                  <br />
-                  <div className="flex flex-col">
-                    <label className="info">
-                      How you get to known about IWC
-                    </label>
-                    <select name="choose now" id="choose">
-                      {data.HowYouGotToKnow.map((item) => {
-                        return (
-                          <option key={item} value={item}>
-                            {item}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                  <br />
-                  <div className="flex flex-col">
-                    <label htmlFor="batch"> batch</label>
-                    <select name="batch" id="batch">
-                      {data.batch.map((item) => {
-                        return (
-                          <option key={item} value={item}>
-                            {item}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                  <br />
-                  <label htmlFor="payment"> payment</label>
-                  <input type="payment" name="payment" />
-                </div>
-                <button className="button button2"> save details </button>
-              </div>
+          <div className="flex flex-col">
+            <label className="text-[#00286b] capitalize font-semibold">
+              {" "}
+              gender
+            </label>
+            <select
+              className="bg-white px-[1vmax] py-[0.7vmax] border-2"
+              required
+              value={gender}
+              onChange={(e) => {
+                setGender(e.target.value);
+              }}
+            >
+              <option value=""> Choose</option>
+              <option value="Male"> Male</option>
+              <option value="Female"> Female</option>
+              <option value="Other"> Other</option>
+            </select>
+          </div>
+          <div className="flex flex-col">
+            <label className="text-[#00286b] capitalize font-semibold">
+              {" "}
+              martial status
+            </label>
+            <select
+              className="bg-white px-[1vmax] py-[0.7vmax] border-2"
+              required
+              value={martial}
+              onChange={(e) => {
+                setmartial(e.target.value);
+              }}
+            >
+              <option value=""> Choose</option>
+              <option value="married"> married</option>
+              <option value="unmarried"> unmarried</option>
+              <option value="divorced"> divorced</option>
+              <option value="widow"> widow</option>
+            </select>
+          </div>
+          <div className="flex flex-col">
+            <label className="text-[#00286b] capitalize font-semibold">
+              Address
+            </label>
+            <textarea
+              className="bg-white px-[1vmax] py-[0.7vmax] border-2"
+              required
+              placeholder="Enter Your Address in (House No., Street, City) format. "
+              value={address}
+              onChange={(e) => {
+                setAddress(e.target.value);
+              }}
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-[#00286b] capitalize font-semibold">
+              City
+            </label>
+            <select
+              className="bg-white px-[1vmax] py-[0.7vmax] border-2"
+              required
+              value={city}
+              onChange={(e) => {
+                setCity(e.target.value);
+              }}
+            >
+              <option value="">Choose</option>
+              <option value="Indore">Indore</option>
+              <option value="Ratlam">Ratlam</option>
+              <option value="Ahmedabad">Ahmedabad</option>
+            </select>
+          </div>
+          <div className="flex flex-col">
+            <label className="text-[#00286b] capitalize font-semibold">
+              {" "}
+              occupation
+            </label>
+            <select
+              className="bg-white px-[1vmax] py-[0.7vmax] border-2"
+              required
+              value={occupation}
+              onChange={(e) => {
+                setOccupation(e.target.value);
+              }}
+            >
+              <option value="">Choose</option>
+              {data.occupation.map((item) => {
+                return (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          <div className="flex flex-col">
+            <label className="text-[#00286b] capitalize font-semibold">
+              {" "}
+              Part
+            </label>
+            <select
+              className="bg-white px-[1vmax] py-[0.7vmax] border-2"
+              required
+              value={part}
+              onChange={(e) => {
+                setPart(e.target.value);
+              }}
+            >
+              <option value="">Choose</option>
+              {data.part.map((item) => {
+                return (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          <div className="flex flex-col">
+            <label className="text-[#00286b] capitalize font-semibold">
+              {" "}
+              education
+            </label>
+            <select
+              className="bg-white px-[1vmax] py-[0.7vmax] border-2 "
+              required
+              value={education}
+              onChange={(e) => {
+                setEducation(e.target.value);
+              }}
+            >
+              <option value="">Choose</option>
+              <option value="No education"> No education</option>
+              <option value="primary education"> primary eduction</option>
+              <option value="Secondary"> Secondary</option>
+              <option value="Higher Secondary"> Higher Secondary</option>
+              <option value="Graduation or PG"> Graduation or PG</option>
+            </select>
+          </div>
+          <div className="flex flex-col">
+            <label className="text-[#00286b] capitalize font-semibold">
+              {" "}
+              packages
+            </label>
+            <select
+              className="bg-white px-[1vmax] py-[0.7vmax] border-2"
+              required
+              value={packages}
+              onChange={(e) => {
+                setPackage(e.target.value);
+              }}
+            >
+              <option value="">Choose</option>
+              {pacs &&
+                pacs.map((pac) => {
+                  return (
+                    <option key={pac._id} value={pac._id}>
+                      {pac.name}
+                    </option>
+                  );
+                })}
+            </select>
+          </div>
+          <div className="flex flex-col">
+            <label className="text-[#00286b] capitalize font-semibold">
+              Type of Work
+            </label>
+            <select
+              value={work}
+              className="bg-white px-[1vmax] py-[0.7vmax] border-2 "
+              required
+              onChange={(e) => {
+                setWork(e.target.value);
+              }}
+            >
+              <option value="">Choose</option>
+              {data.work.map((w) => {
+                return (
+                  <option key={w} value={w}>
+                    {w}
+                  </option>
+                );
+              })}
+              <option value="none">none of them</option>
+            </select>
+          </div>
+          {work === "none" ? (
+            <div className="flex flex-col">
+              <label className="text-[#00286b] capitalize font-semibold">
+                Specify if type of work is not given above
+              </label>
+              <input
+                type="text"
+                onChange={(e) => {
+                  setTempWork(e.target.value);
+                }}
+                className="bg-white px-[1vmax] py-[0.7vmax] border-2"
+              />
             </div>
-          </form>
+          ) : (
+            ""
+          )}
+          <div className="flex flex-col">
+            <label className="text-[#00286b] capitalize font-semibold">
+              How you get to known about IWC
+            </label>
+            <select
+              className="bg-white px-[1vmax] py-[0.7vmax] border-2"
+              required
+              value={know}
+              onChange={(e) => {
+                setKnow(e.target.value);
+              }}
+            >
+              <option value="">Choose</option>
+              {data.HowYouGotToKnow.map((item) => {
+                return (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          <div className="flex flex-col">
+            <label className="text-[#00286b] capitalize font-semibold">
+              Date of Treatment
+            </label>
+            <input
+              className="bg-white border-2 px-[1.5vmax] py-[0.7vmax]"
+              type="date"
+              value={date}
+              min={`${presentDate.getFullYear()}-${presentDate.getMonth()}-${presentDate.getDate()}`}
+              onChange={(e) => {
+                setDate(e.target.value);
+              }}
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-[#00286b] capitalize font-semibold">
+              {" "}
+              batch
+            </label>
+            <select
+              className="bg-white px-[1vmax] py-[0.7vmax] border-2"
+              value={batch}
+              onChange={(e) => {
+                setBatch(e.target.value);
+              }}
+            >
+              {data.batch.map((item) => {
+                return (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+
+          <input
+            type="submit"
+            value="Save & Continue"
+            className=" bg-[#00286b] text-semibold px-[1vmax] py-[0.7vmax] text-white border-[#00286b] border-2 hover:bg-white hover:text-[#00286b]"
+          />
+        </form>
+        <div className="my-[2vmax] flex gap-[3vmax] flex-wrap">
+          {pacs &&
+            pacs.map((pac) => {
+              return <PackageCard pac={pac} role={"user"} />;
+            })}
         </div>
-      </Container>
+      </div>
     </motion.div>
   );
 };
 
 export default BookNow;
-
-const Container = styled.div`
-  margin-top: 6rem;
-  margin-bottom: 4rem;
-
-  label {
-    font-size: 0.8rem;
-    margin: 1px;
-    text-transform: capitalize;
-  }
-
-  select {
-    text-transform: capitalize;
-  }
-
-  .form-head {
-    text-align: center;
-    padding-top: 1rem;
-    font-size: 1.5rem;
-  }
-  form {
-    width: 80%;
-    margin: 1rem auto;
-    background: #fff;
-  }
-  .pandu {
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-    background: #fff;
-  }
-  .first {
-    height: content-fit;
-    width: content-fit;
-    display: flex;
-    justify-content: space-between;
-  }
-  .section {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 2rem;
-    justify-content: space-between;
-  }
-
-  .section input {
-    padding: 0.5rem 1rem;
-    background-color: #eee;
-  }
-  .section select {
-    padding: 0.5rem 1rem;
-    background-color: #eee;
-  }
-  .right-con {
-    display: flex;
-    justify-content: space-between;
-  }
-  .right-con input {
-    background-color: #fff;
-    opacity: 0.3;
-  }
-  .section h1 {
-    font-size: 1rem;
-  }
-  .button {
-    color: #fff;
-    padding: 0.5rem 1rem;
-    margin: 0 auto;
-    background-color: coral;
-  }
-  .button2 {
-    display: none;
-  }
-  @media screen and (max-width: 480px) {
-    .first {
-      flex-direction: column;
-    }
-    input {
-      width: 70%;
-    }
-    select {
-      width: 70%;
-    }
-    .right-con {
-      width: 80%;
-    }
-    .right-con > input {
-      height: 20px;
-      width: 20px;
-    }
-    .info {
-      width: 80%;
-    }
-    .button1 {
-      display: none;
-    }
-    .button2 {
-      display: block;
-      margin-bottom: 1rem;
-    }
-  }
-`;

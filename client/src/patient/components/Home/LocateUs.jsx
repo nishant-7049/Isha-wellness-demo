@@ -262,10 +262,9 @@ function LocateUs() {
             </div>
             <div className="bg-[url(/images/HealedBG.jpg)] bg-cover bg-center bg-fixed rounded-md">
               <Testimonial
-                data={
-                  testimonials &&
-                  testimonials.filter((testi) => testi.cluster === "Indore")
-                }
+                data={testimonials.filter(
+                  (testi) => testi.cluster === "Indore"
+                )}
               />
             </div>
           </div>
@@ -299,10 +298,9 @@ function LocateUs() {
             </div>
             <div className="bg-[url(/images/HealedBG.jpg)] bg-cover bg-center bg-fixed rounded-md">
               <Testimonial
-                data={
-                  testimonials &&
-                  testimonials.filter((testi) => testi.cluster === "Ratlam")
-                }
+                data={testimonials.filter(
+                  (testi) => testi.cluster === "Ratlam"
+                )}
               />
             </div>
           </div>

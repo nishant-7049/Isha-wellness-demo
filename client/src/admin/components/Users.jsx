@@ -2,11 +2,13 @@ import React, { useEffect } from "react";
 import Sidebar from "./Sidebar";
 import { DataGrid } from "@mui/x-data-grid";
 import {
+  clearError,
   deleteUser,
   editUser,
   getAllUsers,
   resetIsDeleted,
   resetIsUpdated,
+  setIncharge,
 } from "../../store/slices/allUserSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { BiEdit } from "react-icons/bi";
@@ -84,6 +86,32 @@ const Users = () => {
       headerClassName: "text-[#00286b] font-semibold",
     },
     {
+      field: "isIncharge",
+      headerName: "IsIncharge",
+      minWidth: 100,
+      flex: 0.3,
+      renderCell: (cellValues) => {
+        console.log(cellValues.row.isIncharge);
+        const updateUser = (e) => {
+          const options = {
+            id: cellValues.id,
+            isIncharge: e.target.value,
+          };
+          dispatch(setIncharge(options));
+        };
+        return (
+          <select className="bg-white" onChange={updateUser}>
+            <option value={cellValues.row.isIncharge}>
+              {`${cellValues.row.isIncharge}`}
+            </option>
+            <option value={true}>true</option>
+            <option value={false}>false</option>
+          </select>
+        );
+      },
+      headerClassName: "text-[#00286b] font-semibold",
+    },
+    {
       field: "action",
       headerName: "Actions",
       minWidth: 100,
@@ -118,6 +146,7 @@ const Users = () => {
         name: user.name,
         email: user.email,
         role: user.role,
+        isIncharge: user.isIncharge,
       });
     });
   useEffect(() => {
@@ -128,7 +157,10 @@ const Users = () => {
     if (isDeleted) {
       dispatch(resetIsDeleted());
     }
-  }, [dispatch, isUpdated, isDeleted]);
+    if (error) {
+      dispatch(clearError());
+    }
+  }, [dispatch, isUpdated, isDeleted, error]);
   return (
     <>
       {loading ? (
