@@ -24,7 +24,10 @@ export const login = createAsyncThunk(
 );
 
 export const register = createAsyncThunk("register", async (formData) => {
-  const config = { headers: { "Content-Type": "multipart/form-data" } };
+  const config = {
+    headers: { "Content-Type": "multipart/form-data" },
+    withCredentials: true,
+  };
   const { data } = await axios.post(
     "https://ishacare.onrender.com/api/register",
     formData,
