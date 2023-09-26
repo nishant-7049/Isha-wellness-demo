@@ -180,7 +180,7 @@ const AnimatedRoutes = () => {
           ""
         )}
         {isAuthenticated && user.role == "user" && (
-          <Route exact path="/user/orderDetail/:id" element={<OrderDetail />} />
+          <Route exact path="/user/orderDetail/:id" element={<UserOrders />} />
         )}
         {isAuthenticated && user.role === "therapist" && (
           <Route exact path="/therapist/orders" element={<TherapistOrders />} />
