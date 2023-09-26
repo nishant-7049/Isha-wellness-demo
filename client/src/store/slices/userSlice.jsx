@@ -4,11 +4,18 @@ import axios from "axios";
 export const login = createAsyncThunk(
   "login",
   async (object, { rejectWithValue }) => {
+    const config = {
+      withCredentials: true,
+    };
     try {
-      const data = await axios.post("https://ishacare.onrender.com/api/login", {
-        email: object.loginEmail,
-        password: object.loginPassword,
-      });
+      const data = await axios.post(
+        "https://ishacare.onrender.com/api/login",
+        {
+          email: object.loginEmail,
+          password: object.loginPassword,
+        },
+        config
+      );
       return data.data;
     } catch (error) {
       return rejectWithValue(error.message);
