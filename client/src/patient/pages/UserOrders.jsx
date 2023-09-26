@@ -60,7 +60,7 @@ const UserOrders = () => {
         time: ther.batch,
         status: ther.status,
         problem: ther.problem,
-        payment: pac && pac[0].paymentType,
+        payment: pac && pac[0] && pac[0].paymentType,
         isPaid: ther.payment ? true : false,
         id: ther._id,
       });
