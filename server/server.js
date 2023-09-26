@@ -30,7 +30,11 @@ const allowedOrigins = [
   "http://localhost:5173",
   "https://apnicompany.tech/admin/edit/frontend",
   "https://apnicompany.tech/admin/users",
+  "https://apnicompany.tech/admin/packages",
+  "https://apnicompany.tech/admin/exercises",
   "https://apnicompany.tech/admin/faq/edit/:id",
+  "https://apnicompany.tech/admin/order/detail/:id",
+  "https://apnicompany.tech/incharge/orders",
 ];
 
 app.use(
