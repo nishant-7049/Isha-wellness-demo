@@ -1,6 +1,7 @@
 import React, { lazy, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import BookNow from "./patient/components/BookNow";
+import ConfirmBooking from "./patient/components/ConfirmBooking";
 import { AnimatePresence } from "framer-motion";
 
 // const Home = lazy(() => import("./patient/pages/Home"));
@@ -31,6 +32,19 @@ import EditFaq from "./admin/components/EditFaq";
 import EditBlog from "./admin/components/EditBlog";
 import EditUser from "./admin/components/EditUser";
 import Users from "./admin/components/Users";
+import Exercises from "./admin/components/Exercises";
+import EditExercise from "./admin/components/EditExercise";
+import PaymentConfirmation from "./patient/components/PaymentConfirmation";
+import PaymentConfirmation2 from "./patient/components/PaymentConfirmation2";
+import Packages from "./admin/components/Package";
+import Orders from "./admin/components/Order";
+import EditPackage from "./admin/components/EditPackage";
+import AdminOrderDetail from "./admin/components/AdminOrderDetail";
+import OrderDetail from "./admin/components/OrderDetail";
+import OrderList from "./admin/components/OrderList";
+import TherapistOrders from "./therapist/components/TherapistOrders";
+import FacilitatorOrders from "./facilitator/components/FacilitatorOrders";
+import UserOrders from "./patient/pages/UserOrders";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -82,35 +96,118 @@ const AnimatedRoutes = () => {
           <Route exact path="/forum" element={<NotAuth />} />
         )}
         <Route exact path="/booknow" element={<BookNow />} />
+        <Route exact path="/confirmBooking" element={<ConfirmBooking />} />
         <Route exact path="/blog/:id" element={<SingleBlog />} />
         <Route exact path="/service/:id" element={<SingleService />} />
-        {isAuthenticated && user && user.role == "admin" && (
+        {isAuthenticated && user.role == "admin" && (
           <Route exact path="/admin/edit/frontend" element={<EditFrontend />} />
         )}
-        {isAuthenticated && user && user.role == "admin" && (
+        {isAuthenticated && user.role == "admin" && (
           <Route exact path="/admin/dashboard" element={<Dashboard />} />
         )}
-        {isAuthenticated && user && user.role == "admin" && (
+        {isAuthenticated && user.role == "admin" && (
           <Route exact path="/admin/users" element={<Users />} />
         )}
-        {isAuthenticated && user && user.role == "admin" && (
+        {isAuthenticated && user.role == "admin" && (
           <Route
             exact
             path="/admin/testi/edit/:id"
             element={<EditTestimonial />}
           />
         )}
-        {isAuthenticated && user && user.role == "admin" && (
+        {isAuthenticated && user.role == "admin" && (
           <Route exact path="/admin/video/edit/:id" element={<EditVideo />} />
         )}
-        {isAuthenticated && user && user.role == "admin" && (
+        {isAuthenticated && user.role == "admin" && (
           <Route exact path="/admin/faq/edit/:id" element={<EditFaq />} />
         )}
-        {isAuthenticated && user && user.role == "admin" && (
+        {isAuthenticated && user.role == "admin" && (
           <Route exact path="/admin/blog/edit/:id" element={<EditBlog />} />
         )}
-        {isAuthenticated && user && user.role == "admin" && (
+        {isAuthenticated && user.role == "admin" && (
           <Route exact path="/admin/user/edit/:id" element={<EditUser />} />
+        )}
+        {isAuthenticated && user.role == "admin" && (
+          <Route exact path="/admin/exercises" element={<Exercises />} />
+        )}
+        {isAuthenticated && user.role == "admin" && (
+          <Route
+            exact
+            path="/admin/exercise/edit/:id"
+            element={<EditExercise />}
+          />
+        )}
+        {isAuthenticated && user.role == "admin" && (
+          <Route exact path="/admin/packages" element={<Packages />} />
+        )}
+        {isAuthenticated && user.role == "admin" && (
+          <Route
+            exact
+            path="/admin/packages/edit/:id"
+            element={<EditPackage />}
+          />
+        )}
+        {isAuthenticated && user.role == "admin" && (
+          <Route exact path="/admin/orders" element={<Orders />} />
+        )}
+        {isAuthenticated && user.role == "admin" && (
+          <Route
+            exact
+            path="/admin/order/detail/:id"
+            element={<AdminOrderDetail />}
+          />
+        )}
+        {isAuthenticated && user.isIncharge === true && (
+          <Route
+            exact
+            path="/incharge/order/detail/:id"
+            element={<OrderDetail />}
+          />
+        )}
+        {isAuthenticated && user.isIncharge === true && (
+          <Route exact path="/incharge/orders" element={<OrderList />} />
+        )}
+        {isAuthenticated &&
+        (user.isIncharge === true ||
+          user.role === "therapist" ||
+          user.role === "facilitator") ? (
+          <Route
+            exact
+            path="/incharge/orderDetail/:id"
+            element={<OrderDetail />}
+          />
+        ) : (
+          ""
+        )}
+        {isAuthenticated && user.role == "user" && (
+          <Route exact path="/user/orderDetail/:id" element={<OrderDetail />} />
+        )}
+        {isAuthenticated && user.role === "therapist" && (
+          <Route exact path="/therapist/orders" element={<TherapistOrders />} />
+        )}
+        {isAuthenticated && user.role === "facilitator" && (
+          <Route
+            exact
+            path="/facilitator/orders"
+            element={<FacilitatorOrders />}
+          />
+        )}
+        {isAuthenticated && (
+          <Route exact path="/user/orders" element={<UserOrders />} />
+        )}
+        {isAuthenticated && (
+          <Route
+            exact
+            path="/paymentConfirmation/:ref"
+            element={<PaymentConfirmation />}
+          />
+        )}
+        {isAuthenticated && (
+          <Route
+            exact
+            path="/paymentConfirmation"
+            element={<PaymentConfirmation2 />}
+          />
         )}
         <Route path="/*" element={<PageNotFound />} />
       </Routes>
