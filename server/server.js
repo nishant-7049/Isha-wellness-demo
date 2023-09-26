@@ -33,7 +33,7 @@ const allowedOrigins = [
   "https://apnicompany.tech/admin/packages",
   "https://apnicompany.tech/admin/exercises",
   "https://apnicompany.tech/admin/faq/edit/:id",
-  "https://apnicompany.tech/admin/order/detail",
+  "https://apnicompany.tech/admin/order",
   "https://apnicompany.tech/incharge/orders",
 ];
 
