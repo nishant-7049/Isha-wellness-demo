@@ -97,7 +97,10 @@ const OrderDetail = () => {
     }
   }, [dispatch, booking, isUpdated, error]);
   useEffect(() => {
-    if (!booking || (me && me.role == "user" && booking._id != id)) {
+    if (
+      (!booking && me && me.role == "user") ||
+      (booking && booking._id != id)
+    ) {
       dispatch(getBookingDetailForUser(id));
     }
   }, [booking]);
