@@ -60,7 +60,7 @@ const OrderDetail = () => {
     dispatch(setStatus(options));
   };
   useEffect(() => {
-    if (!booking || (booking._id != id && me && me.role == "user")) {
+    if (!booking || (me && me.role == "user" && booking._id != id)) {
       dispatch(getBookingDetailForUser(id));
     }
   }, [booking]);
