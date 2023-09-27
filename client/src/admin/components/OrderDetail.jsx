@@ -67,7 +67,7 @@ const OrderDetail = () => {
   }, [me, booking]);
 
   useEffect(() => {
-    if (booking && me && me.role !== "user" && booking._id != id) {
+    if (!booking && me && me.role !== "user" && booking._id != id) {
       dispatch(getBookingDetail(id));
     }
     if (booking) {
