@@ -59,11 +59,7 @@ const OrderDetail = () => {
     };
     dispatch(setStatus(options));
   };
-  useEffect(() => {
-    if (!booking || (me && me.role == "user" && booking._id != id)) {
-      dispatch(getBookingDetailForUser(id));
-    }
-  }, [booking]);
+
   useEffect(() => {
     if (booking && me && me.role == "user") {
       dispatch(getPaymentDetailForUser(id));
@@ -100,6 +96,11 @@ const OrderDetail = () => {
       dispatch(clearError());
     }
   }, [dispatch, booking, isUpdated, error]);
+  useEffect(() => {
+    if (!booking || (me && me.role == "user" && booking._id != id)) {
+      dispatch(getBookingDetailForUser(id));
+    }
+  }, [booking]);
   useEffect(() => {
     if (booking && booker && booking.bookedBy == booker._id) {
       setBookedBy(booker);
