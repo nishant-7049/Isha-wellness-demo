@@ -69,7 +69,7 @@ const FacilitatorOrders = () => {
         time: book.batch,
         status: book.status,
         problem: book.problem,
-        payment: pac && pac[0].paymentType,
+        payment: pac && pac[0] && pac[0].paymentType,
         isPaid: book.payment ? true : false,
         id: book._id,
       });

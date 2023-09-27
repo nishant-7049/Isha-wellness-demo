@@ -69,7 +69,7 @@ exports.setTherapist = catchAsyncError(async (req, res, next) => {
     return next(new errorHandler("booking not found", 404));
   }
   booking.assignTherapist = req.body.userID;
-  booking.status = "Treatment Created / Waiting for Facilitator... ";
+  booking.status = "Staff Assigned / Creating Treatment... ";
 
   await booking.save();
   res.status(200).json({
