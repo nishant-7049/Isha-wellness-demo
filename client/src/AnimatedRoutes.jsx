@@ -1,7 +1,7 @@
 import React, { lazy, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import BookNow from "./patient/components/BookNow";
-import ConfirmBooking from "./patient/components/ConfirmBooking";
+import BookNow from "./patient/components/Booking/BookNow";
+import ConfirmBooking from "./patient/components/Booking/ConfirmBooking";
 import { AnimatePresence } from "framer-motion";
 
 // const Home = lazy(() => import("./patient/pages/Home"));
@@ -34,8 +34,8 @@ import EditUser from "./admin/components/EditUser";
 import Users from "./admin/components/Users";
 import Exercises from "./admin/components/Exercises";
 import EditExercise from "./admin/components/EditExercise";
-import PaymentConfirmation from "./patient/components/PaymentConfirmation";
-import PaymentConfirmation2 from "./patient/components/PaymentConfirmation2";
+import PaymentConfirmation from "./patient/components/Booking/PaymentConfirmation";
+import PaymentConfirmation2 from "./patient/components/Booking/PaymentConfirmation2";
 import Packages from "./admin/components/Package";
 import Orders from "./admin/components/Order";
 import EditPackage from "./admin/components/EditPackage";
@@ -45,6 +45,16 @@ import OrderList from "./admin/components/OrderList";
 import TherapistOrders from "./therapist/components/TherapistOrders";
 import FacilitatorOrders from "./facilitator/components/FacilitatorOrders";
 import UserOrders from "./patient/pages/UserOrders";
+import Personal from "./patient/components/Booking/Personal";
+import Problem from "./patient/components/Booking/Problem";
+import Measures from "./patient/components/Booking/Measures";
+import Lifestyle from "./patient/components/Booking/Lifestyle";
+import Occupation from "./patient/components/Booking/Occupation";
+import TherapistTreatment from "./therapist/components/TherapistTreatment";
+import TreatmentStart from "./facilitator/components/TreatmentStart";
+import SessionCompleted from "./facilitator/components/SessionCompleted";
+import OutcomeForm from "./patient/components/Booking/OutcomeForm";
+import OutcomeFormTherapist from "./therapist/components/OutcomeFormTherapist.jsx";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -96,9 +106,18 @@ const AnimatedRoutes = () => {
           <Route exact path="/forum" element={<NotAuth />} />
         )}
         <Route exact path="/booknow" element={<BookNow />} />
-        <Route exact path="/confirmBooking" element={<ConfirmBooking />} />
+        <Route exact path="/book/personalform" element={<Personal />} />
+        <Route exact path="/book/problemform" element={<Problem />} />
+        <Route exact path="/book/measures" element={<Measures />} />
+        <Route exact path="/book/lifestyle" element={<Lifestyle />} />
+        <Route exact path="/book/occupation" element={<Occupation />} />
+        <Route exact path="/book/confirmBooking" element={<ConfirmBooking />} />
         <Route exact path="/blog/:id" element={<SingleBlog />} />
         <Route exact path="/service/:id" element={<SingleService />} />
+        <Route exact path="/treatment/:id" element={<TherapistTreatment />} />
+        <Route exact path="/treatment/start/:id" element={<TreatmentStart />} />
+        <Route exact path="/book/outcome/:token" element={<OutcomeForm />} />
+
         {isAuthenticated && user.role == "admin" && (
           <Route exact path="/admin/edit/frontend" element={<EditFrontend />} />
         )}
@@ -185,11 +204,32 @@ const AnimatedRoutes = () => {
         {isAuthenticated && user.role === "therapist" && (
           <Route exact path="/therapist/orders" element={<TherapistOrders />} />
         )}
+        {isAuthenticated && user.role === "therapist" && (
+          <Route
+            exact
+            path="/therapist/outcome/:sessionId"
+            element={<OutcomeFormTherapist />}
+          />
+        )}
+        {isAuthenticated && user.role === "facilitator" && (
+          <Route
+            exact
+            path="/facilitator/outcome/:sessionId"
+            element={<OutcomeFormTherapist />}
+          />
+        )}
         {isAuthenticated && user.role === "facilitator" && (
           <Route
             exact
             path="/facilitator/orders"
             element={<FacilitatorOrders />}
+          />
+        )}
+        {isAuthenticated && user.role === "facilitator" && (
+          <Route
+            exact
+            path="/facilitator/session/completed"
+            element={<SessionCompleted />}
           />
         )}
         {isAuthenticated && (
