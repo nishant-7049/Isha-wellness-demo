@@ -4,6 +4,9 @@ const treatmentSchema = new mongoose.Schema({
   exercises: [
     {
       exercise: mongoose.Schema.Types.ObjectId,
+      reps: {
+        type: Number,
+      },
       duration: {
         min: Number,
         sec: Number,

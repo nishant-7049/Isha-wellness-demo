@@ -3,12 +3,14 @@ const catchAsyncError = require("../middleware/catchAsyncFunc");
 const errorHandler = require("../utils/ErrorHandler");
 
 exports.createPackage = catchAsyncError(async (req, res, next) => {
-  const { name, description, paymentType, price } = req.body;
+  const { name, description, paymentType, price, days, sessions } = req.body;
   const package = await Package.create({
     name,
     description,
     paymentType,
     price,
+    sessions,
+    days,
   });
   res.status(200).json({
     success: true,
@@ -48,6 +50,8 @@ exports.editPackage = catchAsyncError(async (req, res, next) => {
     description: req.body.description,
     paymentType: req.body.paymentType,
     price: req.body.price,
+    days: req.body.days,
+    sessions: req.body.sessions,
   };
   await Package.findByIdAndUpdate(req.params.id, options);
   res.status(200).json({

@@ -6,8 +6,7 @@ const setToken = (user, statusCode, res) => {
       Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
     ),
     path: "/",
-    sameSite: "None",
-    secure: true,
+    // secure: true,
     httpOnly: true,
   };
   res.cookie("token", token, options);

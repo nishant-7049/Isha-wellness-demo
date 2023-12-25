@@ -13,6 +13,10 @@ const exerciseSchema = new mongoose.Schema({
     type: String,
     required: [true, "Select the part of body."],
   },
+  reps: {
+    type: Number,
+    required: [true, "Select the part of body."],
+  },
   duration: {
     min: Number,
     sec: Number,

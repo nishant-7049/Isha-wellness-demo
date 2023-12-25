@@ -12,6 +12,7 @@ const {
   isAuthenticatedUser,
   authorizeRoles,
   isIncharge,
+  isNotUser,
 } = require("../middleware/auth");
 
 router.route("/checkout").post(checkout);
@@ -20,7 +21,7 @@ router.route("/verification").post(isAuthenticatedUser, paymentVerification);
 router
   .route("/")
   .get(isAuthenticatedUser, authorizeRoles("admin"), getAllPayment);
-router.route("/:id").get(isAuthenticatedUser, isIncharge(), getPaymentDetails);
+router.route("/:id").get(isAuthenticatedUser, isNotUser(), getPaymentDetails);
 router
   .route("/user/:bookingId")
   .get(isAuthenticatedUser, getPaymentDetailsForUser);

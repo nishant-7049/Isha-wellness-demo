@@ -72,11 +72,12 @@ exports.getPaymentDetails = catchAsyncError(async (req, res, next) => {
       success: true,
       message: "Not Paid",
     });
+  } else {
+    res.status(200).json({
+      success: true,
+      payment,
+    });
   }
-  res.status(200).json({
-    success: true,
-    payment,
-  });
 });
 
 exports.getPaymentDetailsForUser = catchAsyncError(async (req, res, next) => {
@@ -86,7 +87,7 @@ exports.getPaymentDetailsForUser = catchAsyncError(async (req, res, next) => {
   }
   if (booking.bookedBy != req.user.id) {
     return next(
-      new ErrorHandler("You are not authorized to access this data.", 404)
+      new ErrorHandler("You are not authorized to access this data.", 500)
     );
   }
   let payment;

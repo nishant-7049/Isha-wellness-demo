@@ -12,7 +12,7 @@ const Slider_testimonial = ({ data }) => {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 5000,
     pauseOnHover: true,
     arrows: false,
     responsive: [
@@ -75,6 +75,9 @@ export default Slider_testimonial;
 
 const Container = styled.div`
   .slick-dots li.slick-active button:before {
+    color: white;
+  }
+  .slick-dots li button:before {
     color: white;
   }
 `;

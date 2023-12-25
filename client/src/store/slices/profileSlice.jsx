@@ -4,10 +4,7 @@ import axios from "axios";
 export const updateProfile = createAsyncThunk(
   "updateProfile",
   async (formData) => {
-    const config = {
-      headers: { "Content-Type": "application/json" },
-      withCredentials: true,
-    };
+    const config = { headers: { "Content-Type": "multipart/formdata" } };
     const { data } = await axios.put(
       "https://ishacare.onrender.com/api/update",
       formData,
@@ -20,10 +17,7 @@ export const updateProfile = createAsyncThunk(
 export const updatePassword = createAsyncThunk(
   "updatePassword",
   async (passwords) => {
-    const config = {
-      headers: { "Content-Type": "application/json" },
-      withCredentials: true,
-    };
+    const config = { headers: { "Content-Type": "application/json" } };
     const { data } = await axios.put(
       "https://ishacare.onrender.com/api/password/update",
       passwords,
@@ -37,14 +31,9 @@ export const forgotPassword = createAsyncThunk(
   "forgotPassword",
   async (email) => {
     const e = { email };
-    const config = {
-      headers: { "Content-Type": "application/json" },
-      withCredentials: true,
-    };
     const { data } = await axios.post(
       "https://ishacare.onrender.com/api/password/forgot",
-      e,
-      config
+      e
     );
     return data;
   }

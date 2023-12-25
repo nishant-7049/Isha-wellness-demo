@@ -1,13 +1,23 @@
 const Booking = require("../models/booking");
+const Package = require("../models/package");
 const catchAsyncError = require("../middleware/catchAsyncFunc");
 const errorHandler = require("../utils/ErrorHandler");
 const ErrorHandler = require("../utils/ErrorHandler");
 const user = require("../models/user");
 
 exports.createBooking = catchAsyncError(async (req, res, next) => {
-  req.body.bookedBy = req.user._id;
-  const date = new Date(Date.now());
-  req.body.createdAt = date;
+  req.body.createdAt = new Date(Date.now());
+  const pac = await Package.findById(req.body.packageAndDate.package);
+  if (!pac) {
+    return next(
+      new ErrorHandler("Package with given id is not available.", 404)
+    );
+  }
+  req.body.price = pac.price;
+  req.body.paymentType = pac.paymentType;
+  const validTill =
+    req.body.createdAt.getTime() + pac.days * 24 * 60 * 60 * 1000;
+  req.body.validTill = new Date(validTill);
   const booking = await Booking.create(req.body);
   res.status(200).json({
     success: true,
@@ -45,6 +55,7 @@ exports.getBookingDetailForUser = catchAsyncError(async (req, res, next) => {
       new ErrorHandler("You are not authorized to access this data.", 403)
     );
   }
+
   res.status(200).json({
     success: true,
     booking,
@@ -136,5 +147,20 @@ exports.getUserBookings = catchAsyncError(async (req, res, next) => {
   res.status(200).json({
     success: true,
     bookings,
+  });
+});
+
+exports.setScheduledTime = catchAsyncError(async (req, res, next) => {
+  const booking = await Booking.findById(req.params.bookingId);
+  if (req.user.role == "user" && booking.bookedBy != req.user._id) {
+    return next(
+      new ErrorHandler("You are not authorized to interfare with booking.", 403)
+    );
+  }
+  booking.packageAndDate.dateAndTime = req.body.dateAndTime;
+  await booking.save();
+  res.status(200).json({
+    success: true,
+    message: "Treatment is Rescheduled successfully.",
   });
 });

@@ -15,6 +15,18 @@ class ApiFeatures {
     this.query = this.query.find({ ...keyword });
     return this;
   }
+  SearchQuestion() {
+    const keyword = this.queryStr.keyword
+      ? {
+          question: {
+            $regex: this.queryStr.keyword,
+            $options: "i",
+          },
+        }
+      : {};
+    this.query = this.query.find({ ...keyword });
+    return this;
+  }
   Filter() {
     const queryCopy = { ...this.queryStr };
 

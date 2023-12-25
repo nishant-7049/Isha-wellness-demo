@@ -28,10 +28,13 @@ exports.createBlog = catchAsyncError(async (req, res, next) => {
 
 exports.getBlogs = catchAsyncError(async (req, res, next) => {
   const itemsPerPage = req.params.itemsPerPage;
-  const api = new ApiFeatures(Blog.find(), req.query).Search();
+  const api = new ApiFeatures(Blog, req.query).Search();
   let blogs = await api.query;
   const blogsCount = blogs.length;
-  const api2 = new ApiFeatures(Blog.find(), req.query)
+  const api2 = new ApiFeatures(
+    Blog.find({}, {}, { sort: { createdAt: -1 } }),
+    req.query
+  )
     .Search()
     .Pagination(itemsPerPage);
   blogs = await api2.query;

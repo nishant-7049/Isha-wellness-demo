@@ -8,6 +8,9 @@ import exerciseSlice from "./slices/exerciseSlice";
 import BookingSlice from "./slices/bookingSlice";
 import packageSlice from "./slices/packageSlice";
 import treatmentSlice from "./slices/treatmentSlice";
+import forumSlice from "./slices/forumSlice";
+import sessionSlice from "./slices/sessionSlice";
+import dashboardSlice from "./slices/dashboardSlice";
 
 const store = configureStore({
   reducer: {
@@ -20,6 +23,9 @@ const store = configureStore({
     booking: BookingSlice,
     package: packageSlice,
     treatment: treatmentSlice,
+    forum: forumSlice,
+    session: sessionSlice,
+    dashboard: dashboardSlice,
   },
 });
 

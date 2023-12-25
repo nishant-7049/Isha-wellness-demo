@@ -1,25 +1,31 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const ForumQuestionSchema = new mongoose.Schema({
   user: {
-    type: String,
-    unique: false,
+    type: mongoose.Schema.Types.ObjectId,
   },
   question: {
     type: String,
     maxlength: 100,
+    required: true,
   },
-  timePosted: {
+  editedQuestion: {
+    type: String,
+    maxlength: 100,
+  },
+  createdAt: {
     type: Date,
     default: Date.now(),
   },
-  answers : {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Answers"
-  }
-})
+  isEdited: {
+    type: Boolean,
+    default: false,
+  },
+  editedAt: {
+    type: Date,
+  },
+});
 
+const QuestionModel = mongoose.model("QuestionModel", ForumQuestionSchema);
 
-const QuestionModel = mongoose.model('QuestionModel', ForumQuestionSchema)
-
-module.exports = QuestionModel
+module.exports = QuestionModel;

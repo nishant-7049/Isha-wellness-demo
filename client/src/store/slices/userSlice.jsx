@@ -4,18 +4,11 @@ import axios from "axios";
 export const login = createAsyncThunk(
   "login",
   async (object, { rejectWithValue }) => {
-    const config = {
-      withCredentials: true,
-    };
     try {
-      const data = await axios.post(
-        "https://ishacare.onrender.com/api/login",
-        {
-          email: object.loginEmail,
-          password: object.loginPassword,
-        },
-        config
-      );
+      const data = await axios.post("https://ishacare.onrender.com/api/login", {
+        email: object.loginEmail,
+        password: object.loginPassword,
+      });
       return data.data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -24,10 +17,7 @@ export const login = createAsyncThunk(
 );
 
 export const register = createAsyncThunk("register", async (formData) => {
-  const config = {
-    headers: { "Content-Type": "multipart/form-data" },
-    withCredentials: true,
-  };
+  const config = { headers: { "Content-Type": "multipart/form-data" } };
   const { data } = await axios.post(
     "https://ishacare.onrender.com/api/register",
     formData,
@@ -37,11 +27,7 @@ export const register = createAsyncThunk("register", async (formData) => {
 });
 
 export const loadUser = createAsyncThunk("loaduser", async () => {
-  const config = { withCredentials: true };
-  const { data } = await axios.get(
-    "https://ishacare.onrender.com/api/me",
-    config
-  );
+  const { data } = await axios.get("https://ishacare.onrender.com/api/me");
   return data;
 });
 

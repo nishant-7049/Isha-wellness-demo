@@ -8,6 +8,11 @@ const bodyParser = require("body-parser");
 const fileupload = require("express-fileupload");
 const cors = require("cors");
 const Razorpay = require("razorpay");
+const sendSms = require("./utils/sendSms");
+const cron = require("node-cron");
+const { getLatestSession } = require("./controllers/sessionController");
+const Session = require("./models/session");
+const sendEmail = require("./utils/sendEmail");
 
 // Connnect DB
 connectDB();
@@ -70,6 +75,8 @@ app.use("/api/payment", require("./routes/paymentRoutes"));
 app.use("/api/package", require("./routes/packageRoute"));
 app.use("/api/booking", require("./routes/bookingRoute"));
 app.use("/api/treatment", require("./routes/treatmentRoute"));
+app.use("/api/session", require("./routes/sessionRoute"));
+app.use("/api/dashboard", require("./routes/dashboardRoute"));
 
 //Error Handlers (Should be the last pice of middleware)
 app.use(errorHandler);

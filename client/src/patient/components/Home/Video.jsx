@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllVideos } from "../../../store/slices/EditFrontSlice";
+import styled from "styled-components";
 
 const Video = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const Video = () => {
     autoplaySpeed: 2000,
     pauseOnHover: true,
     arrows: false,
+    dotsClass: "slick-dots text-white",
     responsive: [
       {
         breakpoint: 800,
@@ -37,7 +39,7 @@ const Video = () => {
     ],
   };
   return (
-    <div className="mx-auto px-[9rem] py-16 mt-8 mb-16 sm:px-4 ">
+    <Container className="mx-auto px-[9rem] py-16 mt-8 mb-16 sm:px-4 ">
       <h2 className=" text-3xl mb-8 mx-auto capitalize text-[white] font-bold text-center">
         Youtube Content
       </h2>
@@ -59,8 +61,17 @@ const Video = () => {
             </div>
           ))}
       </Slider>
-    </div>
+    </Container>
   );
 };
 
 export default Video;
+
+const Container = styled.div`
+  .slick-dots li.slick-active button:before {
+    color: white;
+  }
+  .slick-dots li button:before {
+    color: white;
+  }
+`;

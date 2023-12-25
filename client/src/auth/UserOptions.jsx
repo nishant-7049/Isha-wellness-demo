@@ -101,6 +101,7 @@ const UserOptions = () => {
     }
   }, [isAuthenticated]);
 
+  const isSmallScreen = window.innerWidth < 600;
   return (
     <div className="w-fit fixed right-[2vmax] top-[6vmax] z-10 sm:top-[14vmax]">
       {isAuthenticated ? (
@@ -125,6 +126,7 @@ const UserOptions = () => {
                 icon={data.icon}
                 tooltipTitle={data.name}
                 onClick={data.func}
+                tooltipOpen={isSmallScreen}
               />
             ))}
           </SpeedDial>

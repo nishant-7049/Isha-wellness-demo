@@ -49,7 +49,10 @@ export const getAllBookings = createAsyncThunk("getAllBookings", async () => {
 export const getPaymentDetail = createAsyncThunk(
   "getPaymentDetail",
   async (id) => {
-    const config = { withCredentials: true };
+    const config = {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+    };
     const { data } = await axios.get(
       `https://ishacare.onrender.com/api/payment/${id}`,
       config
@@ -198,9 +201,26 @@ export const getUserOrders = createAsyncThunk("getUserOrders", async () => {
   return data;
 });
 
+export const rescheduleTime = createAsyncThunk(
+  "rescheduleTime",
+  async (options) => {
+    const config = {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+    };
+    const { data } = await axios.put(
+      `https://ishacare.onrender.com/api/booking/reschedule/${options.bookingId}`,
+      { dateAndTime: options.dateAndTime },
+      config
+    );
+    return data;
+  }
+);
+
 const BookingSlice = createSlice({
   name: "bookingSlice",
   initialState: {
+    consent: false,
     loading: false,
     error: null,
     order: null,
@@ -218,10 +238,46 @@ const BookingSlice = createSlice({
     isStatusUpdated: false,
     therapistBooking: null,
     facilitatorBooking: null,
+    isRescheduled: false,
     bookingDetails:
       JSON.parse(localStorage.getItem("bookingDetails")) ||
       JSON.parse(localStorage.getItem("bookingDetails") != undefined)
         ? JSON.parse(localStorage.getItem("bookingDetails"))
+        : [],
+    personalInfo:
+      JSON.parse(localStorage.getItem("personalInfo")) ||
+      JSON.parse(localStorage.getItem("personalInfo") != undefined)
+        ? JSON.parse(localStorage.getItem("personalInfo"))
+        : [],
+    presentingComplaints:
+      localStorage.getItem("presentingComplaints") ||
+      localStorage.getItem("presentingComplaints") != undefined
+        ? JSON.parse(localStorage.getItem("presentingComplaints"))
+        : [],
+    measures:
+      localStorage.getItem("measures") ||
+      localStorage.getItem("measures") != undefined
+        ? JSON.parse(localStorage.getItem("measures"))
+        : [],
+    lifestyleAndHabits:
+      localStorage.getItem("lifestyleAndHabits") ||
+      localStorage.getItem("lifestyleAndHabits") != undefined
+        ? JSON.parse(localStorage.getItem("lifestyleAndHabits"))
+        : [],
+    occupation:
+      localStorage.getItem("occupation") &&
+      localStorage.getItem("occupation") != undefined
+        ? JSON.parse(localStorage.getItem("occupation"))
+        : [],
+    adminForm:
+      localStorage.getItem("adminForm") &&
+      localStorage.getItem("adminForm") != undefined
+        ? JSON.parse(localStorage.getItem("adminForm"))
+        : [],
+    dateAndTime:
+      localStorage.getItem("pacAndTime") &&
+      localStorage.getItem("pacAndTime") != undefined
+        ? JSON.parse(localStorage.getItem("pacAndTime"))
         : [],
     info: null,
     payment: null,
@@ -232,6 +288,31 @@ const BookingSlice = createSlice({
     },
     updateBookingDetails: (state) => {
       state.bookingDetails = JSON.parse(localStorage.getItem("bookingDetails"));
+    },
+    updatePersonalInfo: (state) => {
+      state.personalInfo = JSON.parse(localStorage.getItem("personalInfo"));
+    },
+    updatePresentingComplaints: (state) => {
+      state.presentingComplaints = JSON.parse(
+        localStorage.getItem("presentingComplaints")
+      );
+    },
+    updateMeasures: (state) => {
+      state.measures = JSON.parse(localStorage.getItem("measures"));
+    },
+    updateLifestyleAndHabits: (state) => {
+      state.lifestyleAndHabits = JSON.parse(
+        localStorage.getItem("lifestyleAndHabits")
+      );
+    },
+    updateOccupation: (state) => {
+      state.occupation = JSON.parse(localStorage.getItem("occupation"));
+    },
+    updateAdminForm: (state) => {
+      state.adminForm = JSON.parse(localStorage.getItem("adminForm"));
+    },
+    updateDateAndTime: (state) => {
+      state.dateAndTime = JSON.parse(localStorage.getItem("pacAndTime"));
     },
     resetpayment: (state) => {
       state.payment = null;
@@ -247,6 +328,7 @@ const BookingSlice = createSlice({
     },
     clearPayment: (state) => {
       state.payment = null;
+      state.booking.payment = null;
     },
     resetIsUpdated: (state) => {
       state.isUpdated = false;
@@ -262,6 +344,12 @@ const BookingSlice = createSlice({
     },
     resetIsStatusUpdated: (state) => {
       state.isStatusUpdated = false;
+    },
+    setConsent: (state, action) => {
+      state.consent = action.payload;
+    },
+    resetIsRescheduled: (state) => {
+      state.isRescheduled = false;
     },
   },
   extraReducers: (builder) => {
@@ -441,6 +529,17 @@ const BookingSlice = createSlice({
       state.loading = false;
       state.error = action.error.message;
     });
+    builder.addCase(rescheduleTime.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(rescheduleTime.fulfilled, (state, action) => {
+      state.loading = false;
+      state.isRescheduled = action.payload.success;
+    });
+    builder.addCase(rescheduleTime.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    });
   },
 });
 
@@ -448,6 +547,13 @@ export default BookingSlice.reducer;
 export const {
   clearError,
   updateBookingDetails,
+  updatePersonalInfo,
+  updatePresentingComplaints,
+  updateMeasures,
+  updateLifestyleAndHabits,
+  updateOccupation,
+  updateAdminForm,
+  updateDateAndTime,
   resetpayment,
   resetOrderCreated,
   resetIsBookingDeleted,
@@ -458,4 +564,6 @@ export const {
   resetFacUpdated,
   resetBookingUpdated,
   resetIsStatusUpdated,
+  setConsent,
+  resetIsRescheduled,
 } = BookingSlice.actions;

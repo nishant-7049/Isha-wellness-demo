@@ -8,6 +8,7 @@ exports.createExercise = catchAsyncError(async (req, res, next) => {
     name: req.body.name,
     description: req.body.description,
     part: req.body.part,
+    reps: req.body.reps,
     duration: {
       min: req.body.min,
       sec: req.body.sec,

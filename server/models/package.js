@@ -17,6 +17,14 @@ const packageSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  sessions: {
+    type: Number,
+    required: true,
+  },
+  days: {
+    type: Number,
+    required: true,
+  },
 });
 
 const packageModel = mongoose.model("packages", packageSchema);

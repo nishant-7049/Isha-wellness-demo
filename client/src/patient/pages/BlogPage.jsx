@@ -4,7 +4,13 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import Loader from "../../auth/Loader";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBlogs } from "../../store/slices/EditFrontSlice";
+import {
+  getAllBlogs,
+  resetIsKeywordUpdated,
+  resetIsPageUpdated,
+  setKeyword,
+  setPage,
+} from "../../store/slices/EditFrontSlice";
 import { BiSearchAlt } from "react-icons/bi";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
@@ -12,33 +18,63 @@ import Stack from "@mui/material/Stack";
 const BlogPage = () => {
   const dispatch = useDispatch();
 
-  const [keyword, setKeyword] = useState("");
-  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
   const handlePage = (event, value) => {
-    setPage(value);
+    dispatch(setPage(value));
   };
   const itemsPerPage = 6;
-  const searchHandler = () => {
-    const options = {
-      page,
-      keyword,
-      itemsPerPage,
-    };
-    dispatch(getAllBlogs(options));
-    setKeyword("");
+  const searchHandler = (e) => {
+    e.preventDefault();
+
+    dispatch(setKeyword(search));
+    page != 1 && dispatch(setPage(1));
   };
-  const { blogs, loading, blogsCount } = useSelector(
-    (state) => state.frontpage
-  );
+  const {
+    blogs,
+    loading,
+    blogsCount,
+    keyword,
+    page,
+    isKeywordUpdated,
+    isPageUpdated,
+  } = useSelector((state) => state.frontpage);
 
   useEffect(() => {
-    const options = {
-      page,
-      keyword,
-      itemsPerPage,
-    };
-    dispatch(getAllBlogs(options));
-  }, [dispatch, page]);
+    if (!blogs) {
+      const options = {
+        page,
+        keyword,
+        itemsPerPage,
+      };
+      dispatch(getAllBlogs(options));
+    }
+  }, []);
+  useEffect(() => {
+    if (isKeywordUpdated) {
+      const query = {
+        keyword,
+        page,
+        itemsPerPage,
+      };
+
+      dispatch(getAllBlogs(query));
+      dispatch(resetIsKeywordUpdated());
+      setSearch("");
+    }
+  }, [isKeywordUpdated]);
+  useEffect(() => {
+    if (isPageUpdated) {
+      const query = {
+        keyword,
+        page,
+        itemsPerPage,
+      };
+
+      dispatch(getAllBlogs(query));
+      dispatch(resetIsPageUpdated());
+      setSearch("");
+    }
+  }, [isPageUpdated]);
   return (
     <motion.div
       initial={{ opacity: 0, y: 100 }}
@@ -48,32 +84,37 @@ const BlogPage = () => {
         transition: { type: "spring", duration: 0.5, bounce: 0.5 },
       }}
     >
-      {loading ? (
-        <Loader />
-      ) : (
-        <Container>
-          <div className="blog relative">
-            <span>Out Recent Blogs</span>
-            <h3>Our Blogs</h3>
-            <form className="absolute bottom-0 right-[6rem] border-2 flex sm:static sm:mt-[2rem]">
-              <input
-                type="text"
-                onChange={(e) => {
-                  setKeyword(e.target.value);
-                }}
-                className="bg-white p-[0.4vmax]"
-                placeholder="Search"
-              />
-              <button
-                className="bg-[#00286b] px-[0.6vmax] text-white hover:bg-white hover:text-[#00286b]"
-                onClick={searchHandler}
-              >
-                <BiSearchAlt />
-              </button>
-            </form>
-          </div>
+      <Container>
+        <div className="blog relative">
+          <span>Out Recent Blogs</span>
+          <h3>Our Blogs</h3>
+          {keyword && (
+            <p className="my-2 ml-2 text-gray-500 font-semibold ">
+              Search results for '{keyword}'
+            </p>
+          )}
+          <form className="absolute bottom-0 right-[6rem] border-2 flex sm:static sm:mt-[2rem]">
+            <input
+              type="text"
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+              className="bg-white p-[0.4vmax]"
+              placeholder="Search"
+            />
+            <button
+              className="bg-[#00286b] px-[0.6vmax] text-white hover:bg-white hover:text-[#00286b]"
+              onClick={searchHandler}
+            >
+              <BiSearchAlt />
+            </button>
+          </form>
+        </div>
+        {loading ? (
+          <Loader />
+        ) : (
           <div className="card-con">
-            {blogs &&
+            {blogs && blogs.length > 0 ? (
               blogs.map((data) => {
                 const date = new Date(data.createdAt);
                 const currDate = `${date.getHours()}h${date.getMinutes()}m-${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
@@ -107,21 +148,26 @@ const BlogPage = () => {
                     </div>
                   </div>
                 );
-              })}
+              })
+            ) : (
+              <p className="w-fit mx-auto text-gray-400 font-semibold my-2">
+                No Search Results for keyword '{keyword};'
+              </p>
+            )}
           </div>
-          <Stack spacing={2} className="my-[2rem] mx-auto w-fit">
-            <Pagination
-              count={Math.ceil(blogsCount / itemsPerPage)}
-              variant="outlined"
-              shape="rounded"
-              size="large"
-              color="primary"
-              page={page}
-              onChange={handlePage}
-            />
-          </Stack>
-        </Container>
-      )}
+        )}
+        <Stack spacing={2} className="my-[2rem] mx-auto w-fit">
+          <Pagination
+            count={Math.ceil(blogsCount / itemsPerPage)}
+            variant="outlined"
+            shape="rounded"
+            size="large"
+            color="primary"
+            page={page}
+            onChange={handlePage}
+          />
+        </Stack>
+      </Container>
     </motion.div>
   );
 };
@@ -144,7 +190,6 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 2rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     > span{
       color: #00286b;
     }

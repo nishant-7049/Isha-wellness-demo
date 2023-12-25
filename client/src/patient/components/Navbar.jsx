@@ -53,7 +53,7 @@ function Navbar() {
           </Link>
           {isAuthenticated ? (
             <span>
-              <Link to="/booknow">
+              <Link to="/book/personalform">
                 <button>Book Now</button>
               </Link>
             </span>
@@ -131,8 +131,10 @@ function Navbar() {
                 onClick={() => {
                   setToggle(!toggle);
                 }}
-                to="/booknow"
-                className={location.pathname == "/booknow" ? "active" : ""}
+                to="/personalform"
+                className={
+                  location.pathname == "/book/personalform" ? "active" : ""
+                }
               >
                 <button>Book Now</button>
               </Link>
