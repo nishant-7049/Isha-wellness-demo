@@ -43,6 +43,7 @@ const allowedOrigins = [
   "https://apnicompany.tech/incharge/orders",
   "https://apnicompany.tech/incharge/orderDetail/:id",
   "https://apnicompany.tech/admin/dashboard",
+  "https://apnicompany.tech/forumyy",
 ];
 
 app.use(
@@ -79,6 +80,36 @@ app.use("/api/treatment", require("./routes/treatmentRoute"));
 app.use("/api/session", require("./routes/sessionRoute"));
 app.use("/api/dashboard", require("./routes/dashboardRoute"));
 
+cron.schedule(
+  "42 21 * * *",
+  async function () {
+    console.log("sending outcome messages .....");
+    const sessions = await getLatestSession();
+    for (let session of sessions) {
+      if (
+        new Date(session.latestSession).getTime() + 1 * 1000 * 60 <
+          Date.now() &&
+        (session.isOutcomeFormSent == null ||
+          session.isOutcomeFormSent == false)
+      ) {
+        console.log(session);
+        const ses = await Session.findById(session.sessionId);
+        const outcomeToken = await ses.getOutcomeToken();
+        const link = `http://localhost:5173/book/outcome/${outcomeToken}`;
+        const options = {
+          body: `From IWC, \n Dear ${session.name}, \nYou have not attended any session between ten days, we would like to get your response. Please fill this outcome form to get to know the reason of dropout. \n ${link} \n Click aboce link to fill outcome form.`,
+          to: session.phone,
+        };
+        await sendSms(options);
+        ses.isOutcomeFormSent = true;
+        await ses.save();
+      }
+    }
+  },
+  {
+    timezone: "Asia/Kolkata",
+  }
+);
 //Error Handlers (Should be the last pice of middleware)
 app.use(errorHandler);
 
