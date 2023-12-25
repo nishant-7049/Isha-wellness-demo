@@ -43,7 +43,7 @@ const allowedOrigins = [
   "https://apnicompany.tech/incharge/orders",
   "https://apnicompany.tech/incharge/orderDetail/:id",
   "https://apnicompany.tech/admin/dashboard",
-  "https://apnicompany.tech/forumyy",
+  "https://apnicompany.tech/forum",
 ];
 
 app.use(
