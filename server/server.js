@@ -42,6 +42,7 @@ const allowedOrigins = [
   "https://apnicompany.tech/therapist/orders",
   "https://apnicompany.tech/incharge/orders",
   "https://apnicompany.tech/incharge/orderDetail/:id",
+  "https://apnicompany.tech/admin/dashboard",
 ];
 
 app.use(
