@@ -46,6 +46,8 @@ const allowedOrigins = [
   "https://apnicompany.tech/forum",
 ];
 
+app.use(cookieParser());
+
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -58,8 +60,6 @@ app.use(
     credentials: true, // Allow cookies to be sent in CORS requests
   })
 );
-
-app.use(cookieParser());
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
