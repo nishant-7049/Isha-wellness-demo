@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Container from "./BookingForm";
 import Consent from "./Consent";
 import Select from "react-dropdown-select";
-import LifestyleProblems from "./lifestyleProblems";
+import LifestyleProblems from "./LifestyleProblems";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { updateLifestyleAndHabits } from "../../../store/slices/bookingSlice";
