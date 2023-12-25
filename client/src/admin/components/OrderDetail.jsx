@@ -1084,10 +1084,13 @@ const OrderDetail = () => {
                                   <label>Batch:</label>
                                   <select
                                     className="bg-white text-gray-400 border-2 py-2 px-4"
-                                    value={newDateAndTime}
                                     required
                                     onChange={(e) => {
-                                      setNewDateAndTime(e.target.value);
+                                      setNewDateAndTime(
+                                        new Date(newDate).getTime() +
+                                          parseInt(e.target.value) -
+                                          5.5 * 60 * 60 * 1000
+                                      );
                                     }}
                                   >
                                     <option value="">Choose</option>
