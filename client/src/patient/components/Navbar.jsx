@@ -62,7 +62,7 @@ function Navbar() {
               to="/login"
               className={location.pathname == "/register" ? "active" : ""}
             >
-              <button>SignUp</button>
+              <button>Login</button>
             </Link>
           )}
         </Links>
@@ -146,7 +146,7 @@ function Navbar() {
                 to="/login"
                 className={location.pathname == "/register" ? "active" : ""}
               >
-                <button>SignUp</button>
+                <button>Login</button>
               </Link>
             )}
           </LinksSmall>
