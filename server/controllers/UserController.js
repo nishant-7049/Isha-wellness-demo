@@ -131,7 +131,7 @@ exports.resetPassword = catchAsyncError(async (req, res, next) => {
   user.resetPasswordTime = undefined;
   user.resetPasswordToken = undefined;
 
-  await user.save();
+  await user.save({ validateBeforeSave: false });
   console.log("password saved");
   setToken(user, 200, res);
 });
