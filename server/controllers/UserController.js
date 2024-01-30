@@ -76,12 +76,12 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
   await user.save({ validateBeforeSave: false });
 
   // for production
-  // const resetPasswordUrl = `${req.protocol}://${req.get(
-  //   "host"
-  // )}/api/password/reset/${resetToken}`;
+  const resetPasswordUrl = `${req.protocol}://${req.get(
+    "host"
+  )}/api/password/reset/${resetToken}`;
 
   //for development
-  const resetPasswordUrl = `http://localhost:5173/password/reset/${resetToken}`;
+  // const resetPasswordUrl = `http://localhost:5173/password/reset/${resetToken}`;
 
   const message = `If you want to reset your password of GetSome than click on link below \n\n ${resetPasswordUrl} \n\n If you haven't requested for reset password link than kindly ignore the email.`;
 
