@@ -2,9 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getAllExercises = createAsyncThunk("getAllExercises", async () => {
-  const { data } = await axios.get(
-    "https://ishacare.onrender.com/api/exercise/"
-  );
+  const { data } = await axios.get("https://ishacare.onrender.com/api/exercise/");
   return data;
 });
 
@@ -15,11 +13,7 @@ export const createExercise = createAsyncThunk(
       headers: { "Content-Type": "multipart/form-data" },
       withCredentials: true,
     };
-    const { data } = await axios.post(
-      "https://ishacare.onrender.com/api/exercise/new",
-      options,
-      config
-    );
+    const { data } = await axios.post("https://ishacare.onrender.com/api/exercise/new", options, config);
     return data;
   }
 );
@@ -29,10 +23,7 @@ export const deleteExercise = createAsyncThunk("deleteExercise", async (id) => {
     headers: { "Content-Type": "application/json" },
     withCredentials: true,
   };
-  const { data } = await axios.delete(
-    `https://ishacare.onrender.com/api/exercise/${id}`,
-    config
-  );
+  const { data } = await axios.delete(`https://ishacare.onrender.com/api/exercise/${id}`, config);
   return data;
 });
 
@@ -58,10 +49,7 @@ export const getExerciseDetail = createAsyncThunk(
     const config = {
       withCredentials: true,
     };
-    const { data } = await axios.get(
-      `https://ishacare.onrender.com/api/exercise/${id}`,
-      config
-    );
+    const { data } = await axios.get(`https://ishacare.onrender.com/api/exercise/${id}`, config);
     return data;
   }
 );

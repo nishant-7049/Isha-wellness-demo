@@ -4,26 +4,20 @@ import axios from "axios";
 export const getAllUsers = createAsyncThunk("getAllUsers", async () => {
   const config = { withCredentials: true };
 
-  const { data } = await axios.get(
-    "https://ishacare.onrender.com/api/admin/users",
-    config
-  );
+  const { data } = await axios.get("https://ishacare.onrender.com/api/admin/users", config);
   return data;
 });
 
 export const deleteUser = createAsyncThunk("deleteUser", async (id) => {
   const config = { withCredentials: true };
 
-  const { data } = await axios.delete(
-    `https://ishacare.onrender.com/api/admin/user/delete/${id}`,
-    config
-  );
+  const { data } = await axios.delete(`https://ishacare.onrender.com/api/admin/user/delete/${id}`, config);
   return data;
 });
 
 export const editUser = createAsyncThunk("editUser", async (options) => {
   const config = {
-    headers: { "Content-Type": "multipart/form-data" },
+    headers: { "Content-Type": "application/json" },
     withCredentials: true,
   };
   const { data } = await axios.put(
@@ -37,39 +31,27 @@ export const editUser = createAsyncThunk("editUser", async (options) => {
 export const getUser = createAsyncThunk("getUser", async (id) => {
   const config = { withCredentials: true };
 
-  const { data } = await axios.get(
-    `https://ishacare.onrender.com/api/admin/user/${id}`,
-    config
-  );
+  const { data } = await axios.get(`https://ishacare.onrender.com/api/admin/user/${id}`, config);
   return data;
 });
 
 export const getBooker = createAsyncThunk("getBooker", async (id) => {
   const config = { withCredentials: true };
 
-  const { data } = await axios.get(
-    `https://ishacare.onrender.com/api/admin/user/${id}`,
-    config
-  );
+  const { data } = await axios.get(`https://ishacare.onrender.com/api/admin/user/${id}`, config);
   return data;
 });
 
 export const getTher = createAsyncThunk("getTher", async (id) => {
   const config = { withCredentials: true };
 
-  const { data } = await axios.get(
-    `https://ishacare.onrender.com/api/admin/user/${id}`,
-    config
-  );
+  const { data } = await axios.get(`https://ishacare.onrender.com/api/admin/user/${id}`, config);
   return data;
 });
 export const getFac = createAsyncThunk("getFac", async (id) => {
   const config = { withCredentials: true };
 
-  const { data } = await axios.get(
-    `https://ishacare.onrender.com/api/admin/user/${id}`,
-    config
-  );
+  const { data } = await axios.get(`https://ishacare.onrender.com/api/admin/user/${id}`, config);
   return data;
 });
 
@@ -91,10 +73,7 @@ export const getTherapists = createAsyncThunk("getTherapists", async (city) => {
     headers: { "Content-Type": "application/json" },
     withCredentials: true,
   };
-  const { data } = await axios.get(
-    `https://ishacare.onrender.com/api/therapists/${city}`,
-    config
-  );
+  const { data } = await axios.get(`https://ishacare.onrender.com/api/therapists/${city}`, config);
   return data;
 });
 
@@ -105,10 +84,7 @@ export const getFacilitators = createAsyncThunk(
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     };
-    const { data } = await axios.get(
-      `https://ishacare.onrender.com/api/facilitators/${city}`,
-      config
-    );
+    const { data } = await axios.get(`https://ishacare.onrender.com/api/facilitators/${city}`, config);
     return data;
   }
 );

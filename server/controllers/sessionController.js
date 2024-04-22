@@ -98,7 +98,7 @@ exports.getLatestSession = async () => {
       },
     },
     {
-      $unwind: { path: "$session", preserveNullAndEmptyArrays: true },
+      $unwind: { path: "$session" },
     },
     {
       $sort: {

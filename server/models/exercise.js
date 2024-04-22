@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// TOOD: add id of admin who added the exercise
 const exerciseSchema = new mongoose.Schema({
   name: {
     type: String,

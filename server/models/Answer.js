@@ -11,6 +11,7 @@ const ForumAnswerSchema = new mongoose.Schema({
   },
   editedAnswer: {
     type: String,
+    maxlength: 300,
   },
   isEdited: {
     type: Boolean,

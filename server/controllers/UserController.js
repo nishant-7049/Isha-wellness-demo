@@ -76,10 +76,12 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
   await user.save({ validateBeforeSave: false });
 
   // for production
-  const resetPasswordUrl = `https://apnicompany.tech/password/reset/${resetToken}`;
+  // const resetPasswordUrl = `${req.protocol}://${req.get(
+  //   "host"
+  // )}/api/password/reset/${resetToken}`;
 
   //for development
-  // const resetPasswordUrl = `http://localhost:5173/password/reset/${resetToken}`;
+  const resetPasswordUrl = `https://ishawellness.netlify.app//password/reset/${resetToken}`;
 
   const message = `If you want to reset your password of GetSome than click on link below \n\n ${resetPasswordUrl} \n\n If you haven't requested for reset password link than kindly ignore the email.`;
 
@@ -123,12 +125,10 @@ exports.resetPassword = catchAsyncError(async (req, res, next) => {
   }
 
   user.password = req.body.newPassword;
-
   user.resetPasswordTime = undefined;
   user.resetPasswordToken = undefined;
 
-  await user.save({ validateBeforeSave: false });
-
+  await user.save();
   setToken(user, 200, res);
 });
 
@@ -147,9 +147,11 @@ exports.updatePassword = catchAsyncError(async (req, res, next) => {
   const IsMatched = user.checkPassword(req.body.oldPassword);
 
   if (!IsMatched) {
+    console.log("Old Password does not match");
     return next(new errorResponse("Old Password does not match", 400));
   }
   if (req.body.newPassword !== req.body.confirmPassword) {
+    console.log("new password and confirm password does not match");
     return next(
       new errorResponse("new password and confirm password does not match", 400)
     );

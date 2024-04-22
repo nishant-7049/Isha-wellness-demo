@@ -1,7 +1,7 @@
 const express = require("express");
 const {
   createBooking,
-  getAllBookings,
+  getClusterBooking,
   deleteBooking,
   getBookingDetail,
   setTherapist,
@@ -12,6 +12,7 @@ const {
   getUserBookings,
   getBookingDetailForUser,
   setScheduledTime,
+  getBookingByNameAndPhone,
 } = require("../controllers/bookingController");
 const {
   isAuthenticatedUser,
@@ -22,7 +23,7 @@ const {
 const router = express.Router();
 
 router.route("/new").post(isAuthenticatedUser, createBooking);
-router.route("/all").get(isAuthenticatedUser, isIncharge(), getAllBookings);
+router.route("/all").get(isAuthenticatedUser, isIncharge(), getClusterBooking);
 router
   .route("/delete/:id")
   .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteBooking);
@@ -59,4 +60,5 @@ router
 router
   .route("/reschedule/:bookingId")
   .put(isAuthenticatedUser, setScheduledTime);
+router.route("/checkForBooking", isAuthenticatedUser, getBookingByNameAndPhone)
 module.exports = router;

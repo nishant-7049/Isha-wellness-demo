@@ -5,18 +5,10 @@ export const login = createAsyncThunk(
   "login",
   async (object, { rejectWithValue }) => {
     try {
-      const config = {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      };
-      const data = await axios.post(
-        "https://ishacare.onrender.com/api/login",
-        {
-          email: object.loginEmail,
-          password: object.loginPassword,
-        },
-        config
-      );
+      const data = await axios.post("https://ishacare.onrender.com/api/login", {
+        email: object.loginEmail,
+        password: object.loginPassword,
+      });
       return data.data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -25,34 +17,18 @@ export const login = createAsyncThunk(
 );
 
 export const register = createAsyncThunk("register", async (formData) => {
-  const config = {
-    headers: { "Content-Type": "application/json" },
-    withCredentials: true,
-  };
-  const { data } = await axios.post(
-    "https://ishacare.onrender.com/api/register",
-    formData,
-    config
-  );
+  const config = { headers: { "Content-Type": "multipart/form-data" } };
+  const { data } = await axios.post("https://ishacare.onrender.com/api/register", formData, config);
   return data;
 });
 
 export const loadUser = createAsyncThunk("loaduser", async () => {
-  const config = {
-    withCredentials: true,
-  };
-  const { data } = await axios.get(
-    "https://ishacare.onrender.com/api/me",
-    config
-  );
+  const { data } = await axios.get("https://ishacare.onrender.com/api/me");
   return data;
 });
 
 export const logOut = createAsyncThunk("logout", async () => {
-  const config = {
-    withCredentials: true,
-  };
-  await axios.get("https://ishacare.onrender.com/api/logout", config);
+  await axios.get("https://ishacare.onrender.com/api/logout");
 });
 
 const userSlice = createSlice({
@@ -60,7 +36,7 @@ const userSlice = createSlice({
   initialState: {
     loading: false,
     error: null,
-    user: {},
+    user: null,
     isAuthenticated: false,
   },
   reducers: {

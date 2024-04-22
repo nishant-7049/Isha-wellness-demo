@@ -91,7 +91,6 @@ const Users = () => {
       minWidth: 100,
       flex: 0.3,
       renderCell: (cellValues) => {
-        console.log(cellValues.row.isIncharge);
         const updateUser = (e) => {
           const options = {
             id: cellValues.id,

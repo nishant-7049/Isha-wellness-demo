@@ -3,6 +3,12 @@ const mongoose = require("mongoose");
 const treatmentSchema = new mongoose.Schema({
   exercises: [
     {
+      mode:{
+        type: String,
+        enum: ['homework','regular'],
+        default:'regular',
+        required: true
+      },
       exercise: mongoose.Schema.Types.ObjectId,
       reps: {
         type: Number,

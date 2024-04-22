@@ -4,15 +4,8 @@ import axios from "axios";
 export const updateProfile = createAsyncThunk(
   "updateProfile",
   async (formData) => {
-    const config = {
-      headers: { "Content-Type": "multipart/formdata" },
-      withCredentials: true,
-    };
-    const { data } = await axios.put(
-      "https://ishacare.onrender.com/api/update",
-      formData,
-      config
-    );
+    const config = { headers: { "Content-Type": "multipart/formdata" } };
+    const { data } = await axios.put("https://ishacare.onrender.com/api/update", formData, config);
     return data;
   }
 );
@@ -20,15 +13,8 @@ export const updateProfile = createAsyncThunk(
 export const updatePassword = createAsyncThunk(
   "updatePassword",
   async (passwords) => {
-    const config = {
-      headers: { "Content-Type": "application/json" },
-      withCredentials: true,
-    };
-    const { data } = await axios.put(
-      "https://ishacare.onrender.com/api/password/update",
-      passwords,
-      config
-    );
+    const config = { headers: { "Content-Type": "application/json" } };
+    const { data } = await axios.put("https://ishacare.onrender.com/api/password/update", passwords, config);
     return data;
   }
 );
@@ -37,10 +23,7 @@ export const forgotPassword = createAsyncThunk(
   "forgotPassword",
   async (email) => {
     const e = { email };
-    const { data } = await axios.post(
-      "https://ishacare.onrender.com/api/password/forgot",
-      e
-    );
+    const { data } = await axios.post("https://ishacare.onrender.com/api/password/forgot", e);
     return data;
   }
 );

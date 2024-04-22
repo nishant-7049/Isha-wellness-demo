@@ -18,7 +18,6 @@ const Container = styled.div`
     display: flex;
     width: 25%;
     flex-direction: column;
-    gap: 1rem;
     margin: 0 auto;
   }
   .det-head {

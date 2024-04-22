@@ -88,8 +88,8 @@ const LoginSignUp = () => {
         <Loader />
       ) : (
         <>
-          <div className="w-[100%] min-h-[100vh] flex justify-center items-center bg-[#F0F0F0] p-28">
-            <div className="w-[30vmax]  flex flex-col border-2 shadow-lg bg-white sm:w-[40vmax]">
+          <div className="w-full min-h-[100vh] flex justify-center items-center bg-[#F0F0F0]">
+            <div className="w-[30vmax]  flex flex-col border-2 shadow-lg bg-white sm:w-4/5">
               <div className="w-full border-b-2">
                 <button
                   onClick={switchTab}

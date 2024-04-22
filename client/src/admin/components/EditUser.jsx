@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../auth/Loader";
 import ErrorAlert from "../../auth/ErrorAlert";
 import { AiOutlineUser, AiFillMail } from "react-icons/ai";
+import { FaChevronDown } from "react-icons/fa";
+
 import {
   clearUser,
   editUser,
@@ -12,12 +14,14 @@ import {
   resetIsUpdated,
 } from "../../store/slices/allUserSlice";
 
+const clusters = ["Indore", "Ratlam", "Jaora", "Ahmedabad"];
 const EditUser = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState();
-  const [cluster, setCluster] = useState();
+  const [selectedClusters, setSelectedClusters] = useState([]);
+  const [isSelectingClusters, setIsSelectingClusters] = useState(false);
 
   const { id } = useParams();
 
@@ -26,15 +30,16 @@ const EditUser = () => {
   );
   const submitHandler = (e) => {
     e.preventDefault();
-    const formdata = new FormData();
-    formdata.set("name", name);
-    formdata.set("email", email);
-    formdata.set("role", role);
-    formdata.set("cluster", cluster);
+    const data = {
+      name,
+      email,
+      role,
+      cluster: selectedClusters,
+    };
 
     const options = {
       id,
-      data: formdata,
+      data,
     };
     dispatch(editUser(options));
   };
@@ -51,7 +56,7 @@ const EditUser = () => {
       setName(user.name);
       setEmail(user.email);
       setRole(user.role);
-      setCluster(user.cluster);
+      setSelectedClusters(user.cluster);
     }
   }, [dispatch, isUpdated, user]);
 
@@ -107,18 +112,43 @@ const EditUser = () => {
                 <option value="therapist">therapist</option>
               </select>
 
-              <select
-                className="bg-white"
-                onChange={(e) => {
-                  setCluster(e.target.value);
-                }}
-              >
-                <option value={cluster}>{cluster}</option>
-                <option value="Indore">Indore</option>
-                <option value="Ratlam">Ratlam</option>
-                <option value="Jaora">Jaora</option>
-                <option value="Ahmedabad">Ahmedabad</option>
-              </select>
+              <div>
+                <div
+                  className="flex gap-6 justify-center items-center"
+                  onClick={() => setIsSelectingClusters(!isSelectingClusters)}
+                >
+                  <div className="text-md cursor-default">Clusters</div>
+                  <FaChevronDown className="text-xs" />
+                </div>
+
+                {isSelectingClusters && (
+                  <div className="border-[1px] shadow-lg rounded-lg absolute bg-white">
+                    {clusters.map((cluster) => (
+                      <div
+                        key={cluster}
+                        className={`${
+                          selectedClusters.includes(cluster)
+                            ? "bg-[#00286b] text-white"
+                            : ""
+                        } p-1 text-md pointer-default`}
+                        onClick={() => {
+                          setSelectedClusters((prevClusters) => {
+                            if (prevClusters.includes(cluster)) {
+                              return prevClusters.filter(
+                                (clus) => clus != cluster
+                              );
+                            } else {
+                              return [...prevClusters, cluster];
+                            }
+                          });
+                        }}
+                      >
+                        {cluster}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
 
               <input
                 type="submit"

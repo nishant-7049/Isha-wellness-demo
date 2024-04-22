@@ -13,24 +13,53 @@ const UserOrders = () => {
   const { packages } = useSelector((state) => state.package);
   const cols = [
     {
-      field: "problem",
-      headerName: "Problem",
+      field: "name",
+      headerName: "Patient Name",
+      minWidth: 150,
+      flex: 0.3,
+      headerClassName: "text-[#00286b] font-semibold",
+    },
+    {
+      field: "location",
+      headerName: "Location",
       minWidth: 200,
       flex: 0.3,
       headerClassName: "text-[#00286b] font-semibold",
     },
     {
-      field: "date",
-      headerName: "Date",
-      type: "Date",
+      field: "phone",
+      headerName: "Phone No.",
+      minWidth: 120,
+      flex: 0.3,
+      headerClassName: "text-[#00286b] font-semibold",
+    },
+    {
+      field: "sessions",
+      headerName: "Sessions Left",
       minWidth: 100,
+      type: "number",
+      flex: 0.3,
+      headerClassName: "text-[#00286b] font-semibold",
+    },
+    {
+      field: "valid",
+      headerName: "Valid Till",
+      minWidth: 120,
+      flex: 0.3,
+      headerClassName: "text-[#00286b] font-semibold",
+    },
+    {
+      field: "date",
+      headerName: "Scheduled Date",
+      type: "Date",
+      minWidth: 120,
       flex: 0.3,
       headerClassName: "text-[#00286b] font-semibold",
     },
     {
       field: "time",
-      headerName: "Time",
-      minWidth: 100,
+      headerName: "Batch",
+      minWidth: 120,
       flex: 0.3,
       headerClassName: "text-[#00286b] font-semibold",
     },
@@ -46,18 +75,18 @@ const UserOrders = () => {
       headerName: "Is Paid",
       minWidth: 100,
       flex: 0.3,
+      headerClassName: "text-[#00286b] font-semibold",
       renderCell: (cellValues) => {
         return (
           <>
-            {cellValues.row.isPaid == true ? (
-              <p className="text-green-400">Paid</p>
+            {cellValues.row.isPaid ? (
+              <p className="text-green-400 font-semibold">Paid</p>
             ) : (
-              <p className="text-red-800">Unpaid</p>
+              <p className="text-red-800 font-semibold">Unpaid</p>
             )}
           </>
         );
       },
-      headerClassName: "text-[#00286b] font-semibold",
     },
     {
       field: "status",
@@ -71,25 +100,26 @@ const UserOrders = () => {
       headerName: "Actions",
       minWidth: 100,
       flex: 0.3,
-      type: "number",
       headerClassName: "text-[#00286b] font-semibold",
       renderCell: (cellValues) => (
         <div className="flex text-2xl  justify-end">
-          <Link to={`/user/orderDetail/${cellValues.id}`}>
-            <BiEdit className="text-green-400" />
-          </Link>
+          {user.role == "admin" ? (
+            <Link to={`/admin/order/detail/${cellValues.id}`}>
+              <BiEdit className="text-green-400" />
+            </Link>
+          ) : (
+            <Link to={`/incharge/orderDetail/${cellValues.id}`}>
+              <BiEdit className="text-green-400" />
+            </Link>
+          )}
         </div>
       ),
     },
   ];
   const rows = [];
+  let paymentType;
   bookings &&
     bookings.map((ther) => {
-      const pac =
-        packages &&
-        packages.filter((pack) => {
-          return ther.packageAndDate.package == pack._id;
-        });
       const date = new Date(ther.packageAndDate.dateAndTime);
       rows.push({
         name: ther.personal.name,
@@ -98,8 +128,11 @@ const UserOrders = () => {
           date.getHours() + 2
         }:${date.getMinutes()}`,
         status: ther.status,
-        problem: ther.complaints.problem,
-        payment: pac && pac[0] && pac[0].paymentType,
+        location: ther.personal.location + ": " + ther.personal.address,
+        phone: ther.personal.phone,
+        sessions: ther.sessions,
+        valid: new Date(ther.validTill).toISOString().split("T")[0],
+        payment: ther.paymentType,
         isPaid: ther.payment ? true : false,
         id: ther._id,
       });
@@ -112,7 +145,7 @@ const UserOrders = () => {
   }, [dispatch]);
   return (
     <div className="w-full mt-[6vmax]">
-      <h1 className="text-3xl border-b-4 border-[#00286b] text-[#00286b] pb-2 font-bold w-fit text-center mx-auto sm:text-2xl sm:w-4/5">
+      <h1 className="text-3xl border-b-4 border-[#00286b] text-[#00286b] pb-2 font-bold w-fit text-center mx-auto sm:text-2xl sm:w-4/5 sm:mt-20">
         My Orders
       </h1>
       <DataGrid

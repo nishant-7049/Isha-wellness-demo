@@ -103,7 +103,6 @@ const TherapistOrders = () => {
       headerName: "Actions",
       minWidth: 100,
       flex: 0.3,
-      type: "number",
       headerClassName: "text-[#00286b] font-semibold",
       renderCell: (cellValues) => (
         <div className="flex text-2xl  justify-end">
@@ -145,7 +144,7 @@ const TherapistOrders = () => {
   }, [dispatch]);
 
   return (
-    <div className="w-full mt-[6vmax]">
+    <div className="w-full my-8">
       {loading ? (
         <Loader />
       ) : (
@@ -153,10 +152,19 @@ const TherapistOrders = () => {
           <h1 className="text-2xl border-b-4 border-[#00286b] text-[#00286b] pb-2 font-bold w-fit text-center mx-auto sm:text-2xl sm:w-4/5">
             Therapist Panel
           </h1>
-          <div className="w-[90%] p-4 shadow-lg mx-auto my-8">
+          
+          <div className="w-[90%] p-4 shadow-lg mx-auto my-8 relative">
             <h1 className="text-[#00286b] text-xl text-center font-semibold mb-4">
               My Patients
             </h1>
+            <div className="flex justify-center">
+            <Link
+              to="/enquiry"
+              className="text-[#00286b] cursor-pointer absolute right-20 top-4 font-bold sm:static sm:mx-auto p-2"
+              >
+              view enquiries
+            </Link>
+              </div>
             <div className="h-[80vh] w-full">
               <DataGrid
                 rows={rows}

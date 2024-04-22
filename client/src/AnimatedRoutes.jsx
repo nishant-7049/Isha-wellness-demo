@@ -55,6 +55,8 @@ import TreatmentStart from "./facilitator/components/TreatmentStart";
 import SessionCompleted from "./facilitator/components/SessionCompleted";
 import OutcomeForm from "./patient/components/Booking/OutcomeForm";
 import OutcomeFormTherapist from "./therapist/components/OutcomeFormTherapist.jsx";
+import Enquiries from "./admin/components/Enquiries.jsx";
+import AdminEnquiries from "./admin/components/AdminEnquiries.jsx";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -185,6 +187,13 @@ const AnimatedRoutes = () => {
         )}
         {isAuthenticated && user.isIncharge === true && (
           <Route exact path="/incharge/orders" element={<OrderList />} />
+        )}
+        {isAuthenticated &&
+          (!user.role == "user" || user.isIncharge == true) && (
+            <Route exact path="/enquiry" element={<Enquiries />} />
+          )}
+        {isAuthenticated && user.role == "admin" && (
+          <Route exact path="/admin/enquiry" element={<AdminEnquiries />} />
         )}
         {isAuthenticated &&
         (user.isIncharge === true ||

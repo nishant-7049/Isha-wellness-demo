@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// TOOD: add id of admin who added the blogpost
 const blogSchema = new mongoose.Schema({
   name: {
     type: String,

@@ -2,15 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const createTesti = createAsyncThunk("createTesti", async (fd) => {
-  const config = {
-    headers: { "Content-Type": "multipart/form-data" },
-    withCredentials: true,
-  };
-  const { data } = await axios.post(
-    "https://ishacare.onrender.com/api/testi/create",
-    fd,
-    config
-  );
+  const config = { headers: { "Content-Type": "multipart/form-data" } };
+  const { data } = await axios.post("https://ishacare.onrender.com/api/testi/create", fd, config);
   return data;
 });
 
@@ -22,34 +15,17 @@ export const getTesti = createAsyncThunk("getTestimonial", async (options) => {
 });
 
 export const deleteTesti = createAsyncThunk("deleteTestimonial", async (id) => {
-  const config = {
-    headers: { "Content-Type": "application/json" },
-    withCredentials: true,
-  };
-  const { data } = await axios.delete(
-    `https://ishacare.onrender.com/api/testi/${id}`,
-    config
-  );
+  const { data } = await axios.delete(`https://ishacare.onrender.com/api/testi/${id}`);
   return data;
 });
 
 export const getSingleTesti = createAsyncThunk("getTestiDetail", async (id) => {
-  const config = {
-    headers: { "Content-Type": "application/json" },
-    withCredentials: true,
-  };
-  const { data } = await axios.get(
-    `https://ishacare.onrender.com/api/testi/${id}`,
-    config
-  );
+  const { data } = await axios.get(`https://ishacare.onrender.com/api/testi/${id}`);
   return data;
 });
 
 export const editTesti = createAsyncThunk("editTesti", async (options) => {
-  const config = {
-    headers: { "Content-Type": "multipart/form-data" },
-    withCredentials: true,
-  };
+  const config = { headers: { "Content-Type": "multipart/form-data" } };
   const { data } = await axios.put(
     `https://ishacare.onrender.com/api/testi/${options.id}`,
     options.formdata,

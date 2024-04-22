@@ -33,7 +33,7 @@ const PatientNumberLineChart = ({
 
   const data = {
     labels:
-      interval == "Day" ? daysOfMonth : interval == "Month" ? months : years,
+      interval == "day" ? daysOfMonth : interval == "month" ? months : years,
     datasets: [
       {
         label: ["At Centre"],

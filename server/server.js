@@ -31,36 +31,23 @@ exports.instance = new Razorpay({
 
 const app = express();
 const allowedOrigins = [
-  "https://apnicompany.tech",
+  "https://ishawellness.netlify.app",
   "http://localhost:5173",
-  "https://apnicompany.tech/account",
-  "https://apnicompany.tech/admin/edit/frontend",
-  "https://apnicompany.tech/admin/users",
-  "https://apnicompany.tech/admin/packages",
-  "https://apnicompany.tech/admin/exercises",
-  "https://apnicompany.tech/admin/faq/edit/:id",
-  "https://apnicompany.tech/admin/orders",
-  "https://apnicompany.tech/therapist/orders",
-  "https://apnicompany.tech/incharge/orders",
-  "https://apnicompany.tech/incharge/orderDetail/:id",
-  "https://apnicompany.tech/admin/dashboard",
-  "https://apnicompany.tech/forum",
+  "https://ishawellness.netlify.app/account",
+  "https://ishawellness.netlify.app/admin/edit/frontend",
+  "https://ishawellness.netlify.app/admin/users",
+  "https://ishawellness.netlify.app/admin/packages",
+  "https://ishawellness.netlify.app/admin/exercises",
+  "https://ishawellness.netlify.app/admin/faq/edit/:id",
+  "https://ishawellness.netlify.app/admin/orders",
+  "https://ishawellness.netlify.app/therapist/orders",
+  "https://ishawellness.netlify.app/incharge/orders",
+  "https://ishawellness.netlify.app/incharge/orderDetail/:id",
+  "https://ishawellness.netlify.app/admin/dashboard",
+  "https://ishawellness.netlify.app/forum",
 ];
 
 app.use(cookieParser());
-
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (allowedOrigins.includes(origin) || !origin) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true, // Allow cookies to be sent in CORS requests
-  })
-);
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -80,23 +67,27 @@ app.use("/api/booking", require("./routes/bookingRoute"));
 app.use("/api/treatment", require("./routes/treatmentRoute"));
 app.use("/api/session", require("./routes/sessionRoute"));
 app.use("/api/dashboard", require("./routes/dashboardRoute"));
+app.use("/api/enquiry", require("./routes/enquiryRoute"));
 
 cron.schedule(
-  "42 21 * * *",
+  "15 13 * * *",
   async function () {
     console.log("sending outcome messages .....");
     const sessions = await getLatestSession();
+    console.log(sessions);
     for (let session of sessions) {
       if (
         new Date(session.latestSession).getTime() + 1 * 1000 * 60 <
           Date.now() &&
         (session.isOutcomeFormSent == null ||
-          session.isOutcomeFormSent == false)
+          session.isOutcomeFormSent == false) &&
+        session.sessionid !== null
       ) {
         console.log(session);
         const ses = await Session.findById(session.sessionId);
         const outcomeToken = await ses.getOutcomeToken();
-        const link = `http://localhost:5173/book/outcome/${outcomeToken}`;
+        const link = `https://ishawellness.netlify.app/book/outcome/${outcomeToken}`;
+        console.log(link);
         const options = {
           body: `From IWC, \n Dear ${session.name}, \nYou have not attended any session between ten days, we would like to get your response. Please fill this outcome form to get to know the reason of dropout. \n ${link} \n Click aboce link to fill outcome form.`,
           to: session.phone,
@@ -111,10 +102,13 @@ cron.schedule(
     timezone: "Asia/Kolkata",
   }
 );
+
 //Error Handlers (Should be the last pice of middleware)
 app.use(errorHandler);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
+
+// app.use(cors())
 
 const server = app.listen(PORT, () => {
   console.log(`Server Started at port: ${PORT}`);

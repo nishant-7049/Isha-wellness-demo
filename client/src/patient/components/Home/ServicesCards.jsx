@@ -141,7 +141,7 @@ const Container = styled.div`
   // }
 
   .card {
-    height: 18rem;
+    height: 19rem;
     text-align: center;
     display: flex;
     flex-direction: column;

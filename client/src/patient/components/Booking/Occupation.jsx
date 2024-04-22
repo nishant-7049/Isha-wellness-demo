@@ -103,8 +103,9 @@ const Occupation = () => {
     localStorage.setItem("adminForm", JSON.stringify(adminData));
     dispatch(updateOccupation());
     dispatch(updateAdminForm());
+    const selectedPac = pacs.filter((p) => p._id == pac);
     const timeData = {
-      package: pac,
+      package: selectedPac[0],
       dateAndTime: new Date(
         new Date(dateInput).getTime() -
           (5 + 1 / 2) * 60 * 60 * 1000 +

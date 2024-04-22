@@ -141,7 +141,7 @@ const BlogPage = () => {
                       </p>
                       <Link
                         to={`/blog/${data._id}`}
-                        className=" cursor-Linkointer  hover:transition-all hover:duration-300 hover:text-[#00286b]"
+                        className=" hover:transition-all hover:duration-300 hover:text-[#00286b]"
                       >
                         Read more...
                       </Link>

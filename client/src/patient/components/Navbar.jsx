@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function Navbar() {
-  const { isAuthenticated } = useSelector((state) => state.user);
+  const { isAuthenticated, user } = useSelector((state) => state.user);
   const location = useLocation();
   const [toggle, setToggle] = useState(true);
 
   return (
-    <Contain>
+    // <Contain className={`${(user.role === "user" && user?.isIncharge === false)?'':'hidden'}`}>
+    <Contain className={`${(!user || (user.role === "user" && !user.isIncharge)) ? '' : 'hidden'}`}>
+
       <Nav>
         <Link to="/">
           <Logo
@@ -62,7 +64,7 @@ function Navbar() {
               to="/login"
               className={location.pathname == "/register" ? "active" : ""}
             >
-              <button>Login</button>
+              <button>SignUp</button>
             </Link>
           )}
         </Links>
@@ -89,16 +91,6 @@ function Navbar() {
               onClick={() => {
                 setToggle(!toggle);
               }}
-              to="/blogs"
-              className={location.pathname == "/blogs" ? "active" : ""}
-            >
-              {" "}
-              Blogs
-            </Link>
-            <Link
-              onClick={() => {
-                setToggle(!toggle);
-              }}
               to="/about"
               className={location.pathname == "/about" ? "active" : ""}
             >
@@ -115,6 +107,17 @@ function Navbar() {
               {" "}
               Services
             </Link>
+            <Link
+              onClick={() => {
+                setToggle(!toggle);
+              }}
+              to="/blogs"
+              className={location.pathname == "/blogs" ? "active" : ""}
+            >
+              {" "}
+              Blogs
+            </Link>
+            
             <Link
               onClick={() => {
                 setToggle(!toggle);
@@ -146,7 +149,7 @@ function Navbar() {
                 to="/login"
                 className={location.pathname == "/register" ? "active" : ""}
               >
-                <button>Login</button>
+                <button>SignUp</button>
               </Link>
             )}
           </LinksSmall>

@@ -4,6 +4,7 @@ import Container from "./BookingForm";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updatePersonalInfo } from "../../../store/slices/bookingSlice";
+import { createEnquiry } from "../../../store/slices/enquirySlice";
 
 const Personal = () => {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ const Personal = () => {
     };
     localStorage.setItem("personalInfo", JSON.stringify(data));
     dispatch(updatePersonalInfo());
+    dispatch(createEnquiry(data));
     navigate("/book/problemform");
   };
   return (

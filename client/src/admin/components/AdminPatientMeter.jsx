@@ -10,7 +10,9 @@ import {
   Legend,
   Title,
 } from "chart.js";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { getClusterProgress } from "../../store/slices/dashboardSlice";
 
 ChartJS.register(
   BarElement,
@@ -22,6 +24,7 @@ ChartJS.register(
 );
 
 const AdminPatientMeter = () => {
+  const dispatch = useDispatch()
   const { loading, patientsData } = useSelector((state) => state.dashboard);
   const [regPat, setRegPat] = useState();
   const [curPat, setCurPat] = useState(0);
@@ -30,10 +33,14 @@ const AdminPatientMeter = () => {
   const [mdNo, setMdNo] = useState(0);
   const [ndNo, setNdNo] = useState(0);
   const [ldNo, setLdNo] = useState(0);
-  const [mdColor, setMdColor] = useState("");
-  const [ndColor, setNdColor] = useState("");
-  const [ldColor, setLdColor] = useState("");
   const [cluster, setCluster] = useState("");
+  const [totalImprovedPsr, setTotalImprovedPsr] = useState(0)
+  const [totalWorsenedPsr, setTotalWorsenedPsr] = useState(0)
+  const [start, setStart] = useState("2023-01-01")
+  const [end, setEnd] = useState(`${new Date().getFullYear()}-${new Date().getMonth()+1>9?new Date().getMonth()+1:`0${new Date().getMonth()+1}`}-${new Date().getDate()}`)
+
+  const {clusterProgress} = useSelector(state=> state.dashboard)
+
   const setData = (patientsData) => {
     setRegPat(patientsData.length);
     let cur = 0;
@@ -43,15 +50,6 @@ const AdminPatientMeter = () => {
     let md = 0;
     let nd = 0;
     let ld = 0;
-    let mdRed = 0;
-    let ndRed = 0;
-    let ldRed = 0;
-    let mdGreen = 0;
-    let ndGreen = 0;
-    let ldGreen = 0;
-    let mdOrange = 0;
-    let ndOrange = 0;
-    let ldOrange = 0;
     for (let pd of patientsData) {
       if (pd.sessions[0] && pd.sessions[0].outcome) {
         if (pd.sessions[0].outcome.outcomeReason == "Cured") {
@@ -80,102 +78,18 @@ const AdminPatientMeter = () => {
       }
       if (pd.problem == "Pain" || pd.problem == "Stiffness") {
         md++;
-        if (psrLength == 1) {
-          mdGreen++;
-        } else if (psrLength == 2) {
-          if (psrs[0] < psrs[psrLength - 1]) {
-            mdGreen++;
-          } else {
-            mdOrange++;
-          }
-        } else if (psrLength == 3) {
-          if (psrs[0] < psrs[psrLength - 1]) {
-            mdGreen++;
-          } else {
-            mdRed++;
-          }
-        }
       } else if (pd.problem == "Lifestyle and Habits") {
         ld++;
-        if (psrLength == 1) {
-          ldGreen++;
-        } else if (psrLength == 2) {
-          if (psrs[0] < psrs[psrLength - 1]) {
-            ldGreen++;
-          } else {
-            ldOrange++;
-          }
-        } else if (psrLength == 3) {
-          if (psrs[0] < psrs[psrLength - 1]) {
-            ldGreen++;
-          } else {
-            ldRed++;
-          }
-        }
       } else {
         nd++;
-        if (psrLength == 1) {
-          ndGreen++;
-        } else if (psrLength == 2) {
-          if (psrs[0] < psrs[psrLength - 1]) {
-            ndGreen++;
-          } else {
-            ndOrange++;
-          }
-        } else if (psrLength == 3) {
-          if (psrs[0] < psrs[psrLength - 1]) {
-            ndGreen++;
-          } else {
-            ndRed++;
-          }
-        }
       }
     }
-    let max = 0;
-    if (mdRed >= max) {
-      max = mdRed;
-    }
-    if (mdOrange >= max) {
-      max = mdOrange;
-    }
-    if (mdGreen >= max) {
-      max = mdGreen;
-    }
-    setMdColor(
-      max == mdRed ? "#cc0000" : max == mdOrange ? "#ff6600" : "#009900"
-    );
-    max = 0;
-    if (ndRed >= max) {
-      max = ndRed;
-    }
-    if (ndOrange >= max) {
-      max = ndOrange;
-    }
-    if (ndGreen >= max) {
-      max = ndGreen;
-    }
-    setNdColor(
-      max == ndRed ? "#cc0000" : max == ndOrange ? "#ff6600" : "#009900"
-    );
-    max = 0;
-    if (ldRed >= max) {
-      max = ldRed;
-    }
-    if (ldOrange >= max) {
-      max = ldOrange;
-    }
-    if (ldGreen >= max) {
-      max = ldGreen;
-    }
-    setLdColor(
-      max == ldRed ? "#cc0000" : max == ldOrange ? "#ff6600" : "#009900"
-    );
     setMdNo(md);
     setNdNo(nd);
     setLdNo(ld);
     setCurPat(cur);
     setDroPat(dro);
-    setEnquiry((outcome / outcomeForm) * 100);
+    setEnquiry(((outcome / outcomeForm) * 100).toFixed(2));
   };
   const clusterChange = (e) => {
     if (e.target.value) {
@@ -196,28 +110,75 @@ const AdminPatientMeter = () => {
       {
         label: "MD cases",
         data: [mdNo],
-        backgroundColor: mdColor,
+        backgroundColor: "#00286b",
       },
       {
         label: "ND cases",
         data: [ndNo],
-        backgroundColor: ndColor,
+        backgroundColor: "#00286b",
       },
       {
         label: "LD cases",
         data: [ldNo],
-        backgroundColor: ldColor,
+        backgroundColor: "#00286b",
       },
     ],
   };
+  const clusterProgressData = {
+    labels: ["Patients PSR change"],
+    datasets: [
+      {
+        label: "Total Improved PSR",
+        data: [totalImprovedPsr],
+        backgroundColor: "#2ebd3c"
+      },
+      {
+        label: "Total Worsened PSR",
+        data: [totalWorsenedPsr],
+        backgroundColor: "#b32424"
+      }
+    ]
+  }
+
+  useEffect(()=>{
+    if(clusterProgress){
+      let totalImprovedPsr = 0
+      let totalWorsenedPsr = 0
+      for(let progress of clusterProgress){
+        if(progress.finalPsr && progress.finalPsr != -999){
+          if(progress.finalPsr >=0){
+            totalImprovedPsr+=progress.finalPsr
+          }else{
+            totalWorsenedPsr-=progress.finalPsr
+          }
+        }
+      }
+      setTotalImprovedPsr(totalImprovedPsr)
+      setTotalWorsenedPsr(totalWorsenedPsr)
+    }
+  },[clusterProgress])
+  useEffect(()=>{
+    const options = {
+      cluster,
+      start: new Date(start).getTime(),
+      end: new Date(end).getTime()
+    }
+    dispatch(getClusterProgress(options))
+  },[cluster, start, end])
   return (
     <div className="shadow-xl w-4/5 mx-auto mt-4 mb-12 p-4 sm:w-[90%]">
       {loading ? (
         <Loader />
       ) : (
         <>
-          <h1 className="text-[#00286b] font-semibold text-xl text-center">
+          <h1 className="text-[#00286b] font-semibold text-xl text-center relative">
             Patient Meter
+            <Link
+              to="/admin/enquiry"
+              className="absolute right-24 text-[#00286b] font-semibold text-base sm:static sm:pl-4"
+            >
+              visit enquiries
+            </Link>
           </h1>
 
           <div className="flex justify-center gap-6 my-4 flex-wrap">
@@ -238,8 +199,51 @@ const AdminPatientMeter = () => {
               <p>Enquiries converted</p>
             </div>
           </div>
-          <div className="flex gap-8 justify-center md:flex-col-reverse md:gap-0">
-            <div className="w-3/5 h-[50vh] my-12 md:w-full md:h-[40vh]">
+          <div className="flex flex-col my-8 gap-4 items-center justify-center md:flex-col-reverse md:gap-0">
+          <div className="flex gap-4 justify-between">
+          <div className="flex flex-col justify-center items-center gap-2 w-1/5 md:w-full">
+              <p className="text-[#00286b] text-xl font-semibold">Cluster:</p>
+              <select
+                className="bg-white border-2 p-1"
+                value={cluster}
+                onChange={(e) => {
+                  setCluster(e.target.value);
+                  clusterChange(e);
+                }}
+              >
+                <option value="">All</option>
+                <option value="Indore">Indore</option>
+                <option value="Ratlam">Ratlam</option>
+                <option value="Jaora">Jaora</option>
+                <option value="Ahmedabad">Ahmedabad</option>
+              </select>
+            </div>
+          <div className="flex flex-col justify-center items-center gap-2 w-1/5 md:w-full">
+              <p className="text-[#00286b] text-xl font-semibold">Start:</p>
+              <input
+                className="bg-white border-2 p-1"
+                type="date"
+                value={start}
+                onChange={(e) => {
+                  setStart(e.target.value);
+                }}
+              />
+            </div>
+          <div className="flex flex-col justify-center items-center gap-2 w-1/5 md:w-full">
+              <p className="text-[#00286b] text-xl font-semibold">End:</p>
+              <input
+                className="bg-white border-2 p-1"
+                type="date"
+                value={end}
+                onChange={(e) => {
+                  setEnd(e.target.value);
+                }}
+              />
+            </div>
+          </div>
+            <div className="flex gap-8 w-full justify-center md:flex-col">
+              
+            <div className="w-2/5 h-[50vh] md:w-full md:h-[40vh]">
               <Bar
                 key={9}
                 data={data}
@@ -259,23 +263,29 @@ const AdminPatientMeter = () => {
                 }}
               />
             </div>
-            <div className="flex flex-col justify-center items-center gap-2 w-1/5 md:w-full">
-              <p className="text-[#00286b] text-xl font-semibold">Cluster:</p>
-              <select
-                className="bg-white border-2 p-1"
-                value={cluster}
-                onChange={(e) => {
-                  setCluster(e.target.value);
-                  clusterChange(e);
+            <div className="w-2/5 h-[50vh] md:w-full md:h-[40vh]">
+              <Bar
+                key={1}
+                data={clusterProgressData}
+                options={{
+                  responsive: true,
+                  maintainAspectRatio: false,
+
+                  plugins: {
+                    legend: {
+                      position: "top",
+                    },
+                    title: {
+                      display: true,
+                      text: "Progress of Cluster based on patient's PSR.",
+                    },
+                  },
                 }}
-              >
-                <option value="">All</option>
-                <option value="Indore">Indore</option>
-                <option value="Ratlam">Ratlam</option>
-                <option value="Jaora">Jaora</option>
-                <option value="Ahmedabad">Ahmedabad</option>
-              </select>
+              />
             </div>
+
+            </div>
+            
           </div>
         </>
       )}

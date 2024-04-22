@@ -22,7 +22,7 @@ const Profile = () => {
               />
               <Link
                 to="/me/update"
-                className="mx-auto bg-[#F45050] px-[1.5vmax] py-[0.6vmax] w-[50%] text-center text-white font-semibold"
+                className="mx-auto bg-[#00286b] px-[1.5vmax] py-[0.6vmax] w-[50%] text-center text-white font-semibold"
               >
                 Change Profile
               </Link>
@@ -37,6 +37,10 @@ const Profile = () => {
                 <p className="text-gray-400">{user.email}</p>
               </div>
               <div className="flex flex-col">
+                <h4 className="text-xl font-semibold">Role</h4>
+                <p className="text-gray-400">{user.role}</p>
+              </div>
+              <div className="flex flex-col">
                 <h4 className="text-xl font-semibold">Joined At</h4>
                 <p className="text-gray-400">
                   {String(user.createdAt).substring(0, 10)}
@@ -44,7 +48,7 @@ const Profile = () => {
               </div>
               <div className="flex flex-col gap-4">
                 <Link
-                  to="/orders"
+                  to="/user/orders"
                   className=" bg-gray-400 px-[1.5vmax] py-[0.6vmax] w-[80%] text-center text-white font-semibold sm:mx-auto"
                 >
                   My Orders

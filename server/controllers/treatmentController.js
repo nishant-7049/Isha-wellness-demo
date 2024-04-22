@@ -3,10 +3,11 @@ const catchAsyncError = require("../middleware/catchAsyncFunc");
 const ErrorHandler = require("../utils/ErrorHandler");
 
 exports.createTreatment = catchAsyncError(async (req, res, next) => {
-  const { createdBy, booking } = req.body;
+  const { createdBy, booking, treatmentMode } = req.body;
   const options = {
     createdBy,
     booking,
+    treatmentMode,
     createdAt: new Date(Date.now()),
   };
   const treatment = await Treatment.create(options);

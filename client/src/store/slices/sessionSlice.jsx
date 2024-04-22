@@ -8,11 +8,7 @@ export const createSession = createAsyncThunk(
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     };
-    const { data } = await axios.post(
-      "https://ishacare.onrender.com/api/session/new",
-      sessionData,
-      config
-    );
+    const { data } = await axios.post("https://ishacare.onrender.com/api/session/new", sessionData, config);
     return data;
   }
 );
@@ -21,10 +17,7 @@ export const getSession = createAsyncThunk("getSession", async (id) => {
   const config = {
     withCredentials: true,
   };
-  const { data } = await axios.get(
-    `https://ishacare.onrender.com/api/session/${id}`,
-    config
-  );
+  const { data } = await axios.get(`https://ishacare.onrender.com/api/session/${id}`, config);
   return data;
 });
 

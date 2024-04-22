@@ -9,11 +9,11 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { useState } from "react";
 
 const Sidebar = () => {
-  const [sidebarToggle, setSidebarToggle] = useState(true);
+  const [sidebarToggle, setSidebarToggle] = useState(false);
   return (
     <>
       {sidebarToggle == true ? (
-        <div className="sticky  top-[5rem] mt-20 left-0 h-[100vh] border-r-2 flex flex-col py-[2vmax] px-[3vmax]  gap-8 sm:w-full sm:static sm:h-fit ">
+        <div className="fixed top-0 left-0 backdrop-blur-lg h-[100vh] flex flex-col py-[2vmax] px-[3vmax]  gap-8">
           <GiHamburgerMenu
             className="text-xl absolute text-[#00286b] cursor-pointer"
             onClick={() => {
@@ -72,7 +72,7 @@ const Sidebar = () => {
           </Link>
         </div>
       ) : (
-        <div className="sticky  top-[5rem] mt-20 left-0 h-[100vh] border-r-2 flex flex-col py-4 px-4  gap-8 sm:w-full sm:static sm:h-fit ">
+        <div className="fixed top-0  left-0 backdrop-blur-lg w-fit h-[100vh] flex flex-col py-4 px-4  gap-8 sm:h-fit ">
           <GiHamburgerMenu
             className="text-2xl text-[#00286b] cursor-pointer "
             onClick={() => {

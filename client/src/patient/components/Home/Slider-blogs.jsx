@@ -50,11 +50,11 @@ const SliderBlogs = () => {
         <Loader />
       ) : (
         <Container>
-          <Slider {...settings} className="slider sm:p-4">
+          <Slider {...settings} className="slider">
             {blogs &&
               blogs.map((data) => {
                 return (
-                  <div key={data._id} className="blog container">
+                  <div key={data._id} className="blog">
                     <div className="blog-item">
                       <div className="blog-img">
                         <img src={data.image.url} alt="" />
@@ -215,7 +215,7 @@ const Container = styled.div`
     }
 
     .slider {
-      margin: 0.5rem auto;
+      margin: 0 auto;
     }
   }
 `;

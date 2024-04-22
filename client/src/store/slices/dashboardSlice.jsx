@@ -16,14 +16,26 @@ export const getPatientMeterData = createAsyncThunk(
   }
 );
 
-export const getCentreData = createAsyncThunk("getCentreData", async () => {
+export const getClusterProgress = createAsyncThunk(
+  "getClusterProgress",
+  async (options)=>{
+    const config ={
+      headers: {"Content-Type": "application/json"},
+      withCredentials: true,
+    }
+    const {data} = await axios.get(
+      `https://ishacare.onrender.com/api/dashboard/admin/clusterProgress?startInterval=${options.start}&endInterval=${options.end}&cluster=${options.cluster}`,
+      config
+    )
+    return data
+  }
+)
+
+export const getCentreData = createAsyncThunk("getCentreData", async (options) => {
   const config = {
     withCredentials: true,
   };
-  const { data } = await axios.get(
-    "https://ishacare.onrender.com/api/dashboard/admin/centreData",
-    config
-  );
+  const { data } = await axios.get(`https://ishacare.onrender.com/api/dashboard/admin/centreData?interval=${options.interval}&cluster=${options.cluster}&year=${options.year}&month=${options.month}`, config);
   return data;
 });
 
@@ -113,6 +125,7 @@ const dashboardSlice = createSlice({
     loading: false,
     patientsData: [],
     centreData: [],
+    clusterProgress: [],
     dropouts: [],
     therapistSessions: [],
     facilitatorSessions: [],
@@ -209,6 +222,17 @@ const dashboardSlice = createSlice({
       state.facilitatorSessions = action.payload.sessions;
     });
     builder.addCase(getSessionsForFacilitator.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    });
+    builder.addCase(getClusterProgress.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getClusterProgress.fulfilled, (state, action) => {
+      state.loading = false;
+      state.clusterProgress = action.payload.sessions;
+    });
+    builder.addCase(getClusterProgress.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message;
     });

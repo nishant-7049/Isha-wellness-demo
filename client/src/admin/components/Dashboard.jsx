@@ -10,17 +10,16 @@ import {
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getPatientMeterData());
-    dispatch(getCentreData());
+    
   }, []);
   return (
-    <div className="flex sm:flex-col">
+    <div >
       <Sidebar />
       <div className="w-full">
         <div className="bg-[#F0F0F0]">
-          <div className=" bg-white my-[6vmax] ">
+          <div className=" bg-white my-[2vmax] ">
             <h1 className="text-[#00286b] text-3xl font-bold border-b-4 border-[#00286b] pb-2 w-fit mx-auto">
               Dashboard
             </h1>

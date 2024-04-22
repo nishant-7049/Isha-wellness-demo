@@ -28,10 +28,7 @@ export const createQuestion = createAsyncThunk(
 
 export const deleteQuestion = createAsyncThunk("deleteQuestion", async (id) => {
   const config = { withCredentials: true };
-  const { data } = await axios.delete(
-    `https://ishacare.onrender.com/api/forum/${id}`,
-    config
-  );
+  const { data } = await axios.delete(`https://ishacare.onrender.com/api/forum/${id}`, config);
   return data;
 });
 

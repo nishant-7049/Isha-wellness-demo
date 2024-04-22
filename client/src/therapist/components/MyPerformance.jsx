@@ -265,7 +265,7 @@ const MyPerformance = () => {
     if (dropouts) {
       const dp = dropouts.filter(
         (dp) =>
-          new Date(dp.latestSession.createdAt).getTime() + 1 * 60 * 1000 <
+          new Date(dp?.latestSession?.createdAt).getTime() + 1 * 60 * 1000 <
           Date.now()
       );
       setDropoutPatients(dp);

@@ -3,18 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import Container from "../../patient/components/Booking/patientDetails.jsx";
 import {
-  clearPayment,
   getBookingDetail,
   getBookingDetailForUser,
-  getPaymentDetail,
-  getPaymentDetailForUser,
   rescheduleTime,
   resetBookingUpdated,
   resetIsRescheduled,
   resetIsStatusUpdated,
 } from "../../store/slices/bookingSlice";
-import { getBooker, getFac, getTher } from "../../store/slices/allUserSlice";
-import { getPackageDetail } from "../../store/slices/packageSlice";
 import AssignTher from "./AssignTher.jsx";
 import AssignFac from "./AssignFac";
 import Loader from "../../auth/Loader";
@@ -44,24 +39,10 @@ const batchs = [
 ];
 const OrderDetail = () => {
   const dispatch = useDispatch();
-  const {
-    loading,
-    booking,
-    payment,
-    isStatusUpdated,
-    bookingUpdated,
-    isRescheduled,
-  } = useSelector((state) => state.booking);
-  const { loading: userLoading, booker } = useSelector(
-    (state) => state.allUsers
-  );
-  const { loading: packageLoading, pac } = useSelector(
-    (state) => state.package
-  );
+  const { loading, booking, isStatusUpdated, bookingUpdated, isRescheduled } =
+    useSelector((state) => state.booking);
   const { user: me } = useSelector((state) => state.user);
-  const [BookedBy, setBookedBy] = useState();
-  const [pay, setPay] = useState();
-  const [set, setSet] = useState(false);
+  const [assigningStaff, setAssigningStaff] = useState(false);
   const [toggleSchedule, setToggleSchedule] = useState(false);
   const [newDate, setNewDate] = useState();
   const [newDateAndTime, setNewDateAndTime] = useState();
@@ -87,43 +68,28 @@ const OrderDetail = () => {
     dispatch(rescheduleTime({ bookingId: id, dateAndTime: newDateAndTime }));
   };
   useEffect(() => {
-    if (
-      (!booking && me && me.role == "user") ||
-      (booking && booking._id != id && me && me.role == "user")
-    ) {
-      dispatch(getBookingDetailForUser(id));
+    if(me && me.role == "user"){
+      if(!booking){
+        dispatch(getBookingDetailForUser(id));
+      }
     }
+    // if (
+    //   (!booking && me && me.role == "user") ||
+    //   (booking && booking._id != id && me && me.role == "user")
+    // ) {
+    //   dispatch(getBookingDetailForUser(id));
+    // }
     if (
       (!booking && me && me.role !== "user") ||
       (booking && booking._id != id && me && me.role != "user")
     ) {
       dispatch(getBookingDetail(id));
     }
-    if (booking && me) {
-      if (booking.payment && me.role == "user") {
-        dispatch(getPaymentDetailForUser(id));
-      } else {
-        dispatch(getPaymentDetail(id));
-      }
-      dispatch(getPackageDetail(booking.packageAndDate.package));
-    }
     if (booking) {
-      setScheduledTime(new Date(booking.packageAndDate.dateAndTime));
-      setValidTillDate(new Date(booking.validTill));
-    }
-
-    if (booking && me && me.role !== "user") {
-      dispatch(getBooker(booking.bookedBy));
-    }
-    if (booking && me && me.role == "user") {
-      setBookedBy(me);
+      setScheduledTime(new Date(booking?.packageAndDate?.dateAndTime));
+      setValidTillDate(new Date(booking?.validTill));
     }
   }, [booking]);
-  useEffect(() => {
-    if (booking && booker && booking.bookedBy == booker._id) {
-      setBookedBy(booker);
-    }
-  }, [booker]);
   useEffect(() => {
     if (isRescheduled) {
       if (me.role == "user") {
@@ -135,16 +101,9 @@ const OrderDetail = () => {
     }
   }, [isRescheduled]);
   useEffect(() => {
-    if (payment) {
-      setPay(payment);
-      dispatch(clearPayment());
-    }
-  }, [payment]);
-  useEffect(() => {
     if (bookingUpdated) {
       dispatch(resetBookingUpdated());
       dispatch(getBookingDetail(id));
-      setSet(false);
     }
   }, [bookingUpdated]);
   useEffect(() => {
@@ -155,7 +114,7 @@ const OrderDetail = () => {
   }, [isStatusUpdated]);
   return (
     <>
-      {loading || packageLoading || userLoading ? (
+      {loading ? (
         <Loader />
       ) : (
         <>
@@ -186,61 +145,61 @@ const OrderDetail = () => {
                         <div className="ques-ans-con">
                           <p className="ques">Name:</p>
                           <p className="ans">
-                            {booking && booking.personal.name}
+                            {booking && booking?.personal?.name}
                           </p>
                         </div>
                         <div className="ques-ans-con">
                           <p className="ques">Age:</p>
                           <p className="ans">
-                            {booking && booking.personal.age}
+                            {booking && booking?.personal?.age}
                           </p>
                         </div>
                         <div className="ques-ans-con">
                           <p className="ques">Gender:</p>
                           <p className="ans">
-                            {booking && booking.personal.gender}
+                            {booking && booking?.personal?.gender}
                           </p>
                         </div>
                         <div className="ques-ans-con">
                           <p className="ques">Address:</p>
                           <p className="ans">
-                            {booking && booking.personal.address}
+                            {booking && booking?.personal?.address}
                           </p>
                         </div>
                         <div className="ques-ans-con">
                           <p className="ques">City:</p>
                           <p className="ans">
-                            {booking && booking.personal.city}
+                            {booking && booking?.personal?.city}
                           </p>
                         </div>
                         <div className="ques-ans-con">
                           <p className="ques">Location Preference:</p>
                           <p className="ans">
-                            {booking && booking.personal.location}
+                            {booking && booking?.personal?.location}
                           </p>
                         </div>
                         <div className="ques-ans-con">
                           <p className="ques">Mobile:</p>
                           <p className="ans">
-                            {booking && booking.personal.phone}
+                            {booking && booking?.personal?.phone}
                           </p>
                         </div>
                         <div className="ques-ans-con">
                           <p className="ques">Whatsapp:</p>
                           <p className="ans">
-                            {booking && booking.personal.whatsapp}
+                            {booking && booking?.personal?.whatsapp}
                           </p>
                         </div>
                         <div className="ques-ans-con">
                           <p className="ques">Martial Status:</p>
                           <p className="ans">
-                            {booking && booking.personal.martial}
+                            {booking && booking?.personal?.martial}
                           </p>
                         </div>
                         <div className="ques-ans-con">
                           <p className="ques">Education:</p>
                           <p className="ans">
-                            {booking && booking.personal.education}
+                            {booking && booking?.personal?.education}
                           </p>
                         </div>
                       </div>
@@ -530,14 +489,14 @@ const OrderDetail = () => {
                         <div className="ques-ans-con">
                           <p className="ques">Other Complaints:</p>
                           <p className="ans">
-                            {booking && booking.complaints.otherComplaints}
+                            {booking && booking?.complaints?.otherComplaints}
                           </p>
                         </div>
                         <div className="ques-ans-con">
                           <p className="ques">Other Medical Condition:</p>
                           <p className="ans">
                             {booking &&
-                              booking.complaints.otherMedicalConditions}
+                              booking?.complaints?.otherMedicalConditions}
                           </p>
                         </div>
                         <div className="ques-ans-con">
@@ -545,7 +504,7 @@ const OrderDetail = () => {
                             Other old Complaint or Operation:
                           </p>
                           <p className="ans">
-                            {booking && booking.complaints.oldComplaint}
+                            {booking && booking?.complaints?.oldComplaint}
                           </p>
                         </div>
                         <h1 className="det-head">Admin Questions</h1>
@@ -555,7 +514,7 @@ const OrderDetail = () => {
                               How you came to know about IWC?
                             </p>
                             <p className="ans">
-                              {booking && booking.admin.getToKnow}
+                              {booking && booking?.admin?.getToKnow}
                             </p>
                           </div>
                         </div>
@@ -596,25 +555,25 @@ const OrderDetail = () => {
                         <div className="ques-ans-con">
                           <p className="ques">Weight (in kg.):</p>
                           <p className="ans">
-                            {booking && booking.measures.weight}
+                            {booking && booking?.measures?.weight}
                           </p>
                         </div>
                         <div className="ques-ans-con">
                           <p className="ques">Height (in cm.):</p>
                           <p className="ans">
-                            {booking && booking.measures.height}
+                            {booking && booking?.measures?.height}
                           </p>
                         </div>
                         <div className="ques-ans-con">
                           <p className="ques">Sugar:</p>
                           <p className="ans">
-                            {booking && booking.measures.sugar}
+                            {booking && booking?.measures?.sugar}
                           </p>
                         </div>
                         <div className="ques-ans-con">
                           <p className="ques">Blood Pressure:</p>
                           <p className="ans">
-                            {booking && booking.measures.bp}
+                            {booking && booking?.measures?.bp}
                           </p>
                         </div>
                       </div>
@@ -626,13 +585,13 @@ const OrderDetail = () => {
                         <div className="ques-ans-con">
                           <p className="ques">Occupation:</p>
                           <p className="ans">
-                            {booking && booking.occupation.occupation}
+                            {booking && booking?.occupation?.occupation}
                           </p>
                         </div>
                         <div className="ques-ans-con">
                           <p className="ques">Type of Work:</p>
                           <p className="ans">
-                            {booking && booking.occupation.work}
+                            {booking && booking?.occupation?.work}
                           </p>
                         </div>
                         <div className="ques-ans-con">
@@ -640,7 +599,7 @@ const OrderDetail = () => {
                             Work experience of this type of work:
                           </p>
                           <p className="ans">
-                            {booking && booking.occupation.experience}
+                            {booking && booking?.occupation?.experience}
                           </p>
                         </div>
                       </div>
@@ -648,12 +607,36 @@ const OrderDetail = () => {
                       <div className="ques-ans">
                         <div className="ques-ans-con">
                           <p className="ques">Booker Name:</p>
-                          <p className="ans">{BookedBy && BookedBy.name}</p>
+                          <p className="ans">
+                            {booking && booking?.bookedBy && booking?.bookedBy[0]?.name}
+                          </p>
                         </div>
                         <div className="ques-ans-con">
                           <p className="ques">Booker Role:</p>
-                          <p className="ans">{BookedBy && BookedBy.role}</p>
+                          <p className="ans">
+                            {booking && booking?.bookedBy && booking?.bookedBy[0]?.role}
+                          </p>
                         </div>
+                        {booking &&
+                          booking.assignTherapist &&
+                          booking.assignTherapist[0] && (
+                            <div className="ques-ans-con">
+                              <p className="ques">Assigned Therapist:</p>
+                              <p className="ans">
+                                {booking?.assignTherapist[0]?.name}
+                              </p>
+                            </div>
+                          )}
+                        {booking &&
+                          booking.assignFacilitator &&
+                          booking.assignFacilitator[0] && (
+                            <div className="ques-ans-con">
+                              <p className="ques">Assigned Facilitator:</p>
+                              <p className="ans">
+                                {booking?.assignFacilitator[0]?.name}
+                              </p>
+                            </div>
+                          )}
                       </div>
                     </div>
                     {me && booking && (
@@ -662,32 +645,48 @@ const OrderDetail = () => {
                         <div className="ques-ans">
                           <div className="ques-ans-con">
                             <p className="ques">Payment Type:</p>
-                            <p className="ans">{pac && pac.paymentType}</p>
+                            <p className="ans">
+                              {booking?.packageAndDate?.package?.paymentType}
+                            </p>
                           </div>
-                          {pac && pay && pac.paymentType == "Online" && (
+
+                          {booking.payment && booking.payment[0] ? (
+                            <div className="ques-ans-con">
+                              <p className="ques">Payment Status:</p>
+                              <p className="text-green-400 font-semibold">
+                                Paid
+                              </p>
+                            </div>
+                          ) : (
+                            <div className="ques-ans-con">
+                              <p className="ques">Payment Status:</p>
+                              <p x className="text-red-800 font-semibold">
+                                Unpaid
+                              </p>
+                            </div>
+                          )}
+                          {booking.payment && booking.payment[0] && (
                             <div className="ques-ans">
                               <div className="ques-ans-con">
                                 <p className="ques">razorpay_order_id:</p>
-                                <p className="ans">{pay.razorpay_order_id}</p>
+                                <p className="ans">
+                                  {booking.payment[0].razorpay_order_id}
+                                </p>
                               </div>
                               <div className="ques-ans-con">
                                 <p className="ques">razorpay_payment_id:</p>
-                                <p className="ans">{pay.razorpay_payment_id}</p>
+                                <p className="ans">
+                                  {booking.payment[0].razorpay_payment_id}
+                                </p>
                               </div>
-                            </div>
-                          )}
-                          {!pay && (
-                            <div className="ques-ans-con">
-                              <p className="ques">Payment Status:</p>
-                              <p className="text-red-800 font-semibold">
-                                Unpaid
-                              </p>
                             </div>
                           )}
                         </div>
                         <div className="ques-ans-con">
                           <p className="ques">Package Name:</p>
-                          <p className="ans">{pac && pac.name}</p>
+                          <p className="ans">
+                            {booking?.packageAndDate?.package?.name}
+                          </p>
                         </div>
                         <div className="ques-ans-con">
                           <p className="ques">Package Sessions Left:</p>
@@ -706,7 +705,9 @@ const OrderDetail = () => {
 
                         <div className="ques-ans-con">
                           <p className="ques">Package price:</p>
-                          <p className="ans">₹{pac && pac.price}</p>
+                          <p className="ans">
+                            ₹{booking?.packageAndDate?.package?.price}
+                          </p>
                         </div>
                       </div>
                     )}
@@ -756,8 +757,7 @@ const OrderDetail = () => {
                             </p>
                             <p className="ans">
                               {booking &&
-                                booking.lifestyleAndHabits.foodDetails
-                                  .healthyDiet}
+                                booking?.lifestyleAndHabits?.foodDetails?.healthyDiet}
                             </p>
                           </div>
                           <div className="ques-ans-con">
@@ -766,24 +766,21 @@ const OrderDetail = () => {
                             </p>
                             <p className="ans">
                               {booking &&
-                                booking.lifestyleAndHabits.foodDetails
-                                  .emptyStomach}
+                                booking?.lifestyleAndHabits?.foodDetails?.emptyStomach}
                             </p>
                           </div>
                           <div className="ques-ans-con">
                             <p className="ques">Do you do breakfast?</p>
                             <p className="ans">
                               {booking &&
-                                booking.lifestyleAndHabits.foodDetails
-                                  .doBreakfast}
+                                booking?.lifestyleAndHabits?.foodDetails?.doBreakfast}
                             </p>
                           </div>
                           <h1 className="text-[#00286b] mx-auto font-bold border-b-2 border-[#00286b]">
                             Food Timings
                           </h1>
                           {booking &&
-                            booking.lifestyleAndHabits.foodDetails
-                              .doBreakfast == "Yes" && (
+                            booking?.lifestyleAndHabits?.foodDetails?.doBreakfast == "Yes" && (
                               <div className="ques-ans-con">
                                 <p className="ques">Breakfast (hh/mm)</p>
                                 <p className="ans">
@@ -797,16 +794,14 @@ const OrderDetail = () => {
                             <p className="ques">Lunch (hh/mm)</p>
                             <p className="ans">
                               {booking &&
-                                booking.lifestyleAndHabits.foodDetails.foodTime
-                                  .lunchTime}
+                                booking?.lifestyleAndHabits?.foodDetails?.foodTime?.lunchTime}
                             </p>
                           </div>
                           <div className="ques-ans-con">
                             <p className="ques">Dinner (hh/mm)</p>
                             <p className="ans">
                               {booking &&
-                                booking.lifestyleAndHabits.foodDetails.foodTime
-                                  .dinnerTime}
+                                booking?.lifestyleAndHabits?.foodDetails?.foodTime?.dinnerTime}
                             </p>
                           </div>
                         </div>
@@ -820,13 +815,11 @@ const OrderDetail = () => {
                             <p className="ques">Are you doing any exercises?</p>
                             <p className="ans">
                               {booking &&
-                                booking.lifestyleAndHabits.exerciseDetails
-                                  .doExercises}
+                                booking?.lifestyleAndHabits?.exerciseDetails?.doExercises}
                             </p>
                           </div>
                           {booking &&
-                            booking.lifestyleAndHabits.exerciseDetails
-                              .doExercises == "Yes" && (
+                            booking?.lifestyleAndHabits?.exerciseDetails?.doExercises == "Yes" && (
                               <div className="ques-ans">
                                 <div className="ques-ans-con">
                                   <p className="ques">
@@ -834,8 +827,7 @@ const OrderDetail = () => {
                                   </p>
                                   <p className="ans">
                                     {booking &&
-                                      booking.lifestyleAndHabits.exerciseDetails
-                                        .exercise}
+                                      booking?.lifestyleAndHabits?.exerciseDetails?.exercise}
                                   </p>
                                 </div>
                                 <div className="ques-ans-con">
@@ -844,8 +836,7 @@ const OrderDetail = () => {
                                   </p>
                                   <p className="ans">
                                     {booking &&
-                                      booking.lifestyleAndHabits.exerciseDetails
-                                        .exercisePerDay}
+                                      booking?.lifestyleAndHabits?.exerciseDetails?.exercisePerDay}
                                   </p>
                                 </div>
                                 <div className="ques-ans-con">
@@ -854,8 +845,7 @@ const OrderDetail = () => {
                                   </p>
                                   <p className="ans">
                                     {booking &&
-                                      booking.lifestyleAndHabits.exerciseDetails
-                                        .exercisePerWeek}
+                                      booking?.lifestyleAndHabits?.exerciseDetails?.exercisePerWeek}
                                   </p>
                                 </div>
                               </div>
@@ -866,7 +856,7 @@ const OrderDetail = () => {
                           <div className="ques-ans-con">
                             <p className="ques">Habits:</p>
                             {booking &&
-                              booking.lifestyleAndHabits.habits.map(
+                              booking?.lifestyleAndHabits?.habits?.map(
                                 (hab, index) => (
                                   <p className="ans" key={index}>
                                     {index + 1}. {hab}
@@ -883,56 +873,49 @@ const OrderDetail = () => {
                             <p className="ques">Do you get proper sleep?</p>
                             <p className="ans">
                               {booking &&
-                                booking.lifestyleAndHabits.sleepDetails
-                                  .properSleep}
+                                booking?.lifestyleAndHabits?.sleepDetails?.properSleep}
                             </p>
                           </div>
                           <div className="ques-ans-con">
                             <p className="ques">At what time you sleep?</p>
                             <p className="ans">
                               {booking &&
-                                booking.lifestyleAndHabits.sleepDetails
-                                  .sleepTime}
+                                booking?.lifestyleAndHabits?.sleepDetails?.sleepTime}
                             </p>
                           </div>
                           <div className="ques-ans-con">
                             <p className="ques">At what time you wake up?</p>
                             <p className="ans">
                               {booking &&
-                                booking.lifestyleAndHabits.sleepDetails
-                                  .wakeTime}
+                                booking?.lifestyleAndHabits?.sleepDetails?.wakeTime}
                             </p>
                           </div>
                           <div className="ques-ans-con">
                             <p className="ques">Average sleep hours?</p>
                             <p className="ans">
                               {booking &&
-                                booking.lifestyleAndHabits.sleepDetails
-                                  .sleepHour}
+                                booking?.lifestyleAndHabits?.sleepDetails?.sleepHour}
                             </p>
                           </div>
                           <div className="ques-ans-con">
                             <p className="ques">Average sitting hours?</p>
                             <p className="ans">
                               {booking &&
-                                booking.lifestyleAndHabits.sleepDetails
-                                  .sittingHour}
+                                booking?.lifestyleAndHabits?.sleepDetails?.sittingHour}
                             </p>
                           </div>
                           <div className="ques-ans-con">
                             <p className="ques">Average Mobile screen hours?</p>
                             <p className="ans">
                               {booking &&
-                                booking.lifestyleAndHabits.sleepDetails
-                                  .mobileScreenHour}
+                                booking?.lifestyleAndHabits?.sleepDetails?.mobileScreenHour}
                             </p>
                           </div>
                           <div className="ques-ans-con">
                             <p className="ques">Average TV screen hours?</p>
                             <p className="ans">
                               {booking &&
-                                booking.lifestyleAndHabits.sleepDetails
-                                  .tvScreenHour}
+                                booking?.lifestyleAndHabits?.sleepDetails?.tvScreenHour}
                             </p>
                           </div>
                           <div className="ques-ans-con">
@@ -941,8 +924,7 @@ const OrderDetail = () => {
                             </p>
                             <p className="ans">
                               {booking &&
-                                booking.lifestyleAndHabits.sleepDetails
-                                  .computerScreenHour}
+                                booking?.lifestyleAndHabits?.sleepDetails?.computerScreenHour}
                             </p>
                           </div>
                         </div>
@@ -956,24 +938,21 @@ const OrderDetail = () => {
                             </p>
                             <p className="ans">
                               {booking &&
-                                booking.lifestyleAndHabits.stressDetails
-                                  .thinker}
+                                booking?.lifestyleAndHabits?.stressDetails?.thinker}
                             </p>
                           </div>
                           <div className="ques-ans-con">
                             <p className="ques">Rate your thinking?</p>
                             <p className="ans">
                               {booking &&
-                                booking.lifestyleAndHabits.stressDetails
-                                  .thinkingRate}
+                                booking?.lifestyleAndHabits?.stressDetails?.thinkingRate}
                             </p>
                           </div>
                           <div className="ques-ans-con">
                             <p className="ques">Rate your stress? </p>
                             <p className="ans">
                               {booking &&
-                                booking.lifestyleAndHabits.stressDetails
-                                  .stressRate}
+                                booking?.lifestyleAndHabits?.stressDetails?.stressRate}
                             </p>
                           </div>
                           <div className="ques-ans-con">
@@ -983,8 +962,7 @@ const OrderDetail = () => {
                             </p>
                             <p className="ans">
                               {booking &&
-                                booking.lifestyleAndHabits.stressDetails
-                                  .disturbanceCause}
+                                booking?.lifestyleAndHabits?.stressDetails?.disturbanceCause}
                             </p>
                           </div>
                         </div>
@@ -992,40 +970,33 @@ const OrderDetail = () => {
                     </div>
                   </div>
                 </div>
-                {pac &&
-                booking &&
+                {booking &&
                 Date.now() < new Date(booking.validTill).getTime() &&
                 booking.sessions > 0 ? (
                   <div className="w-full h-[90vh] sticky right-0 top-[5rem] flex flex-col  justify-center items-center sm:static md:h-[50vh] sm:h-fit sm:my-12">
                     <div className="flex flex-col justify-center items-center w-full">
-                      {set ? (
-                        <>
-                          {(me.role == "admin" || me.isIncharge) && (
+                      {(me.role == "admin" || me.isIncharge) && (
+                        <div className=" w-3/5 sm:w-4/5 border-[#00286b] border-2 my-2">
+                          <div
+                            onClick={() => {
+                              setAssigningStaff(!assigningStaff);
+                            }}
+                            className="cursor-pointer flex gap-4 items-center justify-center font-semibold  bg-white  text-center  px-4 py-2 text-[#00286b] "
+                          >
+                            <h1>Assign Therapist & Facilitator</h1>
+                            {assigningStaff ? (
+                              <FaChevronUp />
+                            ) : (
+                              <FaChevronDown />
+                            )}
+                          </div>
+                          {assigningStaff && (
                             <>
                               <AssignTher />
                               <AssignFac />
                             </>
                           )}
-                        </>
-                      ) : (
-                        <>
-                          {(me.role == "admin" || me.isIncharge) && (
-                            <button
-                              onClick={() => {
-                                setSet(true);
-                                booking &&
-                                  booking.assignTherapist &&
-                                  dispatch(getTher(booking.assignTherapist));
-                                booking &&
-                                  booking.assignFacilitator &&
-                                  dispatch(getFac(booking.assignFacilitator));
-                              }}
-                              className="px-4 py-2 my-[1vmax] w-3/5 mx-auto bg-[#00286b] text-white font-semibold border-2 border-[#00286b] hover:text-[#00286b] hover:bg-white"
-                            >
-                              Set Therapist / Facilitator
-                            </button>
-                          )}
-                        </>
+                        </div>
                       )}
                     </div>
 

@@ -5,10 +5,7 @@ export const getTreatmentsByTherapist = createAsyncThunk(
   "getTreatmentsByTherapist",
   async (id) => {
     const config = { withCredentials: true };
-    const { data } = await axios.get(
-      `https://ishacare.onrender.com/api/treatment/${id}`,
-      config
-    );
+    const { data } = await axios.get(`https://ishacare.onrender.com/api/treatment/${id}`, config);
     return data;
   }
 );
@@ -36,11 +33,7 @@ export const createTreatment = createAsyncThunk(
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     };
-    const { data } = await axios.post(
-      "https://ishacare.onrender.com/api/treatment/new",
-      options,
-      config
-    );
+    const { data } = await axios.post("https://ishacare.onrender.com/api/treatment/new", options, config);
     return data;
   }
 );
@@ -49,20 +42,14 @@ export const deleteTreatment = createAsyncThunk(
   "deleteTreatment",
   async (id) => {
     const config = { withCredentials: true };
-    const { data } = await axios.delete(
-      `https://ishacare.onrender.com/api/treatment/${id}`,
-      config
-    );
+    const { data } = await axios.delete(`https://ishacare.onrender.com/api/treatment/${id}`, config);
     return data;
   }
 );
 
 export const getTreatment = createAsyncThunk("getTreatment", async (id) => {
   const config = { withCredentials: true };
-  const { data } = await axios.get(
-    `https://ishacare.onrender.com/api/treatment/${id}`,
-    config
-  );
+  const { data } = await axios.get(`https://ishacare.onrender.com/api/treatment/${id}`, config);
   return data;
 });
 

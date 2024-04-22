@@ -56,3 +56,17 @@ exports.isNotUser = () => {
     next();
   };
 };
+
+exports.notUser = () => {
+  return (req, res, next) => {
+    if (req.user.role == "user") {
+      return next(
+        new ErrorHandler(
+          `Other than admin and Cluster Incharge no other is not authorized to access this functionality`,
+          403
+        )
+      );
+    }
+    next();
+  };
+};

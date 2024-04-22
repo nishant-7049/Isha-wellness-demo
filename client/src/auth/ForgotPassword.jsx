@@ -28,7 +28,7 @@ const ForgotPassword = () => {
           <div className="w-[100%] min-h-[100vh] flex justify-center items-center bg-[#F0F0F0]">
             <form
               onSubmit={submitEmail}
-              className="w-[30vmax]  flex flex-col border-2 shadow-lg bg-white sm:w-[40vmax] p-[3vmax] gap-8"
+              className="w-[30vmax]  flex flex-col border-2 shadow-lg bg-white p-[3vmax] gap-8 sm:w-4/5"
             >
               <h1 className="text-xl text-gray-400 font-semibold text-center border-b-2 pb-4">
                 Forgot Password
@@ -46,7 +46,7 @@ const ForgotPassword = () => {
               <input
                 type="submit"
                 value="Send Mail"
-                className="py-[1vmax] bg-[#F45050]  text-white cursor-pointer"
+                className="py-[1vmax] bg-[#00286b]  text-white cursor-pointer"
               />
             </form>
           </div>

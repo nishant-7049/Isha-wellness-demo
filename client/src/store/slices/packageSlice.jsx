@@ -3,19 +3,13 @@ import axios from "axios";
 
 export const getAllPackages = createAsyncThunk("getAllPackages", async () => {
   const config = { withCredentials: true };
-  const { data } = await axios.get(
-    "https://ishacare.onrender.com/api/package/all",
-    config
-  );
+  const { data } = await axios.get("https://ishacare.onrender.com/api/package/all", config);
   return data;
 });
 
 export const deletePackage = createAsyncThunk("deletePackage", async (id) => {
   const config = { withCredentials: true };
-  const { data } = await axios.delete(
-    `https://ishacare.onrender.com/api/package/delete/${id}`,
-    config
-  );
+  const { data } = await axios.delete(`https://ishacare.onrender.com/api/package/delete/${id}`, config);
   return data;
 });
 
@@ -26,11 +20,7 @@ export const createPackage = createAsyncThunk(
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     };
-    const { data } = await axios.post(
-      "https://ishacare.onrender.com/api/package/new",
-      options,
-      config
-    );
+    const { data } = await axios.post("https://ishacare.onrender.com/api/package/new", options, config);
     return data;
   }
 );
@@ -39,10 +29,7 @@ export const getPackageDetail = createAsyncThunk(
   "getPackageDetail",
   async (id) => {
     const config = { withCredentials: true };
-    const { data } = await axios.get(
-      `https://ishacare.onrender.com/api/package/${id}`,
-      config
-    );
+    const { data } = await axios.get(`https://ishacare.onrender.com/api/package/${id}`, config);
     return data;
   }
 );
@@ -67,10 +54,7 @@ export const getPackageByName = createAsyncThunk(
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     };
-    const { data } = await axios.get(
-      `https://ishacare.onrender.com/api/package/name/${name}`,
-      config
-    );
+    const { data } = await axios.get(`https://ishacare.onrender.com/api/package/name/${name}`, config);
     return data;
   }
 );

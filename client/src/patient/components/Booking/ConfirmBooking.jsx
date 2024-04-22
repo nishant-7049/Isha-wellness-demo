@@ -20,7 +20,6 @@ const ConfirmBooking = () => {
     (state) => state.booking
   );
   const { user } = useSelector((state) => state.user);
-  const { pac } = useSelector((state) => state.package);
 
   const [isToggleDisabled, setIsToggleDisabled] = useState(false);
   const [paymentID, setPaymentID] = useState("");
@@ -34,18 +33,18 @@ const ConfirmBooking = () => {
       occupation,
       admin: adminForm,
       packageAndDate: dateAndTime,
-      days: pac.days,
-      sessions: pac.sessions,
+      days: dateAndTime.package.days,
+      sessions: dateAndTime.package.sessions,
       bookedBy: user._id,
     };
     dispatch(createBooking(bookingDetails));
-    if (pac.paymentType == "Cash") {
+    if (dateAndTime.package.paymentType == "Cash") {
       navigate("/paymentConfirmation");
     }
     setIsToggleDisabled(true);
   };
   const checkoutHandler = () => {
-    pac && dispatch(checkout(pac.price));
+    dispatch(checkout(dateAndTime.package.price));
 
     if (order) {
       const options = {
@@ -94,7 +93,6 @@ const ConfirmBooking = () => {
   } = useSelector((state) => state.booking);
   const scheduledTime = new Date(dateAndTime.dateAndTime);
   useEffect(() => {
-    dispatch(getPackageDetail(dateAndTime.package));
     dispatch(getKey());
 
     if (paymentVerified) {
@@ -642,10 +640,10 @@ const ConfirmBooking = () => {
             </div>
           </div>
         </div>
-        <div className="w-full h-[80vh] sticky right-0 top-[5rem] flex flex-col  justify-center items-center sm:static md:h-[50vh] sm:h-[60vh]">
+        <div className="w-full h-[80vh] sticky right-0 top-[5rem] flex flex-col  justify-center items-center sm:static md:h-[50vh] sm:h-fit">
           <h1 className="det-head">Order Details</h1>
 
-          <OrderCard pac={pac} />
+          <OrderCard pac={dateAndTime.package} />
           <button
             className="text-white my-4 bg-gradient-to-br  from-[#00286b] to-[#b7becb] p-2 hover:from-[#b7becb] hover:to-[#00286b] "
             disabled={isToggleDisabled}
@@ -658,7 +656,7 @@ const ConfirmBooking = () => {
               className="text-white  bg-gradient-to-br  from-[#00286b] to-[#b7becb] p-2 hover:from-[#b7becb] hover:to-[#00286b] "
               onClick={checkoutHandler}
             >
-              Pay ₹{pac.price}
+              Pay ₹{dateAndTime.package.price}
             </button>
           )}
         </div>
