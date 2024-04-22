@@ -164,6 +164,12 @@ const TherapistOrders = () => {
               >
               view enquiries
             </Link>
+            <Link
+              to="/book/personalForm"
+              className="text-white cursor-pointer bg-[#00286b] border-2 border-[#00286b] hover:bg-white hover:text-[#00286b]  font-bold sm:static sm:mx-auto p-2"
+              >
+              Book for Patient
+            </Link>
               </div>
             <div className="h-[80vh] w-full">
               <DataGrid
