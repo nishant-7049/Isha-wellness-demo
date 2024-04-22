@@ -30,6 +30,8 @@ exports.instance = new Razorpay({
 });
 
 const app = express();
+
+app.use(cookieParser());
 const allowedOrigins = [
   "https://ishawellness.netlify.app",
   "http://localhost:5173",
@@ -44,10 +46,10 @@ const allowedOrigins = [
   "https://ishawellness.netlify.app/incharge/orders",
   "https://ishawellness.netlify.app/incharge/orderDetail/:id",
   "https://ishawellness.netlify.app/admin/dashboard",
+  "https://ishawellness.netlify.app/admin/enquiry",
   "https://ishawellness.netlify.app/forum",
 ];
 
-app.use(cookieParser());
 app.use(
   cors({
     origin: (origin, callback) => {
