@@ -64,7 +64,6 @@ exports.getPatientMeterData = catchAsyncError(async (req, res, next) => {
 
 exports.getCentreData = catchAsyncError(async (req, res, next) => {
   const { interval, cluster, year, month } = req.query;
-  console.log(req.query);
   let startDate, endDate;
   let groupFilter = {
     location: "$personal.location",
@@ -128,7 +127,6 @@ exports.getCentreData = catchAsyncError(async (req, res, next) => {
   if (!(interval === "year" || interval === "all")) {
     matchOptions.createdAt = dateFilter;
   }
-  console.log(matchOptions);
 
   const bookings = await Booking.aggregate([
     {

@@ -18,26 +18,32 @@ export const getPatientMeterData = createAsyncThunk(
 
 export const getClusterProgress = createAsyncThunk(
   "getClusterProgress",
-  async (options)=>{
-    const config ={
-      headers: {"Content-Type": "application/json"},
+  async (options) => {
+    const config = {
+      headers: { "Content-Type": "application/json" },
       withCredentials: true,
-    }
-    const {data} = await axios.get(
+    };
+    const { data } = await axios.get(
       `https://ishacare.onrender.com/api/dashboard/admin/clusterProgress?startInterval=${options.start}&endInterval=${options.end}&cluster=${options.cluster}`,
       config
-    )
-    return data
+    );
+    return data;
   }
-)
+);
 
-export const getCentreData = createAsyncThunk("getCentreData", async (options) => {
-  const config = {
-    withCredentials: true,
-  };
-  const { data } = await axios.get(`https://ishacare.onrender.com/api/dashboard/admin/centreData?interval=${options.interval}&cluster=${options.cluster}&year=${options.year}&month=${options.month}`, config);
-  return data;
-});
+export const getCentreData = createAsyncThunk(
+  "getCentreData",
+  async (options) => {
+    const config = {
+      withCredentials: true,
+    };
+    const { data } = await axios.get(
+      `https://ishacare.onrender.com/api/dashboard/admin/centreData?interval=${options.interval}&cluster=${options.cluster}&year=${options.year}&month=${options.month}&days=${options.day}`,
+      config
+    );
+    return data;
+  }
+);
 
 export const getTherapistPerformance = createAsyncThunk(
   "getTherapistPerformance",

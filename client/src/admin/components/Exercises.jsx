@@ -188,18 +188,18 @@ const Exercises = () => {
         {loading ? (
           <Loader />
         ) : (
-          <div className="w-full mt-[6vmax]">
+          <div className="text-center w-full mt-8">
             <h1 className="text-3xl border-b-4 border-[#00286b] text-[#00286b] pb-2 font-bold w-fit text-center mx-auto sm:text-2xl sm:w-4/5">
               Exercises
             </h1>
             <button
               onClick={() => setToggle("open")}
-              className="absolute top-[6vmax] right-[7vmax] border-2 border-[#00286b] bg-[#00286b] text-white font-semibold px-[1vmax] py-[0.5vmax] hover:bg-white hover:text-[#00286b] sm:static"
+              className="mt-2 border-2 border-[#00286b] bg-[#00286b] text-white font-semibold px-[1vmax] py-[0.5vmax] hover:bg-white hover:text-[#00286b]"
             >
               Create Exercise
             </button>
             <DataGrid
-              className="my-8 w-4/5 mx-auto sm:w-[95%]"
+              className="mt-4 mb-8 w-4/5 mx-auto sm:w-[95%]"
               rows={rows}
               columns={cols}
               autoHeight

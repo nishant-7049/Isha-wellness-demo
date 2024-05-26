@@ -5,6 +5,7 @@ import SpeedDialAction from "@mui/material/SpeedDialAction";
 import { MdDashboard, MdExitToApp } from "react-icons/md";
 import { FaUserAlt } from "react-icons/fa";
 import { TbPackages, TbPackage } from "react-icons/tb";
+import { BsCalendar2DateFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logOut } from "../store/slices/userSlice";
@@ -14,12 +15,13 @@ const UserOptions = () => {
   const navigate = useNavigate();
   const { isAuthenticated, user } = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
-  const orders = () => {
-    navigate("/orders");
-  };
 
   const account = () => {
     navigate("/account");
+  };
+
+  const bookNow = () => {
+    navigate("/book/personalform");
   };
 
   const dashboard = () => {
@@ -50,6 +52,11 @@ const UserOptions = () => {
 
   const options = [
     {
+      icon: <BsCalendar2DateFill className="text-xl" />,
+      name: "Book Therapy",
+      func: bookNow,
+    },
+    {
       icon: <TbPackages className="text-xl" />,
       name: "My Orders",
       func: userOrders,
@@ -66,28 +73,28 @@ const UserOptions = () => {
     },
   ];
 
-  if (user && user.role == "admin") {
+  if (user && user?.role == "admin") {
     options.unshift({
       icon: <MdDashboard className="text-xl" />,
       name: "DashBoard",
       func: dashboard,
     });
   }
-  if (user && user.isIncharge == true) {
+  if (user && user?.isIncharge == true) {
     options.unshift({
       icon: <TbPackages className="text-xl" />,
       name: "Cluster Orders",
       func: inchargeOrders,
     });
   }
-  if (user && user.role == "therapist") {
+  if (user && user?.role == "therapist") {
     options.unshift({
       icon: <TbPackage className="text-xl" />,
       name: "Therapist Orders",
       func: therapistOrders,
     });
   }
-  if (user && user.role == "facilitator") {
+  if (user && user?.role == "facilitator") {
     options.unshift({
       icon: <TbPackage className="text-xl" />,
       name: "Facilitator Orders",
@@ -103,7 +110,13 @@ const UserOptions = () => {
 
   const isSmallScreen = window.innerWidth < 600;
   return (
-    <div className="w-fit fixed right-[2vmax] top-[6vmax] z-10 sm:top-[14vmax]">
+    <div
+      className={`w-fit fixed z-10  ${
+        user?.role !== "user"
+          ? "top-4 right-4"
+          : "right-[2vmax] top-[6vmax] sm:top-[14vmax]"
+      }`}
+    >
       {isAuthenticated ? (
         <>
           <SpeedDial
@@ -122,6 +135,7 @@ const UserOptions = () => {
           >
             {options.map((data) => (
               <SpeedDialAction
+                style={!open ? { display: "none" } : {}}
                 key={data.name}
                 icon={data.icon}
                 tooltipTitle={data.name}

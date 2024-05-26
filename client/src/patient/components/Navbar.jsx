@@ -10,8 +10,11 @@ function Navbar() {
 
   return (
     // <Contain className={`${(user.role === "user" && user?.isIncharge === false)?'':'hidden'}`}>
-    <Contain className={`${(!user || (user.role === "user" && !user.isIncharge)) ? '' : 'hidden'}`}>
-
+    <Contain
+      className={`${
+        !user || (user.role === "user" && !user.isIncharge) ? "" : "hidden"
+      }`}
+    >
       <Nav>
         <Link to="/">
           <Logo
@@ -117,7 +120,7 @@ function Navbar() {
               {" "}
               Blogs
             </Link>
-            
+
             <Link
               onClick={() => {
                 setToggle(!toggle);
@@ -134,7 +137,7 @@ function Navbar() {
                 onClick={() => {
                   setToggle(!toggle);
                 }}
-                to="/personalform"
+                to="/book/personalform"
                 className={
                   location.pathname == "/book/personalform" ? "active" : ""
                 }

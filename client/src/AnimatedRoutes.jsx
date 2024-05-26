@@ -1,6 +1,5 @@
 import React, { lazy, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import BookNow from "./patient/components/Booking/BookNow";
 import ConfirmBooking from "./patient/components/Booking/ConfirmBooking";
 import { AnimatePresence } from "framer-motion";
 
@@ -107,7 +106,6 @@ const AnimatedRoutes = () => {
         ) : (
           <Route exact path="/forum" element={<NotAuth />} />
         )}
-        <Route exact path="/booknow" element={<BookNow />} />
         <Route exact path="/book/personalform" element={<Personal />} />
         <Route exact path="/book/problemform" element={<Problem />} />
         <Route exact path="/book/measures" element={<Measures />} />

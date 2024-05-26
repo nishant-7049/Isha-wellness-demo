@@ -15,7 +15,9 @@ export const checkout = createAsyncThunk("createOrder", async (amount) => {
 });
 
 export const getKey = createAsyncThunk("getKey", async () => {
-  const { data } = await axios.get("https://ishacare.onrender.com/api/payment/getKey");
+  const { data } = await axios.get(
+    "https://ishacare.onrender.com/api/payment/getKey"
+  );
   return data;
 });
 
@@ -26,16 +28,26 @@ export const createBooking = createAsyncThunk(
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     };
-    const { data } = await axios.post("https://ishacare.onrender.com/api/booking/new", options, config);
+    const { data } = await axios.post(
+      "https://ishacare.onrender.com/api/booking/new",
+      options,
+      config
+    );
     return data;
   }
 );
 
-export const getClusterBookings = createAsyncThunk("getClusterBookings", async () => {
-  const config = { withCredentials: true };
-  const { data } = await axios.get("https://ishacare.onrender.com/api/booking/all", config);
-  return data;
-});
+export const getClusterBookings = createAsyncThunk(
+  "getClusterBookings",
+  async () => {
+    const config = { withCredentials: true };
+    const { data } = await axios.get(
+      "https://ishacare.onrender.com/api/booking/all",
+      config
+    );
+    return data;
+  }
+);
 
 export const getPaymentDetail = createAsyncThunk(
   "getPaymentDetail",
@@ -44,7 +56,10 @@ export const getPaymentDetail = createAsyncThunk(
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     };
-    const { data } = await axios.get(`https://ishacare.onrender.com/api/payment/${id}`, config);
+    const { data } = await axios.get(
+      `https://ishacare.onrender.com/api/payment/${id}`,
+      config
+    );
     return data;
   }
 );
@@ -53,14 +68,20 @@ export const getPaymentDetailForUser = createAsyncThunk(
   "getPaymentDetailForUser",
   async (bookingId) => {
     const config = { withCredentials: true };
-    const { data } = await axios.get(`https://ishacare.onrender.com/api/payment/user/${bookingId}`, config);
+    const { data } = await axios.get(
+      `https://ishacare.onrender.com/api/payment/user/${bookingId}`,
+      config
+    );
     return data;
   }
 );
 
 export const deleteBooking = createAsyncThunk("deleteBooking", async (id) => {
   const config = { withCredentials: true };
-  const { data } = await axios.delete(`https://ishacare.onrender.com/api/booking/delete/${id}`, config);
+  const { data } = await axios.delete(
+    `https://ishacare.onrender.com/api/booking/delete/${id}`,
+    config
+  );
   return data;
 });
 
@@ -84,7 +105,10 @@ export const getBookingDetail = createAsyncThunk(
   "getBookingDetail",
   async (id) => {
     const config = { withCredentials: true };
-    const { data } = await axios.get(`https://ishacare.onrender.com/api/booking/detail/${id}`, config);
+    const { data } = await axios.get(
+      `https://ishacare.onrender.com/api/booking/detail/${id}`,
+      config
+    );
     return data;
   }
 );
@@ -92,7 +116,10 @@ export const getBookingDetailForUser = createAsyncThunk(
   "getBookingDetailForUser",
   async (id) => {
     const config = { withCredentials: true };
-    const { data } = await axios.get(`https://ishacare.onrender.com/api/booking/user/detail/${id}`, config);
+    const { data } = await axios.get(
+      `https://ishacare.onrender.com/api/booking/user/detail/${id}`,
+      config
+    );
     return data;
   }
 );
@@ -132,7 +159,10 @@ export const getBookingForTherapist = createAsyncThunk(
   "getBookingForTherapist",
   async () => {
     const config = { withCredentials: true };
-    const { data } = await axios.get("https://ishacare.onrender.com/api/booking/therapist/bookings", config);
+    const { data } = await axios.get(
+      "https://ishacare.onrender.com/api/booking/therapist/bookings",
+      config
+    );
     return data;
   }
 );
@@ -167,7 +197,10 @@ export const setBookingStatus = createAsyncThunk(
 
 export const getUserOrders = createAsyncThunk("getUserOrders", async () => {
   const config = { withCredentials: true };
-  const { data } = await axios.get("https://ishacare.onrender.com/api/booking/user/bookings", config);
+  const { data } = await axios.get(
+    "https://ishacare.onrender.com/api/booking/user/bookings",
+    config
+  );
   return data;
 });
 
@@ -255,6 +288,9 @@ const BookingSlice = createSlice({
   reducers: {
     clearError: (state) => {
       state.error = null;
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
     },
     updateBookingDetails: (state) => {
       state.bookingDetails = JSON.parse(localStorage.getItem("bookingDetails"));
@@ -536,4 +572,5 @@ export const {
   resetIsStatusUpdated,
   setConsent,
   resetIsRescheduled,
+  setError,
 } = BookingSlice.actions;

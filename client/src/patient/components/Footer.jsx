@@ -4,10 +4,18 @@ import { FiMail } from "react-icons/fi";
 import { AiFillFacebook } from "react-icons/ai";
 import { AiFillYoutube } from "react-icons/ai";
 import { AiFillLinkedin } from "react-icons/ai";
+import { useLocation } from "react-router-dom";
 
 const Footer = () => {
+  const pagesIncludingFooter = ["/", "/about", "/service", "/blogs", "/forum"];
+  const location = useLocation();
+  const currPath = location.pathname;
   return (
-    <div className="flex justify-center px-[5rem] py-[2rem] pb-16 text-white bg-[#00286B] sm:flex-col sm:px-2 sm:py-[1rem] sm:pb-8">
+    <div
+      className={`${
+        !pagesIncludingFooter.includes(currPath) && "hidden"
+      } flex justify-center px-[5rem] py-[2rem] pb-16 text-white bg-[#00286B] sm:flex-col sm:px-2 sm:py-[1rem] sm:pb-8`}
+    >
       <div className="w-1/2 text-justify sm:w-full">
         <p className="text-3xl font-extrabold my-4 sm:text-lg">About Us</p>
         <p className="text-sm font-bold sm:text-[12px]">

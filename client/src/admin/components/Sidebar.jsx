@@ -13,7 +13,7 @@ const Sidebar = () => {
   return (
     <>
       {sidebarToggle == true ? (
-        <div className="fixed top-0 left-0 backdrop-blur-lg h-[100vh] flex flex-col py-[2vmax] px-[3vmax]  gap-8">
+        <div className="fixed top-0 left-0 backdrop-blur-lg h-[100vh] flex flex-col py-[2vmax] px-[3vmax]  gap-8 z-20">
           <GiHamburgerMenu
             className="text-xl absolute text-[#00286b] cursor-pointer"
             onClick={() => {

@@ -24,7 +24,7 @@ ChartJS.register(
 );
 
 const AdminPatientMeter = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { loading, patientsData } = useSelector((state) => state.dashboard);
   const [regPat, setRegPat] = useState();
   const [curPat, setCurPat] = useState(0);
@@ -34,12 +34,18 @@ const AdminPatientMeter = () => {
   const [ndNo, setNdNo] = useState(0);
   const [ldNo, setLdNo] = useState(0);
   const [cluster, setCluster] = useState("");
-  const [totalImprovedPsr, setTotalImprovedPsr] = useState(0)
-  const [totalWorsenedPsr, setTotalWorsenedPsr] = useState(0)
-  const [start, setStart] = useState("2023-01-01")
-  const [end, setEnd] = useState(`${new Date().getFullYear()}-${new Date().getMonth()+1>9?new Date().getMonth()+1:`0${new Date().getMonth()+1}`}-${new Date().getDate()}`)
+  const [totalImprovedPsr, setTotalImprovedPsr] = useState(0);
+  const [totalWorsenedPsr, setTotalWorsenedPsr] = useState(0);
+  const [start, setStart] = useState("2023-01-01");
+  const [end, setEnd] = useState(
+    `${new Date().getFullYear()}-${
+      new Date().getMonth() + 1 > 9
+        ? new Date().getMonth() + 1
+        : `0${new Date().getMonth() + 1}`
+    }-${new Date().getDate()}`
+  );
 
-  const {clusterProgress} = useSelector(state=> state.dashboard)
+  const { clusterProgress } = useSelector((state) => state.dashboard);
 
   const setData = (patientsData) => {
     setRegPat(patientsData.length);
@@ -130,41 +136,41 @@ const AdminPatientMeter = () => {
       {
         label: "Total Improved PSR",
         data: [totalImprovedPsr],
-        backgroundColor: "#2ebd3c"
+        backgroundColor: "#2ebd3c",
       },
       {
         label: "Total Worsened PSR",
         data: [totalWorsenedPsr],
-        backgroundColor: "#b32424"
-      }
-    ]
-  }
+        backgroundColor: "#b32424",
+      },
+    ],
+  };
 
-  useEffect(()=>{
-    if(clusterProgress){
-      let totalImprovedPsr = 0
-      let totalWorsenedPsr = 0
-      for(let progress of clusterProgress){
-        if(progress.finalPsr && progress.finalPsr != -999){
-          if(progress.finalPsr >=0){
-            totalImprovedPsr+=progress.finalPsr
-          }else{
-            totalWorsenedPsr-=progress.finalPsr
+  useEffect(() => {
+    if (clusterProgress) {
+      let totalImprovedPsr = 0;
+      let totalWorsenedPsr = 0;
+      for (let progress of clusterProgress) {
+        if (progress.finalPsr && progress.finalPsr != -999) {
+          if (progress.finalPsr >= 0) {
+            totalImprovedPsr += progress.finalPsr;
+          } else {
+            totalWorsenedPsr -= progress.finalPsr;
           }
         }
       }
-      setTotalImprovedPsr(totalImprovedPsr)
-      setTotalWorsenedPsr(totalWorsenedPsr)
+      setTotalImprovedPsr(totalImprovedPsr);
+      setTotalWorsenedPsr(totalWorsenedPsr);
     }
-  },[clusterProgress])
-  useEffect(()=>{
+  }, [clusterProgress]);
+  useEffect(() => {
     const options = {
       cluster,
       start: new Date(start).getTime(),
-      end: new Date(end).getTime()
-    }
-    dispatch(getClusterProgress(options))
-  },[cluster, start, end])
+      end: new Date(end).getTime(),
+    };
+    dispatch(getClusterProgress(options));
+  }, [cluster, start, end]);
   return (
     <div className="shadow-xl w-4/5 mx-auto mt-4 mb-12 p-4 sm:w-[90%]">
       {loading ? (
@@ -200,92 +206,89 @@ const AdminPatientMeter = () => {
             </div>
           </div>
           <div className="flex flex-col my-8 gap-4 items-center justify-center md:flex-col-reverse md:gap-0">
-          <div className="flex gap-4 justify-between">
-          <div className="flex flex-col justify-center items-center gap-2 w-1/5 md:w-full">
-              <p className="text-[#00286b] text-xl font-semibold">Cluster:</p>
-              <select
-                className="bg-white border-2 p-1"
-                value={cluster}
-                onChange={(e) => {
-                  setCluster(e.target.value);
-                  clusterChange(e);
-                }}
-              >
-                <option value="">All</option>
-                <option value="Indore">Indore</option>
-                <option value="Ratlam">Ratlam</option>
-                <option value="Jaora">Jaora</option>
-                <option value="Ahmedabad">Ahmedabad</option>
-              </select>
+            <div className="flex gap-4 justify-between">
+              <div className="flex flex-col justify-center items-center gap-2 w-1/5 md:w-full">
+                <p className="text-[#00286b] text-xl font-semibold">Cluster:</p>
+                <select
+                  className="bg-white border-2 p-1"
+                  value={cluster}
+                  onChange={(e) => {
+                    setCluster(e.target.value);
+                    clusterChange(e);
+                  }}
+                >
+                  <option value="">All</option>
+                  <option value="Indore">Indore</option>
+                  <option value="Ratlam">Ratlam</option>
+                  <option value="Jaora">Jaora</option>
+                  <option value="Ahmedabad">Ahmedabad</option>
+                </select>
+              </div>
+              <div className="flex flex-col justify-center items-center gap-2 w-1/5 md:w-full">
+                <p className="text-[#00286b] text-xl font-semibold">Start:</p>
+                <input
+                  className="bg-white border-2 p-1"
+                  type="date"
+                  value={start}
+                  onChange={(e) => {
+                    setStart(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="flex flex-col justify-center items-center gap-2 w-1/5 md:w-full">
+                <p className="text-[#00286b] text-xl font-semibold">End:</p>
+                <input
+                  className="bg-white border-2 p-1"
+                  type="date"
+                  value={end}
+                  onChange={(e) => {
+                    setEnd(e.target.value);
+                  }}
+                />
+              </div>
             </div>
-          <div className="flex flex-col justify-center items-center gap-2 w-1/5 md:w-full">
-              <p className="text-[#00286b] text-xl font-semibold">Start:</p>
-              <input
-                className="bg-white border-2 p-1"
-                type="date"
-                value={start}
-                onChange={(e) => {
-                  setStart(e.target.value);
-                }}
-              />
-            </div>
-          <div className="flex flex-col justify-center items-center gap-2 w-1/5 md:w-full">
-              <p className="text-[#00286b] text-xl font-semibold">End:</p>
-              <input
-                className="bg-white border-2 p-1"
-                type="date"
-                value={end}
-                onChange={(e) => {
-                  setEnd(e.target.value);
-                }}
-              />
-            </div>
-          </div>
             <div className="flex gap-8 w-full justify-center md:flex-col">
-              
-            <div className="w-2/5 h-[50vh] md:w-full md:h-[40vh]">
-              <Bar
-                key={9}
-                data={data}
-                options={{
-                  responsive: true,
-                  maintainAspectRatio: false,
+              <div className="w-2/5 h-[50vh] md:w-full md:h-[40vh]">
+                <Bar
+                  key={9}
+                  data={data}
+                  options={{
+                    responsive: true,
+                    maintainAspectRatio: false,
 
-                  plugins: {
-                    legend: {
-                      position: "top",
+                    plugins: {
+                      legend: {
+                        position: "top",
+                      },
+                      title: {
+                        display: true,
+                        text: "Cases based on PSR value.",
+                      },
                     },
-                    title: {
-                      display: true,
-                      text: "Cases based on PSR value.",
-                    },
-                  },
-                }}
-              />
-            </div>
-            <div className="w-2/5 h-[50vh] md:w-full md:h-[40vh]">
-              <Bar
-                key={1}
-                data={clusterProgressData}
-                options={{
-                  responsive: true,
-                  maintainAspectRatio: false,
+                  }}
+                />
+              </div>
+              <div className="w-2/5 h-[50vh] md:w-full md:h-[40vh]">
+                <Bar
+                  key={1}
+                  data={clusterProgressData}
+                  options={{
+                    responsive: true,
+                    maintainAspectRatio: false,
 
-                  plugins: {
-                    legend: {
-                      position: "top",
+                    plugins: {
+                      legend: {
+                        position: "top",
+                      },
+                      title: {
+                        display: true,
+                        text: "Progress of Cluster based on patient's PSR.",
+                      },
                     },
-                    title: {
-                      display: true,
-                      text: "Progress of Cluster based on patient's PSR.",
-                    },
-                  },
-                }}
-              />
+                  }}
+                />
+              </div>
             </div>
-
-            </div>
-            
           </div>
         </>
       )}

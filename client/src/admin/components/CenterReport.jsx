@@ -35,141 +35,139 @@ const CenterReport = () => {
   const [totalVisitCollection, setTotalVisitCollection] = useState();
   const { loading, centreData } = useSelector((state) => state.dashboard);
 
-  useEffect(()=>{
-    if(interval == "year"){let years = []
-      let totalCentre = 0
-      let totalVisit = 0
-      for(let cd of centreData){
-        if(!years.includes(cd._id.year)){
-          years.push(cd._id.year)
+  useEffect(() => {
+    if (interval == "year") {
+      let years = [];
+      let totalCentre = 0;
+      let totalVisit = 0;
+      for (let cd of centreData) {
+        if (!years.includes(cd._id.year)) {
+          years.push(cd._id.year);
         }
-        if(cd._id.location === "Visit Address"){
-          totalVisit+=cd.collectionAmt
-        }else if(cd._id.location === "Center"){
-          totalCentre+=cd.collectionAmt
+        if (cd._id.location === "Visit Address") {
+          totalVisit += cd.collectionAmt;
+        } else if (cd._id.location === "Center") {
+          totalCentre += cd.collectionAmt;
         }
       }
-      years = years.sort()
-      setyears(years)
-      setTotalCentreCollection(totalCentre)
-      setTotalVisitCollection(totalVisit)
-      let patientsCentre = new Array(years.length).fill(0)
-      let patientsVisit = new Array(years.length).fill(0)
-      let collectionCentre = new Array(years.length).fill(0)
-      let collectionVisit = new Array(years.length).fill(0)
-      console.log("patientsCentre :" , patientsCentre)
-      for(let cd of centreData){
-        for(let y in years){
-          if(years[y]== cd._id.year){
-            if(cd._id.location === "Visit Address"){
-              patientsVisit[y] = cd.count,
-              collectionVisit[y] = cd.collectionAmt
-            }else{
-              patientsCentre[y] = cd.count,
-              collectionCentre[y] = cd.collectionAmt
+      years = years.sort();
+      setyears(years);
+      setTotalCentreCollection(totalCentre);
+      setTotalVisitCollection(totalVisit);
+      let patientsCentre = new Array(years.length).fill(0);
+      let patientsVisit = new Array(years.length).fill(0);
+      let collectionCentre = new Array(years.length).fill(0);
+      let collectionVisit = new Array(years.length).fill(0);
+      console.log("patientsCentre :", patientsCentre);
+      for (let cd of centreData) {
+        for (let y in years) {
+          if (years[y] == cd._id.year) {
+            if (cd._id.location === "Visit Address") {
+              (patientsVisit[y] = cd.count),
+                (collectionVisit[y] = cd.collectionAmt);
+            } else {
+              (patientsCentre[y] = cd.count),
+                (collectionCentre[y] = cd.collectionAmt);
             }
           }
         }
       }
-      console.log("patientsCentre :" , patientsCentre)
-      setPatientsAtCentre(patientsCentre)
-      setPatientsAtVisit(patientsVisit)
-      setCollectionCentre(collectionCentre)
-      setCollectionVisit(collectionVisit)
-    }
-    else if(interval == "month"){
+      console.log("patientsCentre :", patientsCentre);
+      setPatientsAtCentre(patientsCentre);
+      setPatientsAtVisit(patientsVisit);
+      setCollectionCentre(collectionCentre);
+      setCollectionVisit(collectionVisit);
+    } else if (interval == "month") {
       {
-        let totalCentre = 0
-        let totalVisit = 0
-        for(let cd of centreData){
-          if(cd._id.location === "Visit Address"){
-            totalVisit+=cd.collectionAmt
-          }else if(cd._id.location === "Center"){
-            totalCentre+=cd.collectionAmt
+        let totalCentre = 0;
+        let totalVisit = 0;
+        for (let cd of centreData) {
+          if (cd._id.location === "Visit Address") {
+            totalVisit += cd.collectionAmt;
+          } else if (cd._id.location === "Center") {
+            totalCentre += cd.collectionAmt;
           }
         }
-        setTotalCentreCollection(totalCentre)
-        setTotalVisitCollection(totalVisit)
-        let patientsCentre = new Array(12).fill(0)
-        let patientsVisit = new Array(12).fill(0)
-        let collectionCentre = new Array(12).fill(0)
-        let collectionVisit = new Array(12).fill(0)
-        console.log("patientsCentre :" , patientsCentre)
-        for(let cd of centreData){
-          for(let m = 0; m<=12; m++){
-            if(m== cd._id.month){
-              if(cd._id.location === "Visit Address"){
-                patientsVisit[m-1] = cd.count,
-                collectionVisit[m-1] = cd.collectionAmt
-              }else{
-                patientsCentre[m-1] = cd.count,
-                collectionCentre[m-1] = cd.collectionAmt
+        setTotalCentreCollection(totalCentre);
+        setTotalVisitCollection(totalVisit);
+        let patientsCentre = new Array(12).fill(0);
+        let patientsVisit = new Array(12).fill(0);
+        let collectionCentre = new Array(12).fill(0);
+        let collectionVisit = new Array(12).fill(0);
+        console.log("patientsCentre :", patientsCentre);
+        for (let cd of centreData) {
+          for (let m = 0; m <= 12; m++) {
+            if (m == cd._id.month) {
+              if (cd._id.location === "Visit Address") {
+                (patientsVisit[m - 1] = cd.count),
+                  (collectionVisit[m - 1] = cd.collectionAmt);
+              } else {
+                (patientsCentre[m - 1] = cd.count),
+                  (collectionCentre[m - 1] = cd.collectionAmt);
               }
             }
           }
         }
-        console.log("patientsCentre :" , patientsCentre)
-        setPatientsAtCentre(patientsCentre)
-        setPatientsAtVisit(patientsVisit)
-        setCollectionCentre(collectionCentre)
-        setCollectionVisit(collectionVisit)
-    }
-    }
-    else if(interval == "day"){
+        console.log("patientsCentre :", patientsCentre);
+        setPatientsAtCentre(patientsCentre);
+        setPatientsAtVisit(patientsVisit);
+        setCollectionCentre(collectionCentre);
+        setCollectionVisit(collectionVisit);
+      }
+    } else if (interval == "day") {
       {
-        let totalCentre = 0
-        let totalVisit = 0
-        for(let cd of centreData){
-          if(!years.includes(cd._id.year)){
-            years.push(cd._id.year)
+        let totalCentre = 0;
+        let totalVisit = 0;
+        for (let cd of centreData) {
+          if (!years.includes(cd._id.year)) {
+            years.push(cd._id.year);
           }
-          if(cd._id.location === "Visit Address"){
-            totalVisit+=cd.collectionAmt
-          }else if(cd._id.location === "Center"){
-            totalCentre+=cd.collectionAmt
+          if (cd._id.location === "Visit Address") {
+            totalVisit += cd.collectionAmt;
+          } else if (cd._id.location === "Center") {
+            totalCentre += cd.collectionAmt;
           }
         }
-        setTotalCentreCollection(totalCentre)
-        setTotalVisitCollection(totalVisit)
-        let patientsCentre = new Array(31).fill(0)
-        let patientsVisit = new Array(31).fill(0)
-        let collectionCentre = new Array(31).fill(0)
-        let collectionVisit = new Array(31).fill(0)
-        console.log("patientsCentre :" , patientsCentre)
-        for(let cd of centreData){
-          for(let d = 1; d<=31; d++){
-            if(d== cd._id.day){
-              if(cd._id.location === "Visit Address"){
-                patientsVisit[d-1] = cd.count,
-                collectionVisit[d-1] = cd.collectionAmt
-              }else{
-                patientsCentre[d-1] = cd.count,
-                collectionCentre[d-1] = cd.collectionAmt
+        setTotalCentreCollection(totalCentre);
+        setTotalVisitCollection(totalVisit);
+        let patientsCentre = new Array(31).fill(0);
+        let patientsVisit = new Array(31).fill(0);
+        let collectionCentre = new Array(31).fill(0);
+        let collectionVisit = new Array(31).fill(0);
+        console.log("patientsCentre :", patientsCentre);
+        for (let cd of centreData) {
+          for (let d = 1; d <= 31; d++) {
+            if (d == cd._id.day) {
+              if (cd._id.location === "Visit Address") {
+                (patientsVisit[d - 1] = cd.count),
+                  (collectionVisit[d - 1] = cd.collectionAmt);
+              } else {
+                (patientsCentre[d - 1] = cd.count),
+                  (collectionCentre[d - 1] = cd.collectionAmt);
               }
             }
           }
         }
-        console.log("patientsCentre :" , patientsCentre)
-        setPatientsAtCentre(patientsCentre)
-        setPatientsAtVisit(patientsVisit)
-        setCollectionCentre(collectionCentre)
-        setCollectionVisit(collectionVisit)
+        console.log("patientsCentre :", patientsCentre);
+        setPatientsAtCentre(patientsCentre);
+        setPatientsAtVisit(patientsVisit);
+        setCollectionCentre(collectionCentre);
+        setCollectionVisit(collectionVisit);
+      }
     }
-    }
-  },[centreData])
+  }, [centreData]);
 
-  
-  const dispatch = useDispatch()
-  useEffect(()=>{
+  const dispatch = useDispatch();
+  useEffect(() => {
     const options = {
       interval,
       cluster,
       year,
       month,
-    }
-    console.log(options)
-    dispatch(getCentreData(options))
-  },[cluster, interval, month, year])
+    };
+    console.log(options);
+    dispatch(getCentreData(options));
+  }, [cluster, interval, month, year]);
   return (
     <div className="shadow-xl w-4/5 mx-auto mt-4 mb-12 p-4 sm:w-[90%] sm:p-0">
       {loading == true ? (
@@ -237,7 +235,7 @@ const CenterReport = () => {
                 >
                   {months.map((month, index) => {
                     return (
-                      <option key={index} value={index+1}>
+                      <option key={index} value={index + 1}>
                         {month}
                       </option>
                     );

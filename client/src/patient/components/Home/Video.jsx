@@ -45,8 +45,8 @@ const Video = () => {
       </h2>
       <Slider {...settings}>
         {videos &&
-          videos.map((video) => (
-            <div>
+          videos.map((video, index) => (
+            <div key={index}>
               <iframe
                 className="px-4 w-full h-[300px] sm:px-0 sm:w-full mb-4"
                 key={video._id}
