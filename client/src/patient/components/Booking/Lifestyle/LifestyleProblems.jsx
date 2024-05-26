@@ -64,7 +64,7 @@ const LifestyleProblems = ({
     } else {
       setLifestyle((prev) => ({
         ...prev,
-        problemInfo: [...lifestyle.problemInfo, { problem: value }],
+        problemInfo: [...lifestyle?.problemInfo, { problem: value }],
       }));
     }
   };
