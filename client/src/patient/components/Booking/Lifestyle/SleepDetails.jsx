@@ -216,7 +216,7 @@ const SleepDetails = ({
               value={lifestyle?.sleepDetails?.compuerScreenHour}
               onChange={(e) => {
                 const sleepDetails = lifestyle?.sleepDetails;
-                sleepDetails["compuerScreenHour"] = e.target.value;
+                sleepDetails["computerScreenHour"] = e.target.value;
                 setLifestyle((prev) => ({
                   ...prev,
                   sleepDetails,

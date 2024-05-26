@@ -53,7 +53,7 @@ const LifestyleProblems = ({
   };
 
   const multipleSelect = (value) => {
-    if (includeObject(value, lifestyle?.problemInfo)) {
+    if (includeObject(value, lifestyle?.problemInfo || [])) {
       const filteredArray = lifestyle.problemInfo.filter(
         (p) => p.problem !== value
       );
