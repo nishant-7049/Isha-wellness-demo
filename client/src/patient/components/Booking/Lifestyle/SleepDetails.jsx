@@ -13,13 +13,14 @@ const SleepDetails = ({
   const [isCompleted, setIsCompleted] = useState(false);
 
   const changeTime = (e, type) => {
-    let tempObject = lifestyle?.sleepDetails || {};
+    let tempObject = { ...(lifestyle?.sleepDetails || {}) };
     let value = e.target.value.replace(/[^0-9]/g, "");
     let hours = value.slice(0, 2);
     if (hours > 24) hours = 24;
-    let minutes = value.slice(2);
+    let minutes = value.slice(2, 4);
     if (minutes > 60) minutes = 60;
-    let formattedValue = hours + (minutes.length ? ":" : "") + minutes;
+    let formattedValue =
+      hours + (minutes.length || minutes >= 60 ? ":" : "") + minutes;
 
     tempObject[type] = formattedValue;
 
@@ -216,7 +217,7 @@ const SleepDetails = ({
               value={lifestyle?.sleepDetails?.compuerScreenHour}
               onChange={(e) => {
                 const sleepDetails = lifestyle?.sleepDetails;
-                sleepDetails["computerScreenHour"] = e.target.value;
+                sleepDetails["compuerScreenHour"] = e.target.value;
                 setLifestyle((prev) => ({
                   ...prev,
                   sleepDetails,

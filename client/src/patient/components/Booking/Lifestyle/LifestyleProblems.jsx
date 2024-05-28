@@ -204,7 +204,6 @@ const LifestyleProblems = ({
                     setLifestyle((prev) => {
                       const updatedProblemInfo =
                         [...lifestyle?.problemInfo] || [];
-                      console.log(updatedProblemInfo[index]);
                       updatedProblemInfo[index] = {
                         ...updatedProblemInfo[index],
                         cause: e.target.value,
