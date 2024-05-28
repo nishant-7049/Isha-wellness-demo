@@ -13,7 +13,7 @@ const DietDetails = ({
   const [isCompleted, setIsCompleted] = useState(false);
 
   const changeTime = (e, foodType) => {
-    let tempObject = lifestyle?.foodDetails?.foodTime || {};
+    let tempObject = { ...(lifestyle?.foodDetails?.foodTime || {}) };
     let value = e.target.value.replace(/[^0-9]/g, "");
     let hours = value.slice(0, 2);
     if (hours > 24) hours = 24;
