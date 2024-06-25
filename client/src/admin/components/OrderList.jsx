@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -10,12 +10,22 @@ import { getAllPackages } from "../../store/slices/packageSlice";
 import { BiEdit } from "react-icons/bi";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
+import SearchAppointment from "./SearchAppointment";
 
 const OrderList = () => {
   const dispatch = useDispatch();
-  const { loading, error, bookings, payment, isBookingDeleted, isUpdated } =
-    useSelector((state) => state.booking);
+  const {
+    loading,
+    error,
+    bookings,
+    bookingsCount,
+    payment,
+    isBookingDeleted,
+    isUpdated,
+  } = useSelector((state) => state.booking);
   const { user } = useSelector((state) => state.user);
+  const [keyword, setKeyword] = useState("");
+  const [results, setResults] = useState("");
   const { packages } = useSelector((state) => state.package);
 
   const cols = [
@@ -106,6 +116,7 @@ const OrderList = () => {
       field: "action",
       headerName: "Actions",
       minWidth: 100,
+      type: "number",
       flex: 0.3,
       headerClassName: "text-[#00286b] font-semibold",
       renderCell: (cellValues) => (
@@ -124,7 +135,6 @@ const OrderList = () => {
     },
   ];
   const rows = [];
-  let paymentType;
   bookings &&
     bookings.map((ther) => {
       const date = new Date(ther.packageAndDate.dateAndTime);
@@ -145,40 +155,68 @@ const OrderList = () => {
       });
     });
 
+  const [paginationModel, setPaginationModel] = useState({
+    pageSize: 15,
+    page: 0,
+  });
+
+  const submitHandler = () => {
+    const options = {
+      keyword,
+      page: paginationModel.page + 1 || 1,
+      limit: paginationModel.pageSize,
+    };
+    dispatch(getClusterBookings(options));
+    setResults(keyword);
+  };
+
   useEffect(() => {
-    dispatch(getClusterBookings());
+    console.log(keyword);
+    const options = {
+      keyword,
+      page: paginationModel.page + 1 || 1,
+      limit: paginationModel.pageSize,
+    };
+    dispatch(getClusterBookings(options));
     if (!packages) {
       dispatch(getAllPackages());
     }
     if (isBookingDeleted) {
       dispatch(resetIsBookingDeleted());
     }
-  }, [isBookingDeleted, isUpdated]);
+  }, [isBookingDeleted, isUpdated, paginationModel]);
   return (
-    <div className="w-full my-8 ">
+    <div className="w-full my-8 flex flex-col gap-2">
       <h1 className="text-3xl border-b-4 border-[#00286b] text-[#00286b] pb-2 font-bold w-fit text-center mx-auto sm:text-2xl sm:w-4/5">
         Appointments
       </h1>
-      <div className="flex justify-center">
-
       <Link
         to="/enquiry"
-        className="text-[#00286b] cursor-pointer absolute right-24 font-bold sm:static sm:p-2"
-        >
+        className="block text-[#00286b] cursor-pointer absolute right-24 font-bold sm:static sm:w-full sm:text-center"
+      >
         view enquiries
       </Link>
-      <Link
-              to="/book/personalForm"
-              className="my-2 text-white cursor-pointer bg-[#00286b] border-2 border-[#00286b] hover:bg-white hover:text-[#00286b]  font-bold sm:static sm:mx-auto p-2"
-              >
-              Book for Patient
-            </Link>
-        </div>
+      <SearchAppointment
+        keyword={keyword}
+        setKeyword={setKeyword}
+        submitHandler={submitHandler}
+      />
+      {results && (
+        <p className="w-[90%] mx-auto text-gray-400 text-sm">
+          Showing Results for '{results}'
+        </p>
+      )}
       <DataGrid
         rows={rows}
         columns={cols}
         autoHeight
-        className="w-[90%] mx-auto my-8"
+        className="w-[90%] mx-auto"
+        rowCount={bookingsCount}
+        loading={loading}
+        pageSizeOptions={[15]}
+        paginationModel={paginationModel}
+        paginationMode="server"
+        onPaginationModelChange={setPaginationModel}
       />
     </div>
   );

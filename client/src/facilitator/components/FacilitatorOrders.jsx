@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { useDispatch, useSelector } from "react-redux";
 import { getBookingForFacilitator } from "../../store/slices/bookingSlice";
@@ -8,12 +8,12 @@ import { getAllPackages } from "../../store/slices/packageSlice";
 import Loader from "../../auth/Loader";
 import MyPerformance from "./MyPerformance";
 import MyReports from "./MyReports";
+import SearchAppointment from "../../admin/components/SearchAppointment";
 
 const FacilitatorOrders = () => {
   const dispatch = useDispatch();
-  const { loading, error, facilitatorBooking } = useSelector(
-    (state) => state.booking
-  );
+  const { loading, error, facilitatorBooking, facilitatorBookingCount } =
+    useSelector((state) => state.booking);
   const cols = [
     {
       field: "name",
@@ -133,9 +133,29 @@ const FacilitatorOrders = () => {
         id: ther._id,
       });
     });
+  const [keyword, setKeyword] = useState("");
+  const [results, setResults] = useState("");
+  const [paginationModel, setPaginationModel] = useState({
+    pageSize: 15,
+    page: 0,
+  });
+  const submitHandler = () => {
+    const options = {
+      keyword,
+      page: paginationModel.page + 1 || 1,
+      limit: paginationModel.pageSize,
+    };
+    dispatch(getBookingForFacilitator(options));
+    setResults(keyword);
+  };
   useEffect(() => {
-    dispatch(getBookingForFacilitator());
-  }, [dispatch]);
+    const options = {
+      keyword,
+      page: paginationModel.page + 1 || 1,
+      limit: paginationModel.pageSize,
+    };
+    dispatch(getBookingForFacilitator(options));
+  }, [dispatch, paginationModel]);
   return (
     <div className="w-full my-8">
       {loading ? (
@@ -145,22 +165,32 @@ const FacilitatorOrders = () => {
           <h1 className="text-2xl border-b-4 border-[#00286b] text-[#00286b] pb-2 font-bold w-fit text-center mx-auto sm:text-2xl sm:w-4/5">
             Facilitator Panel
           </h1>
-          <div className="w-[90%] p-4 shadow-lg mx-auto my-8">
+          <div className="w-[90%] p-4 shadow-lg mx-auto my-8 sm:my-4">
             <h1 className="text-[#00286b] text-xl text-center font-semibold mb-4">
               My Patients
             </h1>
-            <Link
-              to="/book/personalForm"
-              className="py-2 text-white cursor-pointer bg-[#00286b] border-2 border-[#00286b] hover:bg-white hover:text-[#00286b]  font-bold sm:static sm:mx-auto p-2"
-              >
-              Book for Patient
-            </Link>
-            <div className="h-[80vh] w-full">
+            <SearchAppointment
+              keyword={keyword}
+              setKeyword={setKeyword}
+              submitHandler={submitHandler}
+            />
+            {results && (
+              <p className="w-[90%] mx-auto text-gray-400 text-sm">
+                Showing Results for '{results}'
+              </p>
+            )}
+            <div className="h-[80vh] w-full mt-4">
               <DataGrid
                 rows={rows}
                 columns={cols}
                 getRowHeight={() => "auto"}
                 className=" mx-auto "
+                rowCount={facilitatorBookingCount}
+                loading={loading}
+                pageSizeOptions={[15]}
+                paginationModel={paginationModel}
+                paginationMode="server"
+                onPaginationModelChange={setPaginationModel}
               />
             </div>
           </div>

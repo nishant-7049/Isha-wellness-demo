@@ -10,10 +10,11 @@ import { useState } from "react";
 
 const Sidebar = () => {
   const [sidebarToggle, setSidebarToggle] = useState(false);
+  const [showBurger, setShowBurger] = useState(window.innerWidth < 600);
   return (
     <>
       {sidebarToggle == true ? (
-        <div className="fixed top-0 left-0 backdrop-blur-lg h-[100vh] flex flex-col py-[2vmax] px-[3vmax]  gap-8 z-20">
+        <div className="fixed top-0 left-0 bg-white h-[100vh] flex flex-col py-[2vmax] px-[3vmax]  gap-8 z-20">
           <GiHamburgerMenu
             className="text-xl absolute text-[#00286b] cursor-pointer"
             onClick={() => {
@@ -71,8 +72,17 @@ const Sidebar = () => {
             <h2 className="text-lg font-bold">Appointments</h2>
           </Link>
         </div>
+      ) : showBurger == true ? (
+        <div className="fixed top-4 left-4 rounded-full p-2 shadow-lg bg-white">
+          <GiHamburgerMenu
+            className="text-2xl text-[#00286b] cursor-pointer "
+            onClick={() => {
+              setSidebarToggle(!sidebarToggle);
+            }}
+          />
+        </div>
       ) : (
-        <div className="fixed top-0  left-0 backdrop-blur-lg w-fit h-[100vh] flex flex-col py-4 px-4  gap-8 sm:h-fit ">
+        <div className="fixed top-0  left-0 backdrop-blur-lg w-fit h-[100vh] flex flex-col py-4 px-4  gap-8 sm:h-fit z-20">
           <GiHamburgerMenu
             className="text-2xl text-[#00286b] cursor-pointer "
             onClick={() => {

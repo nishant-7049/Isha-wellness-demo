@@ -39,10 +39,10 @@ export const createBooking = createAsyncThunk(
 
 export const getClusterBookings = createAsyncThunk(
   "getClusterBookings",
-  async () => {
+  async (options) => {
     const config = { withCredentials: true };
     const { data } = await axios.get(
-      "https://ishacare.onrender.com/api/booking/all",
+      `https://ishacare.onrender.com/api/booking/all?keyword=${options.keyword}&page=${options.page}&limit=${options.limit}`,
       config
     );
     return data;
@@ -157,10 +157,10 @@ export const setFacilitator = createAsyncThunk(
 
 export const getBookingForTherapist = createAsyncThunk(
   "getBookingForTherapist",
-  async () => {
+  async (options) => {
     const config = { withCredentials: true };
     const { data } = await axios.get(
-      "https://ishacare.onrender.com/api/booking/therapist/bookings",
+      `https://ishacare.onrender.com/api/booking/therapist/bookings?keyword=${options.keyword}&page=${options.page}&limit=${options.limit}`,
       config
     );
     return data;
@@ -169,10 +169,10 @@ export const getBookingForTherapist = createAsyncThunk(
 
 export const getBookingForFacilitator = createAsyncThunk(
   "getBookingForFacilitator",
-  async () => {
+  async (options) => {
     const config = { withCredentials: true };
     const { data } = await axios.get(
-      "https://ishacare.onrender.com/api/booking/facilitator/bookings",
+      `https://ishacare.onrender.com/api/booking/therapist/bookings?keyword=${options.keyword}&page=${options.page}&limit=${options.limit}`,
       config
     );
     return data;
@@ -284,6 +284,9 @@ const BookingSlice = createSlice({
         : [],
     info: null,
     payment: null,
+    bookingsCount: null,
+    therapistBookingCount: null,
+    facilitatorBookingCount: null,
   },
   reducers: {
     clearError: (state) => {
@@ -400,6 +403,7 @@ const BookingSlice = createSlice({
     builder.addCase(getClusterBookings.fulfilled, (state, action) => {
       state.loading = false;
       state.bookings = action.payload.bookings;
+      state.bookingsCount = action.payload.bookingsCount;
     });
     builder.addCase(getClusterBookings.rejected, (state, action) => {
       state.loading = false;
@@ -497,6 +501,7 @@ const BookingSlice = createSlice({
     builder.addCase(getBookingForTherapist.fulfilled, (state, action) => {
       state.loading = false;
       state.therapistBooking = action.payload.bookings;
+      state.therapistBookingCount = action.payload.bookingsCount;
     });
     builder.addCase(getBookingForTherapist.rejected, (state, action) => {
       state.loading = false;
@@ -512,6 +517,7 @@ const BookingSlice = createSlice({
     builder.addCase(getBookingForFacilitator.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message;
+      state.facilitatorBookingCount = action.payload.bookingsCount;
     });
     builder.addCase(setBookingStatus.pending, (state) => {
       state.loading = true;

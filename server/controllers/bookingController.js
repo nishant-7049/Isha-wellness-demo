@@ -35,15 +35,27 @@ exports.createBooking = catchAsyncError(async (req, res, next) => {
 });
 
 exports.getClusterBooking = catchAsyncError(async (req, res, next) => {
+  const { keyword, page, limit } = req.query;
+  let bookingsCount = await Booking.find({
+    "personal.city": { $in: req.user.cluster },
+    "personal.name": { $regex: keyword, $options: "i" },
+  }).count();
+  console.log(req.query);
   const bookings = await Booking.find(
-    { "personal.city": { $in: req.user.cluster } },
+    {
+      "personal.city": { $in: req.user.cluster },
+      "personal.name": { $regex: keyword, $options: "i" },
+    },
     {},
     { sort: { createdAt: -1 } }
-  );
+  )
+    .limit(limit)
+    .skip((page - 1) * limit);
 
   res.status(200).json({
     success: true,
     bookings,
+    bookingsCount,
   });
 });
 
@@ -194,25 +206,59 @@ exports.setFacilitator = catchAsyncError(async (req, res, next) => {
 });
 
 exports.getBookingsForTherapist = catchAsyncError(async (req, res, next) => {
+  const { keyword, page, limit } = req.query;
+  const bookingsCount = await Booking.find({
+    assignTherapist: req.user.id,
+    "personal.name": {
+      $regex: keyword,
+      $options: "i",
+    },
+  }).count();
   const bookings = await Booking.find(
-    { assignTherapist: req.user.id },
+    {
+      assignTherapist: req.user.id,
+      "personal.name": {
+        $regex: keyword,
+        $options: "i",
+      },
+    },
     {},
     { sort: { createdAt: -1 } }
-  );
+  )
+    .limit(limit)
+    .skip(limit * (page - 1));
   res.status(200).json({
     success: true,
     bookings,
+    bookingsCount,
   });
 });
 exports.getBookingsForFacilitator = catchAsyncError(async (req, res, next) => {
+  const { keyword, page, limit } = req.query;
+  const bookingsCount = await Booking.find({
+    assignFacilitator: req.user.id,
+    "personal.name": {
+      $regex: keyword,
+      $options: "i",
+    },
+  }).count();
   const bookings = await Booking.find(
-    { assignFacilitator: req.user.id },
+    {
+      assignFacilitator: req.user.id,
+      "personal.name": {
+        $regex: keyword,
+        $options: "i",
+      },
+    },
     {},
     { sort: { createdAt: -1 } }
-  );
+  )
+    .limit(limit)
+    .skip(limit * (page - 1));
   res.status(200).json({
     success: true,
     bookings,
+    bookingsCount,
   });
 });
 
@@ -257,20 +303,20 @@ exports.setScheduledTime = catchAsyncError(async (req, res, next) => {
   });
 });
 
-exports.getBookingByNameAndPhone = catchAsyncError(async (req, res, next)=>{
-  const {name, phone } = req.body
-  if(!name || !phone){
-    return next(new ErrorHandler("Please Enter name and phone number", 400))
+exports.getBookingByNameAndPhone = catchAsyncError(async (req, res, next) => {
+  const { name, phone } = req.body;
+  if (!name || !phone) {
+    return next(new ErrorHandler("Please Enter name and phone number", 400));
   }
-  const booking = await Booking.findOne({name, phone}) 
-  if(!booking){
+  const booking = await Booking.findOne({ name, phone });
+  if (!booking) {
     res.status(200).json({
       success: true,
-      message: "No booking found with given name and phone"
-    })
+      message: "No booking found with given name and phone",
+    });
   }
   res.status(200).json({
     success: true,
-    booking
-  })
-})
+    booking,
+  });
+});
