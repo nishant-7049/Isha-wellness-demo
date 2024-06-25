@@ -513,11 +513,11 @@ const BookingSlice = createSlice({
     builder.addCase(getBookingForFacilitator.fulfilled, (state, action) => {
       state.loading = false;
       state.facilitatorBooking = action.payload.bookings;
+      state.facilitatorBookingCount = action.payload.bookingsCount;
     });
     builder.addCase(getBookingForFacilitator.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message;
-      state.facilitatorBookingCount = action.payload.bookingsCount;
     });
     builder.addCase(setBookingStatus.pending, (state) => {
       state.loading = true;
