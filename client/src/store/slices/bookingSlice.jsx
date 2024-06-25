@@ -172,7 +172,7 @@ export const getBookingForFacilitator = createAsyncThunk(
   async (options) => {
     const config = { withCredentials: true };
     const { data } = await axios.get(
-      `https://ishacare.onrender.com/api/booking/therapist/bookings?keyword=${options.keyword}&page=${options.page}&limit=${options.limit}`,
+      `https://ishacare.onrender.com/api/booking/facilitator/bookings?keyword=${options.keyword}&page=${options.page}&limit=${options.limit}`,
       config
     );
     return data;
