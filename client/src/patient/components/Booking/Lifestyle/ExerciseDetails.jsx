@@ -43,7 +43,7 @@ const ExerciseDetails = ({
               isCompleted ? "border-[#00286b]" : "border-[#000000de]"
             }`}
           >
-            {isCompleted ? <IoMdCheckmark /> : 3}
+            {isCompleted ? <IoMdCheckmark /> : 4}
           </div>
           <h1 className="font-semibold">Exercise Details</h1>
         </div>

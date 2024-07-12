@@ -15,6 +15,7 @@ import AdminDetails from "./Occupation/AdminDetails";
 import ErrorAlert from "../../../auth/ErrorAlert";
 import ScheduleTreatment from "./Occupation/ScheduleTreatment";
 import { getAllPackages } from "../../../store/slices/packageSlice";
+import Measures from "./Measures";
 
 const batchs = [
   {
@@ -49,8 +50,9 @@ const Occupation = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [activeElement, setActiveElement] = useState("occupationDetails");
+  const [activeElement, setActiveElement] = useState("measures");
   const [completedSecions, setCompletedSections] = useState({
+    Measures: false,
     "Occupation Details": false,
     "Admin Details": false,
   });
@@ -103,8 +105,13 @@ const Occupation = () => {
         }`}
       >
         <h1 className="text-xl font-semibold border-b-2 text-[#00286b] border-[#00286b]">
-          Lifestyle And Habits
+          Additional Details
         </h1>
+        <Measures
+          setActiveElement={setActiveElement}
+          activeStatus={activeElement == "measures"}
+          setCompletedSections={setCompletedSections}
+        />
         <OccupationDetails
           setActiveElement={setActiveElement}
           activeStatus={activeElement == "occupationDetails"}

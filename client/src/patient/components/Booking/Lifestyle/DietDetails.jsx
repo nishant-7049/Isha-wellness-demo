@@ -66,7 +66,7 @@ const DietDetails = ({
               isCompleted ? "border-[#00286b]" : "border-[#000000de]"
             }`}
           >
-            {isCompleted ? <IoMdCheckmark /> : 2}
+            {isCompleted ? <IoMdCheckmark /> : 3}
           </div>
           <h1 className="font-semibold">Diet Details</h1>
         </div>

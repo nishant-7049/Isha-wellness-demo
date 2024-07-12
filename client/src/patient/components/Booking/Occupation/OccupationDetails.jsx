@@ -69,7 +69,7 @@ const OccupationDetails = ({
               isCompleted ? "border-[#00286b]" : "border-[#000000de]"
             }`}
           >
-            {isCompleted ? <IoMdCheckmark /> : 1}
+            {isCompleted ? <IoMdCheckmark /> : 2}
           </div>
           <h1 className="font-semibold">Occupation Details</h1>
         </div>

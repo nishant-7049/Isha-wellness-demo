@@ -61,9 +61,9 @@ const SleepDetails = ({
               isCompleted ? "border-[#00286b]" : "border-[#000000de]"
             }`}
           >
-            {isCompleted ? <IoMdCheckmark /> : 4}
+            {isCompleted ? <IoMdCheckmark /> : 5}
           </div>
-          <h1 className="font-semibold">Sleep Details</h1>
+          <h1 className="font-semibold">Sleep and Screen Time Details</h1>
         </div>
         {isActive ? (
           <FaChevronDown className={`${isCompleted && "text-[#00286b]"}`} />

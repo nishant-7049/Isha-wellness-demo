@@ -8,3 +8,24 @@
 input::-webkit-calendar-picker-indicator {
   filter: invert(1);
 }
+
+/* for every browser */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track{
+  background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #9ca3af; 
+  margin: 0 1px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00286b; 
+}
+

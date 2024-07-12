@@ -16,6 +16,7 @@ const HabitDetails = ({
   setLifestyle,
   activeStatus,
   setActiveElement,
+  problemCompletedSections,
   formSubmitHandler,
   setCompletedSections,
 }) => {
@@ -24,7 +25,7 @@ const HabitDetails = ({
   const [otherHabit, setOtherHabit] = useState("");
 
   const multipleSelect = (value) => {
-    let habits = lifestyle?.habits || [];
+    let habits = [...lifestyle?.habits] || [];
     if (habits.includes(value)) {
       const tempHabits = habits.filter((h) => h !== value);
       habits = tempHabits;
@@ -37,12 +38,19 @@ const HabitDetails = ({
     }));
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    setCompletedSections((prev) => ({
-      ...prev,
-      "Habit Details": true,
-    }));
+    await setCompletedSections((prev) => {
+      const temp = {
+        ...prev,
+        "Problem Name": problemCompletedSections["Problem Name"],
+        "Habit Details": true,
+      };
+      // if (problemCompletedSections["Problem Name"]) {
+      //   temp["Problem Name"] = problemCompletedSections["Problem Name"];
+      // }
+      return temp;
+    });
     setIsCompleted(true);
     formSubmitHandler();
   };
@@ -68,7 +76,7 @@ const HabitDetails = ({
               isCompleted ? "border-[#00286b]" : "border-[#000000de]"
             }`}
           >
-            {isCompleted ? <IoMdCheckmark /> : 5}
+            {isCompleted ? <IoMdCheckmark /> : 7}
           </div>
           <h1 className="font-semibold">Habit Details</h1>
         </div>
@@ -85,16 +93,18 @@ const HabitDetails = ({
         >
           <div className="flex flex-col w-full grow">
             <label>Select your habits *</label>
-            <select
-              multiple
-              className="p-1 bg-white border-2 rounded-md"
+            <div
+              className="p-1 bg-white border-2 rounded-md h-24 overflow-y-auto"
               required
-              value={lifestyle?.habits}
-              onChange={() => {}}
             >
               {allHabits.map((habit, index) => (
                 <option
                   key={index}
+                  className={`${
+                    lifestyle?.habits.includes(habit)
+                      ? "bg-gray-400 text-white"
+                      : ""
+                  } cursor-pointer`}
                   value={habit}
                   onClick={(e) => {
                     multipleSelect(e.target.value);
@@ -103,7 +113,7 @@ const HabitDetails = ({
                   {habit}
                 </option>
               ))}
-            </select>
+            </div>
           </div>
           <div className="flex flex-col w-full grow">
             <label>Enter your habits </label>

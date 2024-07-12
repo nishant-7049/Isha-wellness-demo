@@ -8,76 +8,62 @@ const bookingSchema = new mongoose.Schema({
     },
   },
   complaints: {
-    aspect: {
-      type: String,
-      required: false,
-    },
-    activity: {
-      type: String,
-      required: false,
-    },
-    cause: {
-      type: String,
-      required: false,
-    },
-    consult: {
-      type: String,
-      required: false,
-    },
-    inv: {
-      type: String,
-      required: false,
-    },
-    oldComplaint: {
-      type: String,
-      required: false,
-    },
-    otherComplaints: {
-      type: String,
-      required: false,
-    },
-    otherMedicalConditions: {
-      type: String,
-      required: false,
-    },
-    part: {
-      type: String,
-      required: false,
-    },
     problem: {
       type: String,
       required: false,
     },
-    psr: {
-      type: Number,
-      required: false,
-    },
-    side: {
+    details: [
+      {
+        part: String,
+        side: String,
+        aspect: String,
+        psr: Number,
+        type: String,
+        description: String,
+      },
+    ],
+    activity: {
       type: String,
-      required: false,
+    },
+    cause: [
+      {
+        type: String,
+      },
+    ],
+    consult: {
+      type: String,
+    },
+    inv: [
+      {
+        type: String,
+      },
+    ],
+    oldComplaint: {
+      type: String,
+    },
+    otherComplaints: {
+      type: String,
+    },
+    otherMedicalConditions: {
+      type: String,
     },
     since: {
       type: String,
-      required: false,
+    },
+    sinceNumbers: {
+      type: Number,
     },
     tone: {
       type: Number,
-      required: false,
-    },
-    type: {
-      type: String,
-      required: false,
     },
     work: {
       type: String,
-      required: false,
     },
   },
   lifestyleAndHabits: {
     exerciseDetails: {
       doExercises: {
         type: String,
-        required: true,
       },
       exercise: String,
       exercisePerDay: Number,
@@ -86,102 +72,83 @@ const bookingSchema = new mongoose.Schema({
     foodDetails: {
       doBreakfast: {
         type: String,
-        required: true,
       },
       emptyStomach: {
         type: String,
-        required: true,
       },
       healthyDiet: {
         type: String,
-        required: true,
       },
       foodTime: {
         breakfastTime: String,
         lunchTime: {
           type: String,
-          reuired: true,
         },
         dinnerTime: {
           type: String,
-          reuired: true,
         },
       },
     },
     habits: {
       type: [String],
-      required: true,
     },
     problemsInfo: [
       {
         cause: {
           type: String,
-          required: true,
         },
         onMedications: {
           type: String,
-          required: true,
         },
         problem: {
           type: String,
-          required: true,
         },
         sinceWhen: {
           type: Number,
-          required: true,
+        },
+        description: {
+          type: String,
         },
       },
     ],
     sleepDetails: {
       computerScreenHour: {
         type: Number,
-        required: true,
       },
       mobileScreenHour: {
         type: Number,
-        required: true,
       },
       properSleep: {
         type: String,
-        required: true,
       },
       sittingHour: {
         type: Number,
-        required: true,
       },
       sleepHour: {
         type: Number,
-        required: true,
       },
       sleepTime: {
         type: String,
-        required: true,
       },
       tvScreenHour: {
         type: Number,
-        required: true,
       },
       wakeTime: {
         type: String,
-        required: true,
       },
     },
     stressDetails: {
       disturbanceCause: {
         type: String,
-        required: true,
       },
       stressRate: {
         type: Number,
-        required: true,
       },
       thinker: {
         type: String,
-        required: true,
       },
       thinkingRate: {
         type: Number,
-        required: true,
       },
     },
   },
@@ -196,7 +163,9 @@ const bookingSchema = new mongoose.Schema({
     },
     sugar: {
       type: String,
-      required: true,
+    },
+    sugarLevel: {
+      type: Number,
     },
     weight: {
       type: Number,

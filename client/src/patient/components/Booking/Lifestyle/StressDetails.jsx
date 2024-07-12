@@ -43,7 +43,7 @@ const SleepDetails = ({
               isCompleted ? "border-[#00286b]" : "border-[#000000de]"
             }`}
           >
-            {isCompleted ? <IoMdCheckmark /> : 5}
+            {isCompleted ? <IoMdCheckmark /> : 6}
           </div>
           <h1 className="font-semibold">Stress Details</h1>
         </div>

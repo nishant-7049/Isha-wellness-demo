@@ -20,6 +20,8 @@ const problems = [
   "Menopause",
   "Stress",
   "Depression/anxiety",
+  "Other",
+  "None",
 ];
 
 const LifestyleProblems = ({
@@ -107,7 +109,7 @@ const LifestyleProblems = ({
               isCompleted ? "border-[#00286b]" : "border-[#000000de]"
             }`}
           >
-            {isCompleted ? <IoMdCheckmark /> : 1}
+            {isCompleted ? <IoMdCheckmark /> : 2}
           </div>
           <h1 className="font-semibold">Lifestyle Problems</h1>
         </div>
@@ -124,15 +126,15 @@ const LifestyleProblems = ({
         >
           <div className="flex flex-col w-full">
             <label>Lifestyle Problems</label>
-            <select
-              className="p-1 bg-white border-2 rounded-md"
-              multiple
-              value={lifesyleProblem}
-              onChange={() => {}}
-            >
+            <div className="p-1 bg-white border-2 rounded-md h-24 overflow-y-auto">
               <option value="">Choose</option>
               {problems.map((problem, index) => (
                 <option
+                  className={`${
+                    lifesyleProblem.includes(problem)
+                      ? "bg-gray-400 text-white"
+                      : ""
+                  } cursor-pointer`}
                   value={problem}
                   key={index}
                   onClick={(e) => {
@@ -142,77 +144,104 @@ const LifestyleProblems = ({
                   {problem}
                 </option>
               ))}
-            </select>
+            </div>
           </div>
           {lifesyleProblem?.map((problem, index) => (
             <div key={index} className="w-full flex flex-wrap gap-4">
-              <h1 className="w-full">{problem} Details </h1>
-              <div className="flex flex-col w-1/4 grow">
-                <label>Since When (months) *</label>
-                <input
-                  className="p-1 bg-white border-2 rounded-md"
-                  type="number"
-                  min={0}
-                  required
-                  placeholder="Since when have you been feeling this problem? (in months) "
-                  value={lifestyle?.problemInfo[index]?.sinceWhen}
-                  onChange={(e) => {
-                    setLifestyle((prev) => {
-                      const updatedProblemInfo =
-                        [...lifestyle?.problemInfo] || [];
-                      updatedProblemInfo[index] = {
-                        ...updatedProblemInfo[index],
-                        sinceWhen: e.target.value,
-                      };
-                      return { ...prev, problemInfo: updatedProblemInfo };
-                    });
-                  }}
-                />
-              </div>
-              <div className="flex flex-col w-1/4 grow">
-                <label>On Medication*</label>
-                <select
-                  className="p-1 bg-white border-2 rounded-md"
-                  required
-                  value={lifestyle?.problemInfo[index]?.onMedication}
-                  onChange={(e) => {
-                    setLifestyle((prev) => {
-                      const updatedProblemInfo =
-                        [...lifestyle?.problemInfo] || [];
-                      updatedProblemInfo[index] = {
-                        ...updatedProblemInfo[index],
-                        onMedication: e.target.value,
-                      };
-                      return { ...prev, problemInfo: updatedProblemInfo };
-                    });
-                  }}
-                >
-                  <option value="">Choose</option>
-                  <option value="No">No</option>
-                  <option value="Yes">Yes</option>
-                </select>
-              </div>
-              <div className="flex flex-col w-1/4 sm:w-full grow">
-                <label>Cause *</label>
-                <input
-                  className="p-1 bg-white border-2 rounded-md"
-                  type="text"
-                  required
-                  placeholder="Enter cause of problem "
-                  value={lifestyle?.problemInfo[index]?.cause}
-                  onChange={(e) => {
-                    setLifestyle((prev) => {
-                      const updatedProblemInfo =
-                        [...lifestyle?.problemInfo] || [];
-                      updatedProblemInfo[index] = {
-                        ...updatedProblemInfo[index],
-                        cause: e.target.value,
-                      };
-                      return { ...prev, problemInfo: updatedProblemInfo };
-                    });
-                  }}
-                />
-              </div>
+              {problem != "None" && (
+                <>
+                  <h1 className="w-full">{problem} Details </h1>
+                  <div className="flex flex-col w-1/4 grow">
+                    <label>Since When (months) *</label>
+                    <input
+                      className="p-1 bg-white border-2 rounded-md"
+                      type="number"
+                      min={0}
+                      required
+                      placeholder="Since when have you been feeling this problem? (in months) "
+                      value={lifestyle?.problemInfo[index]?.sinceWhen}
+                      onChange={(e) => {
+                        setLifestyle((prev) => {
+                          const updatedProblemInfo =
+                            [...lifestyle?.problemInfo] || [];
+                          updatedProblemInfo[index] = {
+                            ...updatedProblemInfo[index],
+                            sinceWhen: e.target.value,
+                          };
+                          return { ...prev, problemInfo: updatedProblemInfo };
+                        });
+                      }}
+                    />
+                  </div>
+                  <div className="flex flex-col w-1/4 grow">
+                    <label>On Medication*</label>
+                    <select
+                      className="p-1 bg-white border-2 rounded-md"
+                      required
+                      value={lifestyle?.problemInfo[index]?.onMedication}
+                      onChange={(e) => {
+                        setLifestyle((prev) => {
+                          const updatedProblemInfo =
+                            [...lifestyle?.problemInfo] || [];
+                          updatedProblemInfo[index] = {
+                            ...updatedProblemInfo[index],
+                            onMedication: e.target.value,
+                          };
+                          return { ...prev, problemInfo: updatedProblemInfo };
+                        });
+                      }}
+                    >
+                      <option value="">Choose</option>
+                      <option value="No">No</option>
+                      <option value="Yes">Yes</option>
+                    </select>
+                  </div>
+                  <div className="flex flex-col w-1/4 sm:w-full grow">
+                    <label>Cause *</label>
+                    <input
+                      className="p-1 bg-white border-2 rounded-md"
+                      type="text"
+                      required
+                      placeholder="Enter cause of problem "
+                      value={lifestyle?.problemInfo[index]?.cause}
+                      onChange={(e) => {
+                        setLifestyle((prev) => {
+                          const updatedProblemInfo =
+                            [...lifestyle?.problemInfo] || [];
+                          updatedProblemInfo[index] = {
+                            ...updatedProblemInfo[index],
+                            cause: e.target.value,
+                          };
+                          return { ...prev, problemInfo: updatedProblemInfo };
+                        });
+                      }}
+                    />
+                  </div>
+                  {problem == "Other" && (
+                    <div className="flex flex-col w-1/4 sm:w-full grow">
+                      <label>Description *</label>
+                      <input
+                        className="p-1 bg-white border-2 rounded-md"
+                        type="text"
+                        required
+                        placeholder="Enter cause of problem "
+                        value={lifestyle?.problemInfo[index]?.description}
+                        onChange={(e) => {
+                          setLifestyle((prev) => {
+                            const updatedProblemInfo =
+                              [...lifestyle?.problemInfo] || [];
+                            updatedProblemInfo[index] = {
+                              ...updatedProblemInfo[index],
+                              description: e.target.value,
+                            };
+                            return { ...prev, problemInfo: updatedProblemInfo };
+                          });
+                        }}
+                      />
+                    </div>
+                  )}
+                </>
+              )}
             </div>
           ))}
 

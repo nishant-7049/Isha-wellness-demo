@@ -7,6 +7,7 @@ import {
   updateLifestyleAndHabits,
   clearError,
   setError,
+  updatePresentingComplaints,
 } from "../../../store/slices/bookingSlice";
 import ErrorAlert from "../../../auth/ErrorAlert";
 import DietDetails from "./Lifestyle/DietDetails";
@@ -15,11 +16,19 @@ import SleepDetails from "./Lifestyle/SleepDetails";
 import StressDetails from "./Lifestyle/StressDetails";
 import HabitDetails from "./Lifestyle/HabitDetails";
 
-const Lifestyle = () => {
+const Lifestyle = ({
+  activeElement,
+  setActiveElement,
+  problemCompletedSections,
+  // activeStatus,
+  // problem={problem}
+  // setProblem={setProblem}
+  // setCompletedSections,
+}) => {
   const [lifestyle, setLifestyle] = useState({});
-  const [activeElement, setActiveElement] = useState("lifestyleProblems");
   const { user } = useSelector((state) => state.user);
   const [completedSections, setCompletedSections] = useState({
+    "Problem Name": false,
     "Lifestyle Problems": false,
     "Diet Details": false,
     "Exercise Details": false,
@@ -31,6 +40,11 @@ const Lifestyle = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
+    const data = {
+      problem: "Lifestyle and Habits",
+    };
+    localStorage.setItem("presentingComplaints", JSON.stringify(data));
+    dispatch(updatePresentingComplaints());
     for (let section in completedSections) {
       if (!completedSections[section]) {
         dispatch(setError(`${section} is not completely filled`));
@@ -41,7 +55,6 @@ const Lifestyle = () => {
     dispatch(updateLifestyleAndHabits());
     navigate("/book/occupation");
   };
-
   useEffect(() => {
     if (lifestyleAndHabits) {
       setLifestyle(lifestyleAndHabits);
@@ -49,66 +62,71 @@ const Lifestyle = () => {
   }, [lifestyleAndHabits]);
 
   return (
-    <div
-      className={`bg-[#00286b10] w-full min-h-screen flex justify-center items-center`}
-    >
-      <Consent />
-      <div
-        className={`w-3/5 min-h-[60vh] bg-white shadow-xl py-4 px-8 flex flex-col gap-4 sm:w-full sm:min-h-screen ${
-          !user || (user?.role == "user" && !user?.isIncharge)
-            ? "sm:pt-20"
-            : "sm:pt-8"
-        }`}
-      >
-        <h1 className="text-xl font-semibold border-b-2 text-[#00286b] border-[#00286b]">
-          Lifestyle And Habits
-        </h1>
-        <LifestyleProblems
-          setActiveElement={setActiveElement}
-          activeStatus={activeElement == "lifestyleProblems"}
-          lifestyle={lifestyle}
-          setLifestyle={setLifestyle}
-          setCompletedSections={setCompletedSections}
-        />
-        <DietDetails
-          setActiveElement={setActiveElement}
-          activeStatus={activeElement == "dietDetails"}
-          lifestyle={lifestyle}
-          setLifestyle={setLifestyle}
-          setCompletedSections={setCompletedSections}
-        />
-        <ExerciseDetails
-          setActiveElement={setActiveElement}
-          activeStatus={activeElement == "exerciseDetails"}
-          lifestyle={lifestyle}
-          setLifestyle={setLifestyle}
-          setCompletedSections={setCompletedSections}
-        />
-        <SleepDetails
-          setActiveElement={setActiveElement}
-          activeStatus={activeElement == "sleepDetails"}
-          lifestyle={lifestyle}
-          setLifestyle={setLifestyle}
-          setCompletedSections={setCompletedSections}
-        />
-        <StressDetails
-          setActiveElement={setActiveElement}
-          activeStatus={activeElement == "stressDetails"}
-          lifestyle={lifestyle}
-          setLifestyle={setLifestyle}
-          setCompletedSections={setCompletedSections}
-        />
-        <HabitDetails
-          setActiveElement={setActiveElement}
-          activeStatus={activeElement == "habitDetails"}
-          lifestyle={lifestyle}
-          setLifestyle={setLifestyle}
-          setCompletedSections={setCompletedSections}
-          formSubmitHandler={handleSubmit}
-        />
-      </div>
-      <ErrorAlert message={error} alert clearError={clearError} />
-    </div>
+    <>
+      {/* // <div
+    //   className={`bg-[#00286b10] w-full min-h-screen flex justify-center items-center`}
+    // >
+      //  <Consent />
+      // <div
+      //   className={`w-3/5 min-h-[60vh] bg-white shadow-xl py-4 px-8 flex flex-col gap-4 sm:w-full sm:min-h-screen ${
+      //     !user || (user?.role == "user" && !user?.isIncharge)
+      //       ? "sm:pt-20"
+      //       : "sm:pt-8"
+      //   }`}
+      // > */}
+
+      {/* <h1 className="text-xl font-semibold border-b-2 text-[#00286b] border-[#00286b]">
+        Lifestyle And Habits
+      </h1> */}
+      <LifestyleProblems
+        setActiveElement={setActiveElement}
+        activeStatus={activeElement == "lifestyleProblems"}
+        lifestyle={lifestyle}
+        setLifestyle={setLifestyle}
+        setCompletedSections={setCompletedSections}
+      />
+      <DietDetails
+        setActiveElement={setActiveElement}
+        activeStatus={activeElement == "dietDetails"}
+        lifestyle={lifestyle}
+        setLifestyle={setLifestyle}
+        setCompletedSections={setCompletedSections}
+      />
+      <ExerciseDetails
+        setActiveElement={setActiveElement}
+        activeStatus={activeElement == "exerciseDetails"}
+        lifestyle={lifestyle}
+        setLifestyle={setLifestyle}
+        setCompletedSections={setCompletedSections}
+      />
+      <SleepDetails
+        setActiveElement={setActiveElement}
+        activeStatus={activeElement == "sleepDetails"}
+        lifestyle={lifestyle}
+        setLifestyle={setLifestyle}
+        setCompletedSections={setCompletedSections}
+      />
+      <StressDetails
+        setActiveElement={setActiveElement}
+        activeStatus={activeElement == "stressDetails"}
+        lifestyle={lifestyle}
+        setLifestyle={setLifestyle}
+        setCompletedSections={setCompletedSections}
+      />
+      <HabitDetails
+        setActiveElement={setActiveElement}
+        activeStatus={activeElement == "habitDetails"}
+        lifestyle={lifestyle}
+        setLifestyle={setLifestyle}
+        setCompletedSections={setCompletedSections}
+        formSubmitHandler={handleSubmit}
+        problemCompletedSections={problemCompletedSections}
+      />
+
+      {/* </div> */}
+      {/* <ErrorAlert message={error} alert clearError={clearError} /> */}
+      {/* </div> */}
+    </>
   );
 };
 
