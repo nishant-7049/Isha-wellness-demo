@@ -25,7 +25,7 @@ const LoginSignUp = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-  const { error, loading, isAuthenticated } = useSelector(
+  const { error, user, loading, isAuthenticated } = useSelector(
     (state) => state.user
   );
 
@@ -79,7 +79,18 @@ const LoginSignUp = () => {
   };
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/account");
+      if (user.role == "admin") {
+        navigate("/admin/dashboard");
+      }
+      if (user.role == "facilitator") {
+        navigate("/facilitator/orders");
+      }
+      if (user.role == "therapist") {
+        navigate("/therapist/orders");
+      }
+      if (user.role == "user") {
+        navigate("/");
+      }
     }
   }, [isAuthenticated]);
   return (
