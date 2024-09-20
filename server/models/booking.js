@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const bookingSchema = new mongoose.Schema({
   admin: {
     getToKnow: {
-      type: String,
+      type: [String],
       required: true,
     },
   },
@@ -31,7 +31,7 @@ const bookingSchema = new mongoose.Schema({
       },
     ],
     consult: {
-      type: String,
+      type: [String],
     },
     inv: [
       {
@@ -175,7 +175,6 @@ const bookingSchema = new mongoose.Schema({
   occupation: {
     experience: {
       type: Number,
-      required: true,
     },
     occupation: {
       type: String,

@@ -24,6 +24,27 @@ const OccupationDetails = ({
 }) => {
   const [isActive, setIsActive] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
+  const multipleSelect = (value, field) => {
+    if (admin?.getToKnow?.includes(value)) {
+      const filteredArray = admin?.getToKnow?.filter((p) => p !== value);
+      setAdmin((prev) => {
+        const temp = {
+          ...prev,
+          getToKnow: filteredArray,
+        };
+        return temp;
+      });
+    } else {
+      setAdmin((prev) => {
+        const temp = {
+          ...prev,
+          getToKnow: [...(admin?.getToKnow || []), value],
+        };
+        return temp;
+      });
+    }
+    console.log(admin);
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -75,24 +96,29 @@ const OccupationDetails = ({
         >
           <div className="flex flex-col w-1/4  grow">
             <label>How you get to know about IWC? *</label>
-            <select
-              className="p-1 bg-white border-2 rounded-md"
+
+            <div
+              className="p-1 bg-white border-2 rounded-md h-24 overflow-y-auto"
               required
-              value={admin?.getToKnow}
-              onChange={(e) => {
-                setAdmin((prev) => ({
-                  ...prev,
-                  getToKnow: e.target.value,
-                }));
-              }}
             >
               <option value="">Choose</option>
               {knows.map((know, index) => (
-                <option key={index} value={know}>
+                <option
+                  className={`${
+                    admin?.getToKnow?.includes(know)
+                      ? "bg-gray-400 text-white"
+                      : ""
+                  }`}
+                  value={know}
+                  key={index}
+                  onClick={(e) => {
+                    multipleSelect(e.target.value, "know");
+                  }}
+                >
                   {know}
                 </option>
               ))}
-            </select>
+            </div>
           </div>
 
           <div className="flex-shrink-0 w-full">

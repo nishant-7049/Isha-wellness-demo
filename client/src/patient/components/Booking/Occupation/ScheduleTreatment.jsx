@@ -7,6 +7,7 @@ import {
   getPackageDetail,
 } from "../../../../store/slices/packageSlice";
 import { setError } from "../../../../store/slices/bookingSlice";
+import PackageCard from "../../../../admin/components/PackageCard";
 
 const batchs = [
   {
@@ -42,7 +43,7 @@ const ScheduleTreatment = ({
   const { packages, pac: pack } = useSelector((state) => state.package);
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const [batch, setBatch] = useState();
-  const [pac, setPac] = useState();
+  const [currentPackage, setCurrentPackage] = useState();
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
@@ -78,10 +79,10 @@ const ScheduleTreatment = ({
     setIsActive(activeStatus);
   }, [activeStatus]);
   useEffect(() => {
-    if (pac) {
-      dispatch(getPackageDetail(pac));
+    if (currentPackage) {
+      dispatch(getPackageDetail(currentPackage));
     }
-  }, [pac]);
+  }, [currentPackage]);
 
   return (
     <div className="flex flex-col gap-4">
@@ -118,24 +119,6 @@ const ScheduleTreatment = ({
           onSubmit={submitHandler}
         >
           <div className="flex flex-col w-1/4 sm:w-1/3  grow">
-            <label>Select Package (listed below) *</label>
-            <select
-              className="p-1 bg-white border-2 rounded-md"
-              required
-              value={pac}
-              onChange={(e) => {
-                setPac(e.target.value);
-              }}
-            >
-              <option value="">Choose</option>
-              {packages.map((pac) => (
-                <option key={pac._id} value={pac._id}>
-                  {pac.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="flex flex-col w-1/4 sm:w-1/3  grow">
             <label>Date of Treatment *</label>
             <input
               className="p-1 bg-white border-2 rounded-md"
@@ -168,6 +151,24 @@ const ScheduleTreatment = ({
               ))}
             </select>
           </div>
+          <div className="flex flex-col w-1/4 sm:w-1/3  grow">
+            <label>Select Package (listed below) *</label>
+            <select
+              className="p-1 bg-white border-2 rounded-md"
+              required
+              value={currentPackage}
+              onChange={(e) => {
+                setCurrentPackage(e.target.value);
+              }}
+            >
+              <option value="">Choose</option>
+              {packages.map((pac) => (
+                <option key={pac._id} value={pac._id}>
+                  {pac.name}
+                </option>
+              ))}
+            </select>
+          </div>
 
           <div className="flex-shrink-0 w-full">
             <button
@@ -176,6 +177,19 @@ const ScheduleTreatment = ({
             >
               Next
             </button>
+          </div>
+          <div className="flex gap-4 my-4 overflow-x-auto pb-3">
+            {packages?.map((pac) => (
+              <div className="flex-shrink-0 w-1/3 md:w-1/2 sm:w-4/5">
+                <PackageCard
+                  pac={pac}
+                  role={"user"}
+                  selectedPackage={currentPackage}
+                  selectPackage={setCurrentPackage}
+                  key={pac._id}
+                />
+              </div>
+            ))}
           </div>
         </form>
       )}

@@ -27,6 +27,25 @@ const DurationAndConsultation = ({
 }) => {
   const [isActive, setIsActive] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
+  const multipleSelect = (value, field) => {
+    if (problem?.[field]?.includes(value)) {
+      const filteredArray = problem?.[field]?.filter((p) => p !== value);
+      setProblem((prev) => {
+        const temp = { ...prev };
+        temp[field] = filteredArray;
+        return temp;
+      });
+    } else {
+      setProblem((prev) => {
+        const temp = {
+          ...prev,
+        };
+        temp[field] = [...(problem?.[field] || []), value];
+        return temp;
+      });
+    }
+    console.log(problem);
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -120,24 +139,28 @@ const DurationAndConsultation = ({
 
           <div className="flex flex-col sm:w-1/3 w-1/4 grow">
             <label>Consulted Before *</label>
-            <select
-              className="p-1 bg-white border-2 rounded-md"
-              value={problem?.consult}
+            <div
+              className="p-1 bg-white border-2 rounded-md h-24 overflow-y-auto"
               required
-              onChange={(e) => {
-                setProblem((prev) => ({
-                  ...prev,
-                  consult: e.target.value,
-                }));
-              }}
             >
               <option value="">Choose</option>
               {consulted.map((consult, index) => (
-                <option value={consult} key={index}>
+                <option
+                  className={`${
+                    problem?.consult?.includes(consult)
+                      ? "bg-gray-400 text-white"
+                      : ""
+                  }`}
+                  value={consult}
+                  key={index}
+                  onClick={(e) => {
+                    multipleSelect(e.target.value, "consult");
+                  }}
+                >
                   {consult}
                 </option>
               ))}
-            </select>
+            </div>
           </div>
 
           <div className="flex-shrink-0 w-full">

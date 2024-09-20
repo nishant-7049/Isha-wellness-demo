@@ -57,7 +57,7 @@ const Occupation = () => {
     "Admin Details": false,
   });
   const [occupation, setOccupation] = useState("");
-  const [admin, setAdmin] = useState();
+  const [admin, setAdmin] = useState([]);
 
   const submitOccupation = () => {
     localStorage.setItem("occupation", JSON.stringify(occupation));
@@ -134,11 +134,6 @@ const Occupation = () => {
           submitSchedule={submitSchedule}
           setCompletedSections={setCompletedSections}
         />
-        <div className="flex flex-wrap gap-4 my-4">
-          {packages?.map((pac) => (
-            <PackageCard pac={pac} role={"user"} key={pac._id} />
-          ))}
-        </div>
       </div>
       <ErrorAlert message={error} alert clearError={clearError} />
     </div>

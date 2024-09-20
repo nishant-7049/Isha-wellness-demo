@@ -127,14 +127,13 @@ const OccupationDetails = ({
             </select>
           </div>
           <div className="flex flex-col w-1/4 sm:w-full grow">
-            <label>Work experience (in months) *</label>
+            <label>Work experience (in months)</label>
             <input
               type="number"
               min={0}
               max={1000}
               placeholder="Enter patient's work experience"
               className="p-1 bg-white border-2 rounded-md"
-              required
               value={occupation?.experience}
               onChange={(e) => {
                 setOccupation((prev) => ({
