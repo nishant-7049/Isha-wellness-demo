@@ -35,19 +35,6 @@ app.use(cookieParser());
 const allowedOrigins = [
   "https://ishawellness.netlify.app",
   "http://localhost:5173",
-  "https://ishawellness.netlify.app/account",
-  "https://ishawellness.netlify.app/admin/edit/frontend",
-  "https://ishawellness.netlify.app/admin/users",
-  "https://ishawellness.netlify.app/admin/packages",
-  "https://ishawellness.netlify.app/admin/exercises",
-  "https://ishawellness.netlify.app/admin/faq/edit/:id",
-  "https://ishawellness.netlify.app/admin/orders",
-  "https://ishawellness.netlify.app/therapist/orders",
-  "https://ishawellness.netlify.app/incharge/orders",
-  "https://ishawellness.netlify.app/incharge/orderDetail/:id",
-  "https://ishawellness.netlify.app/admin/dashboard",
-  "https://ishawellness.netlify.app/admin/enquiry",
-  "https://ishawellness.netlify.app/forum",
 ];
 
 app.use(
