@@ -7,6 +7,7 @@ export const login = createAsyncThunk(
     try {
       const config = {
         withCredentials: true,
+        baseURL: "https://ishacare.onrender.com",
       };
       const data = await axios.post(
         "https://ishacare.onrender.com/api/login",

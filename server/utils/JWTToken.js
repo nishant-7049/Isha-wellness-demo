@@ -3,9 +3,7 @@ const setToken = (user, statusCode, res) => {
 
   const options = {
     httpOnly: true,
-    // secure: process.env.NODE_ENV === "production",
-    // testing with secure false
-    secure: false,
+    secure: process.env.NODE_ENV === "production",
     sameSite: "None",
     path: "/",
     expires: new Date(
