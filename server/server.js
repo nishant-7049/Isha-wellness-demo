@@ -34,8 +34,7 @@ const app = express();
 const allowedOrigins = [
   "https://ishawellness.netlify.app",
   "https://ishawellness.netlify.app/",
-  // "https://ishawellness.netlify.app/admin/dashboard",
-  "http://localhost:5173",
+  "https://ishawellness.netlify.app/admin/dashboard",
 ];
 
 app.use(
