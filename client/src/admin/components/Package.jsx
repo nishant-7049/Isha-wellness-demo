@@ -71,7 +71,7 @@ const Package = () => {
             Create Package
           </button>
           {toggle == "open" && (
-            <div className="fixed w-full h-[100vh] bg-black bg-opacity-60 top-0 left-0 flex justify-center items-center">
+            <div className="fixed w-full h-[100vh] bg-black bg-opacity-60 top-0 left-0 flex justify-center items-center z-10">
               <form
                 className="relative w-1/3 flex flex-col gap-4 items-center bg-white p-[2vmax]"
                 onSubmit={submitHandler}
