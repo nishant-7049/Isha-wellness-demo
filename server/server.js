@@ -31,11 +31,7 @@ exports.instance = new Razorpay({
 
 const app = express();
 
-const allowedOrigins = [
-  "https://ishawellness.netlify.app",
-  "https://ishawellness.netlify.app/",
-  "https://ishawellness.netlify.app/admin/dashboard",
-];
+const allowedOrigins = ["https://ishawellness.netlify.app"];
 
 app.use(
   cors({
